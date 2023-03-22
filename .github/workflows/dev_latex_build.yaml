@@ -5,6 +5,7 @@ on:
     paths:
       - 'dev/latex/**'
   release:
+  workflow_dispatch:
 
 
 jobs:
