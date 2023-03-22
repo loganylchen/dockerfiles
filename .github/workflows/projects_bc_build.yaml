@@ -1,4 +1,4 @@
-name: image build for vscode dkd project container
+name: image build for vscode bc project container
 
 on:
   push:
