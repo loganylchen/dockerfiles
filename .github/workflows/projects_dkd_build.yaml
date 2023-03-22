@@ -1,9 +1,10 @@
-name: image build for slow5tool container
+name: image build for vscode dkd project container
 
 on:
   push:
     paths:
-      - 'tools/misc/slow5tools/**'
+      - 'projects/dkd/**'
+  release:
   workflow_dispatch:
 
 
@@ -19,7 +20,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/slow5tools
+            ${{ secrets.DH_USER }}/vscode-project-dkd
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
@@ -36,7 +37,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/misc/slow5tools/
+          context: ./projects/dkd/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/slow5tools:dev
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
