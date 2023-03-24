@@ -1,16 +1,9 @@
-FROM ubuntu:22.04
+FROM btrspg/vscode-project-base:main
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
 
-
-RUN apt update -y && \
-    apt install -y \
-	python3 python3-dev python3-pip \
-	r-base libcurl4-openssl-dev libssl-dev git \
-	libxml2-dev libproj-dev libfontconfig1-dev \
-    libharfbuzz-dev libfribidi-dev
 ADD install_packages_R.R /tmp/
 ADD requirements.txt /tmp/
 
