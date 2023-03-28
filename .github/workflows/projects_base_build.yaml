@@ -1,4 +1,4 @@
-name: image build for vscode bc project container
+name: image build for vscode base project container
 
 on:
   push:
