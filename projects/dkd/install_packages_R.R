@@ -10,4 +10,4 @@ devtools::install_github("immunogenomics/presto")
 
 BiocManager::install(c("edgeR", "DESeq2", "limma","EnhancedVolcano","PCAtools","MAST"))
 
-IRkernel::installspec(name = 'DKD_R', displayname = 'R DKD')
+IRkernel::installspec(name = 'DKD_R', displayname = 'R DKD',user=FALSE)
