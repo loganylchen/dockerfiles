@@ -36,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/misc/genekitr/
+          context: ./tools/genekitr/
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ secrets.DH_USER }}/slow5tools:dev
           labels: ${{ steps.meta.outputs.labels }}
