@@ -38,5 +38,5 @@ jobs:
         with:
           context: ./tools/genekitr/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/genekitr:main
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
