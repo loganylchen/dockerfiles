@@ -1,8 +1,8 @@
-install_packages <- c("BiocManager", "devtools", "dplyr","geneset")
+install_packages <- c("BiocManager", "devtools", "dplyr","geneset",'ggplot2')
 install.packages(install_packages)
 
 devtools::install_github('YuLab-SMU/ggtree')
-devtools::install_github("YuLab-SMU/clusterProfiler")
+BiocManager::install('clusterProfiler')
 devtools::install_github("GangLiLab/genekitr@v1.1.3")
 
 
