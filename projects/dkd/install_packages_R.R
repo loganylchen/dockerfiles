@@ -1,4 +1,4 @@
-install_packages <- c("BiocManager", "devtools","languageserver", "dplyr", "ggplot2", "circlize", "gridExtra", "ggtern", "scatterplot3d", "Seurat", "statmod", "ggalt","IRkernel")
+install_packages <- c("BiocManager", "devtools","languageserver", "dplyr", "ggplot2", "circlize", "gridExtra", "ggtern", "scatterplot3d", "Seurat", "statmod", "ggalt","IRkernel","ggpubr")
 install.packages(install_packages)
 
 devtools::install_github('YuLab-SMU/ggtree')
