@@ -4,7 +4,7 @@ install.packages(install_packages)
 devtools::install_github('YuLab-SMU/ggtree')
 BiocManager::install('clusterProfiler')
 BiocManager::install('org.Hs.eg.db')
-devtools::install_github("GangLiLab/genekitr@v1.1.3")
+devtools::install_github("GangLiLab/genekitr")
 
 devtools::install_github("yanlinlin82/ggvenn")
 devtools::install_github("jokergoo/ComplexHeatmap")
