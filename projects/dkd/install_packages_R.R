@@ -10,6 +10,7 @@ devtools::install_github("yanlinlin82/ggvenn")
 devtools::install_github("jokergoo/ComplexHeatmap")
 devtools::install_github("neurorestore/Libra")
 devtools::install_github("immunogenomics/presto")
+devtools::install_github("krassowski/complex-upset")
 
 BiocManager::install(c("edgeR", "DESeq2", "limma","EnhancedVolcano","PCAtools","MAST"))
 
