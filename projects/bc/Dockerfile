@@ -1,8 +1,4 @@
-FROM btrspg/vscode-project-base:main
-
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
-
+FROM btrspg/vscode-base:0.01
 
 ADD install_packages_R.R /tmp/
 ADD requirements.txt /tmp/
