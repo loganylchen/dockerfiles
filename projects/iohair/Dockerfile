@@ -1,4 +1,4 @@
-FROM btrspg/vscode-base:0.01
+FROM btrspg/vscode-base:0.0.1
 
 
 ADD install_packages_R.R /tmp/
