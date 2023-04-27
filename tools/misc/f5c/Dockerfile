@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt update -y && \
-    apt -y install libhdf5-dev zlib1g-dev git automake autoconf && \
+    apt -y install libhdf5-dev zlib1g-dev git automake autoconf gcc g++ make && \
     cd /tmp/ && \
     git clone --recursive https://github.com/hasindu2008/f5c && \
     cd f5c && \
