@@ -1,4 +1,4 @@
-name: image build for slow5tool container
+name: image build for f5c container
 
 on:
   push:
