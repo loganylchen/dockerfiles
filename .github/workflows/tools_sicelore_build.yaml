@@ -1,4 +1,4 @@
-name: image build for genekitr container
+name: image build for sicelore container
 
 on:
   push:
