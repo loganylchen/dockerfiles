@@ -1,4 +1,4 @@
-install_packages <- c("BiocManager", "devtools", "dplyr","geneset",'ggplot2')
+install_packages <- c("BiocManager", "devtools", "dplyr","geneset",'ggplot2','ggfun')
 install.packages(install_packages)
 
 devtools::install_github('YuLab-SMU/ggtree')
