@@ -1,4 +1,4 @@
-name: image build for tape container
+name: image build for deconvseq container
 
 on:
   push:
