@@ -1,4 +1,4 @@
-BiocManager::install(c("SingleCellExperiment","Biobase"))
+BiocManager::install(c("SingleCellExperiment","Biobase","TOAST"))
 devtools::install_github('xuranw/MuSiC')
 
 
