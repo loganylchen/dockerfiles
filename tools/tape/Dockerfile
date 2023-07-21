@@ -7,8 +7,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu && \
-    pip install scTAPE==1.1.2 &&\
-    ln -s /usr/bin/python3 /usr/bin/python
+    pip install scTAPE==1.1.2
 
 RUN apt autoremove && \
     apt clean && \
