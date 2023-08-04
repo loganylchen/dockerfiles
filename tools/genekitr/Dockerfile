@@ -1,4 +1,4 @@
-FROM btrspg/vscode-project-base:main
+FROM btrspg/vscode-base:0.0.3
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
