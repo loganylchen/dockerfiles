@@ -14,7 +14,7 @@ RUN cd /tmp/ && \
     ./configure && make && make install && \
     git clone https://github.com/ktan8/ModTect.git /opt/modtect/ && \
     echo -e "#! /usr/bin/env python \n$(cat /opt/modtect/ModTect_1_7_5_1.py )" > /opt/modtect/modtect.py && \
-    chmod +x /opt/bin/* /opt/modtect/* && \
+    chmod +x  /opt/modtect/* && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
