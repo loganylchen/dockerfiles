@@ -39,6 +39,8 @@ jobs:
           git clone https://github.com/GregoryLab/HAMR.git ./tools/hamr/hamr 
           cd ./tools/hamr/hamr 
           git checkout stable
+          pwd
+          ls -lthr 
           cp ./tools/hamr/hamr.py ./tools/hamr/hamr/hamr.py
       - name: Build and push
         uses: docker/build-push-action@v3
