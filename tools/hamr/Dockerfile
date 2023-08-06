@@ -6,8 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 USER root
 
 RUN micromamba install -y -c conda-forge -c bioconda -c anaconda -n base git r-base python=2.7 samtools bedtools make && \
-    micromamba clean --all --yes && \
-    micromamba shell init --shell bash --root-prefix=~/micromamba  \
+    micromamba clean --all --yes
 
 ADD hamr /opt/
 RUN cd /opt/hamr && \
