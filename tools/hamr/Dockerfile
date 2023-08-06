@@ -1,15 +1,28 @@
-FROM mambaorg/micromamba:1.4
+FROM python:2.7
 
-ENV PATH=/opt/bin/:/opt/hamr/:$PATH
+ENV PATH=/opt/bin:/opt/hamr/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
-USER root
 
-RUN micromamba install -y -c conda-forge -c bioconda -c anaconda -n base git r-base python=2.7 samtools bedtools make && \
-    micromamba clean --all --yes
+RUN apt update && \
+    apt install -y bzip2 git r-base git make
 
-COPY hamr /opt/
-RUN cd /opt/hamr && \
-    make clean && make
+ADD https://github.com/samtools/samtools/releases/download/1.18/samtools-1.18.tar.bz2 /tmp
+ADD https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static /opt/bin/bedtools
 
-RUN chmod +x /opt/hamr/* &&  rm -rf /tmp/*
+RUN git clone https://github.com/GregoryLab/HAMR.git /opt/hamr
+
+ADD hamr.py /opt/hamr/hamr.py
+
+RUN cd /tmp && \
+    tar -jxvf samtools-1.18.tar.bz2 && \
+    mkdir /opt/bin && \
+    cp samtools-1.18/samtools /opt/bin/ && \
+    chmod +x /opt/bin/* /opt/hamr/* && \
+    apt autoremove && \
+    apt clean && \
+    apt autoclean && \
+    rm -rf /tmp/*
+
+
+
