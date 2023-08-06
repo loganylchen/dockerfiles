@@ -1,4 +1,4 @@
-name: image build for laffte container
+name: image build for modtect container
 
 on:
   push:
