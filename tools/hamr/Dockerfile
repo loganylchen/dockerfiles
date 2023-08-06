@@ -16,7 +16,8 @@ ADD hamr.py /opt/hamr/hamr.py
 
 RUN cd /tmp && \
     tar -jxvf samtools-1.18.tar.bz2 && \
-    cp samtools-1.18/samtools /opt/bin/ && \
+    cd samtools-1.18/ && \
+    ./configure && make && make install && \
     chmod +x /opt/bin/* /opt/hamr/* && \
     apt autoremove && \
     apt clean && \
