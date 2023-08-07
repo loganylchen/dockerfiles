@@ -71,7 +71,7 @@ parser.add_argument('--seq_err',help='The percentage of mismatches based solely 
 parser.add_argument('--hypothesis',help='The hypothesis to be tested, either "H1" or "H4"',default='H4')
 parser.add_argument('--max_p',help='The maximum p-value cutoff',default=0.01)
 parser.add_argument('--max_fdr',help='The maximum FDR cutoff',default=0.05)
-parser.add_argument('--refproportion',help='The proportion of reads that must match the reference nucleotide (from 0 to 1)',default=0.05)
+parser.add_argument('--refproportion',help='The proportion of reads that must match the reference nucleotide (from 0 to 1)',default='0.05')
 parser.add_argument('--prediction_training_set',help='modification identity training set model file; .RData format',default=hamr_dir+'/'+'models/euk_trna_mods.Rdata')
 parser.add_argument('--target_bed', '-n', action='store', dest='target_bed', nargs='?', default='unspecified', help='Specifies genomic intervals for analysis; e.g. all mRNAs. If unspecified, defaults to whole genome')
 parser.add_argument('--paired_ends','-pe',action='store_true',help='Use this tag to indicate paired-end sequencing')
