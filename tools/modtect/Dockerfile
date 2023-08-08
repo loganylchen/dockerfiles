@@ -12,9 +12,9 @@ RUN cd /tmp/ && \
     mkdir /opt/bin && \
     cd samtools-1.18/ && \
     ./configure && make && make install && \
-    git clone https://github.com/ktan8/ModTect.git /opt/modtect/ && \
-    echo "#! /usr/bin/env python \n$(cat /opt/modtect/ModTect_1_7_5_1.py )" > /opt/modtect/modtect.py && \
-    chmod +x  /opt/modtect/* && \
+    git clone https://github.com/ktan8/ModTect.git /opt/modtect/  \
+ADD modtect.py /opt/modtect/modtect.py
+RUN chmod +x  /opt/modtect/* && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
