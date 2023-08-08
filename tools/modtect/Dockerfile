@@ -12,7 +12,7 @@ RUN cd /tmp/ && \
     mkdir /opt/bin && \
     cd samtools-1.18/ && \
     ./configure && make && make install && \
-    git clone https://github.com/ktan8/ModTect.git /opt/modtect/  \
+    git clone https://github.com/ktan8/ModTect.git /opt/modtect/
 ADD modtect.py /opt/modtect/modtect.py
 RUN chmod +x  /opt/modtect/* && \
     apt autoremove && \
