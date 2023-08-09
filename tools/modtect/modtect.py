@@ -474,8 +474,8 @@ def calculate_modification_score_for_region_parallel(data):
         endtime = time.time()
         startStr = 'Start\t' + str(starttime) + '\t' + '\t'.join([chrom, posnStart, posnEnd])
         endStr = 'End\t' + str(endtime) + '\t' + '\t'.join([chrom, posnStart, posnEnd])
-        os.system("echo " + startStr + " >> " + outputFile)
-        os.system("echo " + endStr + " >> " + outputFile)
+        os.system("echo " + startStr + " >> " + outputFile + ".log")
+        os.system("echo " + endStr + " >> " + outputFile + ".log")
     # print startStr
     # print endStr
     except:
