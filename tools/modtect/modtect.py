@@ -436,8 +436,7 @@ def calculate_modification_score_for_region(bamFile, refGenome, chrom, posnStart
             result = result + [variant_readposn_median_fwd, variant_readposn_median_rev, median_abs_dev_fwd,
                                median_abs_dev_rev]
 
-            print
-            "\t".join(map(str, result))
+            print "\t".join(map(str, result))
         # yield "\t".join(map(str, result))
 
     if outputFile:
@@ -474,16 +473,16 @@ def calculate_modification_score_for_region_parallel(data):
         endtime = time.time()
         startStr = 'Start\t' + str(starttime) + '\t' + '\t'.join([chrom, posnStart, posnEnd])
         endStr = 'End\t' + str(endtime) + '\t' + '\t'.join([chrom, posnStart, posnEnd])
-        os.system("echo " + startStr + " >> " + outputFile + ".log")
-        os.system("echo " + endStr + " >> " + outputFile + ".log")
+        #os.system("echo " + startStr + " >> " + outputFile + ".log")
+        #os.system("echo " + endStr + " >> " + outputFile + ".log")
+        print(endtime-starttime, startStr, endStr)
     # print startStr
     # print endStr
     except:
         print(data)
         print("Exception in worker:")
         traceback.print_exc()
-        raise
-        sys.exit()
+        raise sys.exit()
 
 
 def calculate_modification_score_parallel_wrapper(label, regionsFile, bamFile, refGenome,
