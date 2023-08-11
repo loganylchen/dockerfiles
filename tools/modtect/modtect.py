@@ -475,7 +475,10 @@ def calculate_modification_score_for_region_parallel(data):
         endStr = 'End\t' + str(endtime) + '\t' + '\t'.join([chrom, posnStart, posnEnd])
         #os.system("echo " + startStr + " >> " + outputFile + ".log")
         #os.system("echo " + endStr + " >> " + outputFile + ".log")
-        print(endtime-starttime, startStr, endStr)
+        print >> sys.stderr, endtime-starttime
+        print >> sys.stderr, startStr
+        print >> sys.stderr, endStr
+        
     # print startStr
     # print endStr
     except:
