@@ -23,7 +23,7 @@ RUN cd /tmp && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
-    rm -rf /tmp/*  /opt/hamr/.*
+    rm -rf /tmp/*  /opt/hamr/.git
 
 
 
