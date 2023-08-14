@@ -10,7 +10,8 @@ RUN apt update && \
 ADD https://github.com/samtools/samtools/releases/download/1.18/samtools-1.18.tar.bz2 /tmp
 ADD https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static /opt/bin/bedtools
 
-RUN git clone https://github.com/GregoryLab/HAMR.git /opt/hamr
+#RUN git clone https://github.com/GregoryLab/HAMR.git /opt/hamr
+RUN git clone https://github.com/haydenji0731/HAMR.git /opt/hamr
 
 ADD hamr.py /opt/hamr/hamr.py
 
@@ -22,7 +23,7 @@ RUN cd /tmp && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
-    rm -rf /tmp/*
+    rm -rf /tmp/*  /opt/hamr/.*
 
 
 
