@@ -165,13 +165,13 @@ print "BAM for HAMR analysis: " + bamForAnalysis
 print 'Running RNApileup ' + rnapileup
 rawpileup=rTag+'.pileup.raw'
 frawpileup=open(rawpileup,'w')
-subprocess.check_call([rnapileup,bamForAnalysis,args.genome_fas,pairedends],stdout=frawpileup,stderr=errlog_obj)
+subprocess.check_call([rnapileup,bamForAnalysis,args.genome_fas,pairedends],stdout=frawpileup,stderr=subprocess.STDOUT)
 frawpileup.close()
 
 print 'Running filter_pileup...'
 filteredpileup=rTag+'.pileup.filtered'
 ffilteredpileup=open(filteredpileup,'w')
-subprocess.check_call([filter_pileup,rawpileup,str(args.min_qual),str(int(args.filter_ends))],stdout=ffilteredpileup,stderr=errlog_obj)
+subprocess.check_call([filter_pileup,rawpileup,str(args.min_qual),str(int(args.filter_ends))],stdout=ffilteredpileup,stderr=subprocess.STDOUT)
 ffilteredpileup.close()
 
 print ("Filter coverage...")
@@ -179,20 +179,20 @@ print ("Filter coverage...")
 ## this will be the total # of sites for HAMR analysis
 filteredpileupcov=rTag+'.pileup.filtered.'+str(args.min_cov)
 ffilteredpileupcov=open(filteredpileupcov,'w')
-subprocess.check_call(['awk','$4>=' + str(args.min_cov),filteredpileup],stdout=ffilteredpileupcov,stderr=errlog_obj)
+subprocess.check_call(['awk','$4>=' + str(args.min_cov),filteredpileup],stdout=ffilteredpileupcov,stderr=subprocess.STDOUT)
 ffilteredpileupcov.close()
 
 print ("Tabulating terminal mismatch frequency...")
 endMismatches=output_folder+'/'+args.out_prefix+'.endMismatches.txt'
 fendMismatches=open(endMismatches,'w')
-subprocess.check_call([PYTHON,summarizeEndMismatches,filteredpileupcov],stdout=fendMismatches,stderr=errlog_obj)
+subprocess.check_call([PYTHON,summarizeEndMismatches,filteredpileupcov],stdout=fendMismatches,stderr=subprocess.STDOUT)
 fendMismatches.close()
 
 print 'Running rnapileup2mismatchbed...'
 # convert pileups into BED file with entry corresponding to the observed (ref nuc) --> (read nucleotide) transitions
 mismatchbed=rTag+'.mismatch.bed'
 fmismatchbed=open(mismatchbed,'w')
-subprocess.check_call([rnapileup2mismatchbed,filteredpileupcov],stdout=fmismatchbed,stderr=errlog_obj)
+subprocess.check_call([rnapileup2mismatchbed,filteredpileupcov],stdout=fmismatchbed,stderr=subprocess.STDOUT)
 fmismatchbed.close()
 
 print "converting mismatch BED to nucleotide frequency table..."
@@ -200,14 +200,14 @@ print "converting mismatch BED to nucleotide frequency table..."
 final_bed_file=mismatchbed
 freq_table=rTag+'.freqtable.txt'
 txt_output=open(freq_table,'w')
-subprocess.check_call([mismatchbed2table,final_bed_file],stdout=txt_output,stderr=errlog_obj)
+subprocess.check_call([mismatchbed2table,final_bed_file],stdout=txt_output,stderr=subprocess.STDOUT)
 txt_output.close()
 
 print "filtering out sites based on non-ref/ref proportions..."
 final_freq_table=rTag+'.freqtable.final.txt'
 min_ref_pct=args.refproportion
 outf=open(final_freq_table,'w')
-subprocess.check_call(['awk','{cov=$5+$6+$7+$8;nonref=$9; ref=cov-nonref; if (ref/cov>='+min_ref_pct+') print;}', freq_table],stdout=outf,stderr=errlog_obj)
+subprocess.check_call(['awk','{cov=$5+$6+$7+$8;nonref=$9; ref=cov-nonref; if (ref/cov>='+min_ref_pct+') print;}', freq_table],stdout=outf,stderr=subprocess.STDOUT)
 outf.close()
 
 #OUTPUT steps
@@ -216,11 +216,11 @@ print "testing for statistical significance..."
 last_tmp_file= final_freq_table
 raw_file=output_folder+'/'+args.out_prefix+'.raw.txt'
 outfn=open(raw_file,'w')
-subprocess.check_call([RSCRIPT,detect_mods_definite,last_tmp_file,args.seq_err,args.hypothesis,args.max_p,args.max_fdr,args.refproportion],stdout=outfn,stderr=errlog_obj)
+subprocess.check_call([RSCRIPT,detect_mods_definite,last_tmp_file,args.seq_err,args.hypothesis,args.max_p,args.max_fdr,args.refproportion],stdout=outfn,stderr=subprocess.STDOUT)
 outfn.close()
 
 print "predicting modification identity..."
-ps1 = subprocess.Popen(('grep', 'TRUE', raw_file), stdout=subprocess.PIPE,stderr=errlog_obj)
+ps1 = subprocess.Popen(('grep', 'TRUE', raw_file), stdout=subprocess.PIPE,stderr=subprocess.STDOUT)
 true_mods = subprocess.Popen(('wc', '-l'), stdin=ps1.stdout, stdout=subprocess.PIPE).communicate()[0].rstrip()
 ps1.stdout.close()
 true_mods=int(true_mods)
@@ -228,7 +228,7 @@ print true_mods
 prediction_file=output_folder+'/'+args.out_prefix+'.mods.txt'
 if (true_mods > 0):
     outfn=open(prediction_file,'w')
-    subprocess.check_call([RSCRIPT,classify_mods,raw_file,args.prediction_training_set],stdout=outfn,stderr=errlog_obj)
+    subprocess.check_call([RSCRIPT,classify_mods,raw_file,args.prediction_training_set],stdout=outfn,stderr=subprocess.STDOUT)
     outfn.close()
 else:
     #tabulate number of HAMR accessible bases and then exit
@@ -248,7 +248,7 @@ else:
 print "converting output to bed format..."
 bed_file=output_folder+'/'+args.out_prefix+".mods.bed"
 outfn=open(bed_file,'w')
-subprocess.check_call(['awk', 'FNR > 1 {print $1"\t"$2"\t"(1+$2)"\t"$1";"$2"\t"$16"\t"$3}', prediction_file],stdout=outfn)
+subprocess.check_call(['awk', 'FNR > 1 {print $1"\t"$2"\t"(1+$2)"\t"$1";"$2"\t"$16"\t"$3}', prediction_file],stdout=outfn,stderr=subprocess.STDOUT)
 outfn.close()
 
 print "calculating number of HAMR-accessible bases..."
@@ -290,11 +290,11 @@ if (args.target_bed != 'unspecified'):
     counts_file=output_folder+'/'+args.out_prefix+"."+"featureCounts.bedPlus1"
     positiveCounts_file=output_folder+'/'+args.out_prefix+"."+"positiveFeatureCounts.txt"
     infn=open(counts_file,'w')
-    subprocess.check_call([BEDTOOLS,'intersect','-c','-s','-b', bed_file, '-a', args.target_bed],stdout=infn)
+    subprocess.check_call([BEDTOOLS,'intersect','-c','-s','-b', bed_file, '-a', args.target_bed],stdout=infn,stderr=subprocess.STDOUT)
     infn.close()
     infn=open(positiveCounts_file,'w')
     awk_parameters = 'BEGIN {OFS="\t";FS="\t"} {if ($'+str(target_bed_colnum+1)+' > 0) print $0}'
-    subprocess.check_call(['awk', awk_parameters, counts_file],stdout=infn)
+    subprocess.check_call(['awk', awk_parameters, counts_file],stdout=infn,stderr=subprocess.STDOUT)
     infn.close()
 else:
     pass
