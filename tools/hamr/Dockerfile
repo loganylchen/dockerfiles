@@ -20,6 +20,7 @@ RUN cd /tmp && \
     tar -jxvf samtools-1.18.tar.bz2 && \
     cd samtools-1.18/ && \
     ./configure && make && make install && \
+    R -e 'install.packages(c("RColorBrewer"))' && \
     chmod +x /opt/bin/* /opt/hamr/* && \
     apt autoremove && \
     apt clean && \
