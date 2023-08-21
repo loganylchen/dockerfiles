@@ -1,4 +1,4 @@
-FROM ubuntu:22.04
+FROM python:2.7
 
 
 ENV PATH=/opt/bin/:/opt/mgltools/bin:$PATH
@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 
-RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git python2 python2-dev && \
+RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git && \
     cd /tmp && \
     wget https://ccsb.scripps.edu/download/532/ -O test2.tar.gz && \
     tar -zxvf test2.tar.gz && \
