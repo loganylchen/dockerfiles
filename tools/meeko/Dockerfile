@@ -3,7 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
 ENV PYTHONPATH=/usr/local/lib:$PYTHONPATH
 
-RUN apt update && apt install -y wget build-essential gzip && \
+RUN apt update && apt install -y wget build-essential gzip cmake && \
     cd /tmp && \
     wget https://udomain.dl.sourceforge.net/project/openbabel/openbabel/2.3.1/openbabel-2.3.1.tar.gz && \
     tar -zxvf openbabel-2.3.1.tar.gz && \
