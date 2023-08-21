@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 
-RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git && \
+RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git python2 python2-dev && \
     cd /tmp && \
     wget https://ccsb.scripps.edu/download/532/ -O test2.tar.gz && \
     tar -zxvf test2.tar.gz && \
