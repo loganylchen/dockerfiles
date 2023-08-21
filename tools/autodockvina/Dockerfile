@@ -17,11 +17,11 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
     git clone https://github.com/ccsb-scripps/AutoDock-Vina && \
     cd AutoDock-Vina/build/linux/release && \
     make && \
-    cp vina vina_split /opt/bin/ && \
-    cd /tmp/AutoDock-Vina/build/python
+    cp vina vina_split /opt/bin/
 
-ADD setup.py /tmp/AutoDock-Vina/build/python/
-RUN python setup.py build install && \
+ADD setup.py /tmp/AutoDock-Vina/build/python/setup.py
+RUN cd /tmp/AutoDock-Vina/build/python && \
+    python setup.py build install && \
     cp /tmp/AutoDock-Vina/example/autodock_scripts/*.py /opt/bin/ && \
     chmod +x /opt/bin/*
 
