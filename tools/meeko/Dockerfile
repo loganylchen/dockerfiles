@@ -3,7 +3,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
 
 
-RUN mamba install -c conda-forge openbabel numpy   && \
+RUN micromamba install -c conda-forge openbabel numpy   && \
     pip install meeko && \
     apt autoremove && \
     apt clean && \
