@@ -19,7 +19,8 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
     make && \
     cp vina vina_split /opt/bin/ && \
     cd /tmp/AutoDock-Vina/build/python && \
-    python2 setup.py build install && \
+    sed -i "s/sep='\n'//" setup.py  && \
+    python setup.py build install && \
     cp /tmp/AutoDock-Vina/example/autodock_scripts/*.py /opt/bin/ && \
     chmod +x /opt/bin/*
 
