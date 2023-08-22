@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 #ENV PYTHONPATH=/opt/mgltools/lib/python2.7
 
 
-RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git && \
+RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git ffmpeg libsm6 libxext6 && \
     cd /tmp && \
     wget https://ccsb.scripps.edu/download/532/ -O test2.tar.gz && \
     tar -zxvf test2.tar.gz && \
@@ -36,7 +36,7 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
     cd /tmp && \
     wget https://autodock.scripps.edu/wp-content/uploads/sites/56/2021/10/autodocksuite-4.2.6-x86_64Linux2.tar /tmp/autodocksuite-4.2.6-x86_64Linux2.tar && \
     tar -xvf autodocksuite-4.2.6-x86_64Linux2.tar && \
-    cp autodocksuite-4.2.6-x86_64Linux2/* /opt/bin/
+    cp x86_64Linux2/* /opt/bin/
 
 
 RUN apt autoremove && \
