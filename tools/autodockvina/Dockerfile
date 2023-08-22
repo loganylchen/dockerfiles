@@ -31,7 +31,7 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
     cd /tmp/AutoDock-Vina/example/autodock_scripts/ && \
     echo $(2to3 -w ./) && \
     cp /tmp/AutoDock-Vina/example/autodock_scripts/*.py /opt/bin/ && \
-    sed -i 's/pythonsh/python3/' /opt/bin/*py && \
+#    sed -i 's/pythonsh/python3/' /opt/bin/*py && \
     chmod +x /opt/bin/*
 
 
