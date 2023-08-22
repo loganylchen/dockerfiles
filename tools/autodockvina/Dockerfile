@@ -1,9 +1,9 @@
-FROM python:2.7
+FROM python:3.8
 
 
-ENV PATH=/opt/bin/:/opt/mgltools/bin:$PATH
+ENV PATH=/opt/bin/:/opt/mgltools/bin:/opt/adfr/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-
+#ENV PYTHONPATH=/opt/mgltools/lib/python2.7
 
 
 RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig git && \
@@ -17,11 +17,20 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
     git clone https://github.com/ccsb-scripps/AutoDock-Vina && \
     cd AutoDock-Vina/build/linux/release && \
     make && \
-    cp vina vina_split /opt/bin/
-
-ADD setup.py /tmp/AutoDock-Vina/build/python/setup.py
-RUN cd /tmp/AutoDock-Vina/build/python && \
-    python setup.py build install && \
+    cp vina vina_split /opt/bin/ && \
+    cd /tmp && \
+    wget https://ccsb.scripps.edu/adfr/download/1028/ -O /tmp/ADFT_install && \
+    chmod +x /tmp/ADFT_install && \
+    /tmp/ADFT_install --prefix /tmp/adfr --mode silent && \
+    cd /tmp/adfr  && \
+    tar -zxvf ADFRsuite_x86_64Linux_1.0.tar.gz && \
+    cd ADFRsuite_x86_64Linux_1.0 && \
+    ./install.sh -d /opt/adfr -c 0 -l && \
+    cd /tmp/AutoDock-Vina/build/python && \
+    python3 setup.py build install && \
+    cd /tmp/AutoDock-Vina/example/autodock_scripts/ && \
+    echo $(2to3 -w ./) && \
+    sed -i 's/pythonsh/python3/' /opt/bin/*py && \
     cp /tmp/AutoDock-Vina/example/autodock_scripts/*.py /opt/bin/ && \
     chmod +x /opt/bin/*
 
