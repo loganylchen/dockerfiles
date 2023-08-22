@@ -3,13 +3,13 @@ ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
 ENV PYTHONPATH=/usr/local/lib:$PYTHONPATH
 
-RUN apt update && apt install -y wget build-essential gzip cmake && \
+RUN apt update && apt install -y wget build-essential gzip cmake libxml2-dev zlib1g-dev libeigen3-dev  python3-dev  python3-pip libcairo2-dev && \
     cd /tmp && \
-    wget https://udomain.dl.sourceforge.net/project/openbabel/openbabel/2.3.1/openbabel-2.3.1.tar.gz && \
-    tar -zxvf openbabel-2.3.1.tar.gz && \
+    wget https://jaist.dl.sourceforge.net/project/openbabel/openbabel/2.4.0/openbabel-openbabel-2-4-0.tar.gz && \
+    tar -zxvf openbabel-openbabel-2-4-0.tar.gz && \
     mkdir build && \
     cd build && \
-    cmake ../openbabel-2.3.1 -DPYTHON_BINDINGS=ON && \
+    cmake ../openbabel-openbabel-2-4-0 -DPYTHON_BINDINGS=ON && \
     make -j4 && \
     make install && \
     pip install numpy   && \
