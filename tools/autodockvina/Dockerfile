@@ -34,7 +34,7 @@ RUN apt update && apt install -y wget build-essential gzip libboost-all-dev swig
 #    sed -i 's/pythonsh/python3/' /opt/bin/*py && \
     chmod +x /opt/bin/* && \
     cd /tmp && \
-    wget https://autodock.scripps.edu/wp-content/uploads/sites/56/2021/10/autodocksuite-4.2.6-x86_64Linux2.tar /tmp/autodocksuite-4.2.6-x86_64Linux2.tar && \
+    wget https://autodock.scripps.edu/wp-content/uploads/sites/56/2021/10/autodocksuite-4.2.6-x86_64Linux2.tar -O /tmp/autodocksuite-4.2.6-x86_64Linux2.tar && \
     tar -xvf autodocksuite-4.2.6-x86_64Linux2.tar && \
     cp x86_64Linux2/* /opt/bin/
 
