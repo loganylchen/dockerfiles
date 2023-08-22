@@ -13,7 +13,7 @@ RUN apt update && apt install -y wget build-essential gzip cmake libxml2-dev zli
     cmake ../openbabel-openbabel-2-4-0 -DPYTHON_BINDINGS=ON && \
     make -j4 && \
     make install && \
-    pip install numpy scipy    && \
+    pip install numpy scipy pandas   && \
     pip install meeko && \
     apt autoremove && \
     apt clean && \
