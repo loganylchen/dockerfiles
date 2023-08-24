@@ -36,5 +36,5 @@ jobs:
         with:
           context: ./tools/misc/lafite/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: dev
+          tags: ${{ secrets.DH_USER }}/lafite:dev
           labels: ${{ steps.meta.outputs.labels }}
