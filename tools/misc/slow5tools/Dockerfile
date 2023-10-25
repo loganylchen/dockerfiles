@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ENB PLUGIN_PATH=$HOME/.local/hdf5/lib/plugin
+ENV PLUGIN_PATH=$HOME/.local/hdf5/lib/plugin
 
 RUN apt update -y && \
     apt -y install libhdf5-dev zlib1g-dev git wget tar gcc g++ make autoconf bash && \
