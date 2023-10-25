@@ -17,7 +17,7 @@ RUN apt update -y && \
     cd slow5tools && \
     wget https://github.com/nanoporetech/vbz_compression/releases/download/$ONT_VBZ_VERSION/$ONT_VBZ_FILE -O /tmp/$ONT_VBZ_FILE && \
     mkdir -p $ONT_VBZ_DIR && \
-    tar -xzvf  /tmp/$ONT_VBZ_FILE -C ONT_VBZ_DIR && \
+    tar -xzvf  /tmp/$ONT_VBZ_FILE -C $ONT_VBZ_DIR && \
     find $ONT_VBZ_DIR -name '*.so' -exec mv -t $PLUGIN_PATH {} + && \
     git checkout bad_fast5 && \
     autoreconf --install && ./configure && make && \
