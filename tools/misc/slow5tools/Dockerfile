@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PLUGIN_PATH=/usr/loca/lib/
+ENV PLUGIN_PATH=/usr/local/lib/
 ENV HDF5_PLUGIN_PATH=${PLUGIN_PATH}
 ENV ARCH=x86_64
 ENV OS=GNU/Linux
