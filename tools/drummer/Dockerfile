@@ -3,7 +3,7 @@ FROM python:3.11.4
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
-ARG SAMTOOLSVER=1.19
+ARG SAMTOOLSVER=1.18
 
 
 ADD https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static /opt/bin/bedtools
