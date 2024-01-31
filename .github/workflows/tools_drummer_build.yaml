@@ -1,9 +1,9 @@
-name: image build for laffte container
+name: image build for DRUMMER container
 
 on:
   push:
     paths:
-      - 'tools/laffte/**'
+      - 'tools/drummer/**'
   workflow_dispatch:
 
 
@@ -19,7 +19,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/laffte
+            ${{ secrets.DH_USER }}/drummer
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
@@ -37,7 +37,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/laffte/
+          context: ./tools/drummer/
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
