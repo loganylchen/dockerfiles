@@ -12,6 +12,8 @@ RUN apt update -y && \
     Rscript -e 'BiocManager::install("Rsamtools")' && \
     Rscript -e 'BiocManager::install("BSgenome")' && \
     git clone https://github.com/RouhanifardLab/PsiNanopore.git /opt/psinanopore
+
+
 COPY PsiDetect.R /opt/psinanopore/
 COPY SignalView.R /opt/psinanopore/
 
