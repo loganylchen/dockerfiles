@@ -11,8 +11,9 @@ RUN apt update -y && \
     Rscript -e 'BiocManager::install("Biobase")' && \
     Rscript -e 'BiocManager::install("Rsamtools")' && \
     Rscript -e 'BiocManager::install("BSgenome")' && \
-    git clone https://github.com/RouhanifardLab/PsiNanopore.git /opt/psinanopore && \
-    sed -i 's/wdir = getwd( )/wdir <- "\/opt\/psinanopore\/" /' /opt/psinanopore/PsiDetect.R && \
-    sed -i 's/wdir = getwd( )/wdir <- "\/opt\/psinanopore\/" /' /opt/psinanopore/SignalView.R && \
-    chmod +x /opt/psinanopore/* && \
+    git clone https://github.com/RouhanifardLab/PsiNanopore.git /opt/psinanopore
+COPY PsiDetect.R /opt/psinanopore/
+COPY SignalView.R /opt/psinanopore/
+
+RUN chmod +x /opt/psinanopore/* && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
