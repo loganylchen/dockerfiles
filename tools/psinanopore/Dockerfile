@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt update -y && \
-    apt -y install libhdf5-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 r-base && \
+    apt -y install libhdf5-dev libxml2-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 r-base && \
     cd /tmp/ && \
     Rscript -e 'install.packages(c("BiocManager","ggplot2","optparse"), repos="http://cran.us.r-project.org")' && \
     Rscript -e 'BiocManager::install("Biobase")' && \
