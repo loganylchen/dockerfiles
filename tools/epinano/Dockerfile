@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt update -y && \
-    apt -y install libhdf5-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 python3 python3-pip python3-dev r-base && \
+    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 python3 python3-pip python3-dev r-base && \
     cd /tmp/ &&\
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
     mv ./minimap2-2.28_x64-linux/minimap2 /opt/bin/ && \
