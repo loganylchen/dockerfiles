@@ -18,11 +18,14 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
          python3 \
          python3-pip \
          python3-dev \
+         python3-setuptools \
+         python3-rpy2 \
          gcc \
          wget \
          make \
          perl \
          bzip2 \
+         g++ \
          gnuplot \
          ca-certificates \
          r-base \
