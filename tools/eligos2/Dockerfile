@@ -29,6 +29,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
          gnuplot \
          ca-certificates \
          r-base \
+         git \
          gawk && \
  apt-get autoclean && rm -rf /var/lib/apt/lists/*
 
