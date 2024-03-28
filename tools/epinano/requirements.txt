@@ -1,7 +1,7 @@
-h5py==2.8.0
-numpy==1.15.4
-pandas==0.23.4
-scikit-learn==0.20.2
-dask==2.5.2
-biopython==1.76
+h5py
+numpy
+pandas
+scikit-learn
+dask
+biopython
 pysam
