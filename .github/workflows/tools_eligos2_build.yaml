@@ -1,9 +1,9 @@
-name: image build for eligo2 container
+name: image build for eligos2 container
 
 on:
   push:
     paths:
-      - 'tools/eligo2/**'
+      - 'tools/eligos2/**'
   workflow_dispatch:
 
 
@@ -19,7 +19,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/eligo2
+            ${{ secrets.DH_USER }}/eligos2
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
@@ -37,7 +37,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/eligo2/
+          context: ./tools/eligos2/
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
