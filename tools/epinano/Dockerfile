@@ -25,6 +25,7 @@ RUN pip install -r /tmp/requirements.txt && \
     git clone https://github.com/novoalab/EpiNano.git /opt/EpiNano/ && \
     cd /opt/EpiNano/ && \
     git checkout Epinano1.2.4 && \
+    wget https://github.com/enovoa/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
 
 
