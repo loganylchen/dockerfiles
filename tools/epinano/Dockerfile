@@ -20,12 +20,14 @@ RUN apt update -y && \
 
 ADD requirements.txt /tmp/
 ADD install_packages_R.R /tmp/
+ADD epinano_variants /opt/bin/
 RUN pip install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
     git clone https://github.com/novoalab/EpiNano.git /opt/EpiNano/ && \
     cd /opt/EpiNano/ && \
-    git checkout Epinano1.2.4 && \
-    wget https://github.com/enovoa/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
+    git checkout Epinano1.2.3 && \
+    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
+    chmod -R +x /opt/bin/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
 
 

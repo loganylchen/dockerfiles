@@ -1,0 +1,3 @@
+#! /bin/bash
+
+python /opt/EpiNano/Epinano_Variants.py -s /opt/EpiNano/sam2tsv.jar "$@"
