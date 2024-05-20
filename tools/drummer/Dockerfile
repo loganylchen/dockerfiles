@@ -37,7 +37,7 @@ RUN cd /tmp/ && \
     cd /opt/ &&  \
     git clone https://github.com/DepledgeLab/DRUMMER && \
     pip install seaborn scipy pandas numpy biopython matplotlib && \
-    chmod +x /opt/bin/DRUMMER && \
+    chmod -R +x /opt/bin/ && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
