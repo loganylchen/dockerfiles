@@ -22,6 +22,9 @@ ADD requirements.txt /tmp/
 ADD install_packages_R.R /tmp/
 RUN pip install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
+    git clone https://github.com/novoalab/EpiNano.git /opt/EpiNano/ && \
+    cd /opt/EpiNano/ && \
+    git checkout Epinano1.2.4 && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
 
 
