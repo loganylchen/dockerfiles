@@ -1,8 +1,8 @@
-FROM python:3.11.4
+FROM python:3.6
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
 
-RUN pip install git+https://github.com/bartongroup/differr_nanopore_DRS.git && \
+RUN pip install git+https://github.com/bartongroup/differr_nanopore_DRS.git@0.2 && \
     apt autoremove && \
     apt clean && \
     apt autoclean && \
