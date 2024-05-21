@@ -26,7 +26,7 @@ RUN cd /tmp/ && pip install -r /tmp/requirements.txt && \
     wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
     tar -zxvf EpiNano1.2.3.tar.gz && \
     mv EpiNano-EpiNano1.2.3 /opt/EpiNano && \
-    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
+    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar -P /opt/EpiNano/ && \
     cd /opt/EpiNano/ && \
     chmod -R +x /opt/bin/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
