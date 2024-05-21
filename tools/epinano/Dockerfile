@@ -23,7 +23,7 @@ ADD install_packages_R.R /tmp/
 ADD epinano_variants /opt/bin/
 RUN cd /tmp/ && pip install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
-    wget https://github.com/novoalab/EpiNano/archive/refs/tags/Epinano1.2.3.tar.gz && \
+    wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
     tar -zxvf Epinano1.2.3.tar.gz && \
     mv EpiNano-Epinano1.2.3 /opt/EpiNano && \
     wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
