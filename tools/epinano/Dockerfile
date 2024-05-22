@@ -1,11 +1,11 @@
-FROM ubuntu:22.04
+FROM python:3.6.7-alpine
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt update -y && \
-    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 python3 python3-pip python3-dev r-base cmake \
+    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 r-base cmake \
     openjdk-8-jdk ant && \
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
