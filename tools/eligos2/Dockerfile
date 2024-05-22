@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
          r-base \
          git \
          gawk && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 20 && \
  apt-get autoclean && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp/ && \
