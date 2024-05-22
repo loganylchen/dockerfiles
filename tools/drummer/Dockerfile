@@ -2,7 +2,7 @@ FROM ubuntu:22.04
 
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH=/opt/bin:$PATH
+ENV PATH=/opt/bin:/opt/DURMMER:$PATH
 ARG SAMTOOLSVER=1.18
 
 ADD DRUMMER /opt/bin/
