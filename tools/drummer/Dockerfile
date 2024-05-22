@@ -16,7 +16,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     libidn11* \
     python3-pip \
     samtools \
-    bedtools
+    bedtools && \
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
 RUN cd /opt/ &&  \
     git clone https://github.com/DepledgeLab/DRUMMER && \
