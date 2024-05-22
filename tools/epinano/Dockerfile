@@ -32,7 +32,7 @@ RUN cd /tmp && \
 ADD requirements.txt /tmp/
 ADD install_packages_R.R /tmp/
 ADD epinano_variants /opt/bin/
-RUN cd /tmp/ && pip install -r /tmp/requirements.txt && \
+RUN cd /tmp/ && pip3 install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
     wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
     tar -zxvf EpiNano1.2.3.tar.gz && \
