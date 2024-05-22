@@ -17,7 +17,7 @@ RUN cd /tmp && \
     cd Python-3.6.7 && \
     ./configure --enable-optimizations  -with-lto  --with-pydebug && \
     make -j 8  && make altinstall && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
+    update-alternatives --install /usr/bin/python python /usr/local/bin/python3.6 20 &&\
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
