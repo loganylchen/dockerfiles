@@ -15,8 +15,7 @@ RUN apt update -y && \
     tar -jxvf samtools-0.1.19.tar.bz2 && \
     cd samtools-0.1.19 && \
     make && \
-    cp samtools /opt/bin/ && \
-    cd /tmp/ && pip install cython
+    cp samtools /opt/bin/
 
 
 ADD requirements.txt /tmp/
