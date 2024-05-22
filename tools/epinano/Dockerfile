@@ -1,12 +1,15 @@
-FROM python:3.6.7-stretch
+FROM ubuntu:16.04
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
-
-RUN apt update -y && \
-    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 r-base cmake \
-    openjdk-8-jdk ant && \
+RUN apt-get update && \
+  apt-get install -y software-properties-common && \
+  add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && \
+    apt-get install -y build-essential python3.6 python3.6-dev python3-pip  \
+    python3.6-venv libhdf5-dev curl zlib1g-dev git automake  \
+    autoconf wget gcc g++ make lbzip2 bzip2 r-base cmake openjdk-8-jdk ant &&\
+    update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
