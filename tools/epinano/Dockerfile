@@ -1,15 +1,23 @@
-FROM ubuntu:16.04
+FROM ubuntu:22.04
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
-  apt-get install -y software-properties-common && \
-  add-apt-repository ppa:jonathonf/python-3.6 && apt-get update && \
-    apt-get install -y build-essential python3.6 python3.6-dev python3-pip  \
-    python3.6-venv libhdf5-dev curl zlib1g-dev git automake  \
-    autoconf wget gcc g++ make lbzip2 bzip2 r-base cmake openjdk-8-jdk ant &&\
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
+    apt-get install -y  \
+    build-essential make libssl-dev zlib1g-dev \
+libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
+libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev \
+libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl zlib1g-dev git automake  \
+    autoconf wget gcc g++  lbzip2 bzip2 r-base cmake openjdk-8-jdk ant
+
+RUN cd /tmp && \
+    wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz && \
+    tar -xzf Python-3.6.7.tgz && \
+    cd Python-3.6.15 && \
+    ./configure --enable-optimizations  -with-lto  --with-pydebug && \
+    make -j 8  && make altinstall && \
+    update-alternatives --install /usr/bin/python python /usr/local/bin/python3 20 &&\
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
