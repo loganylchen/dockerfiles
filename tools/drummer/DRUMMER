@@ -1,3 +1,3 @@
 #! /bin/bash
 
-python /opt/DRUMMER/DRUMMER.py "$@"
+python3 /opt/DRUMMER/DRUMMER.py "$@"

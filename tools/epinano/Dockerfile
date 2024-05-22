@@ -5,7 +5,8 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 
 RUN apt update -y && \
-    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 python3 python3-pip python3-dev r-base  && \
+    apt -y install libhdf5-dev curl zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 python3 python3-pip python3-dev r-base cmake \
+    openjdk-8-jdk ant && \
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
@@ -21,12 +22,13 @@ RUN apt update -y && \
 ADD requirements.txt /tmp/
 ADD install_packages_R.R /tmp/
 ADD epinano_variants /opt/bin/
-RUN pip install -r /tmp/requirements.txt && \
+RUN cd /tmp/ && pip install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
-    git clone https://github.com/novoalab/EpiNano.git /opt/EpiNano/ && \
+    wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
+    tar -zxvf EpiNano1.2.3.tar.gz && \
+    mv EpiNano-EpiNano1.2.3 /opt/EpiNano && \
+    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar -P /opt/EpiNano/ && \
     cd /opt/EpiNano/ && \
-    git checkout Epinano1.2.3 && \
-    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar /opt/EpiNano/ && \
     chmod -R +x /opt/bin/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
 
