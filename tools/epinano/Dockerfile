@@ -14,7 +14,7 @@ libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl zlib1g-dev git au
 RUN cd /tmp && \
     wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz && \
     tar -xzf Python-3.6.7.tgz && \
-    cd Python-3.6.15 && \
+    cd Python-3.6.7 && \
     ./configure --enable-optimizations  -with-lto  --with-pydebug && \
     make -j 8  && make altinstall && \
     update-alternatives --install /usr/bin/python python /usr/local/bin/python3 20 &&\
