@@ -8,7 +8,7 @@ RUN apt-get update && \
     python3 python3-pip python3-dev python3-h5py python3-numpy software-properties-common dirmngr \
     build-essential make libssl-dev zlib1g-dev libharfbuzz-dev libfribidi-dev \
     libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
-    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev \
+    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libxml2-dev \
     libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl libcurl4-openssl-dev \
     zlib1g-dev git automake libhdf5-serial-dev \
     autoconf wget gcc g++  lbzip2 bzip2 cmake openjdk-8-jdk ant && \
