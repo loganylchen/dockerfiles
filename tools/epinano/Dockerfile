@@ -9,9 +9,8 @@ RUN apt-get update && \
 libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
 libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev \
 libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl zlib1g-dev git automake  \
-    autoconf wget gcc g++  lbzip2 bzip2 r-base cmake openjdk-8-jdk ant
-
-RUN cd /tmp && \
+    autoconf wget gcc g++  lbzip2 bzip2 r-base cmake openjdk-8-jdk ant && \
+    cd /tmp && \
     wget https://www.python.org/ftp/python/3.6.7/Python-3.6.7.tgz && \
     tar -xzf Python-3.6.7.tgz && \
     cd Python-3.6.7 && \
@@ -32,7 +31,7 @@ RUN cd /tmp && \
 ADD requirements.txt /tmp/
 ADD install_packages_R.R /tmp/
 ADD epinano_variants /opt/bin/
-RUN cd /tmp/ && pip3 install -r /tmp/requirements.txt && \
+RUN cd /tmp/ && pip3.6 install -r /tmp/requirements.txt && \
     Rscript /tmp/install_packages_R.R && \
     wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
     tar -zxvf EpiNano1.2.3.tar.gz && \
