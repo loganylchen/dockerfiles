@@ -25,7 +25,9 @@ libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl zlib1g-dev git au
     tar -jxvf samtools-0.1.19.tar.bz2 && \
     cd samtools-0.1.19 && \
     make && \
-    cp samtools /opt/bin/
+    cp samtools /opt/bin/ &&  \
+    python -m pip install --upgrade pip &&  \
+    pip3.6 install numpy==1.14.5
 
 
 ADD requirements.txt /tmp/
