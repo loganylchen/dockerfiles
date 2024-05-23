@@ -5,15 +5,19 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && \
     apt-get install -y  \
-    python3 python3-pip python3-dev python3-h5py python3-numpy \
+    python3 python3-pip python3-dev python3-h5py python3-numpy software-properties-common dirmngr \
     build-essential make libssl-dev zlib1g-dev \
     libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
     libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev \
     libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl libcurl4-openssl-dev \
     zlib1g-dev git automake libhdf5-serial-dev \
-    autoconf wget gcc g++  lbzip2 bzip2 r-base cmake openjdk-8-jdk ant && \
+    autoconf wget gcc g++  lbzip2 bzip2 cmake openjdk-8-jdk ant && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
     python -m pip install --upgrade pip && \
+    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |  tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
+    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran35/" && \
+    apt-get update && \
+    apt-get install -y r-base r-base-dev && \
     cd /tmp/ &&\
     mkdir -p /opt/bin/ && \
     curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
