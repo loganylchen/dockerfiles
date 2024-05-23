@@ -1,46 +1,42 @@
-FROM ubuntu:18.04
+## this will do biocorecrg/mopepinano:0.2
+FROM biocorecrg/centos-perlbrew-pyenv3-java:centos7
 
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
+# File Author / Maintainer
+MAINTAINER Luca Cozzuto <lucacozzuto@gmail.com>
 
-RUN apt-get update && \
-    apt-get install -y  \
-    python3 python3-pip python3-dev python3-h5py python3-numpy software-properties-common dirmngr \
-    build-essential make libssl-dev zlib1g-dev libharfbuzz-dev libfribidi-dev \
-    libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
-    libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libxml2-dev libmariadbclient-dev \
-    libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl libcurl4-openssl-dev \
-    libudunits2-dev libfontconfig1-dev libtool \
-    libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libpq-dev libgdal-dev \
-    zlib1g-dev git automake libhdf5-serial-dev \
-    autoconf wget gcc g++  lbzip2 bzip2 cmake openjdk-8-jdk ant && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
-    python -m pip install --upgrade pip && \
-    wget -qO- https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc |  tee -a /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc && \
-    add-apt-repository "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran35/" && \
-    apt-get update && \
-    apt-get install -y r-base r-base-dev && \
-    cd /tmp/ &&\
-    mkdir -p /opt/bin/ && \
-    curl -L https://github.com/lh3/minimap2/releases/download/v2.28/minimap2-2.28_x64-linux.tar.bz2 | tar -jxvf - && \
-    mv ./minimap2-2.28_x64-linux/minimap2 /opt/bin/ && \
-    wget https://sourceforge.net/projects/samtools/files/samtools/0.1.19/samtools-0.1.19.tar.bz2/download -O samtools-0.1.19.tar.bz2  && \
-    tar -jxvf samtools-0.1.19.tar.bz2 && \
-    cd samtools-0.1.19 && \
-    make && \
-    cp samtools /opt/bin/
+ARG EPINANO_VERSION=1.2.3
 
-ADD requirements.txt /tmp/
-ADD install_packages_R.R /tmp/
-ADD epinano_variants /opt/bin/
-RUN cd /tmp/ && pip3.6 install -r /tmp/requirements.txt && \
-    Rscript /tmp/install_packages_R.R && \
-    wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano1.2.3.tar.gz && \
-    tar -zxvf EpiNano1.2.3.tar.gz && \
-    mv EpiNano-EpiNano1.2.3 /opt/EpiNano && \
-    wget https://github.com/novoalab/EpiNano/raw/master/misc/sam2tsv.jar -P /opt/EpiNano/ && \
-    cd /opt/EpiNano/ && \
-    chmod -R +x /opt/bin/ && \
-    apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+ENV PATH "${PATH}:/project/Epinano${EPINANO_VERSION}/"
+ENV SAM2TSV "/project/Epinano${EPINANO_VERSION}/misc/sam2tsv.jar"
+
+#upgrade pip
+RUN pip install -U pip
+RUN pip install --upgrade setuptools
+
+# Installing modules for EPINANO
+RUN pip install requests paho-mqtt
+RUN pip install atomicwrites==1.4.0 attrs==21.2.0 biopython==1.76 cloudpickle==1.3.0
+RUN pip install dask==2.5.2 fsspec==2021.6.1 future==0.17.1 h5py==2.10.0 importlib-metadata==4.6.1
+RUN pip install locket==0.2.1  more-itertools==8.8.0 numpy==1.17.2 pandas==0.24.2
+RUN pip install partd==1.2.0 pluggy==0.13.1 py==1.10.0 pysam==0.15.4 pytest==4.4.1 python-dateutil==2.8.1
+RUN pip install pytz==2021.1 scikit-learn==0.20.2 scipy==1.5.4 six==1.16.0 toolz==0.11.1 typing-extensions==3.10.0.0 zipp==3.5.0
+
+RUN yum install -y wget
+RUN wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${EPINANO_VERSION}.tar.gz
+RUN tar -zvxf *.tgz; rm *.tar.gz
+RUN chmod +x /project/Epinano${EPINANO_VERSION}/*.py
+
+
+# Clean cache
+RUN yum clean all
+
+#cleaning
+RUN rm -fr *.tar.gz; rm -fr *.bz2; rm -fr ./tmp
+RUN rm -rf /var/cache/yum
+
+ENV LC_ALL=en_US.utf8
+ENV LANG=en_US.utf8
+
+
 
 
