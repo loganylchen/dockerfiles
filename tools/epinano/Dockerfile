@@ -20,9 +20,9 @@ RUN /usr/bin/micromamba create -y -c conda-forge -n epinano python=3.6.7 wget &&
                                                     toolz==0.11.1 typing-extensions==3.10.0.0 zipp==3.5.0 && \
     /usr/bin/micromamba create -y -c conda-forge -c r -n r r-base=3.6 r-rcurl r-outliers r-reshape2 \
 	r-ggplot2 r-car r-ggrepel r-tidyverse r-optparse && \
-    echo -e '#!/bin/bash\n/opt/conda/envs/epinano/bin/python "$@"' > /usr/bin/python && \
+    echo -e '#!/bin/bash\n/usr/bin/micromamba run -n epinano python "$@"' > /usr/bin/python && \
     chmod +x /usr/bin/python && \
-    echo -e '#!/bin/bash\n/opt/conda/envs/r/bin/Rscript "$@"' > /usr/bin/Rscript && \
+    echo -e '#!/bin/bash\n/usr/bin/micromamba run -n r Rscript "$@"' > /usr/bin/Rscript && \
     chmod +x /usr/bin/Rscript && \
     /usr/bin/micromamba run -n epinano wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${EPINANO_VERSION}.tar.gz && \
     tar -zvxf EpiNano${EPINANO_VERSION}.tar.gz && \
