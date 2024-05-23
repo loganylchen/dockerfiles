@@ -6,7 +6,7 @@ ENV PATH "${PATH}:/opt/Epinano/"
 ENV SAM2TSV "/opt/Epinano/misc/sam2tsv.jar"
 ENV LC_ALL=en_US.utf8
 ENV LANG=en_US.utf8
-
+USER root
 WORKDIR /opt/
 
 RUN /usr/bin/micromamba create -y -c conda-forge -n epinano python=3.6.7 wget && \
