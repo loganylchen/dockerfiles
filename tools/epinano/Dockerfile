@@ -10,7 +10,7 @@ RUN apt-get update && \
     libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
     libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev libxml2-dev libmariadbclient-dev \
     libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl libcurl4-openssl-dev \
-    libudunits2-dev libfontconfig1-dev \
+    libudunits2-dev libfontconfig1-dev libtool \
     zlib1g-dev git automake libhdf5-serial-dev \
     autoconf wget gcc g++  lbzip2 bzip2 cmake openjdk-8-jdk ant && \
     update-alternatives --install /usr/bin/python python /usr/bin/python3 20 &&\
