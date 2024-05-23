@@ -6,7 +6,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get install -y  \
     python3 python3-pip python3-dev python3-h5py python3-numpy software-properties-common dirmngr \
-    build-essential make libssl-dev zlib1g-dev \
+    build-essential make libssl-dev zlib1g-dev libharfbuzz-dev libfribidi-dev \
     libbz2-dev libreadline-dev libsqlite3-dev   llvm libncurses5-dev \
     libncursesw5-dev xz-utils tk-dev libffi-dev liblzma-dev \
     libgdbm-dev libnss3-dev libedit-dev libc6-dev libhdf5-dev curl libcurl4-openssl-dev \
