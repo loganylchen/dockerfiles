@@ -25,7 +25,7 @@ RUN /usr/bin/micromamba install -y -c conda-forge -n base wget openjdk=20.0.0 &&
     chmod +x /usr/bin/python && \
     echo -e '#!/bin/bash\n/usr/bin/micromamba run -n r Rscript "$@"' > /usr/bin/Rscript && \
     chmod +x /usr/bin/Rscript && \
-    /usr/bin/micromamba run -n epinano wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${EPINANO_VERSION}.tar.gz && \
+    wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${EPINANO_VERSION}.tar.gz && \
     tar -zvxf EpiNano${EPINANO_VERSION}.tar.gz && \
     mv EpiNano-EpiNano${EPINANO_VERSION} Epinano && \
     chmod +x /opt/Epinano/*.py && \
