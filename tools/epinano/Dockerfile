@@ -2,7 +2,7 @@ FROM mambaorg/micromamba:1.5
 
 ARG EPINANO_VERSION=1.2.3
 
-ENV PATH "${PATH}:/opt/Epinano/"
+ENV PATH "${PATH}:/opt/Epinano/:/opt/conda/bin/"
 ENV SAM2TSV "/opt/Epinano/misc/sam2tsv.jar"
 ENV LC_ALL=en_US.utf8
 ENV LANG=en_US.utf8
