@@ -9,7 +9,7 @@ ENV LANG=en_US.utf8
 USER root
 WORKDIR /opt/
 
-RUN /usr/bin/micromamba install -y -c conda-forge -n base wget openjdk=20.0.0 && \
+RUN /usr/bin/micromamba install -y -c conda-forge -n base wget openjdk=20.0.0 samtools && \
     /usr/bin/micromamba create -y -c conda-forge -n epinano python=3.6.7  && \
     /usr/bin/micromamba run -n epinano pip install requests paho-mqtt \
                                                     atomicwrites==1.4.0 attrs==21.2.0 biopython==1.76 cloudpickle==1.3.0 \
