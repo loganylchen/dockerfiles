@@ -20,7 +20,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     update-alternatives --install /usr/bin/python python /usr/bin/python3 20
 
 RUN cd /opt/ &&  \
-    git clone https://github.com/DepledgeLab/DRUMMER && \
+    git clone https://github.com/loganylchen/DRUMMER && \
     pip install seaborn scipy pandas numpy biopython matplotlib statsmodels && \
     chmod -R +x /opt/bin/ && \
     apt autoremove && \
