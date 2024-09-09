@@ -3,7 +3,7 @@ name: image build for slow5tool container
 on:
   push:
     paths:
-      - 'tools/misc/slow5tools/**'
+      - 'tools/slow5tools/**'
   workflow_dispatch:
 
 
@@ -36,7 +36,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/misc/slow5tools/
+          context: ./tools/slow5tools/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/slow5tools:dev
+          tags: ${{ secrets.DH_USER }}/slow5tools:main
           labels: ${{ steps.meta.outputs.labels }}
