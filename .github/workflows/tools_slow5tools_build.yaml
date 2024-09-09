@@ -24,6 +24,7 @@ jobs:
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
+            type=raw,value=latest,enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -38,5 +39,5 @@ jobs:
         with:
           context: ./tools/slow5tools/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/slow5tools:main
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
