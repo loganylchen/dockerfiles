@@ -2,7 +2,6 @@ pysam
 pandas
 numpy
 scipy
-sqlite3
 biopython
 statsmodels
 heapq
