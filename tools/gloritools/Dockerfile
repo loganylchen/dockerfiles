@@ -21,14 +21,15 @@ RUN apt-get update && \
     wget https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
     tar -jxvf samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
     cd samtools-${SAMTOOLS_VERSION} && \
-    ./configure && make && make install 
+    ./configure && make && make install && \
+    ln -s /usr/bin/python3 /usr/bin/python 
 
 ADD requirements.txt /tmp/
 
 RUN pip3 install -r /tmp/requirements.txt && \
     cd /opt/ && \
     git clone https://github.com/liucongcas/GLORI-tools.git && \
-    rm -rf /tmp/*
+    rm -rf /tmp/* 
 
 WORKDIR /opt/
 
