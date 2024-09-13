@@ -28,7 +28,7 @@ ADD requirements.txt /tmp/
 
 RUN pip3 install -r /tmp/requirements.txt && \
     cd /opt/ && \
-    git clone https://github.com/loganylchen/GLORI-tools.git && \
+    git clone https://github.com/liucongcas/GLORI-tools.git && \
     rm -rf /tmp/* 
 
 WORKDIR /opt/
