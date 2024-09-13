@@ -33,6 +33,8 @@ RUN pip3 install -r /tmp/requirements.txt && \
 
 WORKDIR /opt/
 
+USER user
+
 
 
 
