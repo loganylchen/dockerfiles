@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tools/longgf/**'
+      - '.github/workflows/tools_longgf*'
   workflow_dispatch:
 
 
