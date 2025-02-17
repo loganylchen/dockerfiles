@@ -6,8 +6,7 @@ on:
       - 'tools/longgf/**'
   workflow_dispatch:
 
-env:
-  software_version: ${grep 'ENV VERSION=' tools/longgf/Dockerfile | sed 's/ENV VERSION=//'}
+
 
 jobs:
   docker:
@@ -15,6 +14,10 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: get software version
+        id: SOFTWARE_VERSION
+        run: |
+          grep "ENV VERSION=" tools/longgf/Dockerfile| sed "s/ENV //" >> $GITHUB_ENV
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -27,7 +30,7 @@ jobs:
             type=ref,event=branch
             type=semver,pattern={{version}}
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ env.software_version }},enable={{is_default_branch}}
+            type=raw,value=${{ steps.SOFTWARE_VERSION.outputs.VERSION }},enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
