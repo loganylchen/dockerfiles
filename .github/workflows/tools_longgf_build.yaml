@@ -17,7 +17,7 @@ jobs:
       - name: get software version
         id: SOFTWARE_VERSION
         run: |
-          grep "ENV VERSION=" tools/longgf/Dockerfile| sed "s/ENV //" >> $GITHUB_ENV
+          grep "ENV VERSION=" tools/longgf/Dockerfile| sed "s/ENV //" >> $GITHUB_OUTPUT
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
