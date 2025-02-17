@@ -5,7 +5,7 @@ ENV VERSION=1.1.1
 ENV PATH=/opt/bin/:$PATH
 
 
-RUN apt update && apt install -y wget make zlib1g-dev && \
+RUN apt update && apt install -y wget make zlib1g-dev g++ gcc && \
     cd /tmp && \
     wget https://github.com/vpc-ccg/genion/archive/refs/tags/${VERSION}.tar.gz && \
     tar -vxzf ${VERSION}.tar.gz && \
