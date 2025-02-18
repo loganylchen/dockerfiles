@@ -7,6 +7,10 @@ ENV JAVA_HOME=/usr/lib/jvm/java-8-openjdk-amd64
 
 RUN apt update && apt install -y wget build-essential g++ zlib1g-dev libbz2-dev liblzma-dev openjdk-8-jdk python3 r-base r-base-dev git && \
     mkdir -p /opt/bin /opt/softwares && \
+    cd /tmp && \
+    git clone https://github.com/lh3/seqtk.git && \
+    cd seqtk &&  make && \
+    cp seqtk /opt/bin/ && \
     cd /tmp/ && \
     wget https://github.com/Oshlack/JAFFA/releases/download/version-${VERSION}/JAFFA-version-${VERSION}.tar.gz && \
     tar -zxvf JAFFA-version-${VERSION}.tar.gz && \
@@ -17,7 +21,8 @@ RUN apt update && apt install -y wget build-essential g++ zlib1g-dev libbz2-dev 
     cd /tmp && \
     cp -r JAFFA-version-${VERSION} /opt/softwares/JAFFA
 
-RUN apt autoremove && \
+RUN chmod +x /opt/bin/* && \
+    apt autoremove && \
     apt clean && \
     apt autoclean && \
     rm -rf /tmp/*
