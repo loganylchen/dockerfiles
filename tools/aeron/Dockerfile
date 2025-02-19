@@ -6,6 +6,7 @@ ENV PATH=/opt/bin/:$PATH
 
 
 RUN apt update && apt install -y git python3 python3-dev && \
+    mkdir -p /opt/bin && \
     cd /tmp && \
     git clone https://github.com/SchulzLab/Aeron.git && \
     cd Aeron && \
