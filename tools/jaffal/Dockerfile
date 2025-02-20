@@ -14,12 +14,15 @@ RUN apt update && apt install -y wget build-essential g++ zlib1g-dev libbz2-dev 
     cd /tmp/ && \
     wget https://github.com/Oshlack/JAFFA/releases/download/version-${VERSION}/JAFFA-version-${VERSION}.tar.gz && \
     tar -zxvf JAFFA-version-${VERSION}.tar.gz && \
-    g++ -std=c++11 -O3 -o /opt/bin/process_transcriptome_align_table JAFFA-version-${VERSION}/src/process_transcriptome_align_table.c++ && \
     g++ -O3 -o /opt/bin/extract_seq_from_fasta JAFFA-version-${VERSION}/src/extract_seq_from_fasta.c++ && \
     g++ -std=c++11 -O3 -o /opt/bin/make_simple_read_table JAFFA-version-${VERSION}/src/make_simple_read_table.c++ && \
     g++ -std=c++11 -O3 -o /opt/bin/make_3_gene_fusion_table JAFFA-version-${VERSION}/src/make_3_gene_fusion_table.c++ && \
     cd /tmp && \
     cp -r JAFFA-version-${VERSION} /opt/softwares/JAFFA
+
+COPY process_transcriptome_align_table.c++ /tmp/
+
+RUN g++ -std=c++11 -O3 -o /opt/bin/process_transcriptome_align_table /tmp/process_transcriptome_align_table.c++ 
 
 RUN chmod +x /opt/bin/* && \
     apt autoremove && \
