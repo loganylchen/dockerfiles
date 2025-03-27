@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tools/nanopolish/**'
+      - '.github/workflows/tools_nanopolish_build.yaml'
   workflow_dispatch:
 
 
