@@ -1,0 +1,58 @@
+name: image build for stringtie container
+
+on:
+  push:
+    paths:
+      - 'tools/stringtie/**'
+      - '.github/workflows/tools_stringtie_build.yaml'
+  workflow_dispatch:
+
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 3.0.0
+          - 2.2.3
+          - 2.2.2
+          - 2.2.1
+          - 2.2.0
+          - 2.1.7
+          - 2.1.6
+          - 2.1.5
+          - 2.1.4
+          - 2.1.2
+          - 2.0
+          - 1.3.6
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ secrets.DH_USER }}/stringtie
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ./tools/stringtie/
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ secrets.DH_USER }}/stringtie:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/stringtie:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/stringtie:cache,mode=max
