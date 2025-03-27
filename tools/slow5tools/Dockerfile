@@ -20,7 +20,7 @@ RUN apt update -y && \
     cd /tmp/ && \
     git clone --recursive https://github.com/hasindu2008/slow5tools && \
     cd slow5tools && \
-    git checkout ${VERSION} &&\
+    git checkout v${VERSION} &&\
     git submodule update --init --recursive && \
     autoreconf --install && ./configure && make && \
     mkdir -p /opt/bin/ && cp slow5tools /opt/bin/ && \
