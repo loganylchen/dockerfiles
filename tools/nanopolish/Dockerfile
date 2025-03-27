@@ -8,6 +8,7 @@ RUN apt update -y && \
     apt -y install gzip libhdf5-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 libbz2-dev && \
     cd /tmp/ && \
     git clone https://github.com/jts/nanopolish.git && \
+    cd nanopolish && \
     git checkout v${VERSION} &&\
     git submodule update --init --recursive && \
     cd nanopolish && make && \
