@@ -10,6 +10,10 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 1.1.2
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,11 +24,6 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ${{ secrets.DH_USER }}/tape
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -35,9 +34,10 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./tools/tape/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DH_USER }}/tape:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
