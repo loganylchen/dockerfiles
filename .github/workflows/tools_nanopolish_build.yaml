@@ -40,7 +40,6 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: ./tools/nanopolish/
-          platforms: linux/arm64,linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ secrets.DH_USER }}/nanopolish:${{ matrix.version }}
           build-args: VERSION=${{ matrix.version }}
