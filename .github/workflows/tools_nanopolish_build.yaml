@@ -10,6 +10,10 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 0.14.0
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -21,10 +25,6 @@ jobs:
           images: |
             ${{ secrets.DH_USER }}/nanopolish
           # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -35,9 +35,14 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./tools/nanopolish/
+          platforms: linux/arm64,linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DH_USER }}/nanopolish:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/nanopolish:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/nanopolish:cache,mode=max
+          
