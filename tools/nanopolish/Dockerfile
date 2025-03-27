@@ -11,6 +11,6 @@ RUN apt update -y && \
     cd nanopolish && \
     git checkout v${VERSION} &&\
     git submodule update --init --recursive && \
-    cd nanopolish && make && \
+    make && \
     mkdir -p /opt/bin/ && cp nanopolish /opt/bin/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
