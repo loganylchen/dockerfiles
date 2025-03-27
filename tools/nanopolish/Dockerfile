@@ -9,6 +9,7 @@ RUN apt update -y && \
     cd /tmp/ && \
     git clone --recursive https://github.com/jts/nanopolish.git && \
     git checkout v${VERSION} &&\
+    git submodule update --init --recursive && \
     cd nanopolish && make && \
     mkdir -p /opt/bin/ && cp nanopolish /opt/bin/ && \
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
