@@ -3,7 +3,7 @@
 
 | Tool Name   | Reference                                                                                     | Version List       | 
 |-------------|-----------------------------------------------------------------------------------------------|--------------------|
-| image build for nanopolish container        | [] | ![image build for nanopolish container Version](https://img.shields.io/badge/image build for nanopolish container-0.14.0-blue) ![image build for nanopolish container Version](https://img.shields.io/badge/image build for nanopolish container-0.13.3-blue) |
+| nanopolish        | [A complete bacterial genome assembled de novo using only nanopore sequencing data](https://www.nature.com/articles/nmeth.3444) | ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.14.0-blue) ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.13.3-blue) |
 | image build for DRUMMER container        | [] |  |
 | image build for jaffal container        | [] |  |
 | image build for autodock vina container        | [] |  |
