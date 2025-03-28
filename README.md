@@ -10,7 +10,7 @@
 | image build for hamr container        | [] |  |
 | image build for rnasieve container        | [] |  |
 | image build for dev lafite container        | [] |  |
-| image build for sicelore container        | [] |  |
+| sicelore        | [High throughput error corrected Nanopore single cell transcriptome sequencing](https://doi.org/10.1038/s41467-020-17800-6) | ![sicelore Version](https://img.shields.io/badge/sicelore-2.0-blue) |
 | slow5tools        | [Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4) | ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.3.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.2.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.1.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.0.0-blue) |
 | image build for psinanopore container        | [] |  |
 | image build for deconvseq container        | [] |  |
