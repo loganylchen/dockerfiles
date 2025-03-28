@@ -3,7 +3,7 @@ Dockerfiles
 
 | Tool Name   | Reference                                                                                     | Version List       | 
 |-------------|-----------------------------------------------------------------------------------------------|--------------------|
-| tape        | ['[Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41467-022-34550-9)'] | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
+| tape        | [Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41467-022-34550-9) | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
 | image build for meeko container        | [] |  |
 | image build for psinanopore container        | [] |  |
 | image build for differr container        | [] |  |
