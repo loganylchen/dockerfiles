@@ -1,4 +1,4 @@
-name: image build for dev lafite container
+name: lafite|
 
 on:
   push:

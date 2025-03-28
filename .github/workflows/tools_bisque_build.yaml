@@ -1,4 +1,4 @@
-name: image build for bisque container
+name: bisque|
 
 on:
   push:

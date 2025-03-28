@@ -1,4 +1,4 @@
-name: image build for deeptools container
+name: deeptools|
 
 on:
   push:

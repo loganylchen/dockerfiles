@@ -1,4 +1,4 @@
-name: image build for eligos2 container
+name: eligos2|
 
 on:
   push:

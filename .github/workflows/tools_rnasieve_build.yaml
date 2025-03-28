@@ -1,4 +1,4 @@
-name: image build for rnasieve container
+name: rnasieve|
 
 on:
   push:

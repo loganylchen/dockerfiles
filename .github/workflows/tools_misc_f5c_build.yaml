@@ -1,4 +1,4 @@
-name: image build for f5c container
+name: f5c|
 
 on:
   push:

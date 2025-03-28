@@ -1,15 +1,25 @@
-name: nanocount|
+name: flair|[Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y)
 
 on:
   push:
     paths:
-      - 'tools/nanocount/**'
+      - 'tools/flair/**'
+      - '.github/workflows/tools_flair_build.yaml'
   workflow_dispatch:
 
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 2.0.0
+          - 1.7.0
+          - 1.6.4
+          - 1.6.3
+          - 1.5
+          - 1.4
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -19,12 +29,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/nanocount
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
+            ${{ secrets.DH_USER }}/flair
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -35,9 +40,12 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
-          context: ./tools/nanocount/
+          context: ./tools/flair/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DH_USER }}/flair:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/flair:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/flair:cache,mode=max

@@ -1,4 +1,4 @@
-name: image build for genekitr container
+name: genekitr|
 
 on:
   push:

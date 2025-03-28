@@ -1,4 +1,4 @@
-name: image build for modtect container
+name: modtect|
 
 on:
   push:

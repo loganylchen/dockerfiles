@@ -1,9 +1,9 @@
-name: image build for slow5tool container
+name: gloritools|
 
 on:
   push:
     paths:
-      - 'tools/misc/slow5tools/**'
+      - 'tools/gloritools/**'
   workflow_dispatch:
 
 
@@ -19,11 +19,12 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/slow5tools
+            ${{ secrets.DH_USER }}/gloritools
           # generate Docker tags based on the following events/attributes
           tags: |
             type=ref,event=branch
             type=semver,pattern={{version}}
+            type=raw,value=latest,enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -36,7 +37,7 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v3
         with:
-          context: ./tools/misc/slow5tools/
+          context: ./tools/gloritools/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/slow5tools:dev
+          tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
