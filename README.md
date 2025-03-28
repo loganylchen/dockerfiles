@@ -24,7 +24,7 @@
 | bambu        | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![bambu Version](https://img.shields.io/badge/bambu-3.8.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.4.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.2.4-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.8-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.6-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.5-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.1-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.6-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.2.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.0.2-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.0.0-blue) |
 | tape        | [Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41467-022-34550-9) | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
 | image build for deeptools container        | [] |  |
-| image build for aeron container        | [] |  |
+| aeron        | [AERON:Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full) | ![aeron Version](https://img.shields.io/badge/aeron-a6e7d589e3feeb22b5374b455a1a677e3bb2edfa-blue) |
 | image build for bisque container        | [] |  |
 | image build for lafite container        | [] |  |
 | image build for epinano container        | [] |  |
