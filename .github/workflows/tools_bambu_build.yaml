@@ -1,4 +1,4 @@
-name: image build for bambu container
+name: bambu|[Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w)
 
 on:
   push:

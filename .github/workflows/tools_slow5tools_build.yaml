@@ -1,4 +1,4 @@
-name: image build for slow5tools container
+name: slow5tools|[Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4)
 
 on:
   push:

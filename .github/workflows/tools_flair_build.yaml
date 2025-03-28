@@ -1,4 +1,4 @@
-name: image build for flair container
+name: flair|[Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y)
 
 on:
   push:
