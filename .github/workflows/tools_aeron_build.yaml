@@ -1,22 +1,24 @@
-name: image build for aeron container
+name: aeron|[AERON: Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full)
 
 on:
   push:
     paths:
       - 'tools/aeron/**'
-      - '.github/workflows/tools_aeron*'
+      - '.github/workflows/tools_aeron_build.yaml'
   workflow_dispatch:
+
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - a6e7d589e3feeb22b5374b455a1a677e3bb2edfa
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - name: get software version
-        id: SOFTWARE_VERSION
-        run: |
-          grep "ENV VERSION=" tools/aeron/Dockerfile| sed "s/ENV //" >> $GITHUB_OUTPUT
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -24,12 +26,6 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ${{ secrets.DH_USER }}/aeron
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=${{ steps.SOFTWARE_VERSION.outputs.VERSION }},enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -40,9 +36,12 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./tools/aeron/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DH_USER }}/aeron:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/aeron:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/aeron:cache,mode=max

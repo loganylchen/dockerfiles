@@ -1,7 +1,7 @@
 FROM ubuntu:22.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV VERSION=a6e7d589e3feeb22b5374b455a1a677e3bb2edfa
+ARG VERSION=a6e7d589e3feeb22b5374b455a1a677e3bb2edfa
 ENV PATH=/opt/bin/:$PATH
 
 
