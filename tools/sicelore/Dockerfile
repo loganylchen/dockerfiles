@@ -1,7 +1,7 @@
 FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND noninteractive
 ENV PATH /opt/bin/:/opt/FLAMES/python:/opt/FLAMES/src/bin/:/opt/minimap2-2.24_x64-linux/:$PATH
-
+ARG VERSION
 ARG packages='python2 python2-dev g++ git wget build-essential zlib1g-dev libbz2-dev liblzma-dev libcurl4-openssl-dev cmake openjdk-8-jdk libncurses5-dev'
 ARG python_packages='cython numpy pysam editdistance'
 
