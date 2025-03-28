@@ -1,4 +1,4 @@
-name: image build for DRUMMER container
+name: DRUMMER|
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: image build for ensembldb container
+name: ensembldb|
 
 on:
   push:

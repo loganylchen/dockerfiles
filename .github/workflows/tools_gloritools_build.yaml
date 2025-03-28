@@ -1,4 +1,4 @@
-name: image build for gloritools container
+name: gloritools|
 
 on:
   push:

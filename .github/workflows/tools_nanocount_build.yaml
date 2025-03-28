@@ -1,4 +1,4 @@
-name: image build for nanocount container
+name: nanocount|
 
 on:
   push:

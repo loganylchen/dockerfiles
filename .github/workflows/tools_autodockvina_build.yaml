@@ -1,4 +1,4 @@
-name: image build for autodock vina container
+name: autodock vina|
 
 on:
   push:

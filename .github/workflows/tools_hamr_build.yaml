@@ -1,4 +1,4 @@
-name: image build for hamr container
+name: hamr|
 
 on:
   push:

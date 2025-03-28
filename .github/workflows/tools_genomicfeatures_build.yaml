@@ -1,4 +1,4 @@
-name: image build for genomicfeatures container
+name: genomicfeatures|
 
 on:
   push:

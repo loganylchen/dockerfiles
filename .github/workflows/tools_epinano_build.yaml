@@ -1,4 +1,4 @@
-name: image build for epinano container
+name: epinano|
 
 on:
   push:

@@ -1,4 +1,4 @@
-name: image build for genion container
+name: genion|
 
 on:
   push:

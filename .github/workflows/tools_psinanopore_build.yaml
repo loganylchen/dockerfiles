@@ -1,4 +1,4 @@
-name: image build for psinanopore container
+name: psinanopore|
 
 on:
   push:
