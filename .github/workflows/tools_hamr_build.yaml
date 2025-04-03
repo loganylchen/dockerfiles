@@ -1,15 +1,22 @@
-name: hamr|
+name: hamr|[HAMR:high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684)
 
 on:
   push:
     paths:
       - 'tools/hamr/**'
+      - '.github/workflows/tools_hamr_build.yaml'
   workflow_dispatch:
 
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 0a04208eae481137e0081dd90b9c1a40bc49c9f3
+
+          
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -20,11 +27,6 @@ jobs:
           # list of Docker images to use as base name for tags
           images: |
             ${{ secrets.DH_USER }}/hamr
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -34,13 +36,13 @@ jobs:
         with:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
-
-
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
           context: ./tools/hamr/
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ secrets.DH_USER }}/hamr:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
-
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/hamr:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/hamr:cache,mode=max

@@ -2,7 +2,7 @@ FROM python:3.11
 
 ENV PATH=/opt/bin:/opt/hamr/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-
+ARG VERSION
 
 RUN apt update && \
     apt install -y bzip2 git r-base git make && \
