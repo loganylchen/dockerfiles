@@ -7,7 +7,7 @@
 | DRUMMER        |  |  |
 | jaffal        |  |  |
 | autodock vina        |  |  |
-| hamr        |  |  |
+| hamr        | [HAMR:high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684) | ![hamr Version](https://img.shields.io/badge/hamr-0a04208eae481137e0081dd90b9c1a40bc49c9f3-blue) |
 | rnasieve        |  |  |
 | lafite        |  |  |
 | sicelore        | [High throughput error corrected Nanopore single cell transcriptome sequencing](https://doi.org/10.1038/s41467-020-17800-6) | ![sicelore Version](https://img.shields.io/badge/sicelore-2.0-blue) |
