@@ -7,6 +7,7 @@
 | DRUMMER        |  |  |
 | jaffal        |  |  |
 | autodock vina        |  |  |
+| sratools        | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![sratools Version](https://img.shields.io/badge/sratools-3.2.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.1.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.0.3-blue) |
 | hamr        | [HAMR:high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684) | ![hamr Version](https://img.shields.io/badge/hamr-0a04208eae481137e0081dd90b9c1a40bc49c9f3-blue) |
 | rnasieve        |  |  |
 | lafite        |  |  |
