@@ -39,6 +39,6 @@
 | mgltools        |  |  |
 | ensembldb        |  |  |
 | f5c        |  |  |
-| biopython        | [Biopython:freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.70-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.76-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.69-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.67-blue) |
+| biopython        | [Biopython:freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) |
 | genomicfeatures        |  |  |
 
