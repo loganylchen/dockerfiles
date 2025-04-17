@@ -10,17 +10,12 @@ ARG EXOMEPEAK2_VERSION=1.4.0
 
 RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     git \
-    python=2.7 \
     perl \
     hisat2=${HISAT2_VERSION} \
     macs2=${MACS2_VERSION} \
     bioconductor-exomepeak2=${EXOMEPEAK2_VERSION} \
     bedtools=${BEDTOOLS_VERSION} \
     samtools=${SAMTOOLS_VERSION} &&\
-    pip install numpy==1.13.3 \
-    scipy==0.19.1 \
-    pysam==0.12.0.1 \
-    biopython==1.70 &&\
     git clone https://github.com/Epigenomics-Lab/RNAMod.git /opt/conda/RNAMod &&\
     cd /opt/conda/RNAMod &&\
     git checkout ${VERSION} &&\
