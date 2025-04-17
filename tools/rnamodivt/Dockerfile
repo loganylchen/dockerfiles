@@ -11,11 +11,11 @@ ARG EXOMEPEAK2_VERSION=1.3.7
 RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     git \
     python=2.7 \
-    r-base=3.5.2 \
+    r-base=3.5.1 \
     perl \
     hisat2=${HISAT2_VERSION} \
     macs2=${MACS2_VERSION} \
-    exomepeak2=${EXOMEPEAK2_VERSION} \
+    bioconductor-exomepeak2=${EXOMEPEAK2_VERSION} \
     bedtools=${BEDTOOLS_VERSION} \
     samtools=${SAMTOOLS_VERSION} &&\
     pip install numpy==1.13.3 \
