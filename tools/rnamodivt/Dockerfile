@@ -11,7 +11,6 @@ ARG EXOMEPEAK2_VERSION=1.4.0
 RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     git \
     python=2.7 \
-    r-base=3.5.1 \
     perl \
     hisat2=${HISAT2_VERSION} \
     macs2=${MACS2_VERSION} \
