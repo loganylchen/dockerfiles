@@ -7,6 +7,7 @@
 | DRUMMER        |  |  |
 | jaffal        |  |  |
 | autodock vina        |  |  |
+| sratools        | [https://github.com/ncbi/sra-tools](https://github.com/ncbi/sra-tools) | ![sratools Version](https://img.shields.io/badge/sratools-3.2.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.1.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.0.3-blue) |
 | hamr        | [HAMR:high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684) | ![hamr Version](https://img.shields.io/badge/hamr-0a04208eae481137e0081dd90b9c1a40bc49c9f3-blue) |
 | rnasieve        |  |  |
 | lafite        |  |  |
@@ -15,6 +16,7 @@
 | psinanopore        |  |  |
 | deconvseq        |  |  |
 | modtect        |  |  |
+| fastp        | [Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp](https://doi.org/10.1002/imt2.107) | ![fastp Version](https://img.shields.io/badge/fastp-0.24.0-blue) ![fastp Version](https://img.shields.io/badge/fastp-0.23.4-blue) |
 | stringtie        | [Improved transcriptome assembly using a hybrid of long and short reads with StringTie](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009730) | ![stringtie Version](https://img.shields.io/badge/stringtie-3.0.0-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.2.3-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.2.2-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.2.1-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.2.0-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.1.7-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.1.6-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.1.5-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.1.4-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.1.2-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-2.0-blue) ![stringtie Version](https://img.shields.io/badge/stringtie-1.3.6-blue) |
 | minimap2        | [Minimap2:pairwise alignment for nucleotide sequences](https://academic.oup.com/bioinformatics/article/37/23/4572/6384570) | ![minimap2 Version](https://img.shields.io/badge/minimap2-2.28-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.27-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.26-blue) |
 | gloritools        |  |  |
@@ -39,5 +41,6 @@
 | mgltools        |  |  |
 | ensembldb        |  |  |
 | f5c        |  |  |
+| biopython        | [Biopython:freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) |
 | genomicfeatures        |  |  |
 
