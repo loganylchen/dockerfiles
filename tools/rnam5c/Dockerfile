@@ -1,6 +1,6 @@
 FROM mambaorg/micromamba:latest
 ENV MAMBA_DOCKERFILE_ACTIVATE=1
-ENV PATH=/opt/conda/bin:/opt/RNA-m5C:$PATH
+ENV PATH=/opt/conda/bin:/opt/conda/RNA-m5C:$PATH
 ARG VERSION
 ARG HISAT2_VERSION=2.1.0
 ARG BOWTIE_VERSION=2.3.5
@@ -16,8 +16,8 @@ RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     scipy==0.19.1 \
     pysam==0.12.0.1 \
     biopython==1.70 &&\
-    git clone https://github.com/SYSU-zhanglab/RNA-m5C.git /opt/RNA-m5C &&\
-    cd /opt/RNA-m5C &&\
+    git clone https://github.com/SYSU-zhanglab/RNA-m5C.git /opt/conda/RNA-m5C &&\
+    cd /opt/conda/RNA-m5C &&\
     git checkout ${VERSION} &&\
     micromamba clean --all --yes
 
