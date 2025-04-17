@@ -6,7 +6,8 @@ ARG HISAT2_VERSION=2.1.0
 ARG BOWTIE_VERSION=2.3.5
 ARG SAMTOOLS_VERSION=1.6
 
-RUN micromamba install -y -c conda-forge -c bioconda \
+RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
+    git \
     python=2.7 \
     hisat2=${HISAT2_VERSION} \
     bowtie2=${BOWTIE_VERSION} \
