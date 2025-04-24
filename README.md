@@ -26,6 +26,7 @@
 | modtect        |  |  |
 | fastp        | [Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp](https://doi.org/10.1002/imt2.107) | ![fastp Version](https://img.shields.io/badge/fastp-0.24.0-blue) ![fastp Version](https://img.shields.io/badge/fastp-0.23.4-blue) |
 | autodock vina        |  |  |
+| lftp        | [https://lftp.yar.ru](https://lftp.yar.ru) | ![lftp Version](https://img.shields.io/badge/lftp-latest-blue) |
 | lafite        |  |  |
 | mgltools        |  |  |
 | psinanopore        |  |  |
