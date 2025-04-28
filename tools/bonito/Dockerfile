@@ -8,8 +8,7 @@ RUN apt-get update && apt-get install -y \
     git \
     && rm -rf /var/lib/apt/lists/*
 
-RUN pip install flash-attn --no-build-isolation && \
-    pip install --upgrade pip && \
+RUN pip install --upgrade pip && \
     pip install ont-bonito==${VERSION} 
 
 RUN apt autoremove && \
