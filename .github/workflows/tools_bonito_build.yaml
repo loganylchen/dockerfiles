@@ -78,7 +78,9 @@ jobs:
           platforms: linux/amd64
           push: ${{ github.event_name != 'pull_request' }}
           tags: ${{ secrets.DH_USER }}/bonito:${{ matrix.version }}-cuda${{ matrix.cuda_version }}
-          build-args: VERSION=${{ matrix.version }},CUDA_VERSION=${{ matrix.cuda_version }}
+          build-args: |
+            VERSION=${{ matrix.version }}
+            CUDA_VERSION=${{ matrix.cuda_version }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ secrets.DH_USER }}/bonito:cache
           cache-to: type=registry,ref=${{ secrets.DH_USER }}/bonito:cache,mode=max
