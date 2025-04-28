@@ -1,4 +1,5 @@
-FROM nvidia/cuda:12.8.1-cudnn-devel-ubuntu22.04
+ARG CUDA_VERSION
+FROM nvidia/cuda:${CUDA_VERSION}-cudnn-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
