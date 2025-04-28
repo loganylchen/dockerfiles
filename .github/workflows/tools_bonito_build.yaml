@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - 'tools/bonito/**'
+      - '.github/workflows/tools_bonito_build.yaml'
   workflow_dispatch:
 
 
