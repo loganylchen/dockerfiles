@@ -17,10 +17,36 @@ jobs:
           - 0.8.1
           - 0.7.3
     steps:
-      - name: Delete huge unnecessary tools folder
-        run: rm -rf /opt/hostedtoolcache
       - name: Checkout
         uses: actions/checkout@v3
+      - name: release space
+        run: |
+          echo "Listing 100 largest packages"
+          dpkg-query -Wf '${Installed-Size}\t${Package}\n' | sort -n | tail -n 100
+          df -h
+          echo "Removing large packages"
+          sudo apt-get remove -y '^dotnet-.*'
+          sudo apt-get remove -y '^llvm-.*'
+          sudo apt-get remove -y 'php.*'
+          sudo apt-get remove -y azure-cli google-cloud-sdk  google-chrome-stable firefox powershell mono-devel
+          sudo apt-get autoremove -y
+          sudo apt-get clean
+          df -h
+          echo "Removing large directories"
+          # deleting 15GB
+          rm -rf /usr/share/dotnet/
+          df -h
+      - name: Create Docker daemon.json
+        run: |
+          sudo mkdir -p /mnt/docker
+          sudo chmod 777 /mnt/docker
+          sudo mkdir -p /etc/docker
+          sudo cp daemon.json /etc/docker/daemon.json 
+      - name: Restart Docker service
+        run: |
+          sudo docker info
+          sudo systemctl restart docker
+          sudo docker info
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
