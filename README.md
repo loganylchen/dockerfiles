@@ -28,6 +28,7 @@
 | autodock vina        |  |  |
 | lftp        | [https://lftp.yar.ru](https://lftp.yar.ru) | ![lftp Version](https://img.shields.io/badge/lftp-latest-blue) |
 | lafite        |  |  |
+| bonito        | [https://github.com/nanoporetech/bonito](https://github.com/nanoporetech/bonito) | ![bonito Version](https://img.shields.io/badge/bonito-0.9.0-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.8.1-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.7.3-blue) |
 | mgltools        |  |  |
 | psinanopore        |  |  |
 | rnamodivt        | [Systematic calibration of epitranscriptomic maps using a synthetic modification-free RNA library](https://www.nature.com/articles/s41592-021-01280-7) | ![rnamodivt Version](https://img.shields.io/badge/rnamodivt-48df2c04ee063c96aaefde64df915a867528f93e-blue) |
