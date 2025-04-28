@@ -16,7 +16,7 @@ RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     scipy==0.19.1 \
     pysam==0.12.0.1 \
     biopython==1.70 &&\
-    git clone https://github.com/SYSU-zhanglab/RNA-m5C.git /opt/conda/RNA-m5C &&\
+    git clone https://github.com/loganylchen/RNA-m5C.git /opt/conda/RNA-m5C &&\
     cd /opt/conda/RNA-m5C &&\
     git checkout ${VERSION} &&\
     micromamba clean --all --yes
