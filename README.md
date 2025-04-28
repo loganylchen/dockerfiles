@@ -9,7 +9,7 @@
 | music        |  |  |
 | tape        | [Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41467-022-34550-9) | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
 | genion        |  |  |
-| rnam5c        | [Genome-wide identification of mRNA 5-methylcytosine in mammals](https://www.nature.com/articles/s41594-019-0218-x) | ![rnam5c Version](https://img.shields.io/badge/rnam5c-4c6656b36e5f88116a5a2df8c23897891cc887f5-blue) |
+| rnam5c        | [Genome-wide identification of mRNA 5-methylcytosine in mammals](https://www.nature.com/articles/s41594-019-0218-x) | ![rnam5c Version](https://img.shields.io/badge/rnam5c-4c6656b36e5f88116a5a2df8c23897891cc887f5-blue) ![rnam5c Version](https://img.shields.io/badge/rnam5c-913a09dee6d2d414e9ca0d63c84755c12f943a82-blue) |
 | sicelore        | [High throughput error corrected Nanopore single cell transcriptome sequencing](https://doi.org/10.1038/s41467-020-17800-6) | ![sicelore Version](https://img.shields.io/badge/sicelore-2.0-blue) |
 | lafite        |  |  |
 | slow5tools        | [Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4) | ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.3.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.2.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.1.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.0.0-blue) |
