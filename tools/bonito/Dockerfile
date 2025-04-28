@@ -1,6 +1,6 @@
 ARG CUDA_VERSION
 ARG VERSION
-FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu20.04
+FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 RUN apt-get update && apt-get install -y \
