@@ -1,8 +1,8 @@
 ARG CUDA_VERSION
-ARG VERSION
+
 FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu22.04
 ENV DEBIAN_FRONTEND=noninteractive
-
+ARG VERSION
 RUN apt-get update && apt-get install -y \
     python3 \
     python3-pip \
