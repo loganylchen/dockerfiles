@@ -19,6 +19,7 @@ RUN apt update && apt install -y git python2 python2-dev build-essential git cma
     git clone --recursive https://github.com/vgteam/vg.git && \
     cd vg && \
     git checkout v1.5.0 && \
+    git submodule update --init --recursive && \
     . /tmp/vg/source_me.sh && make &&\
     cp bin/* /opt/bin/ &&\
     chmod +x /opt/bin/* 
