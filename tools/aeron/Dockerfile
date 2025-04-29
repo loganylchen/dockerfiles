@@ -5,7 +5,7 @@ ARG VERSION
 ENV PATH=/opt/bin/:$PATH
 
 
-RUN apt update && apt install -y git python python-dev build-essential git cmake pkg-config libncurses-dev libbz2-dev  \
+RUN apt update && apt install -y git python2 python2-dev build-essential git cmake pkg-config libncurses-dev libbz2-dev  \
     protobuf-compiler libprotoc-dev libjansson-dev automake libtool \
     jq bc curl unzip redland-utils librdf-dev bison flex && \
     mkdir -p /opt/bin && \
