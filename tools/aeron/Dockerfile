@@ -15,7 +15,6 @@ RUN apt update && apt install -y git python2 python2-dev build-essential git cma
     git checkout ${VERSION} && \
     cp Binaries/* /opt/bin/ && \
     cp AeronScripts/* /opt/bin/ && \
-    cp bin/* /opt/bin/ &&\
     chmod +x /opt/bin/* 
 
 
