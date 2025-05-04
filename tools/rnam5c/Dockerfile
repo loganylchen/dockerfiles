@@ -6,6 +6,9 @@ ARG HISAT2_VERSION=2.1.0
 ARG BOWTIE_VERSION=2.3.5
 ARG SAMTOOLS_VERSION=1.6
 
+
+RUN apt update && apt install -y \
+    libgomp1
 RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     git \
     python=2.7 \
