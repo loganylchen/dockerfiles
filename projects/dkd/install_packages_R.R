@@ -5,7 +5,7 @@ devtools::install_github('YuLab-SMU/ggtree')
 BiocManager::install('clusterProfiler')
 BiocManager::install('org.Hs.eg.db')
 devtools::install_github("GangLiLab/genekitr")
-
+devtools::install_github("nanxstats/ggsci")
 devtools::install_github("yanlinlin82/ggvenn")
 devtools::install_github("jokergoo/ComplexHeatmap")
 devtools::install_github("neurorestore/Libra")
