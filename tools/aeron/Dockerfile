@@ -14,6 +14,7 @@ RUN apt update && apt install -y git python2 python2-dev build-essential git cma
     cd Aeron && \
     git checkout ${VERSION} && \
     cp Binaries/* /opt/bin/ && \
+    for py_file in  AeronScripts/*.py; do if [ -f "$v" ]; then sed -i "1i #!/usr/bin/env python2" "$py_file"; fi done && \
     cp AeronScripts/* /opt/bin/ && \
     chmod +x /opt/bin/* 
 
