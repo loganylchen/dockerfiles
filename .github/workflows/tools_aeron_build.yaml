@@ -14,7 +14,7 @@ jobs:
     strategy:
       matrix:
         version:
-          - a6e7d589e3feeb22b5374b455a1a677e3bb2edfa
+          - d97bc3445b08cd6c0b1629d294f39dc24a57ae7b
 
     steps:
       - name: Checkout
