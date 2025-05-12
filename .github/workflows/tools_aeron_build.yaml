@@ -15,6 +15,7 @@ jobs:
       matrix:
         version:
           - a6e7d589e3feeb22b5374b455a1a677e3bb2edfa
+          - f2b7a560137c97a6e0ba8e31bb8327fdbc8e59a4
 
     steps:
       - name: Checkout
