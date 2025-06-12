@@ -21,8 +21,8 @@ RUN micromamba install -y -c conda-forge -c bioconda -c anaconda \
     git clone https://github.com/loganylchen/RNA-m5C.git /opt/conda/RNA-m5C &&\
     cd /opt/conda/RNA-m5C &&\
     git checkout ${VERSION} &&\
-    ln -s /opt/conda/bin/extract_exons.py /opt/conda/bin/hisat2_extract_exons.py && \
-    ln -s /opt/conda/bin/extract_splice_sites.py /opt/conda/bin/hisat2_extract_splice_sites.py && \
+    ln -s  /opt/conda/bin/hisat2_extract_exons.py /opt/conda/bin/extract_exons.py && \
+    ln -s  /opt/conda/bin/hisat2_extract_splice_sites.py /opt/conda/bin/extract_splice_sites.py && \
     micromamba clean --all --yes
 
 
