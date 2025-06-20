@@ -1,0 +1,10 @@
+anndata
+scanpy
+mudata
+muon
+numpy
+seaborn
+scipy
+matplotlib
+scvelo
+cassiopeia
