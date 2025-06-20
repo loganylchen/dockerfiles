@@ -10,14 +10,14 @@ RUN mkdir -p /tmp/test && \
     make install 
 
 
-
+ADD requirements.txt /tmp/
 ADD install_packages.R /tmp/
 ADD bioconductor_packages.txt /tmp/
 ADD devtools_packages.txt /tmp/
 ADD CRAN_packages.txt /tmp/
 
 
-RUN Rscript /tmp/install_packages.R 
+RUN Rscript /tmp/install_packages.R && pip install -r /tmp/requirements.txt --no-cache-dir
 
 RUN apt autoremove && \
     apt clean && \
