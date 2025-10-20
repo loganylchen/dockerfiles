@@ -36,7 +36,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/stringtie
+            ${{ env.REGISTRY_IMAGE }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -49,10 +49,10 @@ jobs:
       - name: Build and push
         uses: docker/build-push-action@v6
         with:
-          context: ./tools/stringtie/
+          context: ${{ env.WORK_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ secrets.DH_USER }}/stringtie:${{ matrix.version }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ matrix.version }}
           build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ secrets.DH_USER }}/stringtie:cache
-          cache-to: type=registry,ref=${{ secrets.DH_USER }}/stringtie:cache,mode=max
+          cache-from: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache,mode=max
