@@ -7,6 +7,7 @@
 | subread        | [Subread package high-performance read alignment, quantification and mutation discovery](https://subread.sourceforge.net/) | ![subread Version](https://img.shields.io/badge/subread-2.1.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.8-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.6-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.3-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.0-blue) ![subread Version](https://img.shields.io/badge/subread-1.6.4-blue) |
 | f5c        |  |  |
 | music        |  |  |
+| suppa        | SUPPA2 fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1417-1) | ![suppa Version](https://img.shields.io/badge/suppa-2.3-blue) |
 | autodock vina        |  |  |
 | bonito        | [https://github.com/nanoporetech/bonito](https://github.com/nanoporetech/bonito) | ![bonito Version](https://img.shields.io/badge/bonito-0.9.0-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.8.1-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.7.3-blue) |
 | modtect        |  |  |
