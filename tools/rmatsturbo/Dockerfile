@@ -54,7 +54,7 @@ RUN cd /tmp/ && \
     && cp /tmp/rmats_build/rmats-turbo/rMATS_P/*.py ./rMATS_P \
     && mkdir rMATS_R \
     && cp /tmp/rmats_build/rmats-turbo/rMATS_R/*.R ./rMATS_R \
-    && cp -r ../rmats /opt && \
-    && chmod -R +x /opt &&\
+    && cp -r ../rmats /opt \
+    && chmod -R +x /opt  \
     # Remove build dir
-    apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
