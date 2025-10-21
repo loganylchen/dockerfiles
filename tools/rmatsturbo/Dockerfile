@@ -43,8 +43,8 @@ RUN cd /tmp/ && \
     && echo '' > setup_environment.sh \
     && ./build_rmats \
     # Copy the build results
-    && mkdir -p /opt/rmats \
-    && cd /opt/rmats \
+    && mkdir -p rmats \
+    && cd rmats \
     && cp /tmp/rmats_build/rmats-turbo/rmats.py ./ \
     && cp /tmp/rmats_build/rmats-turbo/cp_with_prefix.py ./ \
     && cp /tmp/rmats_build/rmats-turbo/*.so ./ \
@@ -54,5 +54,6 @@ RUN cd /tmp/ && \
     && cp /tmp/rmats_build/rmats-turbo/rMATS_P/*.py ./rMATS_P \
     && mkdir rMATS_R \
     && cp /tmp/rmats_build/rmats-turbo/rMATS_R/*.R ./rMATS_R \
+    && cp -r ../rmats /opt && \
     # Remove build dir
     apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
