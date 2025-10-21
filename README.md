@@ -55,5 +55,6 @@
 | rnamodivt        | [Systematic calibration of epitranscriptomic maps using a synthetic modification-free RNA library](https://www.nature.com/articles/s41592-021-01280-7) | ![rnamodivt Version](https://img.shields.io/badge/rnamodivt-48df2c04ee063c96aaefde64df915a867528f93e-blue) |
 | differr        |  |  |
 | minimap2        | [Minimap2:pairwise alignment for nucleotide sequences](https://academic.oup.com/bioinformatics/article/37/23/4572/6384570) | ![minimap2 Version](https://img.shields.io/badge/minimap2-2.28-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.27-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.26-blue) |
+| gffcompare        | [] | ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.10-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.9-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.6-blue) |
 | lafite        |  |  |
 
