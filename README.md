@@ -35,6 +35,7 @@
 | bisque        |  |  |
 | gffread        | [https://github.com/gpertea/gffread](https://ccb.jhu.edu/software/stringtie/gff.shtml) | ![gffread Version](https://img.shields.io/badge/gffread-0.12.7-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.12.1-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.11.7-blue) |
 | suppa        | SUPPA2 fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1417-1) | ![suppa Version](https://img.shields.io/badge/suppa-2.3-blue) |
+| iupred2a        | [] | ![iupred2a Version](https://img.shields.io/badge/iupred2a-20251022-blue) |
 | f5c        |  |  |
 | subread        | [Subread package high-performance read alignment, quantification and mutation discovery](https://subread.sourceforge.net/) | ![subread Version](https://img.shields.io/badge/subread-2.1.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.8-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.6-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.3-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.0-blue) ![subread Version](https://img.shields.io/badge/subread-1.6.4-blue) |
 | meeko        |  |  |
