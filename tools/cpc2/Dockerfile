@@ -10,6 +10,7 @@ RUN apt update -y \
     python3-dev \
     python3 \
     git wget make g++ \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 \
     && pip install biopython \
     && cd /tmp \
     && wget https://github.com/gao-lab/CPC2_standalone/archive/refs/tags/v${VERSION}.tar.gz \
