@@ -28,6 +28,7 @@
 | aeron        | [AERON:Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full) | ![aeron Version](https://img.shields.io/badge/aeron-c77c73a4bdeb6fb21fa7522239b2276e27ea10f8-blue) |
 | autodock vina        |  |  |
 | nanocount        |  |  |
+| IsoformSwitchAnalyzeR        | [] | ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.6.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.2.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.0.1-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-1.20.0-blue) |
 | slow5tools        | [Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4) | ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.3.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.2.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.1.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.0.0-blue) |
 | bisque        |  |  |
 | gffread        | [https://github.com/gpertea/gffread](https://ccb.jhu.edu/software/stringtie/gff.shtml) | ![gffread Version](https://img.shields.io/badge/gffread-0.12.7-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.12.1-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.11.7-blue) |
