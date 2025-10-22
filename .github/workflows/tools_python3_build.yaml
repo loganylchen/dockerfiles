@@ -20,6 +20,9 @@ jobs:
           - 3
 
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Docker meta
@@ -43,8 +46,7 @@ jobs:
         with:
           context: ${{ env.WORK_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY_IMAGE }}:${{ matrix.version }}
-          build-args: VERSION=${{ matrix.version }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ steps.date.outputs.date }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache
           cache-to: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache,mode=max
