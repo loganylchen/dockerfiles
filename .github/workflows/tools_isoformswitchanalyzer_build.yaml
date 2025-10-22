@@ -1,0 +1,53 @@
+name: IsoformSwitchAnalyzeR
+
+on:
+  push:
+    paths:
+      - 'tools/isoformswitchanalyzer/**'
+      - '.github/workflows/tools_isoformswitchanalyzer_build.yaml'
+  workflow_dispatch:
+
+env:
+  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/isoformswitchanalyzer 
+  WORK_PATH: ./tools/isoformswitchanalyzer/
+
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 2.6.0
+          - 2.2.0
+          - 2.0.1
+          - 1.20.0
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v4
+        with:
+          # list of Docker images to use as base name for tags
+          images: |
+            ${{ env.REGISTRY_IMAGE }}
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_TOKEN }}
+      - name: Build and push
+        uses: docker/build-push-action@v6
+        with:
+          context: ${{ env.WORK_PATH }}
+          push: ${{ github.event_name != 'pull_request' }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache,mode=max
