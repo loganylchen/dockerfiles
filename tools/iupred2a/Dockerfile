@@ -11,7 +11,6 @@ RUN apt update -y \
     &&  apt -y install  \
     git wget make g++ \
     && cd /tmp \
-    && tar -zxvf iupred2a.tar.gz \
     && mv iupred2a /opt/iupred2a \ 
     && chmod -R +x /opt/ \
     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
