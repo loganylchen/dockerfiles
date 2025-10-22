@@ -5,7 +5,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 
-ADD signalp-5.0b.Linux.tar.gz /tmp/
+ADD signalp-5.0b.Linux.tar.gz /tmp/signalp-5.0b.Linux.tar.gz
 
 RUN apt update -y \
     &&  apt -y install  \
