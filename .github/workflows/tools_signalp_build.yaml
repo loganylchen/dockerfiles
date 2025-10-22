@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 env:
-  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/ 
+  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/signalp
   WORK_PATH: ./tools/signalp/
 
 jobs:
