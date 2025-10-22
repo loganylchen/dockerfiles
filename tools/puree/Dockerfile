@@ -5,8 +5,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt update -y \
-    &&  apt -y install  python3-pip \
+    &&  apt -y install  \
+    python3-pip \
     python3-dev \
+    git \
     && cd /opt/ \
     && git clone https://github.com/skandlab/PUREE.git \
     && cd PUREE \
