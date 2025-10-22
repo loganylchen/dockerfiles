@@ -11,7 +11,7 @@ RUN apt update -y \
     python3 \
     git wget make g++ \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 \
-    && pip install biopython \
+    && pip install biopython six \
     && cd /tmp \
     && wget https://github.com/gao-lab/CPC2_standalone/archive/refs/tags/v${VERSION}.tar.gz \
     && tar -zxvf v${VERSION}.tar.gz \
@@ -21,6 +21,5 @@ RUN apt update -y \
     && make clean && make \
     && cd /opt/ \
     && mv /tmp/CPC2_standalone-1.0.1 /opt/CPC2 \
-    && ln -s /opt/CPC2/bin/CPC2.py /usr/local/bin/CPC2 \
     && chmod -R +x /opt/ \
     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*

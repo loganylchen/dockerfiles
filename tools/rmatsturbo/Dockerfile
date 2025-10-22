@@ -30,6 +30,7 @@ RUN apt update -y && \
     r-cran-nloptr \
     r-cran-rcpp \
     zlib1g-dev \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 \
     && rm -rf /var/lib/apt/lists/* 
 
 RUN cd /tmp/ && \
