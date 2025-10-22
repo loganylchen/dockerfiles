@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'tools/python3/**'
-      - '.github/workflows/tool_python3_build.yaml'
+      - '.github/workflows/tools_python3_build.yaml'
   workflow_dispatch:
 
 env:
