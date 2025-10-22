@@ -1,17 +1,17 @@
 FROM ubuntu:22.04
 
-ENV PATH=/opt/bin/:/opt/singalp/bin:$PATH
+ENV PATH=/opt/bin/:/opt/iupred2a/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 
-ADD ./signalp-5.0b.Linux.tar.gz /tmp/
+ADD ./iupred2a.tar.gz /tmp/
 
 RUN apt update -y \
     &&  apt -y install  \
     git wget make g++ \
     && cd /tmp \
-    && tar -zxvf signalp-5.0b.Linux.tar.gz \
-    && mv signalp-5.0b /opt/signalp \ 
+    && tar -zxvf iupred2a.tar.gz \
+    && mv iupred2a /opt/iupred2a \ 
     && chmod -R +x /opt/ \
     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
