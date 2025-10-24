@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:22.04
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
@@ -24,5 +24,5 @@ RUN apt update -y \
 
 ADD install_R_packages.R /tmp/
 
-# RUN Rscript /tmp/install_R_packages.R \
-#     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+RUN Rscript /tmp/install_R_packages.R \
+    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
