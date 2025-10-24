@@ -2,7 +2,7 @@
 # Install required R packages for plotting and data manipulation
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
-pkgs <- c("BiocManager","ggplot2", "dplyr", "ggpubr", "ggsci", "tidyr", "tibble","devtools")
+pkgs <- c("BiocManager","ggplot2", "dplyr", "ggpubr", "ggsci", "tidyr", "tibble","devtools","readr","tidyverse")
 bioc_pkgs <- c('PCAtools')       # e.g. c("GenomicFeatures", "Biostrings")
 github_repos <- c("slowkow/ggrepel")    # e.g. c("username/repo", "org/pkg@v1.2.3")
 
