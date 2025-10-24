@@ -9,7 +9,7 @@ RUN apt update -y \
     r-base \
     libssl-dev \
     libfontconfig1-dev \
-    libmariadbclient-dev \
+    libmariadb-dev \
     libxml2-dev \
     libudunits2-dev \
     libcurl4-openssl-dev \
