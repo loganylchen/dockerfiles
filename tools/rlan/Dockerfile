@@ -14,6 +14,7 @@ RUN micromamba install -y \
     conda-forge::r-devtools \
     conda-forge::r-readr \
     conda-forge::r-tidyverse \
+    conda-forge::r-ggrepel \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
