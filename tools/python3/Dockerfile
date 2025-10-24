@@ -8,7 +8,8 @@ RUN apt update -y \
     &&  apt -y install  \
     python3-pip \
     python3-dev \
-    git
+    git \
+    && update-alternatives --install /usr/bin/python python /usr/bin/python3 10
 
 
 ADD requirements.txt /tmp/
