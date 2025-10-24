@@ -21,7 +21,6 @@ RUN apt update -y \
     libtiff5-dev \
     libjpeg-dev \
     libwebp-dev \
-    gdal-bin \
     libgdal-dev
 
 ADD install_R_packages.R /tmp/
