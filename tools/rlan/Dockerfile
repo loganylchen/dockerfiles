@@ -15,6 +15,7 @@ RUN micromamba install -y \
     conda-forge::r-readr \
     conda-forge::r-tidyverse \
     conda-forge::r-ggrepel \
+    bioconda::bioconductor-enhancedvolcano \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
