@@ -3,13 +3,13 @@ name: R
 on:
   push:
     paths:
-      - 'tools/r/**'
-      - '.github/workflows/tools_r_build.yaml'
+      - 'tools/rlan/**'
+      - '.github/workflows/tools_rlan_build.yaml'
   workflow_dispatch:
 
 env:
-  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/r 
-  WORK_PATH: ./tools/r/
+  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/rlan
+  WORK_PATH: ./tools/rlan/
 
 jobs:
   docker:
