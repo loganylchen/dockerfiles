@@ -13,10 +13,17 @@ RUN apt update -y \
     libxml2-dev \
     libudunits2-dev \
     libcurl4-openssl-dev \
-    cmake 
+    cmake \
+    libfribidi-dev \
+    libharfbuzz-dev \
+    libfreetype6-dev \
+    libpng-dev \
+    libtiff5-dev \
+    libjpeg-dev \
+    libwebp-dev
 
 ADD install_R_packages.R /tmp/
 
-RUN Rscript /tmp/install_R_packages.R \
-    # Remove build dir
-    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+# RUN Rscript /tmp/install_R_packages.R \
+#     # Remove build dir
+#     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*

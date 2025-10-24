@@ -10,15 +10,17 @@ options(repos = c(CRAN = "https://cloud.r-project.org"))
 
 
 # Install with dependencies; use multiple CPUs if available
-ncpus <- tryCatch(parallel::detectCores(), error = function(e) 1L)
-tryCatch(
-    install.packages(pkgs,  dependencies = TRUE, Ncpus = ncpus),
-    error = function(e) {
-        message("Installation failed: ", conditionMessage(e))
-        quit(status = 1)
-    }
-)
 
+for(pkg in pkgs){
+    tryCatch(
+        install.packages(pkg,  dependencies = TRUE),
+        error = function(e) {
+            message('ERROR', pkg)
+            message("Installation failed: ",conditionMessage(e))
+            quit(status = 1)
+        }
+    )
+}
 
 
 
