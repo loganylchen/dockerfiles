@@ -19,6 +19,7 @@ RUN micromamba install -y \
 
 ADD ./install_R_packages.R /tmp/
 
-RUN Rscript /tmp/install_R_packages.R && rm -rf /tmp/*
+RUN micromamba run -n base Rscript /tmp/install_R_packages.R \
+    && rm -rf /tmp/*
 
 
