@@ -28,7 +28,6 @@
 | scaden        | [Deep learning–based cell composition analysis from tissue expression profiles](https://www.science.org/doi/10.1126/sciadv.aba2619) | ![scaden Version](https://img.shields.io/badge/scaden-1.1.2-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.1.1-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.1.0-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.2-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.1-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.0-blue) |
 | aeron        | [AERON:Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full) | ![aeron Version](https://img.shields.io/badge/aeron-c77c73a4bdeb6fb21fa7522239b2276e27ea10f8-blue) |
 | autodock vina        |  |  |
-| R        | [] |  |
 | nanocount        |  |  |
 | CPC2        | [] | ![CPC2 Version](https://img.shields.io/badge/CPC2-1.0.1-blue) |
 | IsoformSwitchAnalyzeR        | [] | ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.6.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.2.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.0.1-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-1.20.0-blue) |
@@ -38,6 +37,7 @@
 | gffread        | [https://github.com/gpertea/gffread](https://ccb.jhu.edu/software/stringtie/gff.shtml) | ![gffread Version](https://img.shields.io/badge/gffread-0.12.7-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.12.1-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.11.7-blue) |
 | suppa        | SUPPA2 fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1417-1) | ![suppa Version](https://img.shields.io/badge/suppa-2.3-blue) |
 | iupred2a        | [] | ![iupred2a Version](https://img.shields.io/badge/iupred2a-20251022-blue) |
+| R        | [] |  |
 | f5c        |  |  |
 | subread        | [Subread package high-performance read alignment, quantification and mutation discovery](https://subread.sourceforge.net/) | ![subread Version](https://img.shields.io/badge/subread-2.1.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.8-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.6-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.3-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.0-blue) ![subread Version](https://img.shields.io/badge/subread-1.6.4-blue) |
 | meeko        |  |  |
