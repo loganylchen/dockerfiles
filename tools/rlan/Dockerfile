@@ -16,7 +16,7 @@ RUN micromamba install -y \
     conda-forge::r-tidyverse \
     && micromamba clean --all --yes
 
-ADD ./install_R_packages /tmp/
+ADD ./install_R_packages.R /tmp/
 
 RUN Rscript /tmp/install_R_packages.R && rm -rf /tmp/*
 
