@@ -20,10 +20,11 @@ RUN apt update -y \
     libpng-dev \
     libtiff5-dev \
     libjpeg-dev \
-    libwebp-dev
+    libwebp-dev \
+    gdal-bin \
+    libgdal-dev
 
 ADD install_R_packages.R /tmp/
 
-RUN Rscript /tmp/install_R_packages.R \
-    # Remove build dir
-    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+# RUN Rscript /tmp/install_R_packages.R \
+#     && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
