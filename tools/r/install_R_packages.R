@@ -2,40 +2,8 @@
 # Install required R packages for plotting and data manipulation
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
-pkgs <- c("Matrix","BiocManager","ggplot2", "dplyr", "ggpubr", "ggsci", "tidyr", "tibble","devtools","readr","tidyverse")
-bioc_pkgs <- c('PCAtools')       # e.g. c("GenomicFeatures", "Biostrings")
+
 github_repos <- c("slowkow/ggrepel")    # e.g. c("username/repo", "org/pkg@v1.2.3")
-
-options(repos = c(CRAN = "https://cloud.r-project.org"))
-
-
-# Install with dependencies; use multiple CPUs if available
-
-for(pkg in pkgs){
-    tryCatch(
-        install.packages(pkg,  dependencies = TRUE),
-        error = function(e) {
-            message('ERROR', pkg)
-            message("Installation failed: ",conditionMessage(e))
-            quit(status = 1)
-        }
-    )
-}
-
-
-
-
-tryCatch(
-    BiocManager::install(bioc_pkgs, ask = FALSE, update = FALSE, Ncpus = ncpus),
-    error = function(e) {
-        message("Bioconductor installation failed: ", conditionMessage(e))
-        quit(status = 1)
-    }
-)
-
-    
-
-
 
 
 for (repo in github_repos) {

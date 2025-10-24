@@ -1,28 +1,23 @@
-FROM ubuntu:22.04
+FROM mambaorg/micromamba:latest
+ENV MAMBA_DOCKERFILE_ACTIVATE=1
+ENV PATH=/opt/conda/bin:$PATH
 
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION
 
-RUN apt update -y \
-    &&  apt -y install  \
-    r-base \
-    libssl-dev \
-    libfontconfig1-dev \
-    libxml2-dev \
-    libudunits2-dev \
-    libcurl4-openssl-dev \
-    cmake \
-    libfribidi-dev \
-    libharfbuzz-dev \
-    libfreetype6-dev \
-    libpng-dev \
-    libtiff5-dev \
-    libjpeg-dev \
-    libwebp-dev \
-    libgdal-dev
+RUN micromamba install -y \
+    conda-forge::r-ggplot2 \
+    conda-forge::r-biocmanager \
+    conda-forge::r-dplyr \
+    conda-forge::r-ggpubr \
+    conda-forge::r-ggsci \
+    conda-forge::r-tidyr \
+    conda-forge::r-tibble \
+    conda-forge::r-devtools \
+    conda-forge::r-readr \
+    conda-forge::r-tidyverse \
+    && micromamba clean --all --yes
 
-ADD install_R_packages.R /tmp/
+ADD install_R_packages /tmp/
 
-RUN Rscript /tmp/install_R_packages.R \
-    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+RUN Rscript /tmp/install_R_packages.R && rm -rf /tmp/*
+
+
