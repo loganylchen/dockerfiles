@@ -7,6 +7,7 @@ RUN micromamba install -y \
     bioconda::bioconductor-clusterprofiler=${VERSION} \
     bioconda::bioconductor-dose \
     bioconda::bioconductor-org.hs.eg.db \
+    bioconda::bioconductor-org.mm.eg.db \
     && micromamba clean --all --yes
 
 
