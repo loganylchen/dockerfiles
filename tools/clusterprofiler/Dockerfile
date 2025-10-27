@@ -9,6 +9,7 @@ RUN micromamba install -y \
     bioconda::bioconductor-org.hs.eg.db \
     bioconda::bioconductor-org.mm.eg.db \
     bioconda::bioconductor-deseq2 \
+    conda-forge::r-dplyr \
     && micromamba clean --all --yes
 
 
