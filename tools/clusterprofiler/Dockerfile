@@ -8,6 +8,7 @@ RUN micromamba install -y \
     bioconda::bioconductor-dose \
     bioconda::bioconductor-org.hs.eg.db \
     bioconda::bioconductor-org.mm.eg.db \
+    bioconda::bioconductor-deseq2 \
     && micromamba clean --all --yes
 
 
