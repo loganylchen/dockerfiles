@@ -43,7 +43,7 @@
 | subread        | [Subread package high-performance read alignment, quantification and mutation discovery](https://subread.sourceforge.net/) | ![subread Version](https://img.shields.io/badge/subread-2.1.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.8-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.6-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.3-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.1-blue) ![subread Version](https://img.shields.io/badge/subread-2.0.0-blue) ![subread Version](https://img.shields.io/badge/subread-1.6.4-blue) |
 | meeko        |  |  |
 | music        |  |  |
-| modtect        |  |  |
+| modtect        | [] |  |
 | deeptools        |  |  |
 | ensembldb        |  |  |
 | mgltools        |  |  |
