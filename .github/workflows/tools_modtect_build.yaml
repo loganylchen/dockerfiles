@@ -1,16 +1,24 @@
-name: modtect|
+name: modtect
 
 on:
   push:
     paths:
-      - 'tools/modtect/**'
+      - "tools/modtect/**"
+      - ".github/workflows/tools_modtect_build.yaml"
   workflow_dispatch:
 
+env:
+  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/modtect
+  WORK_PATH: ./tools/modtect/
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+
     steps:
+      - name: Get current date
+        id: date
+        run: echo "::set-output name=date::$(date +'%Y%m%d')"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Docker meta
@@ -19,12 +27,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            ${{ secrets.DH_USER }}/modtect
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=ref,event=branch
-            type=semver,pattern={{version}}
-            type=raw,value=latest,enable={{is_default_branch}}
+            ${{ env.REGISTRY_IMAGE }}
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
       - name: Set up Docker Buildx
@@ -35,9 +38,11 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
       - name: Build and push
-        uses: docker/build-push-action@v3
+        uses: docker/build-push-action@v6
         with:
-          context: ./tools/modtect/
+          context: ${{ env.WORK_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ steps.date.outputs.date }}
           labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache
+          cache-to: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache,mode=max
