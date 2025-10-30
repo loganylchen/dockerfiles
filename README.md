@@ -54,6 +54,7 @@
 | eligos2        |  |  |
 | flair        | [Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y) | ![flair Version](https://img.shields.io/badge/flair-2.0.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.7.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.4-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.3-blue) ![flair Version](https://img.shields.io/badge/flair-1.5-blue) ![flair Version](https://img.shields.io/badge/flair-1.4-blue) |
 | nanopolish        | [A complete bacterial genome assembled de novo using only nanopore sequencing data](https://www.nature.com/articles/nmeth.3444) | ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.14.0-blue) ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.13.3-blue) |
+| GATK        | [] | ![GATK Version](https://img.shields.io/badge/GATK-3.8-blue) |
 | bayesprism        |  |  |
 | deconvseq        |  |  |
 | jaffal        |  |  |
