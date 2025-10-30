@@ -1,24 +1,27 @@
-name: modtect
+name: bedtools
 
 on:
   push:
     paths:
-      - "tools/modtect/**"
-      - ".github/workflows/tools_modtect_build.yaml"
+      - "tools/bedtools/**"
+      - ".github/workflows/tools_bedtools_build.yaml"
   workflow_dispatch:
 
 env:
-  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/modtect
-  WORK_PATH: ./tools/modtect/
+  REGISTRY_IMAGE: ${{ secrets.DH_USER }}/bedtools
+  WORK_PATH: ./tools/bedtools/
 
 jobs:
   docker:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version:
+          - 2.31.1
+          - 2.31.0
+          - 2.30.0
 
     steps:
-      - name: Get current date
-        id: date
-        run: echo "::set-output name=date::$(date +'%Y%m%d')"
       - name: Checkout
         uses: actions/checkout@v3
       - name: Docker meta
@@ -42,7 +45,8 @@ jobs:
         with:
           context: ${{ env.WORK_PATH }}
           push: ${{ github.event_name != 'pull_request' }}
-          tags: ${{ env.REGISTRY_IMAGE }}:${{ steps.date.outputs.date }}
+          tags: ${{ env.REGISTRY_IMAGE }}:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache
           cache-to: type=registry,ref=${{ env.REGISTRY_IMAGE }}:cache,mode=max
