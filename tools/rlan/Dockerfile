@@ -15,6 +15,7 @@ RUN micromamba install -y \
     conda-forge::r-readr \
     conda-forge::r-tidyverse \
     conda-forge::r-ggrepel \
+    conda-forge::r-ggplotify \
     bioconda::bioconductor-enhancedvolcano \
     bioconda::bioconductor-pcatools \
     bioconda::bioconductor-deseq2 \
