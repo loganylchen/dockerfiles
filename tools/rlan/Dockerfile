@@ -16,6 +16,7 @@ RUN micromamba install -y \
     conda-forge::r-tidyverse \
     conda-forge::r-ggrepel \
     bioconda::bioconductor-enhancedvolcano \
+    bioconda::bioconductor-pcatools \
     bioconda::bioconductor-deseq2 \
     && micromamba clean --all --yes
 
