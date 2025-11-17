@@ -14,6 +14,7 @@
 | genion        |  |  |
 | longgf        |  |  |
 | bambu        | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![bambu Version](https://img.shields.io/badge/bambu-3.8.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.4.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.2.4-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.8-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.6-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.5-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.1-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.6-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-2.0.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.2.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.0.2-blue) ![bambu Version](https://img.shields.io/badge/bambu-1.0.0-blue) |
+| splicetools        | [] | ![splicetools Version](https://img.shields.io/badge/splicetools-1.1-blue) |
 | psinanopore        |  |  |
 | rmats turbo        | [rmats turbo](https://github.com/Xinglab/rmats-turbo/tree/master) | ![rmats turbo Version](https://img.shields.io/badge/rmats turbo-4.3.0-blue) |
 | genomicfeatures        |  |  |
