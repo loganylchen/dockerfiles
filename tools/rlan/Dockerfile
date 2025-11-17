@@ -4,6 +4,7 @@ ENV PATH=/opt/conda/bin:$PATH
 
 
 RUN micromamba install -y \
+    conda-forge::r-ggalt \
     conda-forge::r-ggplot2 \
     conda-forge::r-biocmanager \
     conda-forge::r-dplyr \
