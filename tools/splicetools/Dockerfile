@@ -13,7 +13,9 @@ RUN apt update -y \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
     && git clone https://github.com/flemingtonlab/SpliceTools.git /opt/SpliceTools/ \
     && cd /opt/SpliceTools/ \
-    && git checkout v${VERSION} 
+    && git checkout v${VERSION}  \
+    sed -i 's/split_line !=/split_line >= /' /opt/SpliceTools/bin/*.pl
+
 
 
 ADD requirements.txt /tmp/
