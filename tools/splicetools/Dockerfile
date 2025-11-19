@@ -11,7 +11,7 @@ RUN apt update -y \
     git \
     libparallel-forkmanager-perl \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
-    && git clone https://github.com/flemingtonlab/SpliceTools.git /opt/SpliceTools/ \
+    && git clone https://github.com/loganylchen/SpliceTools.git /opt/SpliceTools/ \
     && cd /opt/SpliceTools/ \
     && git checkout ${VERSION}  \
     && sed -i 's/split_line !=/split_line < /' /opt/SpliceTools/bin/*.pl \

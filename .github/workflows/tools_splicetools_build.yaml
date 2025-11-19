@@ -19,6 +19,7 @@ jobs:
         version:
           - v1.1
           - c9fd38227fcdf43d1e08e919480372751f2ee5a4
+          - 17c6896ab7a10dc5654499f1d6db8b3cb670731b
 
     steps:
       - name: Checkout
