@@ -17,7 +17,8 @@ jobs:
     strategy:
       matrix:
         version:
-          - 1.1
+          - v1.1
+          - c9fd38227fcdf43d1e08e919480372751f2ee5a4
 
     steps:
       - name: Checkout

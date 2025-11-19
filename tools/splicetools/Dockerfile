@@ -13,7 +13,7 @@ RUN apt update -y \
     && update-alternatives --install /usr/bin/python python /usr/bin/python3 10 \
     && git clone https://github.com/flemingtonlab/SpliceTools.git /opt/SpliceTools/ \
     && cd /opt/SpliceTools/ \
-    && git checkout v${VERSION}  \
+    && git checkout ${VERSION}  \
     && sed -i 's/split_line !=/split_line < /' /opt/SpliceTools/bin/*.pl \
     && sed -i 's/>chr/>/' /opt/SpliceTools/bin/*.pl 
 
