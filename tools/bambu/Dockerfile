@@ -4,6 +4,7 @@ ENV PATH=/opt/conda/bin:$PATH
 ARG VERSION
 
 RUN micromamba install -y -c conda-forge -c bioconda bioconductor-bambu=${VERSION} \
+    conda-forge::r-biocmanager \
     && micromamba clean --all --yes
 
 
