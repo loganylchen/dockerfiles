@@ -5,7 +5,7 @@ ARG VERSION
 
 RUN micromamba install -y -c conda-forge -c bioconda bioconductor-bambu=${VERSION} \
     conda-forge::r-biocmanager \
-    && Rscript -e "install.packages('xgboost')" \
+    && Rscript -e "install.packages('xgboost',repos='https://cran.rstudio.com')" \
     && micromamba clean --all --yes
 
 
