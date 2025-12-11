@@ -13,7 +13,7 @@
 | rnasieve        |  |  |
 | genion        |  |  |
 | longgf        |  |  |
-| bambu        | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![bambu Version](https://img.shields.io/badge/bambu-3.8.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.4.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.2.4-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.0.8-blue) |
+| bambu        | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![bambu Version](https://img.shields.io/badge/bambu-3.8.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.4.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.2.4-blue) |
 | splicetools        | [] | ![splicetools Version](https://img.shields.io/badge/splicetools-e7c81ca0674c4166bace543364bbcb3698b4443e-blue) |
 | psinanopore        |  |  |
 | rmats turbo        | [rmats turbo](https://github.com/Xinglab/rmats-turbo/tree/master) | ![rmats turbo Version](https://img.shields.io/badge/rmats turbo-4.3.0-blue) |
