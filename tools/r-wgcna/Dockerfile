@@ -1,6 +1,6 @@
 # PAIR M6A Biomarker - Validation Analysis
 # Extends Bioconductor Docker image with validation and reporting tools
-FROM bioconductor/bioconductor_docker:release_3.19
+FROM bioconductor/bioconductor_docker:3.19
 
 # Install R packages for validation and report generation
 RUN R -e "BiocManager::install(c( \

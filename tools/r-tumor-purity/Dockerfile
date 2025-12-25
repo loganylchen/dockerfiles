@@ -1,6 +1,6 @@
 # PAIR M6A Biomarker - Tumor Purity Analysis
 # Extends Bioconductor Docker image with ESTIMATE and purity estimation tools
-FROM bioconductor/bioconductor_docker:release_3.19
+FROM bioconductor/bioconductor_docker:3.19
 
 # Install R packages for tumor purity estimation
 RUN R -e "BiocManager::install(c( \
