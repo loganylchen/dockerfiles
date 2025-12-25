@@ -3,13 +3,16 @@
 
 | Tool Name   | Reference                                                                                     | Version List       | 
 |-------------|-----------------------------------------------------------------------------------------------|--------------------|
+| R validation        | [] |  |
 | epinano        |  |  |
 | bedtools        | [] | ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.1-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.0-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.30.0-blue) |
 | bonito        | [https://github.com/nanoporetech/bonito](https://github.com/nanoporetech/bonito) | ![bonito Version](https://img.shields.io/badge/bonito-0.9.0-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.8.1-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.7.3-blue) |
+| R wgcna        | [] |  |
 | hamr        | [HAMR:high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684) | ![hamr Version](https://img.shields.io/badge/hamr-0a04208eae481137e0081dd90b9c1a40bc49c9f3-blue) |
 | biopython        | [Biopython:freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) |
 | multiqc        | [] | ![multiqc Version](https://img.shields.io/badge/multiqc-1.32-blue) ![multiqc Version](https://img.shields.io/badge/multiqc-1.31-blue) ![multiqc Version](https://img.shields.io/badge/multiqc-1.3-blue) ![multiqc Version](https://img.shields.io/badge/multiqc-1.29-blue) |
 | fastp        | [Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp](https://doi.org/10.1002/imt2.107) | ![fastp Version](https://img.shields.io/badge/fastp-0.24.0-blue) ![fastp Version](https://img.shields.io/badge/fastp-0.23.4-blue) |
+| R tumor purity        | [] |  |
 | rnasieve        |  |  |
 | genion        |  |  |
 | longgf        |  |  |
@@ -34,12 +37,14 @@
 | nanocount        |  |  |
 | CPC2        | [] | ![CPC2 Version](https://img.shields.io/badge/CPC2-1.0.1-blue) |
 | IsoformSwitchAnalyzeR        | [] | ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.6.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.2.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.0.1-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-1.20.0-blue) |
+| R deconvolution        | [] |  |
 | slow5tools        | [Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4) | ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.3.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.2.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.1.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.0.0-blue) |
 | HMMER        | [] | ![HMMER Version](https://img.shields.io/badge/HMMER-3.4-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.3.2-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.3.1-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.3-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.2.1-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.2-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.0-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-2.3.2-blue) |
 | clusterprofiler        | [] | ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.14.0-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.10.0-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.8.1-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.6.0-blue) |
 | bisque        |  |  |
 | gffread        | [https://github.com/gpertea/gffread](https://ccb.jhu.edu/software/stringtie/gff.shtml) | ![gffread Version](https://img.shields.io/badge/gffread-0.12.7-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.12.1-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.11.7-blue) |
 | suppa        | SUPPA2 fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1417-1) | ![suppa Version](https://img.shields.io/badge/suppa-2.3-blue) |
+| R ml        | [] |  |
 | iupred2a        | [] | ![iupred2a Version](https://img.shields.io/badge/iupred2a-20251022-blue) |
 | R        | [] |  |
 | f5c        |  |  |
@@ -53,6 +58,7 @@
 | genekitr        |  |  |
 | salmon        | [] | ![salmon Version](https://img.shields.io/badge/salmon-1.10.3-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.2-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.1-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.0-blue) |
 | PUREE        | [] | ![PUREE Version](https://img.shields.io/badge/PUREE-5a0a702535e79e37b071971063e72fa697540818-blue) |
+| R grn        | [] |  |
 | eligos2        |  |  |
 | flair        | [Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y) | ![flair Version](https://img.shields.io/badge/flair-2.0.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.7.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.4-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.3-blue) ![flair Version](https://img.shields.io/badge/flair-1.5-blue) ![flair Version](https://img.shields.io/badge/flair-1.4-blue) |
 | nanopolish        | [A complete bacterial genome assembled de novo using only nanopore sequencing data](https://www.nature.com/articles/nmeth.3444) | ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.14.0-blue) ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.13.3-blue) |
@@ -64,6 +70,7 @@
 | qualimap        | [Qualimap 2 advanced multi-sample quality control for high-throughput sequencing data](http://qualimap.bioinfo.cipf.es/) | ![qualimap Version](https://img.shields.io/badge/qualimap-2.3-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2d-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2c-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2b-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2a-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.1.3-blue) |
 | python3        | [] | ![python3 Version](https://img.shields.io/badge/python3-3-blue) |
 | sratools        | [https://github.com/ncbi/sra-tools](https://github.com/ncbi/sra-tools) | ![sratools Version](https://img.shields.io/badge/sratools-3.2.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.1.1-blue) ![sratools Version](https://img.shields.io/badge/sratools-3.0.3-blue) |
+| R deg        | [] |  |
 | picard        | [] | ![picard Version](https://img.shields.io/badge/picard-3.4.0-blue) ![picard Version](https://img.shields.io/badge/picard-3.3.0-blue) ![picard Version](https://img.shields.io/badge/picard-3.2.0-blue) ![picard Version](https://img.shields.io/badge/picard-3.1.1-blue) ![picard Version](https://img.shields.io/badge/picard-3.1.0-blue) ![picard Version](https://img.shields.io/badge/picard-3.0.0-blue) ![picard Version](https://img.shields.io/badge/picard-2.27.5-blue) |
 | tape        | [Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41467-022-34550-9) | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
 | bedops        | [] | ![bedops Version](https://img.shields.io/badge/bedops-2.4.42-blue) ![bedops Version](https://img.shields.io/badge/bedops-2.4.41-blue) ![bedops Version](https://img.shields.io/badge/bedops-2.4.40-blue) |
