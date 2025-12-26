@@ -4,7 +4,6 @@ FROM bioconductor/bioconductor_docker:3.19
 
 # Install R packages for immune cell deconvolution
 RUN R -e "BiocManager::install(c( \
-    'immunedeconv', \
     'ggplot2', \
     'pheatmap', \
     'RColorBrewer', \
@@ -18,8 +17,10 @@ RUN R -e "BiocManager::install(c( \
 RUN R -e "install.packages(c( \
     'ggpubr', \
     'viridis', \
-    'scales' \
-    ), repos='https://cloud.r-project.org')"
+    'scales', \
+    'devtools' \
+    ), repos='https://cloud.r-project.org');\
+    devtools::install_github('omnideconv/immunedeconv')"
 
 # Set working directory
 WORKDIR /data
