@@ -58,6 +58,7 @@
 | genekitr        |  |  |
 | salmon        | [] | ![salmon Version](https://img.shields.io/badge/salmon-1.10.3-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.2-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.1-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.0-blue) |
 | PUREE        | [] | ![PUREE Version](https://img.shields.io/badge/PUREE-5a0a702535e79e37b071971063e72fa697540818-blue) |
+| immunedeconv        | [] | ![immunedeconv Version](https://img.shields.io/badge/immunedeconv-2.1.2-blue) |
 | R grn        | [] |  |
 | eligos2        |  |  |
 | flair        | [Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y) | ![flair Version](https://img.shields.io/badge/flair-2.0.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.7.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.4-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.3-blue) ![flair Version](https://img.shields.io/badge/flair-1.5-blue) ![flair Version](https://img.shields.io/badge/flair-1.4-blue) |
