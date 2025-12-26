@@ -4,7 +4,6 @@ FROM bioconductor/bioconductor_docker:3.19
 
 # Install R packages for tumor purity estimation
 RUN R -e "BiocManager::install(c( \
-    'estimate', \
     'immunedeconv', \
     'ggplot2', \
     'pheatmap', \
@@ -18,6 +17,7 @@ RUN R -e "BiocManager::install(c( \
 # Install additional packages from CRAN
 RUN R -e "install.packages(c( \
     'ggpubr', \
+    'estimate', \
     'tidyverse', \
     'scales', \
     'viridis' \
