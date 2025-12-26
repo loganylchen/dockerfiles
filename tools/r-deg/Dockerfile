@@ -15,7 +15,7 @@ RUN R -e "BiocManager::install(c( \
     'EnhancedVolcano', \
     'RColorBrewer', \
     'gridExtra' \
-    ), ask=FALSE, update=TRUE)"
+    ), ask=FALSE, update=TRUE); install.packages(c('data.table'))"
 
 # Set working directory
 WORKDIR /data
