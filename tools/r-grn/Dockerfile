@@ -8,7 +8,9 @@ RUN R -e "BiocManager::install(c( \
     'survival', \
     'survminer', \
     'pROC', \
+    'minet', \
     'ggplot2', \
+    'GENIE3',\
     'gridExtra', \
     'ComplexHeatmap' \
     ), ask=FALSE, update=TRUE)"
@@ -22,7 +24,8 @@ RUN R -e "install.packages(c( \
     'forestmodel', \
     'tidyverse', \
     'survivalROC', \
-    'timeROC' \
+    'timeROC', \
+    'igraph' \
     ), repos='https://cloud.r-project.org')"
 
 # Set working directory
