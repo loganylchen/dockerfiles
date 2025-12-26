@@ -23,6 +23,7 @@ RUN R -e "BiocManager::install(c( \
 RUN R -e "install.packages(c( \
     'ggpubr', \
     'tidyr', \
+    'WGCNA', \
     'dplyr', \
     'flextable', \
     'kableExtra', \
