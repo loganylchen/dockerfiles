@@ -3,7 +3,7 @@ ENV MAMBA_DOCKERFILE_ACTIVATE=1
 ENV PATH=/opt/conda/bin:$PATH
 
 
-RUN micromamba install -y bioconda::r-immunedeconv conda-forge::r-pheatmap conda-forge::r-ggplot2 \
+RUN micromamba install -y bioconda::r-immunedeconv==2.0.3 conda-forge::r-pheatmap conda-forge::r-ggplot2 \
     conda-forge::r-reshape2 \
     bioconda::bioconductor-gsva \
     bioconda::bioconductor-singscore \
