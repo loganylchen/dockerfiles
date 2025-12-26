@@ -1,30 +1,23 @@
-# PAIR M6A Biomarker - Tumor Purity Analysis
-# Extends Bioconductor Docker image with ESTIMATE and purity estimation tools
-FROM bioconductor/bioconductor_docker:3.19
+FROM mambaorg/micromamba:latest
+ENV MAMBA_DOCKERFILE_ACTIVATE=1
+ENV PATH=/opt/conda/bin:$PATH
 
-# Install R packages for tumor purity estimation
-RUN R -e "BiocManager::install(c( \
-    'immunedeconv', \
-    'ggplot2', \
-    'pheatmap', \
-    'RColorBrewer', \
-    'gridExtra', \
-    'corrplot', \
-    'ComplexHeatmap', \
-    'circlize' \
-    ), ask=FALSE, update=TRUE)"
 
-# Install additional packages from CRAN
-RUN R -e "install.packages(c( \
-    'ggpubr', \
-    'estimate', \
-    'tidyverse', \
-    'scales', \
-    'viridis' \
-    ), repos='https://cloud.r-project.org')"
+RUN micromamba install -y bioconda::r-immunedeconv conda-forge::r-pheatmap conda-forge::r-ggplot2 \
+    conda-forge::r-reshape2 \
+    bioconda::bioconductor-gsva \
+    bioconda::bioconductor-singscore \
+    bu_cnio::r-estimate \
+    conda-forge::r-rcolorbrewer \
+    conda-forge::r-gridextra \
+    conda-forge::r-corrplot \
+    bioconda::bioconductor-complexheatmap \
+    conda-forge::r-circlize \
+    conda-forge::r-ggpubr \
+    conda-forge::r-tidyverse \
+    conda-forge::r-scales \
+    conda-forge::r-viridis \
+    && micromamba clean --all --yes 
 
-# Set working directory
-WORKDIR /data
 
-# Default command
-CMD ["R"]
+
