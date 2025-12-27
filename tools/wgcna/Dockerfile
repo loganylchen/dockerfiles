@@ -10,7 +10,6 @@ RUN micromamba install -y bioconda::r-wgcna=${VERSION} \
     conda-forge::r-reshape2 \
     conda-forge::r-rcolorbrewer \
     conda-forge::r-dplyr \
-    conda-forge::r-devtools \
     conda-forge::r-tidyverse \
     && micromamba clean --all --yes
 
