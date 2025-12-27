@@ -4,7 +4,9 @@ ENV PATH=/opt/conda/bin:$PATH
 ARG VERSION
 
 RUN micromamba install -y bioconda::r-wgcna=${VERSION} \
-    conda-forge::r-pheatmap conda-forge::r-ggplot2 \
+    conda-forge::r-pheatmap \
+    conda-forge::r-ggplot2 \
+    bioconda::r-flashclust \
     conda-forge::r-reshape2 \
     conda-forge::r-rcolorbrewer \
     conda-forge::r-dplyr \
