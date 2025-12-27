@@ -68,6 +68,7 @@
 | deconvseq        |  |  |
 | jaffal        |  |  |
 | estimate        | [] | ![estimate Version](https://img.shields.io/badge/estimate-1.0.13-blue) |
+| tidyestimate        | [] | ![tidyestimate Version](https://img.shields.io/badge/tidyestimate-1.1.1-blue) ![tidyestimate Version](https://img.shields.io/badge/tidyestimate-1.0.4-blue) |
 | hisat2        | [Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype](https://www.nature.com/articles/s41587-019-0201-4) | ![hisat2 Version](https://img.shields.io/badge/hisat2-2.2.1-blue) ![hisat2 Version](https://img.shields.io/badge/hisat2-2.2.0-blue) ![hisat2 Version](https://img.shields.io/badge/hisat2-2.1.0-blue) ![hisat2 Version](https://img.shields.io/badge/hisat2-2.0.5-blue) |
 | qualimap        | [Qualimap 2 advanced multi-sample quality control for high-throughput sequencing data](http://qualimap.bioinfo.cipf.es/) | ![qualimap Version](https://img.shields.io/badge/qualimap-2.3-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2d-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2c-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2b-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2a-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.1.3-blue) |
 | python3        | [] | ![python3 Version](https://img.shields.io/badge/python3-3-blue) |
