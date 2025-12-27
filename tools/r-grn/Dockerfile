@@ -25,7 +25,8 @@ RUN R -e "install.packages(c( \
     'tidyverse', \
     'survivalROC', \
     'timeROC', \
-    'igraph' \
+    'igraph', \
+    'ggraph' \
     ), repos='https://cloud.r-project.org')"
 
 # Set working directory
