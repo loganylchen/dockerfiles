@@ -15,7 +15,7 @@ RUN R -e "BiocManager::install(c( \
     'EnhancedVolcano', \
     'RColorBrewer', \
     'gridExtra' \
-    ), ask=FALSE, update=TRUE); install.packages(c('data.table','dplyr','tidyr'))"
+    ), ask=FALSE, update=TRUE); install.packages(c('data.table','dplyr','tidyr','VennDiagram'))"
 
 # Set working directory
 WORKDIR /data
