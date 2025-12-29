@@ -18,6 +18,7 @@ RUN R -e "BiocManager::install(c( \
 # Install additional ML and visualization packages from CRAN
 RUN R -e "install.packages(c( \
     'caret', \
+    'VennDiagram', \
     'randomForest', \
     'xgboost', \
     'ggpubr', \
