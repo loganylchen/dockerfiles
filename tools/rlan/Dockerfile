@@ -17,6 +17,7 @@ RUN micromamba install -y \
     conda-forge::r-tidyverse \
     conda-forge::r-ggrepel \
     conda-forge::r-ggplotify \
+    bioconda::bioconductor-complexheatmap \
     conda-forge::r-pheatmap \
     bioconda::bioconductor-enhancedvolcano \
     bioconda::bioconductor-pcatools \
