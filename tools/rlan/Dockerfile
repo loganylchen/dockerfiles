@@ -21,6 +21,7 @@ RUN micromamba install -y \
     conda-forge::r-pheatmap \
     bioconda::bioconductor-enhancedvolcano \
     bioconda::bioconductor-pcatools \
+    bioconda::r-venndiagram \
     bioconda::bioconductor-deseq2 \
     && micromamba clean --all --yes
 
