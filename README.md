@@ -36,6 +36,7 @@
 | scaden        | [Deep learning–based cell composition analysis from tissue expression profiles](https://www.science.org/doi/10.1126/sciadv.aba2619) | ![scaden Version](https://img.shields.io/badge/scaden-1.1.2-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.1.1-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.1.0-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.2-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.1-blue) ![scaden Version](https://img.shields.io/badge/scaden-1.0.0-blue) |
 | aeron        | [AERON:Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full) | ![aeron Version](https://img.shields.io/badge/aeron-c77c73a4bdeb6fb21fa7522239b2276e27ea10f8-blue) |
 | autodock vina        |  |  |
+| mime        | [] | ![mime Version](https://img.shields.io/badge/mime-9a9f6ac89851bf631f9df3868b2fa624bed49df2-blue) |
 | nanocount        |  |  |
 | CPC2        | [] | ![CPC2 Version](https://img.shields.io/badge/CPC2-1.0.1-blue) |
 | IsoformSwitchAnalyzeR        | [] | ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.6.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.2.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.0.1-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-1.20.0-blue) |
