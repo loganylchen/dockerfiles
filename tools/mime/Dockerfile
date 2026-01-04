@@ -1,0 +1,21 @@
+FROM mambaorg/micromamba:latest
+ENV MAMBA_DOCKERFILE_ACTIVATE=1
+ENV PATH=/opt/conda/bin:$PATH
+
+
+RUN micromamba install -y \
+    bioconda::bioconductor-gsva \
+    bioconda::bioconductor-gseabase \
+    bioconda::bioconductor-cancerclass \
+    bioconda::bioconductor-mixomics \
+    bioconda::bioconductor-sparrow \
+    bioconda::bioconductor-sva \
+    bioconda::bioconductor-complexheatmap \
+    conda-forge::r-devtools \
+    && micromamba clean --all --yes
+
+ADD ./install_R_packages.R /tmp/
+
+RUN micromamba run -n base Rscript /tmp/install_R_packages.R 
+
+
