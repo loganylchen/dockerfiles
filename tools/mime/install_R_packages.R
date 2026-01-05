@@ -3,7 +3,7 @@
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
 
-install.packages("otelsdk", repos = "https://cloud.r-project.org/", dependencies = TRUE)
+install.packages(c("RProtoBuf","otelsdk"), repos = "https://cloud.r-project.org/", dependencies = TRUE)
 
 
 github_repos <- c("binderh/CoxBoost","souravc83/fastAdaboost","l-magnificence/Mime")    # e.g. c("username/repo", "org/pkg@v1.2.3")
