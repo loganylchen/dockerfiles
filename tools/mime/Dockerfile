@@ -10,6 +10,8 @@ RUN micromamba install -y \
     bioconda::bioconductor-mixomics \
     bioconda::bioconductor-sparrow \
     bioconda::bioconductor-sva \
+    conda-forge::cmake \
+    conda-forge::opentelemetry-sdk \
     bioconda::bioconductor-complexheatmap \
     conda-forge::r-devtools \
     && micromamba clean --all --yes
