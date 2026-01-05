@@ -4,6 +4,7 @@ ENV PATH=/opt/conda/bin:$PATH
 
 
 RUN micromamba install -y \
+    conda-forge::patch \
     conda-forge::libprotobuf \
     conda-forge::protobuf \
     bioconda::bioconductor-gsva \
