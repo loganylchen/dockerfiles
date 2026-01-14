@@ -23,6 +23,7 @@ RUN micromamba install -y \
     bioconda::bioconductor-enhancedvolcano \
     bioconda::bioconductor-pcatools \
     bioconda::bioconductor-deseq2 \
+    conda-forge::r-patchwork \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
