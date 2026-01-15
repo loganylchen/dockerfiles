@@ -24,4 +24,6 @@ ADD ./install_R_packages.R /tmp/
 
 RUN micromamba run -n base Rscript /tmp/install_R_packages.R 
 
+RUN micromamba install -y conda-forge::r-randomforest
+
 
