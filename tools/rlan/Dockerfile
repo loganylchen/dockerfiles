@@ -24,11 +24,12 @@ RUN micromamba install -y \
     bioconda::bioconductor-pcatools \
     bioconda::bioconductor-deseq2 \
     conda-forge::r-patchwork \
+    conda-forge::r-magick \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
 
 RUN micromamba run -n base Rscript /tmp/install_R_packages.R 
-RUN micromamba install -y conda-forge::r-magick
+
 
 
