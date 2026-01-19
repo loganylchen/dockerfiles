@@ -18,7 +18,7 @@ RUN micromamba install -y \
     conda-forge::opentelemetry-sdk \
     bioconda::bioconductor-complexheatmap \
     conda-forge::r-devtools \
-    conda-forge::r-randomforest=2.9.3 \
+    conda-forge::r-randomforest \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
