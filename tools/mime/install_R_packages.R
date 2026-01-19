@@ -4,7 +4,7 @@
 
 
 install.packages(c("RProtoBuf","otelsdk"), repos = "https://cloud.r-project.org/", dependencies = TRUE)
-
+remotes::install_version('randomForestSRC', version = '2.9.3',repos='http://cran.us.r-project.org')
 
 github_repos <- c("binderh/CoxBoost","souravc83/fastAdaboost","l-magnificence/Mime")    # e.g. c("username/repo", "org/pkg@v1.2.3")
 
