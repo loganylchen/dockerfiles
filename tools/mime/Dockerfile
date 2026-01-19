@@ -24,4 +24,5 @@ RUN micromamba install -y \
 ADD ./install_R_packages.R /tmp/
 
 RUN micromamba run -n base Rscript /tmp/install_R_packages.R 
+RUN micromamba run -n base Rscript -e 'remotes::install_version('randomForestSRC', version = '2.9.3',repos='http://cran.us.r-project.org')'
 
