@@ -1,7 +1,7 @@
 FROM mambaorg/micromamba:latest
 ENV MAMBA_DOCKERFILE_ACTIVATE=1
 ENV PATH=/opt/conda/bin:$PATH
-ARG VERSION
+ARG VERSION=9a9f6ac89851bf631f9df3868b2fa624bed49df2
 
 
 RUN micromamba install -y \
