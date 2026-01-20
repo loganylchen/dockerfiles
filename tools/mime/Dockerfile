@@ -1,6 +1,7 @@
 FROM mambaorg/micromamba:latest
 ENV MAMBA_DOCKERFILE_ACTIVATE=1
 ENV PATH=/opt/conda/bin:$PATH
+ARG VERSION
 
 
 RUN micromamba install -y \
@@ -24,6 +25,6 @@ RUN micromamba install -y \
 
 ADD ./install_R_packages.R /tmp/
 
-RUN micromamba run -n base Rscript /tmp/install_R_packages.R 
+RUN micromamba run -n base Rscript /tmp/install_R_packages.R ${VERSION}
 
 
