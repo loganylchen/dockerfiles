@@ -19,6 +19,7 @@ RUN micromamba install -y \
     bioconda::bioconductor-complexheatmap \
     conda-forge::r-devtools \
     conda-forge::r-survminer \
+    conda-forge::r-xgboost \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
