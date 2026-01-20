@@ -18,6 +18,7 @@ RUN micromamba install -y \
     conda-forge::opentelemetry-sdk \
     bioconda::bioconductor-complexheatmap \
     conda-forge::r-devtools \
+    conda-forge::r-survminer \
     && micromamba clean --all --yes
 
 ADD ./install_R_packages.R /tmp/
