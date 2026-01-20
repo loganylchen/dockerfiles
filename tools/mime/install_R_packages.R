@@ -2,11 +2,13 @@
 # Install required R packages for plotting and data manipulation
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
+args <- commandArgs(trailingOnly=T)
+
 
 install.packages(c("RProtoBuf","otelsdk"), repos = "https://cloud.r-project.org/", dependencies = TRUE)
 remotes::install_version('randomForestSRC', version = '2.9.3',repos='http://cran.us.r-project.org')
 
-github_repos <- c("binderh/CoxBoost","souravc83/fastAdaboost","l-magnificence/Mime")    # e.g. c("username/repo", "org/pkg@v1.2.3")
+github_repos <- c("binderh/CoxBoost","souravc83/fastAdaboost",paste0("l-magnificence/Mime@",args[1]))    # e.g. c("username/repo", "org/pkg@v1.2.3")
 
 
 for (repo in github_repos) {
