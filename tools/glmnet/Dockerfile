@@ -9,6 +9,8 @@ RUN micromamba install -y conda-forge::r-glmnet=${VERSION} \
     conda-forge::r-reshape2 \
     conda-forge::r-proc \
     conda-forge::r-dplyr \
+    conda-forge::r-prroc \
+    conda-forge::r-survminer \
     conda-forge::r-readr \
     conda-forge::r-tidyr \
     conda-forge::r-caret \
