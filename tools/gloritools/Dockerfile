@@ -33,8 +33,7 @@ RUN pip3 install -r /tmp/requirements.txt && \
 
 WORKDIR /opt/
 
-USER user
-
-
-
-
+# 创建非 root 用户以提高安全性
+RUN useradd -m -s /bin/bash gloriuser && \
+    chown -R gloriuser:gloriuser /opt/GLORI-tools
+USER gloriuser

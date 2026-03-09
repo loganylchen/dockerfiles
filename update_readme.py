@@ -9,8 +9,16 @@ readme_path = './README.md'
 
 # 提取工具信息
 def extract_tools_info(workflows_dir):
+    """从 workflow 文件中提取工具信息
+    
+    Args:
+        workflows_dir: workflow 文件路径列表
+    
+    Returns:
+        工具信息列表
+    """
     tools_info = []
-    for wf in workflows_files:
+    for wf in workflows_dir:  # 使用传入的参数而不是全局变量
         print(wf)
         with open(wf, 'r') as f:
             try:
@@ -19,16 +27,17 @@ def extract_tools_info(workflows_dir):
                 job = workflow.get('jobs', {}).get('docker', {})
                 matrix = job.get('strategy', {}).get('matrix', {})
                 versions = matrix.get('version', [])
-                name_and_ref = workflow.get('name', ('Unknown Workflow|unknown')),
-                print(name_and_ref[0])
-                print(name_and_ref[0].split(r'|'))
-                name,*ref = name_and_ref[0].split(r'|')
+                name_and_ref = workflow.get('name', 'Unknown Workflow|unknown')  # 修复: 移除末尾逗号
+                print(name_and_ref)
+                print(name_and_ref.split(r'|'))
+                name, *ref = name_and_ref.split(r'|')
                 tools_info.append({
                     'name': name,
-                    'ref':ref,
-                    'versions': versions  })
+                    'ref': ref,
+                    'versions': versions
+                })
             except yaml.YAMLError:
-                print(f"无法解析文件: {filepath}")
+                print(f"无法解析文件: {wf}")  # 修复: 使用正确的变量名
     return tools_info
 
 # 更新 README.md
@@ -48,7 +57,7 @@ def update_readme(readme_path, tools_info):
     for tool in tools_info:
         name = tool['name']
         versions = ' '.join([f"![{name} Version](https://img.shields.io/badge/{name}-{version}-blue)" for version in tool['versions']])
-        reference = tool['ref'] if len(tool['ref'] )==0 else tool['ref'][0] # 可以替换为实际的参考链接
+        reference = tool['ref'] if len(tool['ref']) == 0 else tool['ref'][0]  # 可以替换为实际的参考链接
      
         new_table.append(f"| {name}        | {reference} | {versions} |\n")
 
@@ -73,5 +82,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
-
