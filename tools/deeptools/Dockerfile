@@ -1,7 +1,6 @@
 FROM mambaorg/micromamba:1.5
 
-
-ENV PATH "${PATH}:/opt/Epinano/:/opt/conda/bin/"
+ENV PATH="/opt/conda/bin:${PATH}"
 ENV LC_ALL=en_US.utf8
 ENV LANG=en_US.utf8
 

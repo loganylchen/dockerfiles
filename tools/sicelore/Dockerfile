@@ -20,7 +20,7 @@ RUN apt update \
     && cmake -DCMAKE_BUILD_TYPE=Release .. && make && make install \
     && git clone https://github.com/rvaser/spoa /tmp/spoa && cd /tmp/spoa && mkdir build && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. && make && make install \
-    && wget http://opengene.org/fastp/fastp -O /opt/bin/fastp &&  chmod a+x /opt/bin/fastp \
+    && wget https://github.com/OpenGene/fastp/releases/download/v0.23.4/fastp -O /opt/bin/fastp &&  chmod a+x /opt/bin/fastp \
     && cd /tmp/ && wget https://github.com/samtools/samtools/releases/download/1.15.1/samtools-1.15.1.tar.bz2 -O /tmp/samtools-1.15.1.tar.bz2 \
     && tar -jxvf /tmp/samtools-1.15.1.tar.bz2 \
     && cd /tmp/samtools-1.15.1 \

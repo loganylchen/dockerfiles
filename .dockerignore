@@ -1,0 +1,29 @@
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.idea
+.vscode
+*.swp
+*.swo
+
+# macOS
+.DS_Store
+
+# Python
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+
+# Documentation
+README.md
+LICENSE
+*.md
+
+# Temporary files
+tmp.py
+*.tmp
+*.log
