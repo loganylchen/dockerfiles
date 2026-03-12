@@ -67,7 +67,6 @@
 | jaffal        |  |  |
 | deeptools        |  |  |
 | wgcna        | [] | ![wgcna Version](https://img.shields.io/badge/wgcna-1.73-blue) ![wgcna Version](https://img.shields.io/badge/wgcna-1.71-blue) |
-| slow5tools        | [Fast nanopore sequencing data analysis with SLOW5](https://www.nature.com/articles/s41587-021-01147-4) | ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.3.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.2.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.1.0-blue) ![slow5tools Version](https://img.shields.io/badge/slow5tools-1.0.0-blue) |
 | genion        |  |  |
 | bayesprism        |  |  |
 | flair        | [Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y) | ![flair Version](https://img.shields.io/badge/flair-2.0.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.7.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.4-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.3-blue) ![flair Version](https://img.shields.io/badge/flair-1.5-blue) ![flair Version](https://img.shields.io/badge/flair-1.4-blue) |
