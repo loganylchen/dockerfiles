@@ -1,10 +1,6 @@
 name: Update README
 
 on:
-  push:
-    paths:
-      - '.github/workflows/**'
-      - 'tools/**/Dockerfile'
   workflow_dispatch:
 
 jobs:
