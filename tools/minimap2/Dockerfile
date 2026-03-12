@@ -36,7 +36,7 @@ ARG VERSION=2.28
 # Install runtime dependencies including k8 (JavaScript runtime)
 RUN apk add --no-cache \
     zlib \
-    bzip2-libs \
+    libbz2 \
     xz-libs \
     ncurses-libs \
     libgcc \
