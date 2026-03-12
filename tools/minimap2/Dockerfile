@@ -1,18 +1,21 @@
 # Build stage
-FROM alpine:3.19 AS builder
+FROM debian:bookworm-slim AS builder
 
 ARG VERSION=2.28
 
 # Install build dependencies
-RUN apk add --no-cache \
-    build-base \
-    curl \
-    zlib-dev \
-    bzip2-dev \
-    xz-dev \
-    ncurses-dev \
-    autoconf \
-    automake
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        ca-certificates \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libncurses-dev \
+        autoconf \
+        automake && \
+    rm -rf /var/lib/apt/lists/*
 
 # Build minimap2 from source
 WORKDIR /tmp
@@ -28,36 +31,34 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/1.19.2/samtoo
     make && \
     strip samtools
 
-# Build k8 JavaScript shell from source (Alpine uses musl, not glibc)
-RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf - && \
-    cd k8-1.2 && \
-    g++ -O2 -Wall -o k8 k8.cc -lz && \
-    strip k8
+# Download k8 precompiled binary
+RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf -
 
 # Runtime stage
-FROM alpine:3.19
+FROM debian:bookworm-slim
 
 ARG VERSION=2.28
 
 # Install runtime dependencies
-RUN apk add --no-cache \
-    zlib \
-    libbz2 \
-    xz-libs \
-    ncurses-libs \
-    libgcc \
-    libstdc++
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        zlib1g \
+        libbz2-1.0 \
+        liblzma5 \
+        libncurses6 && \
+    rm -rf /var/lib/apt/lists/*
 
 # Copy binaries from builder
 COPY --from=builder /tmp/minimap2-*/minimap2 /usr/local/bin/
 COPY --from=builder /tmp/samtools-*/samtools /usr/local/bin/
-COPY --from=builder /tmp/k8-*/k8 /usr/local/bin/
+COPY --from=builder /tmp/k8-*/k8-x86_64-Linux /usr/local/bin/k8
 
 # Copy JavaScript utilities from minimap2
 COPY --from=builder /tmp/minimap2-*/misc/*.js /usr/local/share/minimap2/
 
-# Create wrapper scripts for JavaScript tools
-RUN echo '#!/bin/sh' > /usr/local/bin/paftools.js && \
+# Make k8 executable and create wrapper scripts
+RUN chmod +x /usr/local/bin/k8 && \
+    echo '#!/bin/sh' > /usr/local/bin/paftools.js && \
     echo 'exec k8 /usr/local/share/minimap2/paftools.js "$@"' >> /usr/local/bin/paftools.js && \
     chmod +x /usr/local/bin/paftools.js && \
     echo '#!/bin/sh' > /usr/local/bin/pafcluster.js && \
