@@ -79,7 +79,6 @@
 | biopython        | [Biopython:freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) |
 | gffcompare        | [] | ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.10-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.9-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.6-blue) |
 | sicelore        | [High throughput error corrected Nanopore single cell transcriptome sequencing](https://doi.org/10.1038/s41467-020-17800-6) | ![sicelore Version](https://img.shields.io/badge/sicelore-2.0-blue) |
-| minimap2        | [Minimap2:pairwise alignment for nucleotide sequences](https://academic.oup.com/bioinformatics/article/37/23/4572/6384570) | ![minimap2 Version](https://img.shields.io/badge/minimap2-2.28-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.27-blue) ![minimap2 Version](https://img.shields.io/badge/minimap2-2.26-blue) |
 | rnasieve        |  |  |
 | bedtools        | [] | ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.1-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.0-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.30.0-blue) |
 | R ml        | [] |  |
