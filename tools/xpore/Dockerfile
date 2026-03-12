@@ -22,7 +22,9 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Install xpore and its dependencies
 # Note: xpore uses versioning like "v2.1", not "2.1"
-RUN pip install --no-cache-dir xpore==v${VERSION}
+# Pin numpy<2 to avoid compatibility warnings with PyArrow
+RUN pip install --no-cache-dir "numpy<2" && \
+    pip install --no-cache-dir xpore==v${VERSION}
 
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.12-slim
