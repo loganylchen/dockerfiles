@@ -15,7 +15,7 @@ jobs:
   detect-changes:
     runs-on: ubuntu-latest
     outputs:
-      tools: ${{ steps.detect.outputs.tools }}
+      matrix: ${{ steps.set-matrix.outputs.matrix }}
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -42,13 +42,39 @@ jobs:
             echo "Detected changed tools: $tools"
           fi
 
-  build-amd64:
+      - name: Build matrix with tool and version combinations
+        id: set-matrix
+        run: |
+          tools='${{ steps.detect.outputs.tools }}'
+          
+          if [ "$tools" = "[]" ] || [ -z "$tools" ]; then
+            echo "matrix={\"include\":[]}" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          
+          matrix_include="[]"
+          
+          for tool in $(echo "$tools" | jq -r '.[]'); do
+            if [ -f "tools/$tool/versions.txt" ]; then
+              versions=$(cat "tools/$tool/versions.txt" | grep -v '^#' | grep -v '^$')
+              for version in $versions; do
+                matrix_include=$(echo "$matrix_include" | jq --arg tool "$tool" --arg version "$version" '. += [{"tool": $tool, "version": $version}]')
+              done
+            else
+              # Default to 'latest' if no versions.txt
+              matrix_include=$(echo "$matrix_include" | jq --arg tool "$tool" --arg version "latest" '. += [{"tool": $tool, "version": $version}]')
+            fi
+          done
+          
+          echo "matrix={\"include\":$matrix_include}" >> $GITHUB_OUTPUT
+          echo "Matrix: {\"include\":$matrix_include}"
+
+  build:
     needs: detect-changes
-    if: needs.detect-changes.outputs.tools != '[]'
+    if: needs.detect-changes.outputs.matrix != '' && needs.detect-changes.outputs.matrix != '{"include":[]}'
     runs-on: ubuntu-latest
     strategy:
-      matrix:
-        tool: ${{ fromJSON(needs.detect-changes.outputs.tools) }}
+      matrix: ${{ fromJSON(needs.detect-changes.outputs.matrix) }}
       fail-fast: false
 
     steps:
@@ -64,18 +90,6 @@ jobs:
           sudo systemctl start docker
           df -h
 
-      - name: Read tool configuration
-        id: config
-        run: |
-          # Check if versions.txt exists
-          if [ -f "tools/${{ matrix.tool }}/versions.txt" ]; then
-            versions=$(cat "tools/${{ matrix.tool }}/versions.txt" | grep -v '^#' | grep -v '^$' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-            echo "versions=$versions" >> $GITHUB_OUTPUT
-          else
-            # Default to a single 'latest' tag if no version file
-            echo "versions=[\"latest\"]" >> $GITHUB_OUTPUT
-          fi
-
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
@@ -85,116 +99,13 @@ jobs:
           username: ${{ secrets.DH_USER }}
           password: ${{ secrets.DH_TOKEN }}
 
-      - name: Build and push AMD64 images
-        run: |
-          versions='${{ steps.config.outputs.versions }}'
-          for version in $(echo "$versions" | jq -r '.[]'); do
-            echo "Building ${{ matrix.tool }}:$version for AMD64"
-            docker buildx build \
-              --platform linux/amd64 \
-              --build-arg VERSION=$version \
-              --tag ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version-amd64 \
-              --cache-from type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache-amd64 \
-              --cache-to type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache-amd64,mode=max \
-              --push \
-              ./tools/${{ matrix.tool }}/
-          done
-
-  build-arm64:
-    needs: detect-changes
-    if: needs.detect-changes.outputs.tools != '[]'
-    runs-on: ubuntu-24.04-arm64
-    strategy:
-      matrix:
-        tool: ${{ fromJSON(needs.detect-changes.outputs.tools) }}
-      fail-fast: false
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Configure Docker data-root to /mnt/docker
-        run: |
-          sudo systemctl stop docker
-          sudo mkdir -p /mnt/docker
-          sudo jq '. + {"data-root": "/mnt/docker"}' /etc/docker/daemon.json > /tmp/daemon.json || echo '{"data-root": "/mnt/docker"}' > /tmp/daemon.json
-          sudo mv /tmp/daemon.json /etc/docker/daemon.json
-          sudo systemctl start docker
-          df -h
-
-      - name: Read tool configuration
-        id: config
-        run: |
-          # Check if versions.txt exists
-          if [ -f "tools/${{ matrix.tool }}/versions.txt" ]; then
-            versions=$(cat "tools/${{ matrix.tool }}/versions.txt" | grep -v '^#' | grep -v '^$' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-            echo "versions=$versions" >> $GITHUB_OUTPUT
-          else
-            # Default to a single 'latest' tag if no version file
-            echo "versions=[\"latest\"]" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v2
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
+      - name: Build and push ${{ matrix.tool }}:${{ matrix.version }}
+        uses: docker/build-push-action@v6
         with:
-          username: ${{ secrets.DH_USER }}
-          password: ${{ secrets.DH_TOKEN }}
-
-      - name: Build and push ARM64 images
-        run: |
-          versions='${{ steps.config.outputs.versions }}'
-          for version in $(echo "$versions" | jq -r '.[]'); do
-            echo "Building ${{ matrix.tool }}:$version for ARM64"
-            docker buildx build \
-              --platform linux/arm64 \
-              --build-arg VERSION=$version \
-              --tag ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version-arm64 \
-              --cache-from type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache-arm64 \
-              --cache-to type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache-arm64,mode=max \
-              --push \
-              ./tools/${{ matrix.tool }}/
-          done
-
-  create-manifest:
-    needs: [detect-changes, build-amd64, build-arm64]
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        tool: ${{ fromJSON(needs.detect-changes.outputs.tools) }}
-      fail-fast: false
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Read tool configuration
-        id: config
-        run: |
-          # Check if versions.txt exists
-          if [ -f "tools/${{ matrix.tool }}/versions.txt" ]; then
-            versions=$(cat "tools/${{ matrix.tool }}/versions.txt" | grep -v '^#' | grep -v '^$' | jq -R -s -c 'split("\n") | map(select(length > 0))')
-            echo "versions=$versions" >> $GITHUB_OUTPUT
-          else
-            # Default to a single 'latest' tag if no version file
-            echo "versions=[\"latest\"]" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DH_USER }}
-          password: ${{ secrets.DH_TOKEN }}
-
-      - name: Create and push multi-arch manifest
-        run: |
-          versions='${{ steps.config.outputs.versions }}'
-          for version in $(echo "$versions" | jq -r '.[]'); do
-            echo "Creating manifest for ${{ matrix.tool }}:$version"
-            docker buildx imagetools create \
-              --tag ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version \
-              ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version-amd64 \
-              ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version-arm64
-          done
+          context: ./tools/${{ matrix.tool }}/
+          platforms: linux/amd64
+          push: true
+          tags: ${{ secrets.DH_USER }}/${{ matrix.tool }}:${{ matrix.version }}
+          build-args: VERSION=${{ matrix.version }}
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache,mode=max
