@@ -28,39 +28,30 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/1.19.2/samtoo
     make && \
     strip samtools
 
+# Build k8 JavaScript shell from source (Alpine uses musl, not glibc)
+RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf - && \
+    cd k8-1.2 && \
+    g++ -O2 -Wall -o k8 k8.cc -lz && \
+    strip k8
+
 # Runtime stage
 FROM alpine:3.19
 
 ARG VERSION=2.28
 
-# Install runtime dependencies including k8 (JavaScript runtime)
+# Install runtime dependencies
 RUN apk add --no-cache \
     zlib \
     libbz2 \
     xz-libs \
     ncurses-libs \
     libgcc \
-    libstdc++ \
-    curl
-
-# Install k8 JavaScript shell for running paftools.js and other scripts
-RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf - && \
-    cd k8-1.2 && \
-    if [ -f "k8-$(uname -m)-Linux" ]; then \
-      cp "k8-$(uname -m)-Linux" /usr/local/bin/k8; \
-    else \
-      # Compile from source if no prebuilt binary for this arch
-      apk add --no-cache g++ zlib-dev && \
-      g++ -O2 -Wall -o k8 k8.cc -lz && \
-      cp k8 /usr/local/bin/k8 && \
-      apk del g++ zlib-dev; \
-    fi && \
-    chmod +x /usr/local/bin/k8 && \
-    cd .. && rm -rf k8-1.2
+    libstdc++
 
 # Copy binaries from builder
 COPY --from=builder /tmp/minimap2-*/minimap2 /usr/local/bin/
 COPY --from=builder /tmp/samtools-*/samtools /usr/local/bin/
+COPY --from=builder /tmp/k8-*/k8 /usr/local/bin/
 
 # Copy JavaScript utilities from minimap2
 COPY --from=builder /tmp/minimap2-*/misc/*.js /usr/local/share/minimap2/
@@ -72,9 +63,6 @@ RUN echo '#!/bin/sh' > /usr/local/bin/paftools.js && \
     echo '#!/bin/sh' > /usr/local/bin/pafcluster.js && \
     echo 'exec k8 /usr/local/share/minimap2/pafcluster.js "$@"' >> /usr/local/bin/pafcluster.js && \
     chmod +x /usr/local/bin/pafcluster.js
-
-# Remove curl to minimize final image size
-RUN apk del curl
 
 # Verify installations
 RUN minimap2 --version && \
