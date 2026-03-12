@@ -45,9 +45,18 @@ RUN apk add --no-cache \
 
 # Install k8 JavaScript shell for running paftools.js and other scripts
 RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.tar.bz2 | tar -jxf - && \
-    mv k8-1.2/k8-* /usr/local/bin/k8 && \
+    cd k8-1.2 && \
+    if [ -f "k8-$(uname -m)-Linux" ]; then \
+      cp "k8-$(uname -m)-Linux" /usr/local/bin/k8; \
+    else \
+      # Compile from source if no prebuilt binary for this arch
+      apk add --no-cache g++ zlib-dev && \
+      g++ -O2 -Wall -o k8 k8.cc -lz && \
+      cp k8 /usr/local/bin/k8 && \
+      apk del g++ zlib-dev; \
+    fi && \
     chmod +x /usr/local/bin/k8 && \
-    rm -rf k8-1.2
+    cd .. && rm -rf k8-1.2
 
 # Copy binaries from builder
 COPY --from=builder /tmp/minimap2-*/minimap2 /usr/local/bin/
