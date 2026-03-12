@@ -1,0 +1,95 @@
+name: Auto Build Tools
+
+on:
+  push:
+    paths:
+      - 'tools/**'
+  workflow_dispatch:
+    inputs:
+      specific_tool:
+        description: 'Specific tool to build (leave empty to build all changed tools)'
+        required: false
+        type: string
+
+jobs:
+  detect-changes:
+    runs-on: ubuntu-latest
+    outputs:
+      tools: ${{ steps.detect.outputs.tools }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Detect changed tools
+        id: detect
+        run: |
+          if [ -n "${{ github.event.inputs.specific_tool }}" ]; then
+            # Manual workflow dispatch with specific tool
+            echo "tools=[\"${{ github.event.inputs.specific_tool }}\"]" >> $GITHUB_OUTPUT
+          else
+            # Auto-detect changed tools from git diff
+            changed_files=$(git diff --name-only HEAD^ HEAD | grep '^tools/' || true)
+            if [ -z "$changed_files" ]; then
+              echo "tools=[]" >> $GITHUB_OUTPUT
+              exit 0
+            fi
+            
+            # Extract unique tool names from changed paths
+            tools=$(echo "$changed_files" | cut -d'/' -f2 | sort -u | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "tools=$tools" >> $GITHUB_OUTPUT
+            echo "Detected changed tools: $tools"
+          fi
+
+  build:
+    needs: detect-changes
+    if: needs.detect-changes.outputs.tools != '[]'
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        tool: ${{ fromJSON(needs.detect-changes.outputs.tools) }}
+      fail-fast: false
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Read tool configuration
+        id: config
+        run: |
+          # Check if versions.txt exists
+          if [ -f "tools/${{ matrix.tool }}/versions.txt" ]; then
+            versions=$(cat "tools/${{ matrix.tool }}/versions.txt" | grep -v '^#' | grep -v '^$' | jq -R -s -c 'split("\n") | map(select(length > 0))')
+            echo "versions=$versions" >> $GITHUB_OUTPUT
+          else
+            # Default to a single 'latest' tag if no version file
+            echo "versions=[\"latest\"]" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_TOKEN }}
+
+      - name: Build and push each version
+        run: |
+          versions='${{ steps.config.outputs.versions }}'
+          for version in $(echo "$versions" | jq -r '.[]'); do
+            echo "Building ${{ matrix.tool }}:$version"
+            docker buildx build \
+              --platform linux/amd64,linux/arm64 \
+              --build-arg VERSION=$version \
+              --tag ${{ secrets.DH_USER }}/${{ matrix.tool }}:$version \
+              --cache-from type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache \
+              --cache-to type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache,mode=max \
+              --push \
+              ./tools/${{ matrix.tool }}/
+          done
