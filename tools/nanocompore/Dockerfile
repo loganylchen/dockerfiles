@@ -1,6 +1,7 @@
 # Multi-stage build for nanocompore - optimized for size
 # Stage 1: Builder - Install build dependencies and compile
-FROM python:3.12-slim AS builder
+# Using Python 3.10 for compatibility with nanocompore's matplotlib dependencies
+FROM python:3.10-slim AS builder
 
 ARG VERSION=2.2.0
 
@@ -25,10 +26,14 @@ ENV PATH="/opt/venv/bin:$PATH"
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
 # Install nanocompore and its dependencies
-RUN pip install --no-cache-dir nanocompore==${VERSION}
+# Install CPU-only PyTorch first to reduce image size (avoids CUDA dependencies)
+# Install setuptools<58 to ensure pkg_resources is available (required by nanocompore)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
+    pip install --no-cache-dir "setuptools<58" && \
+    pip install --no-cache-dir nanocompore==${VERSION}
 
 # Stage 2: Runtime - Minimal image with only runtime dependencies
-FROM python:3.12-slim
+FROM python:3.10-slim
 
 ARG VERSION=2.2.0
 
