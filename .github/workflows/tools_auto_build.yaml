@@ -58,16 +58,17 @@ jobs:
             if [ -f "tools/$tool/versions.txt" ]; then
               versions=$(cat "tools/$tool/versions.txt" | grep -v '^#' | grep -v '^$')
               for version in $versions; do
-                matrix_include=$(echo "$matrix_include" | jq --arg tool "$tool" --arg version "$version" '. += [{"tool": $tool, "version": $version}]')
+                matrix_include=$(echo "$matrix_include" | jq -c --arg tool "$tool" --arg version "$version" '. += [{"tool": $tool, "version": $version}]')
               done
             else
               # Default to 'latest' if no versions.txt
-              matrix_include=$(echo "$matrix_include" | jq --arg tool "$tool" --arg version "latest" '. += [{"tool": $tool, "version": $version}]')
+              matrix_include=$(echo "$matrix_include" | jq -c --arg tool "$tool" --arg version "latest" '. += [{"tool": $tool, "version": $version}]')
             fi
           done
           
-          echo "matrix={\"include\":$matrix_include}" >> $GITHUB_OUTPUT
-          echo "Matrix: {\"include\":$matrix_include}"
+          matrix_json=$(echo "{\"include\":$matrix_include}" | jq -c .)
+          echo "matrix=$matrix_json" >> $GITHUB_OUTPUT
+          echo "Matrix: $matrix_json"
 
   build:
     needs: detect-changes
