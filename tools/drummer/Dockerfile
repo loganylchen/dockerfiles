@@ -1,30 +1,77 @@
-FROM ubuntu:22.04
+# Build stage
+FROM debian:bookworm-slim AS builder
 
+ARG VERSION=dd0ccc81
+ARG SAMTOOLSVER=1.19.2
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV PATH=/opt/bin:/opt/DURMMER:$PATH
-ARG SAMTOOLSVER=1.18
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        ca-certificates \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libncurses-dev \
+        libcurl4-gnutls-dev \
+        libssl-dev \
+        git && \
+    rm -rf /var/lib/apt/lists/*
 
-ADD DRUMMER /opt/bin/
+# Build samtools from source
+WORKDIR /tmp
+RUN curl -L https://github.com/samtools/samtools/releases/download/${SAMTOOLSVER}/samtools-${SAMTOOLSVER}.tar.bz2 | tar -jxf - && \
+    cd samtools-${SAMTOOLSVER} && \
+    ./configure --without-curses && \
+    make && \
+    strip samtools
 
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    build-essential \
-    wget \
-    unzip \
-    bzip2 \
-    git \
-    libidn11* \
-    python3-pip \
-    samtools \
-    bedtools && \
-    update-alternatives --install /usr/bin/python python /usr/bin/python3 20
+# Clone DRUMMER at the specified commit
+RUN git clone https://github.com/loganylchen/DRUMMER.git /opt/DRUMMER && \
+    cd /opt/DRUMMER && \
+    git checkout ${VERSION}
 
-RUN cd /opt/ &&  \
-    git clone https://github.com/loganylchen/DRUMMER && \
-    pip install seaborn scipy pandas numpy biopython matplotlib statsmodels && \
-    chmod -R +x /opt/bin/ && \
-    apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/* /var/lib/apt/lists/*
+# Runtime stage
+FROM debian:bookworm-slim
 
+ARG SAMTOOLSVER=1.19.2
+
+# Install runtime dependencies + pip packages in one layer (no build tools needed
+# for pure-Python deps, so no purge step required)
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        bedtools \
+        zlib1g \
+        libbz2-1.0 \
+        liblzma5 \
+        libcurl4 \
+        libssl3 \
+        ca-certificates && \
+    pip3 install --no-cache-dir --break-system-packages \
+        seaborn \
+        scipy \
+        pandas \
+        numpy \
+        biopython \
+        matplotlib \
+        statsmodels && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy samtools binary and DRUMMER from builder
+COPY --from=builder /tmp/samtools-${SAMTOOLSVER}/samtools /usr/local/bin/samtools
+COPY --from=builder /opt/DRUMMER /opt/DRUMMER
+
+# Install wrapper script
+COPY DRUMMER /usr/local/bin/DRUMMER
+RUN chmod +x /usr/local/bin/DRUMMER
+
+# Smoke-test
+RUN samtools --version | head -1 && \
+    DRUMMER -h
+
+WORKDIR /data
+
+CMD ["DRUMMER", "-h"]
