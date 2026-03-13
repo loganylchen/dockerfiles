@@ -1,12 +1,16 @@
-FROM ubuntu:22.04
+ARG VERSION=4.9.2
+
+FROM debian:bookworm-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
-ENV PATH=/opt/bin/:$PATH
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        lftp \
+        curl \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt update && apt install -y lftp curl && \
-    apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
+RUN lftp --version | head -1
+
+WORKDIR /data
+CMD ["lftp"]
