@@ -1,16 +1,65 @@
-FROM ubuntu:22.04
+# Build stage
+FROM debian:bookworm-slim AS builder
 
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION
+ARG VERSION=0.14.0
 
-RUN apt update -y && \
-    apt -y install gzip libhdf5-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 libbz2-dev && \
-    cd /tmp/ && \
-    git clone https://github.com/jts/nanopolish.git --recursive && \
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        ca-certificates \
+        git \
+        autoconf \
+        automake \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libcurl4-gnutls-dev \
+        libssl-dev \
+        libhdf5-dev && \
+    rm -rf /var/lib/apt/lists/*
+
+# Clone nanopolish with all submodules at the specified tag
+WORKDIR /tmp
+RUN git clone --recursive --depth=1 --branch v${VERSION} \
+        https://github.com/jts/nanopolish.git && \
     cd nanopolish && \
-    git checkout v${VERSION} &&\
     git submodule update --init --recursive && \
-    make && \
-    mkdir -p /opt/bin/ && cp nanopolish /opt/bin/ && \
-    apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+    make HDF5=noinstall && \
+    strip nanopolish
+
+# Runtime stage
+FROM debian:bookworm-slim
+
+# Only runtime shared libs needed by the nanopolish binary
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+        libhdf5-103-1 \
+        zlib1g \
+        libbz2-1.0 \
+        liblzma5 \
+        libcurl4 \
+        libssl3 \
+        python3 \
+        python3-pip \
+        ca-certificates && \
+    pip3 install --no-cache-dir --break-system-packages \
+        numpy \
+        scipy \
+        pysam \
+        biopython && \
+    rm -rf /var/lib/apt/lists/*
+
+# Copy nanopolish binary and helper scripts from builder
+COPY --from=builder /tmp/nanopolish/nanopolish /usr/local/bin/nanopolish
+COPY --from=builder /tmp/nanopolish/scripts /usr/local/share/nanopolish/scripts
+
+RUN ln -sf /usr/local/share/nanopolish/scripts/nanopolish_makerange.py /usr/local/bin/nanopolish_makerange.py && \
+    chmod +x /usr/local/bin/nanopolish_makerange.py
+
+# Smoke-test
+RUN nanopolish --version
+
+WORKDIR /data
+
+CMD ["nanopolish", "--help"]
