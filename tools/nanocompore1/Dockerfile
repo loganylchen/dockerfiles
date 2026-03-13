@@ -2,7 +2,7 @@
 # Stage 1: Builder - Install build dependencies and compile
 # Note: Nanocompore 2.0+ requires Python 3.10+
 # Nanocompore 1.x is incompatible with Python 3.10 (PyYAML build issues)
-FROM python:3.10-slim AS builder
+FROM python:3.8-slim AS builder
 
 ARG VERSION=2.2.0
 
@@ -29,12 +29,11 @@ RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 # Install nanocompore and its dependencies
 # Install CPU-only PyTorch first to reduce image size (avoids CUDA dependencies)
 # Install setuptools<58 to ensure pkg_resources is available (required by nanocompore)
-RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu && \
-    pip install --no-cache-dir "setuptools<58" && \
+RUN pip install --no-cache-dir "setuptools<58" && \
     pip install --no-cache-dir nanocompore==${VERSION}
 
 # Stage 2: Runtime - Minimal image with only runtime dependencies
-FROM python:3.10-slim
+FROM python:3.8-slim
 
 ARG VERSION=2.2.0
 
