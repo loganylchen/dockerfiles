@@ -1,6 +1,7 @@
 # Multi-stage build for nanocompore - optimized for size
 # Stage 1: Builder - Install build dependencies and compile
-# Using Python 3.10 for compatibility with nanocompore's matplotlib dependencies
+# Note: Nanocompore 2.0+ requires Python 3.10+
+# Nanocompore 1.x is incompatible with Python 3.10 (PyYAML build issues)
 FROM python:3.10-slim AS builder
 
 ARG VERSION=2.2.0
@@ -61,7 +62,7 @@ ENV PATH="/opt/venv/bin:$PATH"
 WORKDIR /data
 
 # Verify installation
-# Note: Skip version check due to Polars CPU feature requirements
+# Note: Skip version check due to Polars CPU feature requirements during build
 # The tool will work correctly on actual AMD64 hardware with AVX2 support
 RUN python -c "import nanocompore; print(f'Nanocompore {nanocompore.__version__} installed successfully')"
 
