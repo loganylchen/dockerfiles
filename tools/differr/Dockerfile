@@ -2,7 +2,8 @@ FROM debian:bookworm-slim
 
 ARG VERSION=0.2
 
-# Install runtime deps + build tools needed to compile pysam C extensions
+# Install build tools + compile differr (with pysam C extension) + purge build tools,
+# all in one layer so build artifacts never persist in the image.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         python3 \
@@ -15,14 +16,9 @@ RUN apt-get update && \
         libcurl4-gnutls-dev \
         libssl-dev \
         ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install differr and all dependencies
-RUN pip3 install --no-cache-dir --break-system-packages \
-        git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION}
-
-# Remove build tools after pip compilation
-RUN apt-get purge -y --auto-remove \
+    pip3 install --no-cache-dir --break-system-packages \
+        git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION} && \
+    apt-get purge -y --auto-remove \
         gcc \
         python3-dev \
         zlib1g-dev \
