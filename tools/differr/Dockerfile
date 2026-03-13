@@ -1,4 +1,4 @@
-FROM debian:bookworm-slim
+FROM python:3.5-slim
 
 ARG VERSION=0.2
 
@@ -6,9 +6,6 @@ ARG VERSION=0.2
 # all in one layer so build artifacts never persist in the image.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        python3 \
-        python3-pip \
-        python3-dev \
         gcc \
         git \
         zlib1g-dev \
@@ -17,12 +14,11 @@ RUN apt-get update && \
         libcurl4-gnutls-dev \
         libssl-dev \
         ca-certificates && \
-    pip3 install --no-cache-dir --break-system-packages \
+    pip install --no-cache-dir \
         git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION} && \
     apt-get purge -y --auto-remove \
         gcc \
         git \
-        python3-dev \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
