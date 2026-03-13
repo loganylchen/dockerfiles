@@ -1,0 +1,157 @@
+name: Build misc images
+
+on:
+  push:
+    paths:
+      - 'misc/python3/**'
+      - 'misc/r-base/**'
+  workflow_dispatch:
+    inputs:
+      image:
+        description: 'Which image to build (python3, r-base, or both)'
+        required: false
+        default: 'both'
+        type: choice
+        options:
+          - both
+          - python3
+          - r-base
+
+jobs:
+  detect:
+    runs-on: ubuntu-latest
+    outputs:
+      build_python3: ${{ steps.detect.outputs.build_python3 }}
+      build_rbase: ${{ steps.detect.outputs.build_rbase }}
+      date_tag: ${{ steps.detect.outputs.date_tag }}
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          fetch-depth: 2
+
+      - name: Determine what to build
+        id: detect
+        run: |
+          DATE_TAG=$(date -u '+%Y-%m-%d')
+          echo "date_tag=${DATE_TAG}" >> $GITHUB_OUTPUT
+
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            INPUT="${{ github.event.inputs.image }}"
+            if [ "$INPUT" = "both" ] || [ "$INPUT" = "python3" ]; then
+              echo "build_python3=true" >> $GITHUB_OUTPUT
+            else
+              echo "build_python3=false" >> $GITHUB_OUTPUT
+            fi
+            if [ "$INPUT" = "both" ] || [ "$INPUT" = "r-base" ]; then
+              echo "build_rbase=true" >> $GITHUB_OUTPUT
+            else
+              echo "build_rbase=false" >> $GITHUB_OUTPUT
+            fi
+          else
+            changed=$(git diff --name-only HEAD^ HEAD)
+            if echo "$changed" | grep -q '^misc/python3/'; then
+              echo "build_python3=true" >> $GITHUB_OUTPUT
+            else
+              echo "build_python3=false" >> $GITHUB_OUTPUT
+            fi
+            if echo "$changed" | grep -q '^misc/r-base/'; then
+              echo "build_rbase=true" >> $GITHUB_OUTPUT
+            else
+              echo "build_rbase=false" >> $GITHUB_OUTPUT
+            fi
+          fi
+
+  build-python3:
+    needs: detect
+    if: needs.detect.outputs.build_python3 == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_TOKEN }}
+
+      - name: Build and push misc-python3
+        uses: docker/build-push-action@v6
+        with:
+          context: ./misc/python3/
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ secrets.DH_USER }}/misc-python3:${{ needs.detect.outputs.date_tag }}
+            ${{ secrets.DH_USER }}/misc-python3:latest
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/misc-python3:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/misc-python3:cache,mode=max
+
+  build-rbase:
+    needs: detect
+    if: needs.detect.outputs.build_rbase == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v2
+        with:
+          username: ${{ secrets.DH_USER }}
+          password: ${{ secrets.DH_TOKEN }}
+
+      - name: Build and push misc-r-base
+        uses: docker/build-push-action@v6
+        with:
+          context: ./misc/r-base/
+          platforms: linux/amd64
+          push: true
+          tags: |
+            ${{ secrets.DH_USER }}/misc-r-base:${{ needs.detect.outputs.date_tag }}
+            ${{ secrets.DH_USER }}/misc-r-base:latest
+          cache-from: type=registry,ref=${{ secrets.DH_USER }}/misc-r-base:cache
+          cache-to: type=registry,ref=${{ secrets.DH_USER }}/misc-r-base:cache,mode=max
+
+  update-readme:
+    needs: [detect, build-python3, build-rbase]
+    if: always() && (needs.build-python3.result == 'success' || needs.build-rbase.result == 'success')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Update misc/README.md build history
+        env:
+          DATE_TAG: ${{ needs.detect.outputs.date_tag }}
+          BUILD_PYTHON3: ${{ needs.build-python3.result }}
+          BUILD_RBASE: ${{ needs.build-rbase.result }}
+        run: |
+          README="misc/README.md"
+
+          if [ "$BUILD_PYTHON3" = "success" ]; then
+            NEW_ROW="| ${DATE_TAG} | packages: $(cat misc/python3/requirements.txt | grep -v '^#' | grep -v '^$' | tr '\n' ',' | sed 's/,$//') |"
+            sed -i "/<!-- PYTHON3_HISTORY -->/a ${NEW_ROW}" "$README"
+          fi
+
+          if [ "$BUILD_RBASE" = "success" ]; then
+            NEW_ROW="| ${DATE_TAG} | updated install_R_packages.R; base packages unchanged |"
+            sed -i "/<!-- RBASE_HISTORY -->/a ${NEW_ROW}" "$README"
+          fi
+
+      - name: Commit README update
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add misc/README.md
+          if git diff --cached --quiet; then
+            echo "No README changes to commit"
+          else
+            git commit -m "docs: update misc build history for ${{ needs.detect.outputs.date_tag }}"
+            git push
+          fi
