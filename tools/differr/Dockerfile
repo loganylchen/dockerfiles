@@ -10,6 +10,7 @@ RUN apt-get update && \
         python3-pip \
         python3-dev \
         gcc \
+        git \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
@@ -20,6 +21,7 @@ RUN apt-get update && \
         git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION} && \
     apt-get purge -y --auto-remove \
         gcc \
+        git \
         python3-dev \
         zlib1g-dev \
         libbz2-dev \
