@@ -63,17 +63,17 @@ RUN apt-get update && \
 RUN Rscript -e "install.packages(c('outliers', 'reshape2', 'car', 'ggrepel'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
 
 # Copy EpiNano from builder
-COPY --from=builder /opt/epinano /opt/epinano
+COPY --from=builder /opt/epinano /opt/Epinano
 
 # Copy Python virtual environment from builder
 COPY --from=builder /opt/venv /opt/venv
 
 # Set PATH to include virtual environment and EpiNano scripts
-ENV PATH="/opt/venv/bin:/opt/epinano:$PATH"
-ENV SAM2TSV="/opt/epinano/misc/sam2tsv.jar"
+ENV PATH="/opt/venv/bin:/opt/Epinano:$PATH"
+ENV SAM2TSV="/opt/Epinano/misc/sam2tsv.jar"
 
 # Make Python scripts executable
-RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh
+RUN chmod +x /opt/Epinano/*.py /opt/Epinano/*.sh
 
 # Set working directory
 WORKDIR /data
@@ -84,7 +84,7 @@ RUN python --version && \
     samtools --version | head -1 && \
     java -version 2>&1 | head -1 && \
     Rscript --version 2>&1 | head -1 && \
-    ls -la /opt/epinano/*.py | head -5
+    ls -la /opt/Epinano/*.py | head -5
 
 # Default command - show help
-CMD ["python", "/opt/epinano/Epinano_Variants.py", "-h"]
+CMD ["python", "/opt/Epinano/Epinano_Variants.py", "-h"]
