@@ -1,9 +1,35 @@
-FROM mambaorg/micromamba:latest
-ENV MAMBA_DOCKERFILE_ACTIVATE=1
-ENV PATH=/opt/conda/bin:$PATH
+ARG VERSION=2.31.1
+
+FROM debian:bookworm-slim AS builder
+
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
-RUN micromamba install -y -c conda-forge -c bioconda bedtools=${VERSION} \
-    && micromamba clean --all --yes
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        wget \
+        ca-certificates \
+        build-essential \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+    && wget -q https://github.com/arq5x/bedtools2/releases/download/v${VERSION}/bedtools-${VERSION}.tar.gz \
+        -O /tmp/bedtools.tar.gz \
+    && tar -xzf /tmp/bedtools.tar.gz -C /tmp \
+    && cd /tmp/bedtools2 \
+    && make -j$(nproc) \
+    && strip bin/bedtools \
+    && mv bin/bedtools /usr/local/bin/bedtools \
+    && rm -rf /var/lib/apt/lists/* /tmp/*
 
+FROM debian:bookworm-slim
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /usr/local/bin/bedtools /usr/local/bin/bedtools
+
+RUN bedtools --version
+
+WORKDIR /data
+CMD ["bedtools"]

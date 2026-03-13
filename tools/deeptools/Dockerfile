@@ -1,21 +1,25 @@
-FROM mambaorg/micromamba:1.5
+ARG VERSION=3.5.4
 
+FROM debian:bookworm-slim
 
-ENV PATH "${PATH}:/opt/Epinano/:/opt/conda/bin/"
-ENV LC_ALL=en_US.utf8
-ENV LANG=en_US.utf8
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
+ENV LC_ALL=en_US.utf-8
+ENV LANG=en_US.utf-8
 
-ARG DEEPTOOLS_VERSION=3.1.3
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-dev \
+        gcc \
+        locales \
+    && echo "en_US.UTF-8 UTF-8" >> /etc/locale.gen && locale-gen \
+    && pip3 install --no-cache-dir --break-system-packages \
+        deeptools==${VERSION} \
+    && apt-get purge -y --auto-remove python3-dev gcc \
+    && rm -rf /var/lib/apt/lists/* /root/.cache
 
-USER root
-WORKDIR /opt/
+RUN deeptools --version
 
-RUN /usr/bin/micromamba install -y -c conda-forge -c bioconda -n base deeptools=${DEEPTOOLS_VERSION} && \
-    /usr/bin/micromamba clean --all --yes
-
-
-
-
-
-
-
+WORKDIR /data
+CMD ["bash"]

@@ -1,32 +1,42 @@
-FROM ubuntu:22.04
+# Builder stage: compile LongGF against htslib
+FROM debian:bookworm-slim AS builder
 
-ENV DEBIAN_FRONTEND=noninteractive
-ENV VERSION=0.1.2
-ENV PATH=/opt/bin/:$PATH
-ENV C_INCLUDE_PATH=/opt/softwares/htslib/include
-ENV CPLUS_INCLUDE_PATH=/opt/softwares/htslib/include
-ENV LD_LIBRARY_PATH=/opt/softwares/htslib/lib/
+ARG VERSION=0.1.2
 
-RUN apt update && apt install -y wget build-essential g++ zlib1g-dev libbz2-dev \
-    liblzma-dev && \
-    cd /tmp && \
-    wget https://github.com/samtools/htslib/releases/download/1.12/htslib-1.12.tar.bz2 && \
-    tar -jxvf htslib-1.12.tar.bz2 && \
-    cd htslib-1.12 && \
-    ./configure --prefix=/opt/softwares/htslib && make && make install && \
-    cd /tmp && \
-    wget https://github.com/WGLab/LongGF/archive/refs/tags/v${VERSION}.tar.gz && \
-    tar -vxzf v${VERSION}.tar.gz && \
-    cd LongGF-${VERSION}/bin && \
-    g++ -g -Wall -O3 -std=c++11 -I/opt/softwares/htslib/include -L/opt/softwares/htslib/lib -lhts -o LongGF _com_fun_.c _gtf_struct_.c get_gfFrombam.c /opt/softwares/htslib/lib/libhts.so && \
-    mkdir -p /opt/bin/ && \
-    cp LongGF /opt/bin/
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        wget g++ make zlib1g-dev libbz2-dev liblzma-dev \
+    && rm -rf /var/lib/apt/lists/*
 
+# Build htslib
+RUN cd /tmp \
+    && wget -q https://github.com/samtools/htslib/releases/download/1.19/htslib-1.19.tar.bz2 \
+    && tar -jxf htslib-1.19.tar.bz2 \
+    && cd htslib-1.19 \
+    && ./configure --prefix=/opt/htslib --disable-libcurl \
+    && make -j$(nproc) && make install
 
-RUN apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
+# Build LongGF
+RUN cd /tmp \
+    && wget -q https://github.com/WGLab/LongGF/archive/refs/tags/v${VERSION}.tar.gz \
+    && tar -xzf v${VERSION}.tar.gz \
+    && cd LongGF-${VERSION}/bin \
+    && g++ -g -Wall -O3 -std=c++11 \
+        -I/opt/htslib/include \
+        -L/opt/htslib/lib \
+        -o LongGF _com_fun_.c _gtf_struct_.c get_gfFrombam.c \
+        /opt/htslib/lib/libhts.a -lz -lbz2 -llzma \
+    && strip LongGF
 
+# Runtime stage
+FROM debian:bookworm-slim
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libstdc++6 \
+    && rm -rf /var/lib/apt/lists/*
 
+COPY --from=builder /tmp/LongGF-*/bin/LongGF /usr/local/bin/LongGF
+
+RUN LongGF 2>&1 | head -3 || true
+
+WORKDIR /data
+CMD ["LongGF"]

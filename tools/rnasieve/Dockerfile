@@ -1,15 +1,13 @@
-FROM btrspg/vscode-base:0.0.3
+FROM debian:bookworm-slim
 
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
+RUN pip3 install --no-cache-dir --break-system-packages \
+        rnasieve
 
+RUN python3 -c "import rnasieve; print('rnasieve OK')"
 
-
-RUN pip install rnasieve
-
-RUN apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
-
+WORKDIR /data
+CMD ["python3"]

@@ -1,30 +1,44 @@
-FROM mambaorg/micromamba:latest
-ENV MAMBA_DOCKERFILE_ACTIVATE=1
-ENV PATH=/opt/conda/bin:$PATH
 ARG VERSION=9a9f6ac89851bf631f9df3868b2fa624bed49df2
 
+FROM debian:bookworm-slim
 
-RUN micromamba install -y \
-    conda-forge::patch \
-    conda-forge::libprotobuf \
-    conda-forge::protobuf \
-    bioconda::bioconductor-gsva \
-    bioconda::bioconductor-gseabase \
-    bioconda::bioconductor-cancerclass \
-    bioconda::bioconductor-mixomics \
-    bioconda::bioconductor-sparrow \
-    bioconda::bioconductor-sva \
-    conda-forge::cmake \
-    conda-forge::r-klar \
-    conda-forge::opentelemetry-sdk \
-    bioconda::bioconductor-complexheatmap \
-    conda-forge::r-devtools \
-    conda-forge::r-survminer \
-    conda-forge::r-xgboost \
-    && micromamba clean --all --yes
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        r-base \
+        r-base-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev \
+        zlib1g-dev \
+        libfontconfig1-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libgit2-dev \
+        libprotobuf-dev \
+        protobuf-compiler \
+        cmake \
+        libfreetype6-dev \
+        libpng-dev \
+        libtiff5-dev \
+        libjpeg-dev \
+        libsodium-dev \
+    && Rscript -e " \
+        install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
+        BiocManager::install(c( \
+            'GSVA','GSEABase','CancerClass','mixOmics','sparrow', \
+            'sva','ComplexHeatmap'), ask=FALSE); \
+        install.packages(c( \
+            'klaR','devtools','survminer','xgboost','remotes'), \
+            repos='https://cloud.r-project.org/') \
+    " \
+    && apt-get purge -y --auto-remove r-base-dev cmake \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 ADD ./install_R_packages.R /tmp/
 
-RUN micromamba run -n base Rscript /tmp/install_R_packages.R ${VERSION}
+RUN Rscript /tmp/install_R_packages.R ${VERSION}
 
-
+WORKDIR /data
+CMD ["R"]

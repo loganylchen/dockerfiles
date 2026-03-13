@@ -1,21 +1,24 @@
-FROM ubuntu:22.04
+ARG VERSION=1.5.7
 
+FROM debian:bookworm-slim
 
-ENV PATH=/opt/bin/:/opt/mgltools/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
+ENV PATH=/opt/mgltools/bin:$PATH
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        wget \
+        build-essential \
+        gzip \
+    && cd /tmp \
+    && wget -q https://ccsb.scripps.edu/download/532/ -O mgltools.tar.gz \
+    && tar -xzf mgltools.tar.gz \
+    && cd mgltools_x86_64Linux2_1.5.7 \
+    && ./install.sh -d /opt/mgltools \
+    && apt-get purge -y --auto-remove build-essential \
+    && rm -rf /var/lib/apt/lists/* /tmp/*
 
-RUN apt update && apt install -y wget build-essential gzip && \
-    cd /tmp && \
-    wget https://ccsb.scripps.edu/download/532/ -O test2.tar.gz && \
-    tar -zxvf test2.tar.gz && \
-    cd mgltools_x86_64Linux2_1.5.7/ && \
-    ./install.sh -d /opt/mgltools
+RUN /opt/mgltools/bin/python -c "import MolKit; print('MGLTools ok')"
 
-RUN apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
-
-
-
+WORKDIR /data
+CMD ["/opt/mgltools/bin/python"]

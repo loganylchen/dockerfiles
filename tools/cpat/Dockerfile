@@ -1,9 +1,21 @@
-FROM mambaorg/micromamba:latest
-ENV MAMBA_DOCKERFILE_ACTIVATE=1
-ENV PATH=/opt/conda/bin:$PATH
+ARG VERSION=3.0.4
+
+FROM debian:bookworm-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
-RUN micromamba install -y -c conda-forge -c bioconda cpat=${VERSION} \
-    && micromamba clean --all --yes
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        python3-dev \
+        gcc \
+    && pip3 install --no-cache-dir --break-system-packages \
+        cpat==${VERSION} \
+    && apt-get purge -y --auto-remove python3-dev gcc \
+    && rm -rf /var/lib/apt/lists/* /root/.cache
 
+RUN cpat --version
 
+WORKDIR /data
+CMD ["cpat"]

@@ -1,18 +1,21 @@
-ARG CUDA_VERSION
+ARG CUDA_VERSION=12.3.1
+ARG VERSION=0.8.1
 
-FROM nvidia/cuda:$CUDA_VERSION-devel-ubuntu22.04
+FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu22.04
+
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
-RUN apt-get update && apt-get install -y \
-    python3 \
-    python3-pip \
-    git \
-    && rm -rf /var/lib/apt/lists/*
 
-RUN pip install --upgrade pip && \
-    pip install ont-bonito==${VERSION} 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 \
+        python3-pip \
+        git \
+    && pip3 install --no-cache-dir --upgrade pip \
+    && pip3 install --no-cache-dir ont-bonito==${VERSION} \
+    && apt-get purge -y --auto-remove git \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
+RUN bonito --version
+
+WORKDIR /data
+CMD ["bonito"]

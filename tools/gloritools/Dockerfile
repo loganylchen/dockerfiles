@@ -1,40 +1,62 @@
-FROM ubuntu:22.04
+# Builder stage: compile bowtie and samtools; download STAR prebuilt binary
+FROM debian:bookworm-slim AS builder
 
-ENV PATH=/opt/GLORI-tools:/opt/bin:$PATH
-ENV STAR_VERSION=2.7.11b
-ENV BOWTIE_VERSION=1.3.1
-ENV SAMTOOLS_VERSION=1.19
+ARG STAR_VERSION=2.7.11b
+ARG BOWTIE_VERSION=1.3.1
+ARG SAMTOOLS_VERSION=1.19
 
-RUN apt-get update && \
-    apt-get install -y git curl wget python3 python3-dev python3-pip build-essential xxd zip libncurses5-dev libbz2-dev liblzma-dev && \
-    cd /tmp && \
-    mkdir -p /opt/bin/ && \
-    wget https://github.com/alexdobin/STAR/archive/${STAR_VERSION}.tar.gz && \
-    tar -xzf ${STAR_VERSION}.tar.gz && \
-    cp STAR-${STAR_VERSION}/bin/Linux_x86_64/STAR* /usr/local/bin/ && \
-    cd /tmp && \
-    wget https://altushost-swe.dl.sourceforge.net/project/bowtie-bio/bowtie/${BOWTIE_VERSION}/bowtie-${BOWTIE_VERSION}-src.zip && \
-    unzip bowtie-${BOWTIE_VERSION}-src.zip && \ 
-    cd bowtie-${BOWTIE_VERSION}-src && \
-    make && make install && \
-    cd /tmp/ && \
-    wget https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
-    tar -jxvf samtools-${SAMTOOLS_VERSION}.tar.bz2 && \
-    cd samtools-${SAMTOOLS_VERSION} && \
-    ./configure && make && make install && \
-    ln -s /usr/bin/python3 /usr/bin/python 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        wget unzip zip xxd g++ make libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev \
+    && rm -rf /var/lib/apt/lists/*
 
-ADD requirements.txt /tmp/
+# STAR: use prebuilt static binary from release tarball
+RUN cd /tmp \
+    && wget -q https://github.com/alexdobin/STAR/archive/${STAR_VERSION}.tar.gz \
+    && tar -xzf ${STAR_VERSION}.tar.gz \
+    && cp STAR-${STAR_VERSION}/bin/Linux_x86_64/STAR /usr/local/bin/ \
+    && strip /usr/local/bin/STAR
 
-RUN pip3 install -r /tmp/requirements.txt && \
-    cd /opt/ && \
-    git clone https://github.com/liucongcas/GLORI-tools.git && \
-    rm -rf /tmp/* 
+# Bowtie1
+RUN cd /tmp \
+    && wget -q https://altushost-swe.dl.sourceforge.net/project/bowtie-bio/bowtie/${BOWTIE_VERSION}/bowtie-${BOWTIE_VERSION}-src.zip \
+    && unzip -q bowtie-${BOWTIE_VERSION}-src.zip \
+    && cd bowtie-${BOWTIE_VERSION}-src \
+    && make -j$(nproc) \
+    && cp bowtie bowtie-build bowtie-inspect /usr/local/bin/ \
+    && strip /usr/local/bin/bowtie*
 
-WORKDIR /opt/
+# samtools
+RUN cd /tmp \
+    && wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 \
+    && tar -jxf samtools-${SAMTOOLS_VERSION}.tar.bz2 \
+    && cd samtools-${SAMTOOLS_VERSION} \
+    && ./configure --prefix=/usr/local \
+    && make -j$(nproc) && make install \
+    && strip /usr/local/bin/samtools
 
-USER user
+# Runtime stage
+FROM debian:bookworm-slim
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 python3-pip git \
+        libncurses6 zlib1g libbz2-1.0 liblzma5 \
+    && rm -rf /var/lib/apt/lists/*
 
+COPY --from=builder /usr/local/bin/STAR /usr/local/bin/STAR
+COPY --from=builder /usr/local/bin/bowtie /usr/local/bin/bowtie
+COPY --from=builder /usr/local/bin/bowtie-build /usr/local/bin/bowtie-build
+COPY --from=builder /usr/local/bin/bowtie-inspect /usr/local/bin/bowtie-inspect
+COPY --from=builder /usr/local/bin/samtools /usr/local/bin/samtools
 
+ADD requirements.txt /tmp/requirements.txt
 
+RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt \
+    && rm /tmp/requirements.txt \
+    && git clone --depth=1 https://github.com/liucongcas/GLORI-tools.git /opt/GLORI-tools
+
+ENV PATH=/opt/GLORI-tools:/usr/local/bin:/usr/bin:/bin
+
+RUN STAR --version && samtools --version | head -1
+
+WORKDIR /data
+CMD ["bash"]

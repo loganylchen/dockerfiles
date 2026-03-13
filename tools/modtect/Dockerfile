@@ -1,15 +1,17 @@
-FROM ubuntu:18.04
+FROM debian:bookworm-slim
 
-ENV PATH=/opt/bin:/opt/modtect/:$PATH
+ENV PATH=/opt/bin:/opt/modtect:$PATH
 
-RUN apt update && \
-    apt install -y samtools git
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        samtools git python3 python3-pip \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN git clone https://github.com/ktan8/ModTect.git /opt/modtect/
+RUN git clone --depth=1 https://github.com/ktan8/ModTect.git /opt/modtect
+
 ADD modtect.py /opt/modtect/modtect.py
-RUN chmod +x  /opt/modtect/* && \
-    apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
 
+RUN chmod +x /opt/modtect/* \
+    && samtools --version | head -1
+
+WORKDIR /data
+CMD ["bash"]

@@ -1,25 +1,25 @@
-FROM ubuntu:22.04
+FROM debian:bookworm-slim
+ARG VERSION=1.0.1
 
-ENV PATH=/opt/bin/:/opt/CPC2/bin:$PATH
+ENV PATH=/opt/CPC2/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION
 
-RUN apt update -y \
-    &&  apt -y install  \
-    python3-pip \
-    python3-dev \
-    python3 \
-    git wget make g++ \
-    && update-alternatives --install /usr/bin/python python /usr/bin/python3.10 1 \
-    && pip install biopython six \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 python3-pip wget g++ make \
+    && pip3 install --no-cache-dir --break-system-packages biopython six \
     && cd /tmp \
-    && wget https://github.com/gao-lab/CPC2_standalone/archive/refs/tags/v${VERSION}.tar.gz \
-    && tar -zxvf v${VERSION}.tar.gz \
-    && cd CPC2_standalone-1.0.1/libs/libsvm \
-    && tar -zxvf libsvm-3.18.tar.gz \
+    && wget -q https://github.com/gao-lab/CPC2_standalone/archive/refs/tags/v${VERSION}.tar.gz \
+    && tar -zxf v${VERSION}.tar.gz \
+    && cd CPC2_standalone-${VERSION}/libs/libsvm \
+    && tar -zxf libsvm-3.18.tar.gz \
     && cd libsvm-3.18 \
     && make clean && make \
-    && cd /opt/ \
-    && mv /tmp/CPC2_standalone-1.0.1 /opt/CPC2 \
-    && chmod -R +x /opt/ \
-    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+    && mv /tmp/CPC2_standalone-${VERSION} /opt/CPC2 \
+    && chmod -R +x /opt/CPC2 \
+    && apt-get purge -y --auto-remove wget g++ make \
+    && rm -rf /var/lib/apt/lists/* /tmp/*
+
+RUN CPC2.py --help 2>&1 | head -3 || true
+
+WORKDIR /data
+CMD ["bash"]

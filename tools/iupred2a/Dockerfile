@@ -1,16 +1,20 @@
-FROM ubuntu:22.04
+ARG VERSION=2a
 
-ENV PATH=/opt/bin/:/opt/iupred2a/bin:$PATH
+FROM debian:bookworm-slim
+
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
-
+ENV PATH=/opt/iupred2a:$PATH
 
 ADD ./iupred2a.tar.gz /tmp/
 
-RUN apt update -y \
-    &&  apt -y install  \
-    git wget make g++ \
-    && cd /tmp \
-    && mv iupred2a /opt/iupred2a \ 
-    && chmod -R +x /opt/ \
-    && apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        python3 \
+    && mv /tmp/iupred2a /opt/iupred2a \
+    && chmod -R +x /opt/iupred2a \
+    && rm -rf /var/lib/apt/lists/*
+
+RUN python3 /opt/iupred2a/iupred2a.py 2>&1 | head -3 || true
+
+WORKDIR /data
+CMD ["python3", "/opt/iupred2a/iupred2a.py"]

@@ -1,21 +1,22 @@
-FROM ubuntu:22.04
+FROM debian:bookworm-slim
 
-ENV PATH=/opt/bin/:/opt/psinanopore/:$PATH
+ENV PATH=/opt/bin:/opt/psinanopore:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        libhdf5-dev libxml2-dev zlib1g-dev \
+        wget git \
+        r-base r-cran-ggplot2 r-cran-optparse \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN apt update -y && \
-    apt -y install libhdf5-dev libxml2-dev zlib1g-dev git automake autoconf wget gcc g++ make lbzip2 bzip2 r-base && \
-    cd /tmp/ && \
-    Rscript -e 'install.packages(c("BiocManager","ggplot2","optparse"))' && \
-    Rscript -e 'BiocManager::install("Biobase")' && \
-    Rscript -e 'BiocManager::install("Rsamtools")' && \
-    Rscript -e 'BiocManager::install("BSgenome")' && \
-    git clone https://github.com/RouhanifardLab/PsiNanopore.git /opt/psinanopore
+RUN Rscript -e 'install.packages(c("BiocManager"), repos="https://cran.r-project.org")' \
+    && Rscript -e 'BiocManager::install(c("Biobase","Rsamtools","BSgenome"), ask=FALSE)' \
+    && git clone --depth=1 https://github.com/RouhanifardLab/PsiNanopore.git /opt/psinanopore
 
+COPY PsiDetect.R /opt/psinanopore/PsiDetect.R
+COPY SignalView.R /opt/psinanopore/SignalView.R
 
-COPY PsiDetect.R /opt/psinanopore/
-COPY SignalView.R /opt/psinanopore/
+RUN chmod +x /opt/psinanopore/*
 
-RUN chmod +x /opt/psinanopore/* && \
-    apt autoremove && apt clean && apt autoclean && rm -rf /tmp/*
+WORKDIR /data
+CMD ["bash"]
