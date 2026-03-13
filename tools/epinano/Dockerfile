@@ -8,15 +8,17 @@ ARG VERSION=1.2.5
 # Install build dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    wget \
+    git \
     ca-certificates \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and extract EpiNano
-RUN wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${VERSION}.tar.gz && \
-    tar -xzf EpiNano${VERSION}.tar.gz && \
-    mv EpiNano-EpiNano${VERSION} /opt/epinano && \
-    rm EpiNano${VERSION}.tar.gz
+RUN git clone https://github.com/novoalab/EpiNano.git && \
+    cd EpiNano && \
+    git checkout EpiNano${VERSION} && \
+    rm -rf .git && \
+    cd .. && \
+    mv EpiNano /opt/epinano 
 
 # Create virtual environment and install Python dependencies
 RUN python -m venv /opt/venv
