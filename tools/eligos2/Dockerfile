@@ -37,44 +37,45 @@ FROM debian:bookworm-slim
 ARG VERSION=2.1.0
 ARG SAMTOOLSVER=1.19.2
 
-# Install runtime dependencies:
-# - python3 + pip for eligos2 Python packages
-# - r-base for R/rpy2 integration
-# - bedtools for pybedtools
-# - runtime shared libs needed by samtools and Python C extensions
+# Install build tools + runtime deps, compile Python packages (rpy2/pysam need
+# make + r-base-dev + gcc), install R package, then purge build tools —
+# all in one layer so build artifacts never persist in the image.
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
         python3-dev \
         gcc \
+        make \
         r-base \
+        r-base-dev \
         bedtools \
         gawk \
-        zlib1g \
-        libbz2-1.0 \
-        liblzma5 \
-        libcurl4 \
-        libssl3 \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libcurl4-gnutls-dev \
+        libssl-dev \
         ca-certificates && \
-    rm -rf /var/lib/apt/lists/*
-
-# Install Python packages (no cache)
-RUN pip3 install --no-cache-dir --break-system-packages \
+    pip3 install --no-cache-dir --break-system-packages \
         pysam \
         pandas \
         pybedtools \
         rpy2 \
         tqdm \
-        numpy
-
-# Install R package samplesizeCMH (needed for CMH test in eligos2)
-RUN Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")' && \
-    rm -rf /tmp/downloaded_packages /root/.R
-
-# Remove gcc after Python packages are compiled (it was only needed for C extensions)
-RUN apt-get purge -y --auto-remove gcc python3-dev && \
-    rm -rf /var/lib/apt/lists/*
+        numpy && \
+    Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")' && \
+    apt-get purge -y --auto-remove \
+        python3-dev \
+        gcc \
+        make \
+        r-base-dev \
+        zlib1g-dev \
+        libbz2-dev \
+        liblzma-dev \
+        libcurl4-gnutls-dev \
+        libssl-dev && \
+    rm -rf /var/lib/apt/lists/* /tmp/downloaded_packages /root/.R
 
 # Copy samtools binary from builder
 COPY --from=builder /tmp/samtools-${SAMTOOLSVER}/samtools /usr/local/bin/samtools
