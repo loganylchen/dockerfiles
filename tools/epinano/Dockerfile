@@ -1,40 +1,90 @@
-FROM mambaorg/micromamba:1.5
+# Multi-stage build for EpiNano - optimized for size
+# EpiNano requires Python 3.6-3.7 and R for some analysis scripts
+# Stage 1: Builder - Install dependencies and download EpiNano
+FROM python:3.7-slim AS builder
 
-ARG EPINANO_VERSION=1.2.3
+ARG VERSION=1.2.5
 
-ENV PATH "${PATH}:/opt/Epinano/:/opt/conda/bin/"
-ENV SAM2TSV "/opt/Epinano/misc/sam2tsv.jar"
-ENV LC_ALL=en_US.utf8
-ENV LANG=en_US.utf8
-USER root
-WORKDIR /opt/
+# Install build dependencies
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    git \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN /usr/bin/micromamba install -y -c conda-forge -c bioconda -n base wget openjdk=8.0.412 samtools && \
-    /usr/bin/micromamba create -y -c conda-forge -n epinano python=3.6.7  && \
-    /usr/bin/micromamba run -n epinano pip install requests paho-mqtt \
-                                                    atomicwrites==1.4.0 attrs==21.2.0 biopython==1.76 cloudpickle==1.3.0 \
-                                                    dask==2.5.2 fsspec==2021.6.1 future==0.17.1 h5py==2.10.0  \
-                                                    importlib-metadata==4.6.1 locket==0.2.1  more-itertools==8.8.0  \
-                                                    numpy==1.17.2 pandas==0.24.2 partd==1.2.0 pluggy==0.13.1  \
-                                                    py==1.10.0 pysam==0.15.4 pytest==4.4.1 python-dateutil==2.8.1 \
-                                                    pytz==2021.1 scikit-learn==0.20.2 scipy==1.5.4 six==1.16.0  \
-                                                    toolz==0.11.1 typing-extensions==3.10.0.0 zipp==3.5.0 && \
-    /usr/bin/micromamba create -y -c conda-forge -c r -n r r-base=3.6 r-rcurl r-outliers r-reshape2 \
-	r-ggplot2 r-car r-ggrepel r-tidyverse r-optparse && \
-    echo -e '#!/bin/bash\n/usr/bin/micromamba run -n epinano python "$@"' > /usr/bin/python && \
-    chmod +x /usr/bin/python && \
-    echo -e '#!/bin/bash\n/usr/bin/micromamba run -n r Rscript "$@"' > /usr/bin/Rscript && \
-    chmod +x /usr/bin/Rscript && \
-    wget https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${EPINANO_VERSION}.tar.gz && \
-    tar -zvxf EpiNano${EPINANO_VERSION}.tar.gz && \
-    mv EpiNano-EpiNano${EPINANO_VERSION} Epinano && \
-    chmod +x /opt/Epinano/*.py && \
-    rm -rf EpiNano${EPINANO_VERSION}.tar.gz && \
-    /usr/bin/micromamba clean --all --yes
+# Download and extract EpiNano
+RUN git clone https://github.com/novoalab/EpiNano.git && \
+    cd EpiNano && \
+    git checkout EpiNano${VERSION} && \
+    rm -rf .git && \
+    cd .. && \
+    mv EpiNano /opt/epinano 
 
+# Create virtual environment and install Python dependencies
+RUN python -m venv /opt/venv
+ENV PATH="/opt/venv/bin:$PATH"
 
+# Upgrade pip and install wheel
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel
 
+# Install Python dependencies for EpiNano
+# Using compatible versions for Python 3.7
+RUN pip install --no-cache-dir \
+    numpy==1.19.5 \
+    pandas==1.1.5 \
+    scipy==1.5.4 \
+    scikit-learn==0.23.2 \
+    biopython==1.78 \
+    pysam==0.16.0.1 \
+    h5py==2.10.0
 
+# Stage 2: Runtime - Minimal image with only runtime dependencies
+FROM python:3.7-slim
 
+ARG VERSION=1.2.5
 
+LABEL maintainer="Your Name <your.email@example.com>"
+LABEL description="EpiNano - Detection of RNA modifications from Oxford Nanopore direct RNA sequencing"
+LABEL version="${VERSION}"
 
+# Install runtime dependencies
+# samtools for BAM processing, openjdk-17-jre-headless for sam2tsv.jar, R for analysis scripts
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    samtools \
+    openjdk-17-jre-headless \
+    r-base \
+    r-cran-ggplot2 \
+    r-cran-optparse \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install R packages required for EpiNano
+RUN Rscript -e "install.packages(c('outliers', 'reshape2', 'car', 'ggrepel'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
+
+# Copy EpiNano from builder
+COPY --from=builder /opt/epinano /opt/epinano
+
+# Copy Python virtual environment from builder
+COPY --from=builder /opt/venv /opt/venv
+
+# Set PATH to include virtual environment and EpiNano scripts
+ENV PATH="/opt/venv/bin:/opt/epinano:$PATH"
+ENV SAM2TSV="/opt/epinano/misc/sam2tsv.jar"
+
+# Make Python scripts executable
+RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh
+
+# Set working directory
+WORKDIR /data
+
+# Verify installation
+RUN python --version && \
+    python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies installed successfully')" && \
+    samtools --version | head -1 && \
+    java -version 2>&1 | head -1 && \
+    Rscript --version 2>&1 | head -1 && \
+    ls -la /opt/epinano/*.py | head -5
+
+# Default command - show help
+CMD ["python", "/opt/epinano/Epinano_Variants.py", "-h"]
