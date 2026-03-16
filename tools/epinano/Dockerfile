@@ -56,6 +56,8 @@ RUN apt-get update && \
     samtools \
     openjdk-17-jre-headless \
     zlib1g-dev \
+    libcurl4-openssl-dev \
+    libssl-dev \
     build-essential \
     r-base \
     gfortran \
