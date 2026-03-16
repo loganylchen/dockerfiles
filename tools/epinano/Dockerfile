@@ -58,6 +58,8 @@ RUN apt-get update && \
     zlib1g-dev \
     build-essential \
     r-base \
+    gfortran \
+    cmake \
     r-cran-ggplot2 \
     r-cran-optparse \
     libgomp1 \
