@@ -60,6 +60,7 @@ RUN apt-get update && apt-get install -y \
     zlib1g \
     libbz2-1.0 \
     liblzma5 \
+    bzip2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Create plugin directory
