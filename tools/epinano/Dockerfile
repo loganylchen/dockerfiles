@@ -10,6 +10,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     git \
     ca-certificates \
+    zlib1g-dev \
+    build-essential \
     && rm -rf /var/lib/apt/lists/*
 
 # Download and extract EpiNano
@@ -53,6 +55,8 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     samtools \
     openjdk-17-jre-headless \
+    zlib1g-dev \
+    build-essential \
     r-base \
     r-cran-ggplot2 \
     r-cran-optparse \
