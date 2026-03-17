@@ -58,6 +58,7 @@ RUN apt-get update && \
     zlib1g-dev \
     libcurl4-openssl-dev \
     libssl-dev \
+    liblapack-dev libblas-dev \
     libopenblas-dev \
     build-essential \
     r-base \
