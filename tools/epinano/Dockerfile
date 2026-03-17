@@ -59,7 +59,6 @@ RUN apt-get update && \
     libcurl4-openssl-dev \
     libssl-dev \
     libopenblas-dev \
-    libopenblas-base \
     build-essential \
     r-base \
     gfortran \
