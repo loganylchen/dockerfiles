@@ -60,13 +60,20 @@ RUN apt-get update && \
     libssl-dev \
     liblapack-dev libblas-dev \
     libopenblas-dev \
+    libpng-dev \
     build-essential \
-    r-base \
     gfortran \
     cmake \
+    libgomp1 \
+    echo "deb http://cloud.r-project.org/bin/linux/debian buster-cran40/" >> /etc/apt/sources.list \
+    && wget -qO- https://cloud.r-project.org/bin/linux/debian/marutter_pubkey.asc | apt-key add - && \
+    apt-get update && apt-get install -y --no-install-recommends \
+    r-base \
+    r-base-core \
+    r-recommended \
     r-cran-ggplot2 \
     r-cran-optparse \
-    libgomp1 \
+    && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages required for EpiNano
