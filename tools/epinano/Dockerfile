@@ -70,7 +70,8 @@ RUN apt-get update && \
     && rm -rf /var/lib/apt/lists/*
 
 # Install R packages required for EpiNano
-RUN Rscript -e "install.packages(c('outliers', 'reshape2', 'car', 'ggrepel'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
+RUN R -e "install.packages(c('Matrix', 'nloptr', 'Rcpp'), repos='https://cloud.r-project.org/', dependencies=TRUE)" && \
+    R -e "install.packages(c('outliers', 'reshape2', 'car', 'ggrepel'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
 
 # Copy EpiNano from builder
 COPY --from=builder /opt/epinano /opt/epinano
