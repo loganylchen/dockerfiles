@@ -8,8 +8,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget g++ make git zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Build seqtk
-RUN git clone --depth=1 https://github.com/lh3/seqtk.git /tmp/seqtk \
+# Build seqtk (use wget instead of git clone to avoid network issues)
+RUN wget -q https://github.com/lh3/seqtk/archive/refs/heads/master.tar.gz -O /tmp/seqtk.tar.gz \
+    && tar -xzf /tmp/seqtk.tar.gz -C /tmp \
+    && mv /tmp/seqtk-master /tmp/seqtk \
     && cd /tmp/seqtk && make -j$(nproc) && strip seqtk
 
 # Download JAFFA and compile its tools
