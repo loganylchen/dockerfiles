@@ -2,6 +2,7 @@ ARG VERSION=1.1.1
 
 # ── builder ──────────────────────────────────────────────────────────────────
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
@@ -23,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # ── runtime ───────────────────────────────────────────────────────────────────
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION

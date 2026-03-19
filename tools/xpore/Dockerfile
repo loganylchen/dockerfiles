@@ -31,7 +31,7 @@ FROM python:3.12-slim
 
 ARG VERSION=2.1
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="xPore - Identification of differential RNA modifications from direct RNA sequencing"
 LABEL version="${VERSION}"
 

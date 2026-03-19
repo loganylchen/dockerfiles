@@ -1,6 +1,7 @@
 # Multi-stage build for slow5tools
 # Stage 1: Builder
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -43,6 +44,7 @@ RUN git clone --recursive https://github.com/hasindu2008/slow5tools && \
 
 # Stage 2: Runtime
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin:$PATH
 ENV PLUGIN_PATH=/usr/local/lib

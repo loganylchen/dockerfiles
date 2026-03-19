@@ -38,7 +38,7 @@ FROM python:3.10-slim
 
 ARG VERSION=2.2.0
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="Nanocompore - RNA modification detection from Nanopore dRNA-Seq data"
 LABEL version="${VERSION}"
 

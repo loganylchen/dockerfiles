@@ -1,5 +1,6 @@
 # Build stage
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=0.14.0
 
@@ -30,6 +31,7 @@ RUN git clone --recursive --depth=1 --branch v${VERSION} \
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 # Only runtime shared libs needed by the nanopolish binary
 RUN apt-get update && \

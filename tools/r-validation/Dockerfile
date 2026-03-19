@@ -1,6 +1,7 @@
 # PAIR M6A Biomarker - WGCNA Analysis
 # Extends Bioconductor Docker image with WGCNA and enrichment tools
 FROM bioconductor/bioconductor_docker:3.19
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 # Install R packages for WGCNA and functional enrichment
 RUN R -e "BiocManager::install(c( \

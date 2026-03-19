@@ -1,5 +1,6 @@
 # Builder stage: build samtools
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG SAMTOOLS_VERSION=1.22.1
 
@@ -17,6 +18,7 @@ RUN cd /tmp \
 
 # Runtime stage
 FROM ubuntu:20.04
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=c77c73a4bdeb6fb21fa7522239b2276e27ea10f8
 ARG SAMTOOLS_VERSION=1.22.1

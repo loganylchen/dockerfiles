@@ -1,4 +1,5 @@
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ARG VERSION=1.0.2
 
 ENV DEBIAN_FRONTEND=noninteractive

@@ -1,4 +1,5 @@
 FROM btrspg/vscode-base:0.0.3
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive

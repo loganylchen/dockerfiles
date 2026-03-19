@@ -2,6 +2,7 @@ ARG CUDA_VERSION=12.3.1
 ARG VERSION=0.8.1
 
 FROM nvidia/cuda:${CUDA_VERSION}-devel-ubuntu22.04
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION

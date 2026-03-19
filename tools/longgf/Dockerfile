@@ -1,5 +1,6 @@
 # Builder stage: compile LongGF against htslib
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=0.1.2
 
@@ -29,6 +30,7 @@ RUN cd /tmp \
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libstdc++6 \

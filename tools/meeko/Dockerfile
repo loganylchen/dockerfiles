@@ -2,6 +2,7 @@ ARG VERSION=0.5.0
 
 # ── builder ──────────────────────────────────────────────────────────────────
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -36,6 +37,7 @@ RUN cd /tmp \
 
 # ── runtime ───────────────────────────────────────────────────────────────────
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION

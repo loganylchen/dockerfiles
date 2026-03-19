@@ -33,7 +33,7 @@ FROM python:3.8-slim
 
 ARG VERSION=1.0.4
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="Nanocompore 1.x - RNA modification detection from Nanopore dRNA-Seq data"
 LABEL version="${VERSION}"
 

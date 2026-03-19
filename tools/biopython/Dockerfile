@@ -1,4 +1,5 @@
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ARG VERSION=1.84
 
 RUN apt-get update && apt-get install -y --no-install-recommends \

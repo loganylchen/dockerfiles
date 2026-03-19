@@ -1,6 +1,7 @@
 # PAIR M6A Biomarker - Gene Regulatory Network Analysis
 # Extends Bioconductor Docker image with GENIE3, minet, and network tools
 FROM bioconductor/bioconductor_docker:3.19
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 # Install R packages for gene regulatory network inference
 RUN R -e "BiocManager::install(c( \

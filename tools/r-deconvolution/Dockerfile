@@ -1,6 +1,7 @@
 # PAIR M6A Biomarker - Immune Deconvolution Analysis
 # Extends Bioconductor Docker image with immunedeconv and related tools
 FROM bioconductor/bioconductor_docker:3.19
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 # Install R packages for immune cell deconvolution
 RUN R -e "BiocManager::install(c( \

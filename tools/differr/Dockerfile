@@ -1,4 +1,5 @@
 FROM python:3.7-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=0.2
 

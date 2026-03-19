@@ -50,7 +50,7 @@ RUN wget https://github.com/hasindu2008/f5c/releases/download/v${VERSION}/f5c-v$
 FROM debian:bookworm-slim
 
 ARG VERSION
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL version="${VERSION}"
 LABEL description="f5c - an optimised re-implementation of the call-methylation and eventalign modules in Nanopolish"
 

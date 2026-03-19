@@ -1,5 +1,6 @@
 # rmatsturbo requires R and compiled C extensions — keep ubuntu base for R compat
 FROM ubuntu:22.04
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin/:/opt/rmats/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive

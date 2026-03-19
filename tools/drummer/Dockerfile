@@ -1,5 +1,6 @@
 # Build stage
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=dd0ccc81
 ARG SAMTOOLSVER=1.19.2
@@ -34,6 +35,7 @@ RUN git clone https://github.com/loganylchen/DRUMMER.git /opt/DRUMMER && \
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG SAMTOOLSVER=1.19.2
 

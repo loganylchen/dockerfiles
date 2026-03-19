@@ -1,6 +1,7 @@
 ARG VERSION=0.12.9
 
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
@@ -20,6 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 COPY --from=builder /usr/local/bin/gffcompare /usr/local/bin/gffcompare
 COPY --from=builder /usr/local/bin/trmap /usr/local/bin/trmap

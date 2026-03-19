@@ -1,5 +1,6 @@
 # Build stage
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.1.0
 ARG SAMTOOLSVER=1.19.2
@@ -33,6 +34,7 @@ RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.1.0
 ARG SAMTOOLSVER=1.19.2

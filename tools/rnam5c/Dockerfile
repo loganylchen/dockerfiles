@@ -5,6 +5,7 @@ ARG SAMTOOLS_VERSION=1.6
 
 # python2 is not available on bookworm; use ubuntu:20.04 which still ships it
 FROM ubuntu:20.04
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION

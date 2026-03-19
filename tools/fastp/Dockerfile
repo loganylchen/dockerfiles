@@ -1,6 +1,7 @@
 ARG VERSION=0.24.0
 
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION
 
@@ -14,6 +15,7 @@ RUN git clone --depth=1 --branch v${VERSION} https://github.com/OpenGene/fastp.g
     && strip fastp
 
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION
 

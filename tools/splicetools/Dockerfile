@@ -1,4 +1,5 @@
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/SpliceTools/bin:/opt/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive

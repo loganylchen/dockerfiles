@@ -1,5 +1,6 @@
 # Builder: compile JAFFA tools and the local process_transcriptome_align_table.c++
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.3
 
@@ -27,6 +28,7 @@ RUN g++ -std=c++11 -O3 -o /tmp/process_transcriptome_align_table /tmp/process_tr
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.3
 
