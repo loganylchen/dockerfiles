@@ -1,105 +1,82 @@
-# Multi-stage build for EpiNano - optimized for size
-# EpiNano requires Python 3.6-3.7 and R for some analysis scripts
-# Stage 1: Builder - Install dependencies and download EpiNano
-FROM python:3.7-slim AS builder
+# Optimized Dockerfile for EpiNano v1.2.5
+# EpiNano requires Python 3.6-3.7 and R for analysis scripts
+# Based on README requirements: https://github.com/novoalab/EpiNano
 
-ARG VERSION=1.2.5
-
-# Install build dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    git \
-    ca-certificates \
-    zlib1g-dev \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Download and extract EpiNano
-RUN git clone https://github.com/novoalab/EpiNano.git && \
-    cd EpiNano && \
-    git checkout EpiNano${VERSION} && \
-    rm -rf .git && \
-    cd .. && \
-    mv EpiNano /opt/epinano 
-
-# Create virtual environment and install Python dependencies
-RUN python -m venv /opt/venv
-ENV PATH="/opt/venv/bin:$PATH"
-
-# Upgrade pip and install wheel
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel
-
-# Install Python dependencies for EpiNano
-# Using compatible versions for Python 3.7
-RUN pip install --no-cache-dir \
-    numpy==1.19.5 \
-    pandas==1.1.5 \
-    scipy==1.5.4 \
-    scikit-learn==0.23.2 \
-    biopython==1.78 \
-    pysam==0.16.0.1 \
-    h5py==2.10.0
-
-# Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.7-slim
 
 ARG VERSION=1.2.5
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="loganylchen"
 LABEL description="EpiNano - Detection of RNA modifications from Oxford Nanopore direct RNA sequencing"
 LABEL version="${VERSION}"
 
-# Install runtime dependencies
-# samtools for BAM processing, openjdk-17-jre-headless for sam2tsv.jar, R for analysis scripts
+# Set DEBIAN_FRONTEND to noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Install system dependencies
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    samtools \
+    # For downloading and extracting
+    wget unzip \
+    # Java for sam2tsv.jar (using openjdk-17 as openjdk-8 is deprecated)
     openjdk-17-jre-headless \
+    # SAMtools for BAM processing
+    samtools \
+    # zlib and curl for Python packages
     zlib1g-dev \
     libcurl4-openssl-dev \
     libssl-dev \
-    liblapack-dev libblas-dev \
-    libopenblas-dev \
-    libpng-dev \
-    build-essential \
-    gfortran \
-    cmake \
-    libgomp1 \
+    # R for analysis scripts
     r-base \
     r-base-core \
     r-recommended \
     r-cran-ggplot2 \
     r-cran-optparse \
+    r-cran-reshape2 \
+    r-cran-car \
+    r-cran-ggrepel \
+    # Cleanup
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
-# Install R packages required for EpiNano
-RUN R -e "install.packages(c('Matrix', 'nloptr', 'Rcpp'), repos='https://cloud.r-project.org/', dependencies=TRUE)" && \
-    R -e "install.packages(c('outliers', 'reshape2', 'car', 'ggrepel'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
+# Install R packages via CRAN (outliers is not available as apt package)
+RUN R -e "install.packages(c('outliers'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
 
-# Copy EpiNano from builder
-COPY --from=builder /opt/epinano /opt/epinano
+# Download and install EpiNano using release zip (faster than git clone)
+RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${VERSION}.zip -O epinano.zip && \
+    unzip epinano.zip && \
+    mv EpiNano-EpiNano${VERSION} /opt/epinano && \
+    rm epinano.zip
 
-# Copy Python virtual environment from builder
-COPY --from=builder /opt/venv /opt/venv
+# Install Python dependencies
+RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
+    pip install --no-cache-dir \
+    numpy==1.21.6 \
+    pandas==1.3.5 \
+    scipy==1.7.3 \
+    scikit-learn==1.0.2 \
+    biopython==1.79 \
+    pysam==0.19.1 \
+    h5py==3.7.0
 
-# Set PATH to include virtual environment and EpiNano scripts
-ENV PATH="/opt/venv/bin:/opt/epinano:$PATH"
+# Add EpiNano to PATH
+ENV PATH="/opt/epinano:$PATH"
 ENV SAM2TSV="/opt/epinano/misc/sam2tsv.jar"
 
 # Make Python scripts executable
-RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh
+RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 
 # Set working directory
 WORKDIR /data
 
 # Verify installation
 RUN python --version && \
-    python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies installed successfully')" && \
+    python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies OK')" && \
     samtools --version | head -1 && \
     java -version 2>&1 | head -1 && \
-    Rscript --version 2>&1 | head -1 && \
-    ls -la /opt/epinano/*.py | head -5
+    Rscript --version && \
+    echo "EpiNano scripts:" && \
+    ls /opt/epinano/*.py | head -5
 
 # Default command - show help
 CMD ["python", "/opt/epinano/Epinano_Variants.py", "-h"]
