@@ -1,29 +1,20 @@
 ARG VERSION=0.12.7
 
-FROM debian:bookworm-slim AS builder
+FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
-        build-essential \
-        zlib1g-dev \
-    && wget -q https://github.com/gpertea/gffread/archive/refs/tags/v${VERSION}.tar.gz \
+    && wget -q https://github.com/gpertea/gffread/releases/download/v${VERSION}/gffread-${VERSION}.Linux_x86_64.tar.gz \
         -O /tmp/gffread.tar.gz \
     && tar -xzf /tmp/gffread.tar.gz -C /tmp \
-    && cd /tmp/gffread-${VERSION} \
-    && make release \
-    && strip gffread \
-    && mv gffread /usr/local/bin/gffread \
+    && mv /tmp/gffread-${VERSION}.Linux_x86_64/gffread /usr/local/bin/gffread \
+    && chmod +x /usr/local/bin/gffread \
+    && apt-get purge -y --auto-remove wget ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/*
-
-FROM debian:bookworm-slim
-LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-
-COPY --from=builder /usr/local/bin/gffread /usr/local/bin/gffread
 
 RUN gffread --version
 
