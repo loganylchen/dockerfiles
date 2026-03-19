@@ -1,30 +1,21 @@
-ARG VERSION=0.12.9
+ARG VERSION=0.12.10
 
-FROM debian:bookworm-slim AS builder
+FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
-        build-essential \
-        zlib1g-dev \
-    && wget -q https://github.com/gpertea/gffcompare/archive/refs/tags/v${VERSION}.tar.gz \
+    && wget -q https://github.com/gpertea/gffcompare/releases/download/v${VERSION}/gffcompare-${VERSION}.Linux_x86_64.tar.gz \
         -O /tmp/gffcompare.tar.gz \
     && tar -xzf /tmp/gffcompare.tar.gz -C /tmp \
-    && cd /tmp/gffcompare-${VERSION} \
-    && make release \
-    && strip gffcompare trmap \
-    && mv gffcompare trmap /usr/local/bin/ \
+    && mv /tmp/gffcompare-${VERSION}.Linux_x86_64/gffcompare /usr/local/bin/gffcompare \
+    && mv /tmp/gffcompare-${VERSION}.Linux_x86_64/trmap /usr/local/bin/trmap \
+    && chmod +x /usr/local/bin/gffcompare /usr/local/bin/trmap \
+    && apt-get purge -y --auto-remove wget ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/*
-
-FROM debian:bookworm-slim
-LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-
-COPY --from=builder /usr/local/bin/gffcompare /usr/local/bin/gffcompare
-COPY --from=builder /usr/local/bin/trmap /usr/local/bin/trmap
 
 RUN gffcompare --version
 
