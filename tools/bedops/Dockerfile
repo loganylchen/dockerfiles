@@ -1,4 +1,4 @@
-ARG VERSION=2.4.41
+ARG VERSION=2.4.42
 
 FROM debian:bookworm-slim
 

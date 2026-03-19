@@ -16,7 +16,7 @@ RUN cd /tmp \
     && strip /usr/local/bin/samtools
 
 # Runtime stage
-FROM debian:bookworm-slim
+FROM ubuntu:20.04
 
 ARG VERSION=c77c73a4bdeb6fb21fa7522239b2276e27ea10f8
 ARG SAMTOOLS_VERSION=1.22.1
