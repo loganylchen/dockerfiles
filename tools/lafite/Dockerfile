@@ -1,21 +1,20 @@
-FROM debian:bookworm-slim
+FROM python:3.11-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ARG VERSION=1.0.2
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH
 
-ADD https://github.com/arq5x/bedtools2/releases/download/v2.31.0/bedtools.static /opt/bin/bedtools
-
+# Install system dependencies and bedtools
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3 python3-pip \
-    && rm -rf /var/lib/apt/lists/* \
-    && chmod +x /opt/bin/bedtools
+        bedtools \
+    && rm -rf /var/lib/apt/lists/*
 
-RUN pip3 install --no-cache-dir --break-system-packages \
-        LAFITE==${VERSION}
+# Install LAFITE and dependencies
+RUN pip install --no-cache-dir LAFITE==${VERSION}
 
-RUN LAFITE --help 2>&1 | head -1
+# Verify installation
+RUN lafite --help 2>&1 | head -3
 
 WORKDIR /data
-CMD ["LAFITE"]
+CMD ["lafite"]
