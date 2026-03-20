@@ -21,26 +21,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     samtools \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
-# Install Miniconda
-RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    -O /tmp/miniconda.sh \
-    && bash /tmp/miniconda.sh -b -p /opt/conda \
-    && rm -f /tmp/miniconda.sh \
+# Install Miniforge (avoids Anaconda TOS issues)
+RUN wget -q https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh \
+    -O /tmp/miniforge.sh \
+    && bash /tmp/miniforge.sh -b -p /opt/conda \
+    && rm -f /tmp/miniforge.sh \
     && /opt/conda/bin/conda clean -afy \
     && rm -rf /root/.cache /tmp/*
 
 ENV PATH="/opt/conda/bin:$PATH"
 
-# Accept Conda Terms of Service
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-
 # Create DirectRM conda environment (Python 3.11, PyTorch 2.1.2+cu118, CUDA 11.8)
 RUN conda create -n directrm python=3.11 -y \
-    && conda run -n directrm \
-    pip install --no-cache-dir torch==2.1.2+cu118 --index-url https://download.pytorch.org/whl/cu118 \
-    && conda run -n directrm \
-    pip install --no-cache-dir \
+    && /opt/conda/envs/directrm/bin/pip install --no-cache-dir torch==2.1.2+cu118 --index-url https://download.pytorch.org/whl/cu118 \
+    && /opt/conda/envs/directrm/bin/pip install --no-cache-dir \
     faiss-cpu \
     transformers==4.38.2 \
     numpy==1.26.2 \
@@ -68,10 +62,8 @@ RUN git clone --depth 1 --branch v${VERSION} https://github.com/yuxinPenny/Direc
 
 # Create Remora conda environment (Python 3.9, PyTorch 2.3.0+cu118, CUDA 11.8 compatible)
 RUN conda create -n remora python=3.9 -y \
-    && conda run -n remora \
-    pip install --no-cache-dir torch==2.3.0 --index-url https://download.pytorch.org/whl/cu118 \
-    && conda run -n remora \
-    pip install --no-cache-dir \
+    && /opt/conda/envs/remora/bin/pip install --no-cache-dir torch==2.3.0 --index-url https://download.pytorch.org/whl/cu118 \
+    && /opt/conda/envs/remora/bin/pip install --no-cache-dir \
     remora \
     ont-pod5 \
     tqdm \
@@ -109,8 +101,8 @@ RUN printf '#!/bin/bash\n\
 # Verify installations
 RUN dorado --version \
     && samtools --version | head -1 \
-    && conda run -n directrm python -c "import torch; print(f'DirectRM env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')" \
-    && conda run -n remora python -c "import torch; print(f'Remora env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')"
+    && /opt/conda/envs/directrm/bin/python -c "import torch; print(f'DirectRM env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')" \
+    && /opt/conda/envs/remora/bin/python -c "import torch; print(f'Remora env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')"
 
 WORKDIR /data
 

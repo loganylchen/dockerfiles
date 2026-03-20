@@ -24,10 +24,10 @@ RNA modification detection from Nanopore direct RNA sequencing data using deep l
 
 ## Environment Isolation
 
-This image uses Conda to manage two isolated environments, both using CUDA 11.8:
+This image uses Miniforge (conda-forge) to manage two isolated environments, both using CUDA 11.8:
 
 - **directrm**: Python 3.11, PyTorch 2.1.2+cu118
-  - faiss-gpu==1.8.0, transformers==4.38.2
+  - faiss-cpu, transformers==4.38.2
   - xgboost, einops, statsmodels, biopython, pysam
 
 - **remora**: Python 3.9, PyTorch 2.3.0+cu118
