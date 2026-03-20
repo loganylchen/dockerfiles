@@ -49,7 +49,7 @@ RUN apt-get update && \
         zlib1g \
         libbz2-1.0 \
         liblzma5 \
-        libcurl4 \
+        libcurl3-gnutls \
         libssl3 \
         ca-certificates && \
     pip3 install --no-cache-dir --break-system-packages \
@@ -60,6 +60,7 @@ RUN apt-get update && \
         biopython \
         matplotlib \
         statsmodels && \
+    ln -sf /usr/bin/python3 /usr/local/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy samtools binary and DRUMMER from builder
