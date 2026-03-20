@@ -8,13 +8,9 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION
 
-# Install git
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends git && \
-    rm -rf /var/lib/apt/lists/*
 
-# Clone ELIGOS2
-RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2
+
+
 
 WORKDIR /opt/eligos2
 
@@ -28,8 +24,11 @@ RUN conda install -y -c bioconda -c conda-forge -c anaconda \
     rpy2=2.8.5 \
     r-base=3.4.1 \
     tqdm=4.40.2 \
-    numpy=1.11.3
+    numpy=1.11.3 \
+    git
 
+# Clone ELIGOS2
+RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2
 # Install R package
 RUN Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")'
 
