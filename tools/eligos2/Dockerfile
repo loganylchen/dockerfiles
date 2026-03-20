@@ -1,8 +1,8 @@
 ARG VERSION=2.1.0
 
 # Optimized Dockerfile for ELIGOS2 v2.1.0
-# Based on official Dockerfile: https://gitlab.com/piroonj/eligos2
-# Uses conda/mamba for dependency management to ensure correct versions
+# Based on official README: https://gitlab.com/piroonj/eligos2
+# Uses mamba for faster dependency resolution
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
@@ -19,35 +19,30 @@ RUN apt-get update && \
         gawk \
         && rm -rf /var/lib/apt/lists/*
 
-# Install Miniconda
-RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-    -O /tmp/miniconda.sh && \
-    bash /tmp/miniconda.sh -b -p /opt/conda && \
-    rm -f /tmp/miniconda.sh && \
+# Install Miniforge (includes mamba, avoids Anaconda TOS issues)
+RUN wget -q https://github.com/conda-forge/miniforge/releases/latest/download/Miniforge3-Linux-x86_64.sh \
+    -O /tmp/miniforge.sh && \
+    bash /tmp/miniforge.sh -b -p /opt/conda && \
+    rm -f /tmp/miniforge.sh && \
     /opt/conda/bin/conda clean -afy && \
     rm -rf /root/.cache /tmp/*
 
 ENV PATH="/opt/conda/bin:$PATH"
 
-# Accept Conda Terms of Service
-RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
-    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
-
-# Create eligos2 conda environment with pinned versions (as recommended in GitLab README)
-# bedtools=2.25 is critical - newer versions produce different BED output format
-# pybedtools=0.8.0 is critical - ensures consistent BED column handling
-RUN conda create -n eligos2 -c conda-forge -c bioconda -c r \
-        python=3.6 \
-        pysam=0.13 \
-        pandas=0.23.4 \
-        pybedtools=0.8.0 \
-        bedtools=2.25 \
-        rpy2=2.8.5 \
-        r-base=3.4.1 \
-        tqdm=4.40.2 \
-        numpy=1.11.3 \
+# Create eligos2 conda environment using mamba (as recommended in official README)
+# Using Python 3.10 with unpinned versions to avoid dependency conflicts
+RUN mamba create -n eligos2 -c conda-forge -c bioconda -c r \
+        python=3.10 \
+        pysam \
+        pandas \
+        pybedtools \
+        bedtools \
+        rpy2 \
+        r-base \
+        tqdm \
+        numpy \
         -y && \
-    conda clean -afy && \
+    mamba clean -afy && \
     rm -rf /tmp/*
 
 # Install R package samplesizeCMH in the conda R environment
