@@ -38,6 +38,12 @@ RUN sed -i 's/^pandas2ri.activate()/#pandas2ri.activate()  # Commented out due t
     sed -i 's/^pandas2ri.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_multi_samples_test.py && \
     sed -i 's/^\s*pandas2ri\.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_eligos_func.py
 
+# Patch eligos2 to fix bedtools merge output (ensure strand column is preserved)
+# Original: merge(s=True,c='4',o='distinct') outputs only 4 columns
+# Fixed: merge with explicit column handling to ensure 5 columns (chrom,start,end,strand,name)
+RUN sed -i "s/mergedBed = beds.sort().merge(s=True,c='4',o='distinct')/mergedBed = beds.sort().merge(s=True, c='4,5,6', o='distinct,distinct,distinct')/" /opt/eligos2/_misc.py && \
+    sed -i 's/name = row\[4\]/name = row[5] if len(row) > 5 else row[4]/' /opt/eligos2/_eligos_func.py
+
 # Runtime stage
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
