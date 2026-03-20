@@ -28,13 +28,37 @@ docker pull username/hisat2:2.2.1
 #### 使用方法
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/hisat2 hisat2 -t 4 reference.fa reads.fq > alignment.sam
+# 1. 构建基因组索引
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2-build genome.fa genome_index
+
+# 2. 双端数据比对
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2 -x genome_index -1 R1.fq -2 R2.fq -S output.sam -p 8
+
+# 3. 链特异性 RNA-seq
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2 -x genome_index -1 R1.fq -2 R2.fq --rna-strandness FR -S output.sam
 ```
 
-#### 参数说明
+#### 主要参数
 
-运行 `docker run --rm username/hisat2 hisat2 --help` 查看完整参数列表。
+| 参数 | 说明 |
+|------|------|
+| `-x` | 基因组索引前缀 |
+| `-1/-2` | 双端输入文件 |
+| `-S` | 输出 SAM 文件 |
+| `-p` | 线程数 |
+| `--rna-strandness` | 链特异性 (FR/RF) |
+| `--dta` | 为 StringTie 优化输出 |
+
+#### 常见问题
+
+**Q: FR 和 RF 链特异性有什么区别？**
+A: FR 表示 read1 对应正义链，RF 表示 read1 对应反义链。
+
+**Q: 与 STAR 相比如何选择？**
+A: HISAT2 使用更少内存，适合小内存环境；STAR 速度更快。
 
 #### 示例
 
@@ -78,13 +102,37 @@ docker pull username/hisat2:2.2.1
 #### Usage
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/hisat2 hisat2 -t 4 reference.fa reads.fq > alignment.sam
+# 1. Build genome index
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2-build genome.fa genome_index
+
+# 2. Paired-end alignment
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2 -x genome_index -1 R1.fq -2 R2.fq -S output.sam -p 8
+
+# 3. Strand-specific RNA-seq
+docker run --rm -v /path/to/data:/data username/hisat2 \
+    hisat2 -x genome_index -1 R1.fq -2 R2.fq --rna-strandness FR -S output.sam
 ```
 
-#### Parameters
+#### Key Parameters
 
-Run `docker run --rm username/hisat2 hisat2 --help` to see the full parameter list.
+| Parameter | Description |
+|-----------|-------------|
+| `-x` | Genome index prefix |
+| `-1/-2` | Paired input files |
+| `-S` | Output SAM file |
+| `-p` | Number of threads |
+| `--rna-strandness` | Strand specificity (FR/RF) |
+| `--dta` | Output optimized for StringTie |
+
+#### FAQ
+
+**Q: What's the difference between FR and RF strand specificity?**
+A: FR means read1 corresponds to sense strand, RF means read1 corresponds to antisense strand.
+
+**Q: How to choose between HISAT2 and STAR?**
+A: HISAT2 uses less memory (good for small RAM), STAR is faster.
 
 #### Examples
 
