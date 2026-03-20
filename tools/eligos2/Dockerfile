@@ -53,12 +53,17 @@ RUN apt-get update && \
         r-base-dev \
         bedtools \
         gawk \
+        zlib1g \
+        libbz2-1.0 \
+        liblzma5 \
+        libcurl3-gnutls \
+        libssl3 \
+        ca-certificates \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
         libcurl4-gnutls-dev \
-        libssl-dev \
-        ca-certificates && \
+        libssl-dev && \
     pip3 install --no-cache-dir --break-system-packages \
         pysam \
         pandas \
