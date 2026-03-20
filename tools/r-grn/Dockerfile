@@ -1,7 +1,11 @@
+ARG VERSION=3.19
+
 # PAIR M6A Biomarker - Machine Learning Analysis
 # Extends Bioconductor Docker image with glmnet, survival, and ML tools
 FROM bioconductor/bioconductor_docker:3.19
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ARG VERSION
 
 # Install R packages for machine learning and survival analysis
 RUN R -e "BiocManager::install(c( \

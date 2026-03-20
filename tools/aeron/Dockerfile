@@ -1,8 +1,12 @@
+ARG VERSION=c77c73a4bdeb6fb21fa7522239b2276e27ea10f8
+ARG SAMTOOLS_VERSION=1.22.1
+
 # Builder stage: build samtools
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG SAMTOOLS_VERSION=1.22.1
+ENV DEBIAN_FRONTEND=noninteractive
+ARG SAMTOOLS_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget g++ make libncurses-dev zlib1g-dev libbz2-dev liblzma-dev \

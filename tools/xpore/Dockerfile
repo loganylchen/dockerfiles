@@ -1,8 +1,11 @@
+ARG VERSION=2.1
+
 # Multi-stage build for xpore - optimized for size
 # Stage 1: Builder - Install build dependencies and compile
+
 FROM python:3.12-slim AS builder
 
-ARG VERSION=2.1
+ARG VERSION
 
 # Install build dependencies
 RUN apt-get update && \
@@ -29,7 +32,7 @@ RUN pip install --no-cache-dir "numpy<2" && \
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.12-slim
 
-ARG VERSION=2.1
+ARG VERSION
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="xPore - Identification of differential RNA modifications from direct RNA sequencing"

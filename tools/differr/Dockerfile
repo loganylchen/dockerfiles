@@ -1,7 +1,10 @@
+ARG VERSION=0.2
+
 FROM python:3.7-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=0.2
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 # Install build tools + compile differr (with pysam C extension) + purge build tools,
 # all in one layer so build artifacts never persist in the image.

@@ -1,10 +1,16 @@
+ARG VERSION=1.1.0
+ARG STAR_VERSION=2.7.11b
+ARG BOWTIE_VERSION=1.3.1
+ARG SAMTOOLS_VERSION=1.19
+
 # Builder stage: compile bowtie and samtools; download STAR prebuilt binary
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG STAR_VERSION=2.7.11b
-ARG BOWTIE_VERSION=1.3.1
-ARG SAMTOOLS_VERSION=1.19
+ENV DEBIAN_FRONTEND=noninteractive
+ARG STAR_VERSION
+ARG BOWTIE_VERSION
+ARG SAMTOOLS_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget unzip zip xxd g++ make libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev \

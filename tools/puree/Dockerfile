@@ -1,9 +1,11 @@
+ARG VERSION=5a0a702535e79e37b071971063e72fa697540818
+
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin:/opt/PUREE:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION=5a0a702535e79e37b071971063e72fa697540818
+ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 python3-pip git \

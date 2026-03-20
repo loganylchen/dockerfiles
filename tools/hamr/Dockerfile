@@ -1,3 +1,5 @@
+ARG VERSION=1.1.0
+
 # Builder: compile samtools
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"

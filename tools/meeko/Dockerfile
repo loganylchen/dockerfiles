@@ -1,6 +1,9 @@
+ARG VERSION=0.7.1
+
 FROM python:3.11-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-ARG VERSION=0.7.1
+
+ARG VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 

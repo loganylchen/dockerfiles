@@ -1,12 +1,13 @@
+ARG VERSION=dd0ccc81
+ARG SAMTOOLSVER=1.19.2
+
 # Build stage
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=dd0ccc81
-ARG SAMTOOLSVER=1.19.2
-
-# Install build dependencies
-RUN apt-get update && \
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
+ARG SAMTOOLSVER
     apt-get install -y --no-install-recommends \
         build-essential \
         curl \

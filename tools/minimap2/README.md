@@ -28,8 +28,45 @@ docker pull username/minimap2:2.30
 #### 使用方法
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -t 4 reference.fa reads.fq > alignment.sam
+# Oxford Nanopore 比对
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax map-ont reference.fa reads.fq > alignment.sam
+
+# PacBio HiFi 比对
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax map-hifi reference.fa reads.fq > alignment.sam
+
+# RNA-seq 剪接比对
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax splice reference.fa reads.fq > alignment.sam
+
+# 输出 BAM 格式
+docker run --rm -v /path/to/data:/data username/minimap2 sh -c "minimap2 -ax map-ont -t 8 reference.fa reads.fq | samtools sort -o aligned.bam -"
+```
+
+#### 预设模式
+
+| 预设 | 适用平台 |
+|------|----------|
+| `map-ont` | Oxford Nanopore |
+| `map-pb` | PacBio CLR |
+| `map-hifi` | PacBio HiFi |
+| `splice` | RNA-seq |
+| `sr` | Illumina 短读段 |
+
+#### 常见问题
+
+**Q: Nanopore 和 PacBio 数据应该用哪个预设？**
+A: Nanopore 使用 `-ax map-ont`，PacBio HiFi 使用 `-ax map-hifi`，PacBio CLR 使用 `-ax map-pb`。
+
+**Q: 如何输出 BAM 格式？**
+A: 使用管道：`minimap2 ... | samtools sort -o output.bam -`
+
+#### 示例
+
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/minimap2 bash
+
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 [options]
 ```
 
 #### 参数说明
@@ -78,8 +115,45 @@ docker pull username/minimap2:2.30
 #### Usage
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -t 4 reference.fa reads.fq > alignment.sam
+# Oxford Nanopore alignment
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax map-ont reference.fa reads.fq > alignment.sam
+
+# PacBio HiFi alignment
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax map-hifi reference.fa reads.fq > alignment.sam
+
+# RNA-seq spliced alignment
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 -ax splice reference.fa reads.fq > alignment.sam
+
+# Output BAM format
+docker run --rm -v /path/to/data:/data username/minimap2 sh -c "minimap2 -ax map-ont -t 8 reference.fa reads.fq | samtools sort -o aligned.bam -"
+```
+
+#### Preset Modes
+
+| Preset | Platform |
+|--------|----------|
+| `map-ont` | Oxford Nanopore |
+| `map-pb` | PacBio CLR |
+| `map-hifi` | PacBio HiFi |
+| `splice` | RNA-seq |
+| `sr` | Illumina short reads |
+
+#### FAQ
+
+**Q: Which preset for Nanopore vs PacBio?**
+A: Use `-ax map-ont` for Nanopore, `-ax map-hifi` for PacBio HiFi, `-ax map-pb` for PacBio CLR.
+
+**Q: How to output BAM format?**
+A: Use pipe: `minimap2 ... | samtools sort -o output.bam -`
+
+#### Examples
+
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/minimap2 bash
+
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/minimap2 minimap2 [options]
 ```
 
 #### Parameters

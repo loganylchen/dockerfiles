@@ -1,10 +1,10 @@
+ARG VERSION=1.2.5
+
 # Optimized Dockerfile for EpiNano v1.2.5
 # EpiNano requires Python 3.6-3.7 and R for analysis scripts
 # Based on README requirements: https://github.com/novoalab/EpiNano
 
 FROM python:3.7-slim
-
-ARG VERSION=1.2.5
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="EpiNano - Detection of RNA modifications from Oxford Nanopore direct RNA sequencing"

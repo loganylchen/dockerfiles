@@ -1,8 +1,11 @@
+ARG VERSION=2.3
+
 # Builder: compile JAFFA tools and the local process_transcriptome_align_table.c++
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=2.3
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget g++ make git zlib1g-dev libbz2-dev liblzma-dev \

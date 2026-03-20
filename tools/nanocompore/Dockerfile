@@ -1,10 +1,13 @@
+ARG VERSION=2.2.0
+
 # Multi-stage build for nanocompore - optimized for size
 # Stage 1: Builder - Install build dependencies and compile
 # Note: Nanocompore 2.0+ requires Python 3.10+
 # Nanocompore 1.x is incompatible with Python 3.10 (PyYAML build issues)
+
 FROM python:3.10-slim AS builder
 
-ARG VERSION=2.2.0
+ARG VERSION
 
 # Install build dependencies
 RUN apt-get update && \
@@ -36,7 +39,7 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.10-slim
 
-ARG VERSION=2.2.0
+ARG VERSION
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="Nanocompore - RNA modification detection from Nanopore dRNA-Seq data"

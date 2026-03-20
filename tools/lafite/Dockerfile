@@ -1,6 +1,9 @@
+ARG VERSION=1.0.2
+
 FROM python:3.11-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-ARG VERSION=1.0.2
+
+ARG VERSION
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin:$PATH

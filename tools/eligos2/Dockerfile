@@ -1,10 +1,13 @@
+ARG VERSION=2.1.0
+
 # Optimized Dockerfile for ELIGOS2 v2.1.0
 # Based on official Dockerfile: https://gitlab.com/piroonj/eligos2
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=2.1.0
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 # Install system dependencies
 RUN apt-get update && \

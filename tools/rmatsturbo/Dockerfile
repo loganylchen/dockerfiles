@@ -1,10 +1,12 @@
+ARG VERSION=4.3.0
+
 # rmatsturbo requires R and compiled C extensions — keep ubuntu base for R compat
 FROM ubuntu:22.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin/:/opt/rmats/:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION=4.3.0
+ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc g++ gfortran \

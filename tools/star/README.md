@@ -28,13 +28,54 @@ docker pull username/star:2.7.11b
 #### 使用方法
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/star star -t 4 reference.fa reads.fq > alignment.sam
+# 1. 生成基因组索引
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --runMode genomeGenerate \
+    --genomeDir /data/genome_index \
+    --genomeFastaFiles genome.fa \
+    --sjdbGTFfile annotation.gtf \
+    --sjdbOverhang 100 \
+    --runThreadN 8
+
+# 2. 双端数据比对
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --genomeDir /data/genome_index \
+    --readFilesIn R1.fastq.gz R2.fastq.gz \
+    --readFilesCommand zcat \
+    --outFileNamePrefix sample_ \
+    --outSAMtype BAM SortedByCoordinate \
+    --runThreadN 8
+
+# 3. 两步比对模式（推荐）
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --genomeDir /data/genome_index \
+    --readFilesIn R1.fastq.gz R2.fastq.gz \
+    --readFilesCommand zcat \
+    --twopassMode Basic \
+    --outSAMtype BAM SortedByCoordinate \
+    --runThreadN 8
 ```
 
-#### 参数说明
+#### 主要参数
 
-运行 `docker run --rm username/star star --help` 查看完整参数列表。
+| 参数 | 说明 |
+|------|------|
+| `--genomeDir` | 基因组索引目录 |
+| `--genomeFastaFiles` | 参考基因组 FASTA |
+| `--sjdbGTFfile` | 基因注释 GTF |
+| `--sjdbOverhang` | read长度减1 |
+| `--readFilesIn` | 输入 FASTQ |
+| `--outSAMtype` | 输出格式 |
+| `--runThreadN` | 线程数 |
+| `--twopassMode` | 两步比对模式 |
+
+#### 常见问题
+
+**Q: --sjdbOverhang 应该设置多少？**
+A: 一般为 read 长度减 1。例如 101bp reads 使用 100。
+
+**Q: 什么是两步比对模式？**
+A: 第一次运行发现新剪接位点，第二次使用这些位点重新比对，提高准确率。
 
 #### 示例
 

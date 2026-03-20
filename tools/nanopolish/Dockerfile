@@ -1,8 +1,11 @@
+ARG VERSION=0.14.0
+
 # Build stage
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=0.14.0
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
