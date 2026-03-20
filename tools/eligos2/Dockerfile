@@ -32,6 +32,12 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/${SAMTOOLSVER
 RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2 && \
     chmod +x /opt/eligos2/*.py /opt/eligos2/Scripts/* 2>/dev/null || true
 
+# Patch eligos2 to remove deprecated pandas2ri.activate() calls
+RUN sed -i 's/^pandas2ri.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_pair_diff_mod.py && \
+    sed -i 's/^pandas2ri.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_rna_mod.py && \
+    sed -i 's/^pandas2ri.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_multi_samples_test.py && \
+    sed -i 's/^\s*pandas2ri\.activate()/#pandas2ri.activate()  # Commented out due to rpy2 deprecation/' /opt/eligos2/_eligos_func.py
+
 # Runtime stage
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
