@@ -102,13 +102,37 @@ docker pull username/nanopolish:0.14.0
 #### Usage
 
 ```bash
-# Process Nanopore data
-docker run --rm -v /path/to/data:/data username/nanopolish nanopolish reads.fq
+# 1. Index fast5 files into BAM
+docker run --rm -v /path/to/data:/data username/nanopolish \
+    nanopolish index -d fast5_dir/ alignments.bam
+
+# 2. Methylation calling
+docker run --rm -v /path/to/data:/data username/nanopolish \
+    nanopolish call-methylation -t 8 -r reads.fa -b alignments.bam \
+    -g reference.fa > methylation.tsv
+
+# 3. Consensus polishing
+docker run --rm -v /path/to/data:/data username/nanopolish \
+    nanopolish variants --consensus -o polished.vcf -r reads.fa \
+    -b alignments.bam -g reference.fa -t 8
 ```
 
-#### Parameters
+#### Main Commands
 
-Run `docker run --rm username/nanopolish nanopolish --help` to see the full parameter list.
+| Command | Description |
+|---------|-------------|
+| `index` | Index fast5 files into BAM |
+| `call-methylation` | Methylation detection |
+| `variants` | Variant calling/polishing |
+| `polya` | Poly(A) tail analysis |
+
+#### FAQ
+
+**Q: How to associate fast5 files with BAM?**
+A: Use `nanopolish index` command to add fast5 path information to BAM.
+
+**Q: Why is raw signal data needed?**
+A: nanopolish uses electrical signal-level data for more accurate base correction and methylation detection.
 
 #### Examples
 
@@ -117,7 +141,7 @@ Run `docker run --rm username/nanopolish nanopolish --help` to see the full para
 docker run --rm -it -v $(pwd):/data username/nanopolish bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/nanopolish nanopolish [options]
+docker run --rm -v /path/to/data:/data username/nanopolish nanopolish [command] [options]
 ```
 
 #### References
