@@ -6,8 +6,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="DirectRM - RNA modification detection from Nanopore dRNA-Seq data"
 
 ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION
-ARG DORADO_VERSION
+
 
 # Install base dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -44,13 +43,13 @@ RUN conda create -n directrm python=3.11 -c conda-forge faiss-gpu=1.8.0 -y \
     && conda run -n directrm \
     pip install --no-cache-dir \
     transformers==4.38.2 \
-    "numpy==1.26.2" \
-    "pandas==2.1.4" \
-    "scipy==1.13.0" \
-    "scikit-learn==1.4.2" \
-    "xgboost==2.1.3" \
-    "einops==0.7.0" \
-    "statsmodels==0.14.1" \
+    numpy==1.26.2 \
+    pandas==2.1.4 \
+    scipy==1.13.0 \
+    scikit-learn==1.4.2 \
+    xgboost==2.1.3 \
+    einops==0.7.0 \
+    statsmodels==0.14.1 \
     biopython \
     pysam \
     tqdm \
