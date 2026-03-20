@@ -28,14 +28,38 @@ docker pull username/kallisto:0.52.0
 #### 使用方法
 
 ```bash
-# Index reference and quantify
-docker run --rm -v /path/to/data:/data username/kallisto kallisto index -t transcripts.fa
-docker run --rm -v /path/to/data:/data username/kallisto kallisto quant -i transcripts.idx -o output reads_1.fq reads_2.fq
+# 1. 构建转录本索引
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto index -i transcripts.idx transcripts.fa
+
+# 2. 双端数据定量
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto quant -i transcripts.idx -o output -b 100 R1.fq R2.fq
+
+# 3. 单端数据定量
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto quant -i transcripts.idx -o output --single -l 200 -s 20 reads.fq
 ```
 
-#### 参数说明
+#### 主要参数
 
-运行 `docker run --rm username/kallisto kallisto --help` 查看完整参数列表。
+| 参数 | 说明 |
+|------|------|
+| `index` | 构建索引 |
+| `quant` | 定量分析 |
+| `-i` | 索引文件 |
+| `-o` | 输出目录 |
+| `-b` | Bootstrap 样本数 |
+| `--single` | 单端模式 |
+| `-l/-s` | 片段长度和标准差 |
+
+#### 常见问题
+
+**Q: 为什么需要 bootstrap？**
+A: Bootstrap 用于估计表达量的不确定性，用于后续差异分析。
+
+**Q: 输出的 TPM 和 counts 有什么区别？**
+A: TPM 是归一化的表达量，counts 是原始计数。差异分析建议使用 counts。
 
 #### 示例
 
@@ -44,7 +68,7 @@ docker run --rm -v /path/to/data:/data username/kallisto kallisto quant -i trans
 docker run --rm -it -v $(pwd):/data username/kallisto bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/kallisto kallisto [options]
+docker run --rm -v /path/to/data:/data username/kallisto kallisto [command] [options]
 ```
 
 #### 参考资料
@@ -79,14 +103,38 @@ docker pull username/kallisto:0.52.0
 #### Usage
 
 ```bash
-# Index reference and quantify
-docker run --rm -v /path/to/data:/data username/kallisto kallisto index -t transcripts.fa
-docker run --rm -v /path/to/data:/data username/kallisto kallisto quant -i transcripts.idx -o output reads_1.fq reads_2.fq
+# 1. Build transcript index
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto index -i transcripts.idx transcripts.fa
+
+# 2. Paired-end quantification
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto quant -i transcripts.idx -o output -b 100 R1.fq R2.fq
+
+# 3. Single-end quantification
+docker run --rm -v /path/to/data:/data username/kallisto \
+    kallisto quant -i transcripts.idx -o output --single -l 200 -s 20 reads.fq
 ```
 
-#### Parameters
+#### Key Parameters
 
-Run `docker run --rm username/kallisto kallisto --help` to see the full parameter list.
+| Parameter | Description |
+|-----------|-------------|
+| `index` | Build index |
+| `quant` | Quantification |
+| `-i` | Index file |
+| `-o` | Output directory |
+| `-b` | Number of bootstrap samples |
+| `--single` | Single-end mode |
+| `-l/-s` | Fragment length and std dev |
+
+#### FAQ
+
+**Q: Why is bootstrap needed?**
+A: Bootstrap estimates uncertainty in expression levels for downstream differential analysis.
+
+**Q: Difference between TPM and counts?**
+A: TPM is normalized expression, counts are raw. Use counts for differential analysis.
 
 #### Examples
 
@@ -95,7 +143,7 @@ Run `docker run --rm username/kallisto kallisto --help` to see the full paramete
 docker run --rm -it -v $(pwd):/data username/kallisto bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/kallisto kallisto [options]
+docker run --rm -v /path/to/data:/data username/kallisto kallisto [command] [options]
 ```
 
 #### References

@@ -28,13 +28,36 @@ docker pull username/gatk:4.6.1.0
 #### 使用方法
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/gatk gatk --help
+# HaplotypeCaller (变异检测)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk HaplotypeCaller -R reference.fa -I input.bam -O output.vcf
+
+# BaseRecalibrator (碱基质量重校正)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk BaseRecalibrator -I input.bam -R reference.fa --known-sites dbsnp.vcf -O recal.table
+
+# ApplyBQSR (应用校正)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk ApplyBQSR -R reference.fa -I input.bam --bqsr-recal-table recal.table -O recalibrated.bam
 ```
 
-#### 参数说明
+#### 主要工具
 
-运行 `docker run --rm username/gatk gatk --help` 查看完整参数列表。
+| 工具 | 说明 |
+|------|------|
+| `HaplotypeCaller` | 单样本/群体变异检测 |
+| `BaseRecalibrator` | 碱基质量重校正 |
+| `ApplyBQSR` | 应用质量校正 |
+| `MarkDuplicates` | 标记重复 (使用 Picard) |
+| `CalculateContamination` | 计算污染程度 |
+
+#### 常见问题
+
+**Q: GATK 4 与 GATK 3 有什么区别？**
+A: GATK 4 是纯 Java 实现，无需 Python，且支持 Spark 大数据处理。
+
+**Q: 变异检测前需要什么预处理？**
+A: 通常包括：标记重复 (MarkDuplicates)、碱基质量重校正 (BQSR)、索引排序。
 
 #### 示例
 
@@ -43,7 +66,7 @@ docker run --rm -v /path/to/data:/data username/gatk gatk --help
 docker run --rm -it -v $(pwd):/data username/gatk bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/gatk gatk [options]
+docker run --rm -v /path/to/data:/data username/gatk gatk [tool] [options]
 ```
 
 #### 参考资料
@@ -78,13 +101,36 @@ docker pull username/gatk:4.6.1.0
 #### Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/gatk gatk --help
+# HaplotypeCaller (variant calling)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk HaplotypeCaller -R reference.fa -I input.bam -O output.vcf
+
+# BaseRecalibrator (base quality recalibration)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk BaseRecalibrator -I input.bam -R reference.fa --known-sites dbsnp.vcf -O recal.table
+
+# ApplyBQSR (apply recalibration)
+docker run --rm -v /path/to/data:/data username/gatk \
+    gatk ApplyBQSR -R reference.fa -I input.bam --bqsr-recal-table recal.table -O recalibrated.bam
 ```
 
-#### Parameters
+#### Key Tools
 
-Run `docker run --rm username/gatk gatk --help` to see the full parameter list.
+| Tool | Description |
+|------|-------------|
+| `HaplotypeCaller` | Single-sample/joint variant calling |
+| `BaseRecalibrator` | Base quality score recalibration |
+| `ApplyBQSR` | Apply recalibration |
+| `MarkDuplicates` | Mark duplicates (via Picard) |
+| `CalculateContamination` | Calculate contamination |
+
+#### FAQ
+
+**Q: Difference between GATK 4 and GATK 3?**
+A: GATK 4 is pure Java with no Python dependency, and supports Spark for big data.
+
+**Q: What preprocessing is needed before variant calling?**
+A: Typically: MarkDuplicates, Base Quality Score Recalibration (BQSR), and sort indexing.
 
 #### Examples
 
@@ -93,7 +139,7 @@ Run `docker run --rm username/gatk gatk --help` to see the full parameter list.
 docker run --rm -it -v $(pwd):/data username/gatk bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/gatk gatk [options]
+docker run --rm -v /path/to/data:/data username/gatk gatk [tool] [options]
 ```
 
 #### References

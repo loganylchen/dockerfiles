@@ -28,13 +28,40 @@ docker pull username/picard:3.2.0
 #### 使用方法
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/picard picard --help
+# 排序 BAM 文件
+docker run --rm -v /path/to/data:/data username/picard \
+    picard SortSam I=input.bam O=sorted.bam SORT_ORDER=coordinate
+
+# 标记重复
+docker run --rm -v /path/to/data:/data username/picard \
+    picard MarkDuplicates I=input.bam O=marked.bam M=dup_metrics.txt
+
+# 添加 Read Groups
+docker run --rm -v /path/to/data:/data username/picard \
+    picard AddOrReplaceReadGroups I=input.bam O=output.bam RGID=id1 RGLB=lib1 RGPL=ILLUMINA RGSM=sample1
+
+# 收集比对统计
+docker run --rm -v /path/to/data:/data username/picard \
+    picard CollectAlignmentSummaryMetrics I=input.bam R=reference.fa O=alignment_metrics.txt
 ```
 
-#### 参数说明
+#### 主要命令
 
-运行 `docker run --rm username/picard picard --help` 查看完整参数列表。
+| 命令 | 说明 |
+|------|------|
+| `SortSam` | 排序 BAM 文件 |
+| `MarkDuplicates` | 标记重复 reads |
+| `AddOrReplaceReadGroups` | 添加 Read Groups |
+| `CollectAlignmentSummaryMetrics` | 比对质量统计 |
+| `CollectInsertSizeMetrics` | 插入片段大小统计 |
+
+#### 常见问题
+
+**Q: SortSam 的坐标排序和查询排序有什么区别？**
+A: 坐标排序 (coordinate) 按基因组位置排序，用于下游分析；查询排序 (queryname) 按 read 名称排序。
+
+**Q: 为什么要标记重复？**
+A: PCR 扩增会产生重复 reads，标记后可在变异检测时过滤，提高准确性。
 
 #### 示例
 
@@ -43,7 +70,7 @@ docker run --rm -v /path/to/data:/data username/picard picard --help
 docker run --rm -it -v $(pwd):/data username/picard bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/picard picard [options]
+docker run --rm -v /path/to/data:/data username/picard picard [command] [options]
 ```
 
 #### 参考资料
@@ -77,13 +104,40 @@ docker pull username/picard:3.2.0
 #### Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/picard picard --help
+# Sort BAM file
+docker run --rm -v /path/to/data:/data username/picard \
+    picard SortSam I=input.bam O=sorted.bam SORT_ORDER=coordinate
+
+# Mark duplicates
+docker run --rm -v /path/to/data:/data username/picard \
+    picard MarkDuplicates I=input.bam O=marked.bam M=dup_metrics.txt
+
+# Add Read Groups
+docker run --rm -v /path/to/data:/data username/picard \
+    picard AddOrReplaceReadGroups I=input.bam O=output.bam RGID=id1 RGLB=lib1 RGPL=ILLUMINA RGSM=sample1
+
+# Collect alignment statistics
+docker run --rm -v /path/to/data:/data username/picard \
+    picard CollectAlignmentSummaryMetrics I=input.bam R=reference.fa O=alignment_metrics.txt
 ```
 
-#### Parameters
+#### Main Commands
 
-Run `docker run --rm username/picard picard --help` to see the full parameter list.
+| Command | Description |
+|---------|-------------|
+| `SortSam` | Sort BAM file |
+| `MarkDuplicates` | Mark duplicate reads |
+| `AddOrReplaceReadGroups` | Add Read Groups |
+| `CollectAlignmentSummaryMetrics` | Alignment quality statistics |
+| `CollectInsertSizeMetrics` | Insert size metrics |
+
+#### FAQ
+
+**Q: Difference between coordinate and query sorting?**
+A: Coordinate sorting sorts by genomic position (for downstream analysis), query sorting sorts by read name.
+
+**Q: Why mark duplicates?**
+A: PCR amplification creates duplicate reads; marking allows filtering in variant calling for better accuracy.
 
 #### Examples
 
@@ -92,7 +146,7 @@ Run `docker run --rm username/picard picard --help` to see the full parameter li
 docker run --rm -it -v $(pwd):/data username/picard bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/picard picard [options]
+docker run --rm -v /path/to/data:/data username/picard picard [command] [options]
 ```
 
 #### References
