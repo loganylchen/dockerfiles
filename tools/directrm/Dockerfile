@@ -32,6 +32,10 @@ RUN wget -q https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.s
 
 ENV PATH="/opt/conda/bin:$PATH"
 
+# Accept Conda Terms of Service
+RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/main && \
+    conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
+
 # Create DirectRM conda environment (Python 3.11, PyTorch 2.1.2+cu118, CUDA 11.8)
 RUN conda create -n directrm python=3.11 -y \
     && conda run -n directrm \
