@@ -40,9 +40,9 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
 RUN conda create -n directrm python=3.11 -y \
     && conda run -n directrm \
     pip install --no-cache-dir torch==2.1.2+cu118 --index-url https://download.pytorch.org/whl/cu118 \
+    && conda install -n directrm -c conda-forge faiss-gpu=1.8.0 -y \
     && conda run -n directrm \
     pip install --no-cache-dir \
-    faiss-gpu==1.8.0 \
     transformers==4.38.2 \
     "numpy==1.26.2" \
     "pandas==2.1.4" \
