@@ -1,62 +1,98 @@
-# LAFITE
+# lafite
 
-Low-abundance Aware Full-length Isoform clusTEr
+[中文](#中文文档) | [English](#english-documentation)
 
-## Description
+---
 
-LAFITE is designated to identify high-consensus full-length isoforms from Nanopore Direct RNA-seq data. LAFITE combines multiple features from reference annotation and DRS reads (TSS, TES, splicing junction, and read polyadenylation event) and is more sensitive to Low-abundance transcripts.
+## 中文文档
 
-## Usage
+### lafite
 
-```bash
-lafite -b BAM -g GTF -f GENOME -o OUTPUT [OPTIONS]
-```
+**类别**: 通用
 
-### Required Arguments
+#### 简介
 
-- `-b BAM`: Path to the alignment file in BAM format
-- `-g GTF`: Path to the reference gene annotation in GTF format
-- `-f GENOME`: Path to the reference genome fasta
-- `-o OUTPUT`: Path to the output file
+lafite 生物信息学工具
 
-### Optional Arguments
-
-- `-B BEDTOOLS`: Path to the executable bedtools (default: bedtools in PATH)
-- `-n MIN_COUNT_TSS_TES`: Minimum number of reads supporting a alternative TSS or TES (default: 3)
-- `-i MIS_INTRON_LENGTH`: Length cutoff for correcting unexpected small intron (default: 150)
-- `-c MIN_NOVEL_TRANS_COUNT`: Minimum occurrences required for a isoform from novel loci (default: 3)
-- `-s MIN_SINGLE_EXON_COVERAGE`: Minimum read coverage required for a novel single-exon transcript (default: 4)
-- `-l MIN_SINGLE_EXON_LEN`: Minimum length for single-exon transcript (default: 100)
-- `-L LABEL`: Name prefix for output transcripts (default: LAFT)
-- `-p POLYA`: Path to the file contains read Polyadenylation event
-- `-m POLYA_MOTIF_FILE`: Path to the polya motif file
-- `-r RELATIVE_ABUNDANCE_THRESHOLD`: Minimum abundance of the predicted multi-exon transcripts (default: 0.01)
-- `-j SHORT_SJ_TAB`: Path to the short read splice junction file
-- `-w SJ_CORRECTION_WINDOW`: Edit distance to reference splicing site (default: 40)
-- `-t THREAD`: Number of the threads (default: 4)
-
-## Example
+#### 安装
 
 ```bash
-# With Nanopolish polyadenylation result
-lafite -b alignment.bam -g reference.gtf -f reference.fa -o output.gtf -t 8 -p nanopolish_polya.txt
-
-# Without Nanopolish, using Poly(A) motif file
-lafite -b alignment.bam -g reference.gtf -f reference.fa -o output.gtf -t 8 -m polya_motifs.txt
+# Pull the Docker image
+docker pull username/lafite:1.0.2
 ```
 
-## Prerequisites
+#### 可用版本
 
-- bedtools
-- minimap2 (for alignment)
-- samtools (for BAM processing)
-- nanopolish (optional, for polyadenylation analysis)
+`1.0.2`, `1.0.1`, `1.0.0`
 
-## References
+#### 使用方法
 
-- GitHub: https://github.com/TF-Chan-Lab/LAFITE
-- PyPI: https://pypi.org/project/LAFITE/
+```bash
+# Basic usage
+docker run --rm -v /path/to/data:/data username/lafite lafite --help
+```
 
-## Version
+#### 参数说明
 
-- 1.0.2
+运行 `docker run --rm username/lafite lafite --help` 查看完整参数列表。
+
+#### 示例
+
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/lafite bash
+
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/lafite lafite [options]
+```
+
+#### 参考资料
+
+
+
+---
+
+## English Documentation
+
+### lafite
+
+**Category**: General
+
+#### Introduction
+
+lafite bioinformatics tool
+
+#### Installation
+
+```bash
+# Pull the Docker image
+docker pull username/lafite:1.0.2
+```
+
+#### Available Versions
+
+`1.0.2`, `1.0.1`, `1.0.0`
+
+#### Usage
+
+```bash
+# Basic usage
+docker run --rm -v /path/to/data:/data username/lafite lafite --help
+```
+
+#### Parameters
+
+Run `docker run --rm username/lafite lafite --help` to see the full parameter list.
+
+#### Examples
+
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/lafite bash
+
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/lafite lafite [options]
+```
+
+#### References
+

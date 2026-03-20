@@ -1,54 +1,98 @@
-# Meeko
+# meeko
 
-Interface for AutoDock
+[中文](#中文文档) | [English](#english-documentation)
 
-## Description
+---
 
-Meeko prepares the input for AutoDock and processes its output. It is developed alongside AutoDock-GPU and AutoDock-Vina. Meeko parameterizes both small organic molecules (ligands) and proteins and nucleic acids (receptors).
+## 中文文档
 
-## Usage
+### meeko
 
-### Prepare Ligand
+**类别**: 通用
 
-```bash
-mk_prepare_ligand.py -i molecule.sdf -o molecule.pdbqt
-```
+#### 简介
 
-### Prepare Receptor
+meeko 生物信息学工具
 
-```bash
-# Basic preparation
-mk_prepare_receptor.py -i receptor.pdb -o receptor.pdbqt
-
-# With flexible sidechain
-mk_prepare_receptor.py -i receptor.pdb -o my_receptor -j -p -f A:42
-```
-
-### Export Results
+#### 安装
 
 ```bash
-mk_export.py vina_results.pdbqt -j my_receptor.json -s lig_docked.sdf -p rec_docked.pdb
+# Pull the Docker image
+docker pull username/meeko:0.5.0
 ```
 
-## Python API
+#### 可用版本
 
-```python
-from meeko import MoleculePreparation
+`0.5.0`, `0.4.0`, `0.3.4`
 
-# Prepare a molecule
-mol_prep = MoleculePreparation()
-mol_prep.prepare(molecule)
+#### 使用方法
+
+```bash
+# Basic usage
+docker run --rm -v /path/to/data:/data username/meeko meeko --help
 ```
 
-## Documentation
+#### 参数说明
 
-- Official docs: https://meeko.readthedocs.io
+运行 `docker run --rm username/meeko meeko --help` 查看完整参数列表。
 
-## Version
+#### 示例
 
-- 0.7.1
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/meeko bash
 
-## References
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/meeko meeko [options]
+```
 
-- GitHub: https://github.com/forlilab/Meeko
-- PyPI: https://pypi.org/project/meeko/
+#### 参考资料
+
+
+
+---
+
+## English Documentation
+
+### meeko
+
+**Category**: General
+
+#### Introduction
+
+meeko bioinformatics tool
+
+#### Installation
+
+```bash
+# Pull the Docker image
+docker pull username/meeko:0.5.0
+```
+
+#### Available Versions
+
+`0.5.0`, `0.4.0`, `0.3.4`
+
+#### Usage
+
+```bash
+# Basic usage
+docker run --rm -v /path/to/data:/data username/meeko meeko --help
+```
+
+#### Parameters
+
+Run `docker run --rm username/meeko meeko --help` to see the full parameter list.
+
+#### Examples
+
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data username/meeko bash
+
+# Run with data volume
+docker run --rm -v /path/to/data:/data username/meeko meeko [options]
+```
+
+#### References
+
