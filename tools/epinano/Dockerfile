@@ -35,6 +35,11 @@ RUN apt-get update && \
     r-cran-reshape2 \
     r-cran-car \
     r-cran-ggrepel \
+    r-cran-stringr \
+    r-cran-dplyr \
+    r-cran-tidyr \
+    r-cran-readr \
+    r-cran-tibble \
     # Cleanup
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -72,6 +77,7 @@ WORKDIR /data
 # Verify installation
 RUN python --version && \
     python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies OK')" && \
+    Rscript -e "library(dplyr); library(tidyr); library(readr); library(tibble); library(stringr); library(outliers); print('R packages OK')" && \
     samtools --version | head -1 && \
     java -version 2>&1 | head -1 && \
     Rscript --version && \
