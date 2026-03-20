@@ -35,16 +35,17 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
 
 # Create eligos2 conda environment with pinned versions (as recommended in GitLab README)
 # bedtools=2.25 is critical - newer versions produce different BED output format
+# pybedtools=0.8.0 is critical - ensures consistent BED column handling
 RUN conda create -n eligos2 -c conda-forge -c bioconda -c r \
-        python=3.10 \
-        pysam \
-        pandas \
-        pybedtools \
+        python=3.6 \
+        pysam=0.13 \
+        pandas=0.23.4 \
+        pybedtools=0.8.0 \
         bedtools=2.25 \
-        rpy2 \
-        r-base \
-        tqdm \
-        numpy \
+        rpy2=2.8.5 \
+        r-base=3.4.1 \
+        tqdm=4.40.2 \
+        numpy=1.11.3 \
         -y && \
     conda clean -afy && \
     rm -rf /tmp/*
