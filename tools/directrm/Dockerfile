@@ -37,10 +37,10 @@ RUN conda tos accept --override-channels --channel https://repo.anaconda.com/pkg
     conda tos accept --override-channels --channel https://repo.anaconda.com/pkgs/r
 
 # Create DirectRM conda environment (Python 3.11, PyTorch 2.1.2+cu118, CUDA 11.8)
-RUN conda create -n directrm python=3.11 -y \
+# Install faiss-gpu via conda first, then pip packages
+RUN conda create -n directrm python=3.11 -c conda-forge faiss-gpu=1.8.0 -y \
     && conda run -n directrm \
     pip install --no-cache-dir torch==2.1.2+cu118 --index-url https://download.pytorch.org/whl/cu118 \
-    && conda install -n directrm -c conda-forge faiss-gpu=1.8.0 -y \
     && conda run -n directrm \
     pip install --no-cache-dir \
     transformers==4.38.2 \
@@ -58,6 +58,7 @@ RUN conda create -n directrm python=3.11 -y \
     pyyaml \
     upsetplot \
     ont-pod5 \
+    && conda clean -afy \
     && rm -rf /tmp/*
 
 # Clone and install DirectRM
