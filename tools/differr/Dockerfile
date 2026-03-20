@@ -17,6 +17,7 @@ RUN apt-get update && \
     liblzma-dev \
     libcurl4-gnutls-dev \
     libssl-dev \
+    libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev libwebp-dev \
     ca-certificates && \
     pip install --no-cache-dir \
     git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION} && \

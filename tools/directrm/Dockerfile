@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
     bzip2 \
-    libhdf5-310 \
+    libhdf5-103 \
     libbz2-1.0 \
     liblzma5 \
     libgomp1 \
