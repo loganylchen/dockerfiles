@@ -28,13 +28,30 @@ docker pull username/multiqc:1.24.1
 #### 使用方法
 
 ```bash
-# Quality control
-docker run --rm -v /path/to/data:/data username/multiqc multiqc -i input.fq -o output.html
+# 聚合当前目录所有日志
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data
+
+# 指定输出目录
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -o /data/reports
+
+# 仅分析特定工具
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -m fastqc star
+
+# 自定义报告标题
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -t "My Project"
 ```
 
-#### 参数说明
+#### 支持的工具
 
-运行 `docker run --rm username/multiqc multiqc --help` 查看完整参数列表。
+FastQC, STAR, HISAT2, salmon, kallisto, RSEM, StringTie, Picard, Qualimap 等 100+ 工具。
+
+#### 常见问题
+
+**Q: 需要什么输入文件？**
+A: 各工具生成的日志文件，如 FastQC 的 .zip、STAR 的 Log.final.out 等。
+
+**Q: 如何自定义报告？**
+A: 使用配置文件 multiqc_config.yaml 或命令行参数如 `-t` 设置标题。
 
 #### 示例
 
@@ -78,13 +95,30 @@ docker pull username/multiqc:1.24.1
 #### Usage
 
 ```bash
-# Quality control
-docker run --rm -v /path/to/data:/data username/multiqc multiqc -i input.fq -o output.html
+# Aggregate all logs in current directory
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data
+
+# Specify output directory
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -o /data/reports
+
+# Analyze only specific tools
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -m fastqc star
+
+# Custom report title
+docker run --rm -v /path/to/data:/data username/multiqc multiqc /data -t "My Project"
 ```
 
-#### Parameters
+#### Supported Tools
 
-Run `docker run --rm username/multiqc multiqc --help` to see the full parameter list.
+FastQC, STAR, HISAT2, salmon, kallisto, RSEM, StringTie, Picard, Qualimap, and 100+ other tools.
+
+#### FAQ
+
+**Q: What input files are needed?**
+A: Log files from various tools, like FastQC .zip, STAR Log.final.out, etc.
+
+**Q: How to customize the report?**
+A: Use multiqc_config.yaml file or command-line options like `-t` for title.
 
 #### Examples
 

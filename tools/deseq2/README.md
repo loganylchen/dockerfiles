@@ -28,13 +28,60 @@ docker pull username/deseq2:1.44.0
 #### 使用方法
 
 ```bash
-# Run differential expression analysis in R
+# 运行 R 脚本进行差异表达分析
 docker run --rm -v /path/to/data:/data username/deseq2 Rscript analysis.R
 ```
 
-#### 参数说明
+##### R 脚本示例
 
-运行 `docker run --rm username/deseq2 deseq2 --help` 查看完整参数列表。
+```r
+# 加载包
+library(DESeq2)
+
+# 读取数据
+countData <- read.csv("counts.csv", row.names=1)
+colData <- read.csv("coldata.csv", row.names=1)
+
+# 创建 DESeqDataSet
+dds <- DESeqDataSetFromMatrix(
+    countData = countData,
+    colData = colData,
+    design = ~ condition
+)
+
+# 运行分析
+dds <- DESeq(dds)
+
+# 获取结果
+res <- results(dds, contrast=c("condition", "treated", "control"))
+
+# 保存结果
+write.csv(as.data.frame(res), "results.csv")
+
+# 绘制 MA 图
+pdf("maplot.pdf")
+plotMA(res)
+dev.off()
+```
+
+##### 常用函数
+
+| 函数 | 说明 |
+|------|------|
+| `DESeqDataSetFromMatrix()` | 从矩阵创建对象 |
+| `DESeq()` | 运行 DESeq2 分析 |
+| `results()` | 提取差异表达结果 |
+| `lfcShrink()` | 收缩 log2 倍变化 |
+| `plotMA()` | 绘制 MA 图 |
+| `plotPCA()` | 绘制 PCA 图 |
+
+#### 常见问题
+
+**Q: 输入数据需要什么格式？**
+A: 计数矩阵为基因×样本的整数矩阵，样本信息为包含分组信息的数据框。
+
+**Q: 如何选择对比组？**
+A: 使用 `contrast=c("condition", "treated", "control")` 指定。
 
 #### 示例
 
@@ -43,7 +90,7 @@ docker run --rm -v /path/to/data:/data username/deseq2 Rscript analysis.R
 docker run --rm -it -v $(pwd):/data username/deseq2 bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/deseq2 deseq2 [options]
+docker run --rm -v /path/to/data:/data username/deseq2 Rscript [script.R]
 ```
 
 #### 参考资料
@@ -82,9 +129,56 @@ docker pull username/deseq2:1.44.0
 docker run --rm -v /path/to/data:/data username/deseq2 Rscript analysis.R
 ```
 
-#### Parameters
+##### R Script Example
 
-Run `docker run --rm username/deseq2 deseq2 --help` to see the full parameter list.
+```r
+# Load package
+library(DESeq2)
+
+# Read data
+countData <- read.csv("counts.csv", row.names=1)
+colData <- read.csv("coldata.csv", row.names=1)
+
+# Create DESeqDataSet
+dds <- DESeqDataSetFromMatrix(
+    countData = countData,
+    colData = colData,
+    design = ~ condition
+)
+
+# Run analysis
+dds <- DESeq(dds)
+
+# Get results
+res <- results(dds, contrast=c("condition", "treated", "control"))
+
+# Save results
+write.csv(as.data.frame(res), "results.csv")
+
+# Plot MA plot
+pdf("maplot.pdf")
+plotMA(res)
+dev.off()
+```
+
+##### Common Functions
+
+| Function | Description |
+|----------|-------------|
+| `DESeqDataSetFromMatrix()` | Create object from matrix |
+| `DESeq()` | Run DESeq2 analysis |
+| `results()` | Extract differential expression |
+| `lfcShrink()` | Shrink log2 fold changes |
+| `plotMA()` | Plot MA plot |
+| `plotPCA()` | Plot PCA plot |
+
+#### FAQ
+
+**Q: What input format is required?**
+A: Count matrix as integer genes×samples, and colData with group information.
+
+**Q: How to specify contrast groups?**
+A: Use `contrast=c("condition", "treated", "control")`.
 
 #### Examples
 
@@ -93,7 +187,7 @@ Run `docker run --rm username/deseq2 deseq2 --help` to see the full parameter li
 docker run --rm -it -v $(pwd):/data username/deseq2 bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/deseq2 deseq2 [options]
+docker run --rm -v /path/to/data:/data username/deseq2 Rscript [script.R]
 ```
 
 #### References

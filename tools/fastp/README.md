@@ -28,13 +28,44 @@ docker pull username/fastp:0.24.0
 #### 使用方法
 
 ```bash
-# Quality control
-docker run --rm -v /path/to/data:/data username/fastp fastp -i input.fq -o output.html
+# 单端数据质控
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq -h report.html
+
+# 双端数据质控
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i R1.fq -I R2.fq -o R1.clean.fq -O R2.clean.fq -h report.html
+
+# 质量过滤
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq -q 20 -u 30 -n 5 -h report.html
+
+# 修剪低质量碱基
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq --cut_front --cut_tail -h report.html
 ```
 
-#### 参数说明
+#### 主要参数
 
-运行 `docker run --rm username/fastp fastp --help` 查看完整参数列表。
+| 参数 | 说明 |
+|------|------|
+| `-i, -I` | 输入文件（单端/双端） |
+| `-o, -O` | 输出文件（单端/双端） |
+| `-h` | HTML 报告 |
+| `-j` | JSON 报告 |
+| `-q` | 质量值阈值 |
+| `-u` | 不合格碱基比例限制 |
+| `-n` | N 碱基数限制 |
+| `-w` | 线程数 |
+| `--detect_adapter_for_pe` | 自动检测 adapter |
+
+#### 常见问题
+
+**Q: 如何设置质量过滤参数？**
+A: `-q 20` 表示保留质量值≥20 的碱基，`-u 30` 表示如果超过30%碱基不合格则丢弃整个 read。
+
+**Q: 输出的 HTML 报告包含什么？**
+A: 包含质量分布、GC 含量、序列长度分布、adapter 检测等全面的 QC 信息。
 
 #### 示例
 
@@ -78,13 +109,44 @@ docker pull username/fastp:0.24.0
 #### Usage
 
 ```bash
-# Quality control
-docker run --rm -v /path/to/data:/data username/fastp fastp -i input.fq -o output.html
+# Single-end QC
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq -h report.html
+
+# Paired-end QC
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i R1.fq -I R2.fq -o R1.clean.fq -O R2.clean.fq -h report.html
+
+# Quality filtering
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq -q 20 -u 30 -n 5 -h report.html
+
+# Trim low quality bases
+docker run --rm -v /path/to/data:/data username/fastp \
+    fastp -i input.fq -o output.fq --cut_front --cut_tail -h report.html
 ```
 
-#### Parameters
+#### Key Parameters
 
-Run `docker run --rm username/fastp fastp --help` to see the full parameter list.
+| Parameter | Description |
+|-----------|-------------|
+| `-i, -I` | Input files (single/paired) |
+| `-o, -O` | Output files (single/paired) |
+| `-h` | HTML report |
+| `-j` | JSON report |
+| `-q` | Quality threshold |
+| `-u` | Unqualified base percent limit |
+| `-n` | N base limit |
+| `-w` | Number of threads |
+| `--detect_adapter_for_pe` | Auto detect adapter |
+
+#### FAQ
+
+**Q: How to set quality filtering parameters?**
+A: `-q 20` keeps bases with quality≥20, `-u 30` discards reads if >30% bases fail.
+
+**Q: What does the HTML report contain?**
+A: Quality distribution, GC content, sequence length, adapter detection, and comprehensive QC metrics.
 
 #### Examples
 

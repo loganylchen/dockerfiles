@@ -119,13 +119,54 @@ docker pull username/star:2.7.11b
 #### Usage
 
 ```bash
-# Basic alignment
-docker run --rm -v /path/to/data:/data username/star star -t 4 reference.fa reads.fq > alignment.sam
+# 1. Generate genome index
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --runMode genomeGenerate \
+    --genomeDir /data/genome_index \
+    --genomeFastaFiles genome.fa \
+    --sjdbGTFfile annotation.gtf \
+    --sjdbOverhang 100 \
+    --runThreadN 8
+
+# 2. Paired-end alignment
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --genomeDir /data/genome_index \
+    --readFilesIn R1.fastq.gz R2.fastq.gz \
+    --readFilesCommand zcat \
+    --outFileNamePrefix sample_ \
+    --outSAMtype BAM SortedByCoordinate \
+    --runThreadN 8
+
+# 3. Two-pass mode (recommended)
+docker run --rm -v /path/to/data:/data username/star \
+    STAR --genomeDir /data/genome_index \
+    --readFilesIn R1.fastq.gz R2.fastq.gz \
+    --readFilesCommand zcat \
+    --twopassMode Basic \
+    --outSAMtype BAM SortedByCoordinate \
+    --runThreadN 8
 ```
 
-#### Parameters
+#### Key Parameters
 
-Run `docker run --rm username/star star --help` to see the full parameter list.
+| Parameter | Description |
+|-----------|-------------|
+| `--genomeDir` | Genome index directory |
+| `--genomeFastaFiles` | Reference genome FASTA |
+| `--sjdbGTFfile` | Gene annotation GTF |
+| `--sjdbOverhang` | Read length minus 1 |
+| `--readFilesIn` | Input FASTQ files |
+| `--outSAMtype` | Output format |
+| `--runThreadN` | Number of threads |
+| `--twopassMode` | Two-pass alignment mode |
+
+#### FAQ
+
+**Q: What should --sjdbOverhang be set to?**
+A: Typically read length minus 1. For 101bp reads, use 100.
+
+**Q: What is two-pass mode?**
+A: First pass discovers novel splice junctions, second pass uses them for realignment, improving accuracy.
 
 #### Examples
 
