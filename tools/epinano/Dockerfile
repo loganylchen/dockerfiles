@@ -40,6 +40,8 @@ RUN apt-get update && \
     r-cran-tidyr \
     r-cran-readr \
     r-cran-tibble \
+    r-cran-purrr \
+    r-cran-forcats \
     # Cleanup
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -52,6 +54,10 @@ RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${VERSI
     unzip epinano.zip && \
     mv EpiNano-EpiNano${VERSION} /opt/epinano && \
     rm epinano.zip
+
+# Patch EpiNano R scripts to use individual packages instead of tidyverse
+RUN sed -i 's/suppressMessages (library(tidyverse))/suppressMessages(library(dplyr)); suppressMessages(library(tidyr)); suppressMessages(library(readr)); suppressMessages(library(tibble)); suppressMessages(library(stringr)); suppressMessages(library(ggplot2)); suppressMessages(library(purrr)); suppressMessages(library(forcats))/' /opt/epinano/Epinano_DiffErr.R && \
+    sed -i 's/suppressMessages (library(tidyverse))/suppressMessages(library(dplyr)); suppressMessages(library(tidyr)); suppressMessages(library(readr)); suppressMessages(library(tibble)); suppressMessages(library(stringr)); suppressMessages(library(ggplot2)); suppressMessages(library(purrr)); suppressMessages(library(forcats))/' /opt/epinano/Epinano_Plot.R
 
 # Install Python dependencies
 RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
@@ -77,7 +83,7 @@ WORKDIR /data
 # Verify installation
 RUN python --version && \
     python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies OK')" && \
-    Rscript -e "library(dplyr); library(tidyr); library(readr); library(tibble); library(stringr); library(outliers); print('R packages OK')" && \
+    Rscript -e "library(dplyr); library(tidyr); library(readr); library(tibble); library(stringr); library(purrr); library(forcats); library(outliers); print('R packages OK')" && \
     samtools --version | head -1 && \
     java -version 2>&1 | head -1 && \
     Rscript --version && \
