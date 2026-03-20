@@ -33,9 +33,10 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/${SAMTOOLSVER
 RUN git clone https://github.com/loganylchen/DRUMMER.git /opt/DRUMMER && \
     cd /opt/DRUMMER && \
     git checkout ${VERSION} && \
-    # Fix Python 3 compatibility: 'rU' mode is removed in Python 3
-    sed -i "s/open(transcriptome_file,'rU')/open(transcriptome_file,'r')/g" modules/test_exome.py && \
-    sed -i "s/open(transcriptome_file, \"rU\")/open(transcriptome_file, \"r\")/g" modules/test_exome.py
+    # Fix Python 3.10+ compatibility: 'rU' mode was removed
+    sed -i "s/, \"rU\"/, \"r\"/g" modules/test_isoform.py && \
+    sed -i "s/,'rU'/,'r'/g" modules/test_exome.py && \
+    sed -i "s/, \"rU\"/, \"r\"/g" modules/DRUMMER-parse.py
 
 # Runtime stage
 FROM debian:bookworm-slim
