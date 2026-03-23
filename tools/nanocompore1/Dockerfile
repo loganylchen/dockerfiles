@@ -1,9 +1,12 @@
+ARG VERSION=1.0.4
+
 # Multi-stage build for nanocompore 1.x - optimized for size
 # Note: Nanocompore 1.x requires Python 3.8 (PyYAML 5.x build fails on Python 3.10+)
 # Nanocompore 2.x uses the separate nanocompore image (requires Python 3.10+)
+
 FROM python:3.8-slim AS builder
 
-ARG VERSION=1.0.4
+ARG VERSION
 
 # Install build dependencies
 RUN apt-get update && \
@@ -31,9 +34,9 @@ RUN pip install --no-cache-dir nanocompore==${VERSION}
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.8-slim
 
-ARG VERSION=1.0.4
+ARG VERSION
 
-LABEL maintainer="Your Name <your.email@example.com>"
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="Nanocompore 1.x - RNA modification detection from Nanopore dRNA-Seq data"
 LABEL version="${VERSION}"
 

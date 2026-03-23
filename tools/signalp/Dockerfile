@@ -1,6 +1,7 @@
 ARG VERSION=5.0b
 
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION

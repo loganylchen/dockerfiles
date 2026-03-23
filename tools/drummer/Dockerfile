@@ -1,11 +1,13 @@
-# Build stage
-FROM debian:bookworm-slim AS builder
-
 ARG VERSION=dd0ccc81
 ARG SAMTOOLSVER=1.19.2
 
-# Install build dependencies
-RUN apt-get update && \
+# Build stage
+FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
+ARG SAMTOOLSVER
     apt-get install -y --no-install-recommends \
         build-essential \
         curl \
@@ -30,10 +32,15 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/${SAMTOOLSVER
 # Clone DRUMMER at the specified commit
 RUN git clone https://github.com/loganylchen/DRUMMER.git /opt/DRUMMER && \
     cd /opt/DRUMMER && \
-    git checkout ${VERSION}
+    git checkout ${VERSION} && \
+    # Fix Python 3.10+ compatibility: 'rU' mode was removed
+    sed -i "s/, \"rU\"/, \"r\"/g" modules/test_isoform.py && \
+    sed -i "s/,'rU'/,'r'/g" modules/test_exome.py && \
+    sed -i "s/, \"rU\"/, \"r\"/g" modules/DRUMMER-parse.py
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG SAMTOOLSVER=1.19.2
 
@@ -47,7 +54,7 @@ RUN apt-get update && \
         zlib1g \
         libbz2-1.0 \
         liblzma5 \
-        libcurl4 \
+        libcurl3-gnutls \
         libssl3 \
         ca-certificates && \
     pip3 install --no-cache-dir --break-system-packages \
@@ -58,6 +65,7 @@ RUN apt-get update && \
         biopython \
         matplotlib \
         statsmodels && \
+    ln -sf /usr/bin/python3 /usr/local/bin/python && \
     rm -rf /var/lib/apt/lists/*
 
 # Copy samtools binary and DRUMMER from builder

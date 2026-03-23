@@ -1,5 +1,10 @@
+ARG VERSION=1.0
+
+ARG VERSION=1.0
+
 # sicelore: requires python2, openjdk, C++ compilation — keep ubuntu base
 FROM ubuntu:20.04
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PATH=/opt/bin/:/opt/FLAMES/python:/opt/FLAMES/src/bin/:/opt/minimap2-2.24_x64-linux/:$PATH

@@ -1,5 +1,9 @@
-FROM debian:bookworm-slim
 ARG VERSION=0.4.0
+
+FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 python3-pip \

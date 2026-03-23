@@ -1,6 +1,11 @@
+ARG VERSION=3.19
+
 # PAIR M6A Biomarker - Differential Expression Analysis
 # Extends Bioconductor Docker image with DESeq2, edgeR, limma
 FROM bioconductor/bioconductor_docker:3.19
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ARG VERSION
 
 # Install additional R packages for DEG analysis
 # These packages are typically available but we ensure they're installed

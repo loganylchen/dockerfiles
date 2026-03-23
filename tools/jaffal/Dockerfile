@@ -1,14 +1,20 @@
+ARG VERSION=2.3
+
 # Builder: compile JAFFA tools and the local process_transcriptome_align_table.c++
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=2.3
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget g++ make git zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Build seqtk
-RUN git clone --depth=1 https://github.com/lh3/seqtk.git /tmp/seqtk \
+# Build seqtk (use wget instead of git clone to avoid network issues)
+RUN wget -q https://github.com/lh3/seqtk/archive/refs/heads/master.tar.gz -O /tmp/seqtk.tar.gz \
+    && tar -xzf /tmp/seqtk.tar.gz -C /tmp \
+    && mv /tmp/seqtk-master /tmp/seqtk \
     && cd /tmp/seqtk && make -j$(nproc) && strip seqtk
 
 # Download JAFFA and compile its tools
@@ -27,6 +33,7 @@ RUN g++ -std=c++11 -O3 -o /tmp/process_transcriptome_align_table /tmp/process_tr
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.3
 

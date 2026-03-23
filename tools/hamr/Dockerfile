@@ -1,5 +1,8 @@
+ARG VERSION=1.1.0
+
 # Builder: compile samtools
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget g++ make libncurses-dev zlib1g-dev libbz2-dev liblzma-dev \
@@ -15,6 +18,7 @@ RUN cd /tmp \
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin:/opt/hamr:$PATH
 ENV DEBIAN_FRONTEND=noninteractive

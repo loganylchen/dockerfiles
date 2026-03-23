@@ -1,18 +1,29 @@
-ARG VERSION=0.23.4
+ARG VERSION=0.24.0
 
-FROM debian:bookworm-slim
+FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget \
-        ca-certificates \
-    && wget -q https://github.com/OpenGene/fastp/releases/download/v${VERSION}/fastp \
-        -O /usr/local/bin/fastp \
-    && chmod +x /usr/local/bin/fastp \
-    && apt-get purge -y --auto-remove wget ca-certificates \
+        g++ make git zlib1g-dev libisal-dev \
     && rm -rf /var/lib/apt/lists/*
+
+RUN git clone --depth=1 --branch v${VERSION} https://github.com/OpenGene/fastp.git /tmp/fastp \
+    && cd /tmp/fastp \
+    && make -j$(nproc) \
+    && strip fastp
+
+FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ARG VERSION
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        zlib1g libisal2 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY --from=builder /tmp/fastp/fastp /usr/local/bin/fastp
 
 RUN fastp --version 2>&1 | head -1
 

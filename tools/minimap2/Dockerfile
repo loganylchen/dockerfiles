@@ -1,7 +1,11 @@
+ARG VERSION=2.28
+
 # Build stage
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION=2.28
+ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
 # Install build dependencies
 RUN apt-get update && \
@@ -36,6 +40,7 @@ RUN curl -L https://github.com/attractivechaos/k8/releases/download/v1.2/k8-1.2.
 
 # Runtime stage
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION=2.28
 

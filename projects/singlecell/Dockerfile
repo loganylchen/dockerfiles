@@ -1,4 +1,7 @@
+ARG VERSION=1.0
+
 FROM btrspg/vscode-base:0.0.6
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 RUN mkdir -p /tmp/test && \
     cd /tmp/test && \
@@ -17,9 +20,11 @@ ADD devtools_packages.txt /tmp/
 ADD CRAN_packages.txt /tmp/
 
 
-RUN Rscript /tmp/install_packages.R && pip install -r /tmp/requirements.txt --no-cache-dir
+RUN Rscript /tmp/install_packages.R && pip install --no-cache-dir -r /tmp/requirements.txt
 
-RUN apt autoremove && \
-    apt clean && \
-    apt autoclean && \
-    rm -rf /tmp/*
+RUN apt-get autoremove -y && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/*
+
+WORKDIR /data
+CMD ["bash"]

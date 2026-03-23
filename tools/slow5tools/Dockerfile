@@ -1,9 +1,12 @@
+ARG VERSION=0.5.0
+
 # Multi-stage build for slow5tools
 # Stage 1: Builder
 FROM debian:bookworm-slim AS builder
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
-ARG VERSION
 ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 ENV ONT_VBZ_VERSION=v1.0.1
 ENV ARCH=x86_64
 ENV ONT_VBZ_FILE=ont-vbz-hdf-plugin-1.0.1-Linux-${ARCH}.tar.gz
@@ -43,6 +46,7 @@ RUN git clone --recursive https://github.com/hasindu2008/slow5tools && \
 
 # Stage 2: Runtime
 FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV PATH=/opt/bin:$PATH
 ENV PLUGIN_PATH=/usr/local/lib
@@ -61,5 +65,7 @@ COPY --from=builder /tmp/slow5tools/slow5tools /opt/bin/
 
 # Verify installation
 RUN slow5tools --version
+
+WORKDIR /data
 
 CMD ["slow5tools"]

@@ -1,5 +1,9 @@
-FROM debian:bookworm-slim
 ARG VERSION=1.0.1
+
+FROM debian:bookworm-slim
+LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
+
+ARG VERSION
 
 ENV PATH=/opt/CPC2/bin:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
