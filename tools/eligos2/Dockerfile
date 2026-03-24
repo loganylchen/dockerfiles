@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 # Create the conda environment with mamba (following official guide)
 RUN micromamba install -y -n base -c conda-forge -c bioconda -c r \
-        python pysam=0.13 pandas=0.23.4 pybedtools=0.8.0 bedtools=2.25 rpy2=2.8.5 r-base=3.4.1 tqdm=4.40.2 numpy=1.11.3 \
+        pysam=0.13 pandas pybedtools=0.8.0 bedtools=2.25 rpy2=2.8.5 r-base=3.4.1 tqdm=4.40.2 numpy=1.11.3 \
     && micromamba clean --all --yes
 
 # Clone ELIGOS2
