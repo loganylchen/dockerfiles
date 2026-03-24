@@ -1,34 +1,39 @@
 ARG VERSION=2.1.0
 
-# Based on official ELIGOS2 Dockerfile: https://gitlab.com/piroonj/eligos2
-# Uses conda/miniconda3 base for compatibility with pinned versions
+# Based on official ELIGOS2 installation guide: https://gitlab.com/piroonj/eligos2
+# Uses mambaorg/micromamba for faster dependency resolution
 
-FROM conda/miniconda3
+FROM mambaorg/micromamba:1.5.10
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ARG VERSION
 
+USER root
 
+# Install system dependencies
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        procps \
+    && rm -rf /var/lib/apt/lists/*
 
-
-
-WORKDIR /opt/eligos2
-
-# Create the environment with pinned versions (as per official Dockerfile)
-RUN conda install -y -c bioconda -c conda-forge -c anaconda \
-    python=3.6 \
-    pysam=0.13 \
-    pandas=0.23.4 \
-    pybedtools=0.8.0 \
-    bedtools=2.25 \
-    rpy2=2.8.5 \
-    r-base=3.4.1 \
-    tqdm=4.40.2 \
-    numpy=1.11.3 \
-    git
+# Create the conda environment with mamba (following official guide)
+RUN micromamba install -y -n base -c conda-forge -c bioconda -c r \
+        python=3.10 \
+        pysam \
+        pandas \
+        pybedtools \
+        bedtools \
+        rpy2 \
+        r-base \
+        tqdm \
+        numpy \
+    && micromamba clean --all --yes
 
 # Clone ELIGOS2
-RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2
+WORKDIR /opt
+RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2 && \
+    rm -rf /opt/eligos2/.git
+
 # Install R package
 RUN Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")'
 
