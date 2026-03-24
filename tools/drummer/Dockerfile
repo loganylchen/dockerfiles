@@ -32,11 +32,7 @@ RUN curl -L https://github.com/samtools/samtools/releases/download/${SAMTOOLSVER
 # Clone DRUMMER at the specified commit
 RUN git clone https://github.com/loganylchen/DRUMMER.git /opt/DRUMMER && \
     cd /opt/DRUMMER && \
-    git checkout ${VERSION} && \
-    # Fix Python 3.10+ compatibility: 'rU' mode was removed
-    sed -i "s/, \"rU\"/, \"r\"/g" modules/test_isoform.py && \
-    sed -i "s/,'rU'/,'r'/g" modules/test_exome.py && \
-    sed -i "s/, \"rU\"/, \"r\"/g" modules/DRUMMER-parse.py
+    git checkout ${VERSION} 
 
 # Runtime stage
 FROM debian:bookworm-slim
