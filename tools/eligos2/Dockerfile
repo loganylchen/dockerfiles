@@ -34,8 +34,8 @@ WORKDIR /opt
 RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.git /opt/eligos2 && \
     rm -rf /opt/eligos2/.git
 
-# Install R package
-RUN Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")'
+# Install R package (use micromamba run to execute in conda environment)
+RUN micromamba run -n base Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")'
 
 # Add ELIGOS2 to PATH
 ENV PATH="/opt/eligos2:/opt/eligos2/Scripts:$PATH"
