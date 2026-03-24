@@ -37,12 +37,13 @@ RUN git clone --depth=1 --branch v${VERSION} https://gitlab.com/piroonj/eligos2.
 # Install R package (use micromamba run to execute in conda environment)
 RUN micromamba run -n base Rscript -e 'install.packages("samplesizeCMH", repos="https://cloud.r-project.org")'
 
-# Add ELIGOS2 to PATH
-ENV PATH="/opt/eligos2:/opt/eligos2/Scripts:$PATH"
+# Make ELIGOS2 scripts executable and add to PATH
+RUN chmod +x /opt/eligos2/eligos2 /opt/eligos2/Scripts/*.py 2>/dev/null || true
+ENV PATH="/opt/eligos2:/opt/eligos2/Scripts:${PATH}"
 
 # Verify installation
-RUN eligos2 -h
+RUN micromamba run -n base /opt/eligos2/eligos2 -h
 
 WORKDIR /data
 
-CMD ["eligos2", "-h"]
+CMD ["micromamba", "run", "-n", "base", "/opt/eligos2/eligos2", "-h"]
