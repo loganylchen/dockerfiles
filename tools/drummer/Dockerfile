@@ -8,7 +8,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 ARG SAMTOOLSVER
-RUN apt-get install -y --no-install-recommends \
+RUN apt-get update && apt-get install -y --no-install-recommends \
         build-essential \
         curl \
         ca-certificates \
