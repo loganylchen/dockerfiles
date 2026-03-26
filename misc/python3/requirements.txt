@@ -6,3 +6,4 @@ scikit-learn
 scipy
 bx-python
 statsmodels
+tqdm
