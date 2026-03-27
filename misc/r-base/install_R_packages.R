@@ -2,32 +2,32 @@
 # Install required R packages for plotting and data manipulation
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
-install.packages(c( \
-            'BiocManager', \
-            'tidyverse', \
-            'ggplot2', \
-            'ggpubr', \
-            'ggsci', \
-            'ggrepel', \
-            'ggalt', \
-            'ggplotify', \
-            'patchwork', \
-            'pheatmap', \
-            'UpSetR', \
-            'dplyr', \
-            'tidyr', \
-            'tibble', \
-            'readr', \
-            'devtools', \
-            'magick', \
-            'readr' \
+install.packages(c( 
+            'BiocManager', 
+            'tidyverse', 
+            'ggplot2', 
+            'ggpubr', 
+            'ggsci', 
+            'ggrepel', 
+            'ggalt', 
+            'ggplotify', 
+            'patchwork', 
+            'pheatmap', 
+            'UpSetR', 
+            'dplyr', 
+            'tidyr', 
+            'tibble', 
+            'readr', 
+            'devtools', 
+            'magick', 
+            'readr' 
         ), repos='https://cloud.r-project.org/')
   
-BiocManager::install(c( \
-            'ComplexHeatmap', \
-            'EnhancedVolcano', \
-            'PCAtools', \
-            'DESeq2' \
+BiocManager::install(c( 
+            'ComplexHeatmap', 
+            'EnhancedVolcano', 
+            'PCAtools', 
+            'DESeq2' 
         ), ask=FALSE) 
 
 
