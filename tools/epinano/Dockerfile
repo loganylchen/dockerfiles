@@ -38,6 +38,7 @@ RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/Epinano${VERSI
     && mv /tmp/EpiNano-Epinano${VERSION} /opt/epinano \
     && rm -rf /tmp/*
 
+RUN ln -s /usr/bin/python3 /usr/bin/python
 ENV PATH="/opt/epinano:$PATH"
 RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 
