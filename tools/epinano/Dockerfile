@@ -1,83 +1,50 @@
-ARG VERSION=1.2.5
+ARG VERSION=1.2.4
 
-# Optimized Dockerfile for EpiNano v1.2.5
-# EpiNano requires Python 3.6-3.7 and R for analysis scripts
-# Based on README requirements: https://github.com/novoalab/EpiNano
-
-FROM python:3.7-slim
-
+FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-LABEL description="EpiNano - Detection of RNA modifications from Oxford Nanopore direct RNA sequencing"
-LABEL version="${VERSION}"
 
-# Set DEBIAN_FRONTEND to noninteractive
 ENV DEBIAN_FRONTEND=noninteractive
+ARG VERSION
 
-# Install system dependencies
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends \
-    # For downloading and extracting
-    wget unzip \
-    # Java for sam2tsv.jar (using openjdk-17 as openjdk-8 is deprecated)
-    openjdk-17-jre-headless \
-    # SAMtools for BAM processing
-    samtools \
-    # zlib and curl for Python packages
-    zlib1g-dev \
-    libcurl4-openssl-dev \
-    libssl-dev \
-    # R for analysis scripts
-    r-base \
-    r-base-core \
-    r-recommended \
-    r-cran-tidyverse \
-    r-cran-optparse \
-    r-cran-reshape2 \
-    r-cran-car \
-    r-cran-ggrepel \
-    # Cleanup
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+# Install system dependencies, Python, R, and samtools
+# EpiNano v1.2.4 removes dependency on sam2tsv (Java not needed)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        wget \
+        unzip \
+        ca-certificates \
+        python3 \
+        python3-pip \
+        r-base \
+        r-cran-tidyverse \
+        r-cran-optparse \
+        r-cran-reshape2 \
+        r-cran-car \
+        r-cran-ggrepel \
+        samtools \
+    && Rscript -e "install.packages('outliers', repos='https://cloud.r-project.org/')" \
+    && pip3 install --no-cache-dir --break-system-packages \
+        'numpy>=1.26' \
+        'pandas>=1.5' \
+        'scikit-learn>=1.3' \
+        'biopython>=1.83' \
+        'pysam>=0.22' \
+        'h5py>=3.10' \
+        'dask>=2024.2' \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
-# Install R packages via CRAN (outliers is not available as apt package)
-RUN R -e "install.packages(c('outliers'), repos='https://cloud.r-project.org/', dependencies=TRUE)"
+# Download EpiNano (tag format: Epinano1.2.4)
+RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/Epinano${VERSION}.zip -O /tmp/epinano.zip \
+    && unzip /tmp/epinano.zip -d /tmp \
+    && mv /tmp/EpiNano-Epinano${VERSION} /opt/epinano \
+    && rm -rf /tmp/*
 
-# Download and install EpiNano using release zip (faster than git clone)
-RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${VERSION}.zip -O epinano.zip && \
-    unzip epinano.zip && \
-    mv EpiNano-EpiNano${VERSION} /opt/epinano && \
-    rm epinano.zip
-
-# Install Python dependencies
-RUN pip install --no-cache-dir --upgrade pip setuptools wheel && \
-    pip install --no-cache-dir \
-    numpy==1.21.6 \
-    pandas==1.3.5 \
-    scipy==1.7.3 \
-    scikit-learn==1.0.2 \
-    biopython==1.79 \
-    pysam==0.19.1 \
-    h5py==3.7.0
-
-# Add EpiNano to PATH
 ENV PATH="/opt/epinano:$PATH"
-ENV SAM2TSV="/opt/epinano/misc/sam2tsv.jar"
-
-# Make Python scripts executable
 RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 
-# Set working directory
-WORKDIR /data
-
 # Verify installation
-RUN python --version && \
-    python -c "import numpy, pandas, scipy, sklearn, Bio, pysam, h5py; print('Python dependencies OK')" && \
-    Rscript -e "library(tidyverse); library(outliers); print('R packages OK')" && \
-    samtools --version | head -1 && \
-    java -version 2>&1 | head -1 && \
-    Rscript --version && \
-    echo "EpiNano scripts:" && \
-    ls /opt/epinano/*.py | head -5
+RUN python3 -c "import numpy, pandas, sklearn, Bio, pysam, h5py, dask; print('Python dependencies OK')" \
+    && Rscript -e "library(tidyverse); library(outliers); cat('R packages OK\n')" \
+    && samtools --version | head -1
 
-# Default command - show help
-CMD ["python", "/opt/epinano/Epinano_Variants.py", "-h"]
+WORKDIR /data
+CMD ["python3", "/opt/epinano/Epinano_Variants.py", "-h"]
