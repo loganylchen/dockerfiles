@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'pysam>=0.22' \
         'h5py>=3.10' \
         'dask>=2024.2' \
+        'pyarrow' \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 # Symlink python -> python3 for EpiNano shebangs
