@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         r-cran-car \
         r-cran-ggrepel \
         r-cran-stringr \
+        minimap2 \
         samtools \
     && Rscript -e "install.packages('outliers', repos='https://cloud.r-project.org/')" \
     && pip3 install --no-cache-dir --break-system-packages \
@@ -50,8 +51,10 @@ RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 # Verify installation
 RUN python3 -c "import numpy, pandas, sklearn, Bio, pysam, h5py, dask; print('Python dependencies OK')" \
     && Rscript -e "library(tidyverse); library(outliers); cat('R packages OK\n')" \
+    && minimap2 --version \
     && samtools --version | head -1 \
-    && java -version 2>&1 | head -1
+    && java -version 2>&1 | head -1 \
+    && test -f /opt/epinano/misc/sam2tsv.jar && echo "sam2tsv.jar OK"
 
 WORKDIR /data
 CMD ["python3", "/opt/epinano/Epinano_Variants.py", "-h"]
