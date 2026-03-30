@@ -5,7 +5,7 @@ ARG VERSION=2.1.0
 
 FROM mambaorg/micromamba:1.5.10
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-
+ENV MAMBA_DOCKERFILE_ACTIVATE=1
 ARG VERSION
 
 USER root
