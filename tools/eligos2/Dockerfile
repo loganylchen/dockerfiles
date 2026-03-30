@@ -14,6 +14,7 @@ USER root
 RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         procps \
+        libgfortran3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Create the conda environment with mamba (following official guide)
