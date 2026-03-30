@@ -5,7 +5,7 @@ ARG VERSION=2.1.0
 
 FROM mambaorg/micromamba:1.5.10
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
-ENV MAMBA_DOCKERFILE_ACTIVATE=1
+ARG MAMBA_DOCKERFILE_ACTIVATE=1
 ARG VERSION
 
 USER root
@@ -31,7 +31,7 @@ RUN micromamba run -n base Rscript -e 'install.packages("samplesizeCMH", repos="
 
 # Make ELIGOS2 scripts executable and add to PATH
 RUN chmod +x /opt/eligos2/eligos2 /opt/eligos2/Scripts/*.py 2>/dev/null || true
-ENV PATH="/opt/eligos2:/opt/eligos2/Scripts:${PATH}"
+ENV PATH="/opt/conda/bin:/opt/eligos2:/opt/eligos2/Scripts:${PATH}"
 
 # Verify installation
 RUN micromamba run -n base /opt/eligos2/eligos2 -h
