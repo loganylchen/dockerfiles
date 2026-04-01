@@ -23,6 +23,7 @@ the corresponding `Dockerfile` or package list changes. The tag format is `YYYY-
 ### Build history
 
 <!-- PYTHON3_HISTORY -->
+| 2026-04-01 | packages: pandas,numpy,matplotlib,seaborn,scikit-learn,scipy,bx-python,statsmodels,tqdm,pyfastx |
 | 2026-03-26 | packages: pandas,numpy,matplotlib,seaborn,scikit-learn,scipy,bx-python,statsmodels,tqdm |
 | 2026-03-26 | packages: pandas,numpy,matplotlib,seaborn,scikit-learn,scipy,bx-python,statsmodels |
 | Date | Notes |
