@@ -7,3 +7,4 @@ scipy
 bx-python
 statsmodels
 tqdm
+pyfastx
