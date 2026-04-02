@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libuv1-dev \
         libgit2-dev \
         libgsl-dev \
+        libtbb-dev \
         python3 \
         wget \
         ca-certificates \
