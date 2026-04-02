@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
         libgomp1 \
+        libtbb2 \
     && MINOR=$(echo ${VERSION} | cut -d. -f2) \
     && if [ "$MINOR" -le 10 ]; then \
         wget -q https://github.com/COMBINE-lab/salmon/releases/download/v${VERSION}/salmon-${VERSION}_linux_x86_64.tar.gz \
