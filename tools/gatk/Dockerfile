@@ -9,6 +9,7 @@ ARG VERSION
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
+        unzip \
         openjdk-17-jre-headless \
         python3 \
         python3-pip \
@@ -18,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && unzip /tmp/gatk.zip -d /opt \
     && mv /opt/gatk-${VERSION} /opt/gatk \
     && ln -sf /usr/bin/python3 /usr/bin/python \
-    && apt-get purge -y --auto-remove wget ca-certificates unzip \
+    && apt-get purge -y wget ca-certificates unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
 ENV PATH=/opt/gatk:$PATH
