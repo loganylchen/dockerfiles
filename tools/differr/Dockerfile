@@ -1,6 +1,6 @@
 ARG VERSION=0.2
 
-FROM python:3.6-slim
+FROM python:3.9-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
