@@ -31,6 +31,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && tar -xjf /tmp/htslib.tar.bz2 -C /tmp \
     && cd /tmp/htslib-1.21 && make -j$(nproc) && make install \
     && ldconfig \
+    && mkdir -p /usr/include/tbb \
+    && echo '#include <oneapi/tbb/version.h>' > /usr/include/tbb/tbb_stddef.h \
     && wget -q https://github.com/griffithlab/regtools/archive/refs/tags/1.0.0.tar.gz -O /tmp/regtools.tar.gz \
     && tar -xzf /tmp/regtools.tar.gz -C /tmp \
     && cd /tmp/regtools-1.0.0 && mkdir build && cd build \
