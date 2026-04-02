@@ -24,7 +24,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove python3-dev gcc g++ git ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/majiq /root/.cache
 
-RUN python3 -c "import majiq; print('majiq OK')"
+RUN python3 -c "import sys; print(sys.path)" \
+    && pip3 show rna-majiq 2>/dev/null || true \
+    && find /usr -path '*/majiq*' -type f 2>/dev/null | head -20 || true \
+    && python3 -c "import majiq; print('majiq OK')"
 
 WORKDIR /data
 CMD ["majiq"]
