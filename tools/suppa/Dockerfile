@@ -1,12 +1,12 @@
 ARG VERSION=2.3
 
-FROM python:3.8.10-slim-buster
+FROM ubuntu:20.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 ENV PATH="/opt/suppa:${PATH}"
-RUN apt-get update && apt-get install -y wget unzip && \
+RUN apt-get update && apt-get install -y wget unzip python3 python3-pip python3-dev && \
     pip3 install --no-cache-dir \
     SUPPA==${VERSION} && \
     wget https://github.com/comprna/SUPPA/archive/refs/tags/v${VERSION}.zip  && \
