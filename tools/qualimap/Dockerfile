@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y wget unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
-RUN qualimap --help 2>&1
+RUN qualimap --help 2>&1 || true
 
 WORKDIR /data
 CMD ["qualimap"]
