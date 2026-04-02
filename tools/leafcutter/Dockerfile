@@ -40,15 +40,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
     && sed -i 's/ -O2 / -O0 /g' /usr/lib/R/etc/Makeconf \
     && Rscript -e " \
+        options(download.file.method='wget', timeout=600); \
         install.packages('remotes', repos='https://cloud.r-project.org/'); \
-        remotes::install_version('StanHeaders', version='2.21.0-7', repos='https://cloud.r-project.org/'); \
-        remotes::install_version('rstan', version='2.21.8', repos='https://cloud.r-project.org/'); \
         install.packages(c('optparse', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('Biobase', 'DirichletMultinomial'), ask=FALSE); \
-        remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}') \
+        remotes::install_version('StanHeaders', version='2.21.0-7', repos='https://cloud.r-project.org/', upgrade='never'); \
+        remotes::install_version('rstan', version='2.21.8', repos='https://cloud.r-project.org/', upgrade='never'); \
+        remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}', upgrade='never') \
     " \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/scripts/leafcutter_ds.R \
         -O /usr/local/bin/leafcutter_ds.R \
@@ -56,9 +57,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/clustering/leafcutter_cluster_regtools.py \
         -O /usr/local/bin/leafcutter_cluster_regtools.py \
     && chmod +x /usr/local/bin/leafcutter_cluster_regtools.py \
-    && apt-mark manual r-base-core \
     && apt-get purge -y r-base-dev wget ca-certificates git build-essential cmake \
-    && apt-get autoremove -y --purge \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN regtools --help 2>&1 || true
