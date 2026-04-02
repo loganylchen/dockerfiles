@@ -16,7 +16,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         libhts-dev \
         zlib1g-dev \
-    && pip3 install --no-cache-dir -U pip \
     && git clone --depth 1 --branch v${VERSION} \
         https://bitbucket.org/biociphers/majiq_academic.git /tmp/majiq \
     && pip3 install --no-cache-dir /tmp/majiq/voila \
