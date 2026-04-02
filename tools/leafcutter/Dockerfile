@@ -44,6 +44,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('Biobase', 'DirichletMultinomial'), ask=FALSE); \
+    \" \
+    && mkdir -p ~/.R \
+    && echo 'CXX14FLAGS += -O0' >> ~/.R/Makevars \
+    && echo 'CXX17FLAGS += -O0' >> ~/.R/Makevars \
+    && Rscript -e " \
         remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}') \
     " \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/scripts/leafcutter_ds.R \
