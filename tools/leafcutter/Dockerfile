@@ -39,18 +39,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
     && sed -i 's/ -O2 / -O0 /g' /usr/lib/R/etc/Makeconf \
+    && fallocate -l 4G /swapfile && chmod 600 /swapfile \
+    && mkswap /swapfile && swapon /swapfile \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600); \
-        install.packages('remotes', repos='https://cloud.r-project.org/'); \
-        install.packages(c('optparse', 'rstantools', 'foreach', \
+        install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('Biobase', 'DirichletMultinomial'), ask=FALSE); \
-        remotes::install_version('StanHeaders', version='2.21.0-7', repos='https://cloud.r-project.org/', upgrade='never'); \
-        remotes::install_version('rstan', version='2.21.8', repos='https://cloud.r-project.org/', upgrade='never'); \
-        remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}', upgrade='never') \
+        remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}') \
     " \
+    && swapoff /swapfile && rm /swapfile \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/scripts/leafcutter_ds.R \
         -O /usr/local/bin/leafcutter_ds.R \
     && chmod +x /usr/local/bin/leafcutter_ds.R \
