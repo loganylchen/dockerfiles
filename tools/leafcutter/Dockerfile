@@ -40,7 +40,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
     && sed -i 's/ -O2 / -O0 /g' /usr/lib/R/etc/Makeconf \
     && Rscript -e " \
-        install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
+        install.packages('remotes', repos='https://cloud.r-project.org/'); \
+        remotes::install_version('StanHeaders', version='2.21.0-7', repos='https://cloud.r-project.org/'); \
+        remotes::install_version('rstan', version='2.21.8', repos='https://cloud.r-project.org/'); \
+        install.packages(c('optparse', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
