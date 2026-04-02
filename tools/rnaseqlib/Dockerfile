@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'pandas==0.24.2' \
         'pysam==0.15.4' \
     && git clone https://github.com/yarden/rnaseqlib.git /tmp/rnaseqlib \
-    && cd /tmp/rnaseqlib && python2 setup.py install --no-deps \
+    && cd /tmp/rnaseqlib && python2 setup.py install \
     && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
         -O /usr/local/bin/gtfToGenePred \
     && chmod +x /usr/local/bin/gtfToGenePred \
