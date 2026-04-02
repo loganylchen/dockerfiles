@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
     && wget -q https://github.com/arq5x/bedtools2/releases/download/v${VERSION}/bedtools-${VERSION}.tar.gz \
         -O /tmp/bedtools.tar.gz \
     && tar -xzf /tmp/bedtools.tar.gz -C /tmp \
