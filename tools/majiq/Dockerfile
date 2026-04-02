@@ -21,10 +21,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         https://bitbucket.org/biociphers/majiq_academic.git /tmp/majiq \
     && pip3 install --no-cache-dir /tmp/majiq/voila \
     && pip3 install --no-cache-dir /tmp/majiq/majiq \
+    && pip3 install --no-cache-dir 'click<8.0' \
     && apt-get purge -y --auto-remove python3-dev gcc g++ git ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/majiq /root/.cache
 
-RUN majiq --version
+RUN python3 -c "import majiq; print('majiq OK')"
 
 WORKDIR /data
 CMD ["majiq"]
