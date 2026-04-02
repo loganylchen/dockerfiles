@@ -13,18 +13,20 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         gcc \
         libc6-dev \
+        git \
         bedtools \
     && wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip.py \
     && python2 /tmp/get-pip.py \
     && pip2 install --no-cache-dir \
-        rnaseqlib==${VERSION} \
         'numpy==1.16.6' \
         'pandas==0.24.2' \
         'pysam==0.15.4' \
+    && pip2 install --no-cache-dir \
+        git+https://github.com/yarden/rnaseqlib.git \
     && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
         -O /usr/local/bin/gtfToGenePred \
     && chmod +x /usr/local/bin/gtfToGenePred \
-    && apt-get purge -y --auto-remove python2-dev wget ca-certificates gcc \
+    && apt-get purge -y --auto-remove python2-dev wget ca-certificates gcc git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN python2 -c "import rnaseqlib; print('rnaseqlib OK')" \
