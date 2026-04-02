@@ -41,7 +41,7 @@ LABEL version="${VERSION}"
 # Install only runtime dependencies (no build tools)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    libhdf5-310 \
+    libhdf5-103-1t64 \
     zlib1g \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
