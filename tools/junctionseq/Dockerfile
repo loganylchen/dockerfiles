@@ -19,6 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
     && Rscript -e " \
+        options(download.file.method='wget', timeout=600); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('DEXSeq', 'DESeq2', 'BiocParallel', 'Rsamtools', \
             'SummarizedExperiment', 'genefilter', 'geneplotter', \
@@ -29,13 +30,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://hartleys.github.io/JunctionSeq/install/JunctionSeq_LATEST.tar.gz \
         -O /tmp/JunctionSeq.tar.gz \
     && Rscript -e " \
+        options(download.file.method='wget', timeout=600); \
         install.packages(c('Hmisc', 'plotrix'), repos='https://cloud.r-project.org/'); \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
-    && apt-mark manual r-base-core \
-    && apt-get purge -y r-base-dev wget ca-certificates \
-    && apt-get autoremove -y --purge \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(JunctionSeq); sessionInfo()" 2>&1
