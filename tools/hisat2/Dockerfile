@@ -9,8 +9,8 @@ ARG VERSION
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
+        build-essential \
         python3 \
-        python3-pip \
         libgomp1 \
     && wget -q https://github.com/DaehwanKimLab/hisat2/archive/refs/tags/v${VERSION}.tar.gz \
         -O /tmp/hisat2.tar.gz \
