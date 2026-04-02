@@ -38,17 +38,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cd /tmp/regtools-1.0.0 && mkdir build && cd build \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
+    && mkdir -p ~/.R \
+    && echo 'CXX14FLAGS += -O0' >> ~/.R/Makevars \
+    && echo 'CXX17FLAGS += -O0' >> ~/.R/Makevars \
     && Rscript -e " \
         install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('Biobase', 'DirichletMultinomial'), ask=FALSE); \
-    \" \
-    && mkdir -p ~/.R \
-    && echo 'CXX14FLAGS += -O0' >> ~/.R/Makevars \
-    && echo 'CXX17FLAGS += -O0' >> ~/.R/Makevars \
-    && Rscript -e " \
         remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}') \
     " \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/scripts/leafcutter_ds.R \
