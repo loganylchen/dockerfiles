@@ -41,6 +41,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
         libhdf5-103-1 \
+        libgomp1 \
         zlib1g \
         libbz2-1.0 \
         liblzma5 \
