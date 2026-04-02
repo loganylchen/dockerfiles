@@ -39,23 +39,27 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
     && sed -i 's/ -O2 / -O0 /g' /usr/lib/R/etc/Makeconf \
-    && fallocate -l 4G /swapfile && chmod 600 /swapfile \
-    && mkswap /swapfile && swapon /swapfile \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600); \
-        install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
+        install.packages(c('remotes', 'optparse', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
             repos='https://cloud.r-project.org/'); \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('Biobase', 'DirichletMultinomial'), ask=FALSE); \
-        remotes::install_github('davidaknowles/leafcutter/leafcutter', ref='v${VERSION}') \
+        remotes::install_version('StanHeaders', '2.21.0-7', repos='https://cloud.r-project.org/'); \
+        remotes::install_version('rstan', '2.21.8', repos='https://cloud.r-project.org/', upgrade='never') \
     " \
-    && swapoff /swapfile && rm /swapfile \
-    && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/scripts/leafcutter_ds.R \
-        -O /usr/local/bin/leafcutter_ds.R \
+    && git clone --depth 1 --branch v${VERSION} \
+        https://github.com/davidaknowles/leafcutter.git /tmp/leafcutter \
+    && sed -i '/mk_cppmodule/d' /tmp/leafcutter/leafcutter/R/stanmodels.R \
+    && sed -i 's/Class = "stanmodel", $/Class = "stanmodel")))/' /tmp/leafcutter/leafcutter/R/stanmodels.R \
+    && Rscript -e " \
+        options(download.file.method='wget', timeout=600); \
+        remotes::install_local('/tmp/leafcutter/leafcutter', upgrade='never') \
+    " \
+    && cp /tmp/leafcutter/scripts/leafcutter_ds.R /usr/local/bin/leafcutter_ds.R \
     && chmod +x /usr/local/bin/leafcutter_ds.R \
-    && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/clustering/leafcutter_cluster_regtools.py \
-        -O /usr/local/bin/leafcutter_cluster_regtools.py \
+    && cp /tmp/leafcutter/clustering/leafcutter_cluster_regtools.py /usr/local/bin/leafcutter_cluster_regtools.py \
     && chmod +x /usr/local/bin/leafcutter_cluster_regtools.py \
     && apt-get purge -y r-base-dev wget ca-certificates git build-essential cmake \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
