@@ -45,10 +45,9 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="Nanocompore - RNA modification detection from Nanopore dRNA-Seq data"
 LABEL version="${VERSION}"
 
-# Install only runtime dependencies (no build tools)
+# Install only runtime dependencies (h5py 3.x+ bundles HDF5, no system lib needed)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    libhdf5-103-1t64 \
     zlib1g \
     libbz2-1.0 \
     liblzma5 \

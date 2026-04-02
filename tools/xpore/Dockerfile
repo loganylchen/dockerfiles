@@ -38,10 +38,9 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="xPore - Identification of differential RNA modifications from direct RNA sequencing"
 LABEL version="${VERSION}"
 
-# Install only runtime dependencies (no build tools)
+# Install only runtime dependencies (h5py 3.x+ bundles HDF5, no system lib needed)
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-    libhdf5-103-1t64 \
     zlib1g \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
