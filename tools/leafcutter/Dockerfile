@@ -38,9 +38,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cd /tmp/regtools-1.0.0 && mkdir build && cd build \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
-    && mkdir -p /root/.R \
-    && echo 'CXX14FLAGS += -O0' >> /root/.R/Makevars \
-    && echo 'CXX17FLAGS += -O0' >> /root/.R/Makevars \
+    && sed -i 's/ -O2 / -O0 /g' /usr/lib/R/etc/Makeconf \
     && Rscript -e " \
         install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
