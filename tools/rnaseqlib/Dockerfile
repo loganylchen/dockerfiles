@@ -1,6 +1,6 @@
 ARG VERSION=1.1.2
 
-FROM debian:bookworm-slim
+FROM ubuntu:20.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,9 +18,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && python2 /tmp/get-pip.py \
     && pip2 install --no-cache-dir \
         rnaseqlib==${VERSION} \
-        numpy \
-        pandas \
-        pysam==0.15.4 \
+        'numpy==1.16.6' \
+        'pandas==0.24.2' \
+        'pysam==0.15.4' \
     && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
         -O /usr/local/bin/gtfToGenePred \
     && chmod +x /usr/local/bin/gtfToGenePred \

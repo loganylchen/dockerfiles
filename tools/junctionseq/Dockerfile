@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         default-jdk \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
-        BiocManager::install(c('JunctionSeq', 'QoRTs'), ask=FALSE) \
+        BiocManager::install(c('JunctionSeq', 'QoRTs'), version='3.15', ask=FALSE, force=TRUE) \
     " \
     && apt-get purge -y --auto-remove r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*

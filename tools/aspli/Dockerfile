@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxml2-dev \
         zlib1g-dev \
         libfontconfig1-dev \
+        libuv1-dev \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('ASpli', 'GenomicFeatures'), ask=FALSE) \

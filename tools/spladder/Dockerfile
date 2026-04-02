@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
     && pip3 install --no-cache-dir --break-system-packages \
         spladder==${VERSION} \
+        'matplotlib<3.7' \
     && apt-get purge -y --auto-remove python3-dev gcc \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 

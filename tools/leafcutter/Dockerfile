@@ -14,23 +14,22 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxml2-dev \
         zlib1g-dev \
         libfontconfig1-dev \
+        libbz2-dev \
+        liblzma-dev \
         python3 \
-        python3-pip \
         wget \
         ca-certificates \
         samtools \
         git \
-        libhts-dev \
         build-essential \
-    && pip3 install --no-cache-dir --break-system-packages \
-        regtools \
+        cmake \
     && wget -q https://github.com/samtools/htslib/releases/download/1.21/htslib-1.21.tar.bz2 -O /tmp/htslib.tar.bz2 \
     && tar -xjf /tmp/htslib.tar.bz2 -C /tmp \
     && cd /tmp/htslib-1.21 && make -j$(nproc) && make install \
+    && ldconfig \
     && wget -q https://github.com/griffithlab/regtools/archive/refs/tags/1.0.0.tar.gz -O /tmp/regtools.tar.gz \
     && tar -xzf /tmp/regtools.tar.gz -C /tmp \
     && cd /tmp/regtools-1.0.0 && mkdir build && cd build \
-    && apt-get install -y --no-install-recommends cmake \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
     && Rscript -e " \
