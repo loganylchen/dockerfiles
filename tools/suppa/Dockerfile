@@ -1,15 +1,24 @@
 ARG VERSION=2.4
 
-FROM python:3.8.20-slim-bullseye
+FROM python:3.4.10-stretch
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
-ARG VERSION
+ENV PATH="/opt/SUPPA:${PATH}"
 
-RUN pip3 install --no-cache-dir \
-    SUPPA==${VERSION} 
+# Install dependencies
+RUN pip install --upgrade pip && \
+    pip install scikit-learn numpy pandas scipy statsmodels
 
-RUN suppa.py --help 2>&1
+WORKDIR /opt
+RUN wget https://github.com/comprna/SUPPA/archive/refs/tags/v${VERSION}.zip \
+    && unzip v${VERSION}.zip \
+    && rm -rf v${VERSION}.zip \
+    && mv SUPPA-${VERSION} SUPPA \
+    && chmod -R +x SUPPA/*
 
-WORKDIR /data
-CMD ["suppa.py"]
+# Set working directory
+WORKDIR /home
+
+# bash
+CMD ["bash"]
