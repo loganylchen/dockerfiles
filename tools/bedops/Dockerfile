@@ -9,6 +9,7 @@ ARG VERSION
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
+        bzip2 \
     && wget -q https://github.com/bedops/bedops/releases/download/v${VERSION}/bedops_linux_x86_64-v${VERSION}.tar.bz2 \
         -O /tmp/bedops.tar.bz2 \
     && tar -xjf /tmp/bedops.tar.bz2 -C /tmp \
