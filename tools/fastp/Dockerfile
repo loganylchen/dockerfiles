@@ -6,7 +6,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        g++ make git ca-certificates zlib1g-dev libisal-dev \
+        g++ make git ca-certificates zlib1g-dev libisal-dev libdeflate-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git clone --depth=1 --branch v${VERSION} https://github.com/OpenGene/fastp.git /tmp/fastp \
@@ -20,7 +20,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        zlib1g libisal2 \
+        zlib1g libisal2 libdeflate0 \
     && rm -rf /var/lib/apt/lists/*
 
 COPY --from=builder /tmp/fastp/fastp /usr/local/bin/fastp
