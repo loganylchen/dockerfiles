@@ -11,7 +11,9 @@ ARG CUDA_VERSION
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
+        gcc \
         git \
+        zlib1g-dev \
     && pip3 install --no-cache-dir --upgrade pip \
     && pip3 install --no-cache-dir ont-bonito==${VERSION} \
     && apt-get purge -y --auto-remove git \

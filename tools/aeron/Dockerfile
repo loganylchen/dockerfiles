@@ -9,14 +9,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG SAMTOOLS_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget g++ make libncurses-dev zlib1g-dev libbz2-dev liblzma-dev \
+        wget gcc g++ make autoconf pkg-config libncurses-dev zlib1g-dev \
+        libbz2-dev liblzma-dev libcurl4-gnutls-dev libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \
     && wget -q https://github.com/samtools/samtools/releases/download/${SAMTOOLS_VERSION}/samtools-${SAMTOOLS_VERSION}.tar.bz2 \
     && tar -jxf samtools-${SAMTOOLS_VERSION}.tar.bz2 \
     && cd samtools-${SAMTOOLS_VERSION} \
-    && ./configure --prefix=/usr/local \
+    && ./configure --prefix=/usr/local --without-curses \
     && make -j$(nproc) && make install \
     && strip /usr/local/bin/samtools
 
