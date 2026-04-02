@@ -26,6 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://hartleys.github.io/JunctionSeq/install/JunctionSeq_LATEST.tar.gz \
         -O /tmp/JunctionSeq.tar.gz \
     && Rscript -e " \
+        install.packages(c('Hmisc', 'plotrix'), repos='https://cloud.r-project.org/'); \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
