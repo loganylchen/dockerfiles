@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN echo '#!/bin/sh\nexec java -jar /opt/picard.jar "$@"' > /usr/local/bin/picard \
     && chmod +x /usr/local/bin/picard
 
-RUN picard SortSam --version 2>&1 | head -1
+RUN picard SortSam --version 2>&1
 
 WORKDIR /data
 CMD ["picard"]

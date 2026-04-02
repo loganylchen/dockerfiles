@@ -41,7 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /tmp/LongGF-*/bin/LongGF /usr/local/bin/LongGF
 
-RUN LongGF 2>&1 | head -3 || true
+RUN LongGF 2>&1 || true
 
 WORKDIR /data
 CMD ["LongGF"]

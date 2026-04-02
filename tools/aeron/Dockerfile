@@ -45,7 +45,7 @@ RUN mkdir -p /opt/bin \
     && chmod +x /opt/bin/* \
     && rm -rf /tmp/Aeron
 
-RUN samtools --version | head -1
+RUN samtools --version
 
 WORKDIR /data
 CMD ["bash"]

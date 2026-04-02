@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN python2 -c "import rnaseqlib; print('rnaseqlib OK')" \
-    && gtfToGenePred 2>&1 | head -1 || true
+    && gtfToGenePred 2>&1 || true
 
 WORKDIR /data
 CMD ["gff_make_annotation"]

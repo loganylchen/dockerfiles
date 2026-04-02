@@ -100,7 +100,7 @@ RUN printf '#!/bin/bash\n\
 
 # Verify installations
 RUN dorado --version \
-    && samtools --version | head -1 \
+    && samtools --version \
     && /opt/conda/envs/directrm/bin/python -c "import torch; print(f'DirectRM env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')" \
     && /opt/conda/envs/remora/bin/python -c "import torch; print(f'Remora env: PyTorch {torch.__version__}, CUDA available: {torch.cuda.is_available()}')"
 

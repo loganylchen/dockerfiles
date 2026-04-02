@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
-RUN Rscript -e "library(SGSeq); sessionInfo()" 2>&1 | head -5
+RUN Rscript -e "library(SGSeq); sessionInfo()" 2>&1
 
 WORKDIR /data
 CMD ["Rscript"]

@@ -17,7 +17,7 @@ RUN git clone --depth=1 https://github.com/ktan8/ModTect.git /opt/modtect
 ADD modtect.py /opt/modtect/modtect.py
 
 RUN chmod +x /opt/modtect/* \
-    && samtools --version | head -1
+    && samtools --version
 
 WORKDIR /data
 CMD ["bash"]

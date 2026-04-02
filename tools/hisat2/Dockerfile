@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
-RUN hisat2 --version | head -1
+RUN hisat2 --version
 
 WORKDIR /data
 CMD ["hisat2"]

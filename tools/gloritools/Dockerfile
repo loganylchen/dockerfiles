@@ -64,7 +64,7 @@ RUN pip3 install --no-cache-dir --break-system-packages -r /tmp/requirements.txt
 
 ENV PATH=/opt/GLORI-tools:/usr/local/bin:/usr/bin:/bin
 
-RUN STAR --version && samtools --version | head -1
+RUN STAR --version && samtools --version
 
 WORKDIR /data
 CMD ["bash"]

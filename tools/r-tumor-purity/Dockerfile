@@ -37,7 +37,7 @@ RUN Rscript -e " \
         repos='https://bu-cnio.r-universe.dev') \
 "
 
-RUN Rscript -e "library(immunedeconv); library(estimate); sessionInfo()" 2>&1 | head -5
+RUN Rscript -e "library(immunedeconv); library(estimate); sessionInfo()" 2>&1
 
 WORKDIR /data
 CMD ["Rscript"]

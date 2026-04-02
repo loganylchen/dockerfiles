@@ -52,8 +52,8 @@ RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 RUN python3 -c "import numpy, pandas, sklearn, Bio, pysam, h5py, dask; print('Python dependencies OK')" \
     && Rscript -e "library(tidyverse); library(outliers); cat('R packages OK\n')" \
     && minimap2 --version \
-    && samtools --version | head -1 \
-    && java -version 2>&1 | head -1 \
+    && samtools --version \
+    && java -version 2>&1 \
     && test -f /opt/epinano/misc/sam2tsv.jar && echo "sam2tsv.jar OK"
 
 WORKDIR /data

@@ -35,7 +35,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /usr/local/bin/genion /usr/local/bin/genion
 
-RUN genion --version 2>&1 || genion --help 2>&1 | head -3
+RUN genion --version 2>&1 || genion --help 2>&1
 
 WORKDIR /data
 CMD ["genion"]

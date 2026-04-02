@@ -43,7 +43,7 @@ RUN pip3 install --no-cache-dir --break-system-packages rich \
 
 ADD hamr.py /opt/hamr/hamr.py
 
-RUN samtools --version | head -1
+RUN samtools --version
 
 WORKDIR /data
 CMD ["bash"]

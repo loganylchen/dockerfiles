@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN pip install --no-cache-dir LAFITE==${VERSION}
 
 # Verify installation
-RUN lafite --help 2>&1 | head -3
+RUN lafite --help 2>&1
 
 WORKDIR /data
 CMD ["lafite"]

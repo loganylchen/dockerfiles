@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && chmod -R +x /opt/iupred2a \
     && rm -rf /var/lib/apt/lists/*
 
-RUN python3 /opt/iupred2a/iupred2a.py 2>&1 | head -3 || true
+RUN python3 /opt/iupred2a/iupred2a.py 2>&1 || true
 
 WORKDIR /data
 CMD ["python3", "/opt/iupred2a/iupred2a.py"]

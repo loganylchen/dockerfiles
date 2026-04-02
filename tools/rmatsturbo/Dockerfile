@@ -51,7 +51,7 @@ RUN cd /tmp \
     && chmod -R +x /opt \
     && rm -rf /tmp/rmats_build
 
-RUN python3 /opt/rmats/rmats.py --help 2>&1 | head -3
+RUN python3 /opt/rmats/rmats.py --help 2>&1
 
 WORKDIR /data
 CMD ["bash"]

@@ -55,7 +55,7 @@ RUN wget -q http://opengene.org/fastp/fastp -O /opt/bin/fastp \
 ADD SiCeLoRe.bash /opt/bin/SiCeLoRe
 RUN chmod +x /opt/bin/SiCeLoRe
 
-RUN samtools --version | head -1
+RUN samtools --version
 
 WORKDIR /data
 CMD ["bash"]

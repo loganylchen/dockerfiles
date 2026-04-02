@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN perl /opt/PSI-Sigma/dummyai.pl --help 2>&1 | head -3 || true
+RUN perl /opt/PSI-Sigma/dummyai.pl --help 2>&1 || true
 
 WORKDIR /data
 CMD ["perl", "/opt/PSI-Sigma/dummyai.pl"]

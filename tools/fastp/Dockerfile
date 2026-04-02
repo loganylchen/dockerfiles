@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /tmp/fastp/fastp /usr/local/bin/fastp
 
-RUN fastp --version 2>&1 | head -1
+RUN fastp --version 2>&1
 
 WORKDIR /data
 CMD ["fastp"]

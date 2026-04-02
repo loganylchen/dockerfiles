@@ -44,7 +44,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates r-base-dev build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN irfinder --version 2>&1 || irfinder 2>&1 | head -3 || true
+RUN irfinder --version 2>&1 || irfinder 2>&1 || true
 
 WORKDIR /data
 CMD ["irfinder"]

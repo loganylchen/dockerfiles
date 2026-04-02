@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
-RUN qualimap --help 2>&1 | head -3
+RUN qualimap --help 2>&1
 
 WORKDIR /data
 CMD ["qualimap"]

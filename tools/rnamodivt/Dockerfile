@@ -71,7 +71,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates git python3-dev gcc g++ make r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN hisat2 --version | head -1
+RUN hisat2 --version
 
 WORKDIR /data
 CMD ["bash"]

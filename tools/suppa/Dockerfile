@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         suppa==${VERSION} \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 
-RUN suppa.py --help 2>&1 | head -3
+RUN suppa.py --help 2>&1
 
 WORKDIR /data
 CMD ["suppa.py"]

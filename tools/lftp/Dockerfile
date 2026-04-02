@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         curl \
     && rm -rf /var/lib/apt/lists/*
 
-RUN lftp --version | head -1
+RUN lftp --version
 
 WORKDIR /data
 CMD ["lftp"]

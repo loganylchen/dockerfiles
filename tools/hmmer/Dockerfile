@@ -27,7 +27,7 @@ COPY --from=builder /opt/hmmer /opt/hmmer
 
 ENV PATH=/opt/hmmer/bin:$PATH
 
-RUN /opt/hmmer/bin/hmmbuild -h | head -3
+RUN /opt/hmmer/bin/hmmbuild -h
 
 WORKDIR /data
 CMD ["hmmbuild"]

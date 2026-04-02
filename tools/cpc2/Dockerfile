@@ -23,7 +23,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget g++ make \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
-RUN CPC2.py --help 2>&1 | head -3 || true
+RUN CPC2.py --help 2>&1 || true
 
 WORKDIR /data
 CMD ["bash"]

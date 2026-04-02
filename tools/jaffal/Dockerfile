@@ -62,7 +62,7 @@ RUN mkdir -p /opt/softwares \
     && rm /tmp/jaffa.tar.gz \
     && chmod +x /opt/bin/*
 
-RUN seqtk 2>&1 | head -1 || true
+RUN seqtk 2>&1 || true
 
 WORKDIR /data
 CMD ["bash"]

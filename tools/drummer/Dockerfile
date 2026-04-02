@@ -74,7 +74,7 @@ COPY DRUMMER /usr/local/bin/DRUMMER
 RUN chmod +x /usr/local/bin/DRUMMER
 
 # Smoke-test
-RUN samtools --version | head -1 && \
+RUN samtools --version && \
     DRUMMER -h
 
 WORKDIR /data
