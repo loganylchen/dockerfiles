@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && mv /opt/qualimap_v${VERSION} /opt/qualimap \
     && chmod +x /opt/qualimap/qualimap \
     && ln -s /opt/qualimap/qualimap /usr/local/bin/qualimap \
-    && apt-get purge -y wget ca-certificates unzip \
+    && apt-get purge -y wget unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
 RUN qualimap --help 2>&1
