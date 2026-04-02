@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y gcc \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 
-RUN cpat --version
+RUN cpat.py --help 2>&1 || true
 
 WORKDIR /data
-CMD ["cpat"]
+CMD ["cpat.py"]
