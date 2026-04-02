@@ -20,7 +20,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
-        BiocManager::install(c('DEXSeq', 'BiocParallel', 'Rsamtools'), ask=FALSE) \
+        BiocManager::install(c('DEXSeq', 'DESeq2', 'BiocParallel', 'Rsamtools', \
+            'SummarizedExperiment', 'genefilter', 'geneplotter', \
+            'IRanges', 'GenomicRanges'), ask=FALSE) \
     " \
     && wget -q https://hartleys.github.io/QoRTs/QoRTs_LATEST.tar.gz \
         -O /tmp/QoRTs.tar.gz \
@@ -32,7 +34,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
     && apt-mark manual r-base-core \
-    && apt-get purge -y --auto-remove r-base-dev wget ca-certificates \
+    && apt-get purge -y r-base-dev wget ca-certificates \
+    && apt-get autoremove -y --purge \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(JunctionSeq); sessionInfo()" 2>&1
