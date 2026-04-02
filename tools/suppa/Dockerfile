@@ -16,7 +16,7 @@ RUN apt-get update && apt-get install -y wget unzip python3 python3-pip python3-
     ln -s /opt/suppa/suppa.py /usr/local/bin/suppa.py && \
     rm -rf /var/lib/apt/lists/* /root/.cache
 
-RUN suppa.py --help 2>&1
+RUN python3 /opt/suppa/suppa.py --help 2>&1
 
 WORKDIR /data
-CMD ["suppa.py"]
+CMD ["python3", "/opt/suppa/suppa.py"]
