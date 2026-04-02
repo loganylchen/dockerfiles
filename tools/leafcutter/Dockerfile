@@ -61,10 +61,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'Rcpp::loadModule("stan_fit4dm_glm_robust_mod", what = TRUE)' \
         'Rcpp::loadModule("stan_fit4dm_glm_mod", what = TRUE)' \
         'stanmodels <- sapply(stanmodels, function(model_name) {' \
-        '  stan_file <- if(dir.exists("stan")) "stan" else file.path("inst", "stan")' \
-        '  stan_file <- file.path(stan_file, paste0(model_name, ".stan"))' \
-        '  stanfit <- rstan::stanc_builder(stan_file, allow_undefined = TRUE,' \
-        '    isystem = file.path("inst", "chunks"))' \
+        '  MODELS_HOME <- "exec"' \
+        '  if (!file.exists(MODELS_HOME)) MODELS_HOME <- sub("R$", "exec", getwd())' \
+        '  stan_file <- file.path(MODELS_HOME, paste0(model_name, ".stan"))' \
+        '  isystem <- system.file("chunks", package = methods::getPackageName(environment(), FALSE))' \
+        '  if (!file.exists(file.path(isystem, "common_functions.stan"))) isystem <- file.path("inst", "chunks")' \
+        '  if (!file.exists(file.path(isystem, "common_functions.stan"))) isystem <- file.path("..", "inst", "chunks")' \
+        '  stanfit <- rstan::stanc_builder(stan_file, isystem)' \
         '  stanfit$model_cpp <- list(model_cppname = stanfit$model_name,' \
         '    model_cppcode = stanfit$cppcode)' \
         '  methods::new(Class = "stanmodel",' \
