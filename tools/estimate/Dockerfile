@@ -16,8 +16,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libfontconfig1-dev \
     && Rscript -e " \
         install.packages(c( \
-            'estimate','pheatmap','ggplot2','reshape2', \
-            'RColorBrewer','dplyr'), repos='https://cloud.r-project.org/') \
+            'pheatmap','ggplot2','reshape2', \
+            'RColorBrewer','dplyr'), repos='https://cloud.r-project.org/'); \
+        install.packages('estimate', repos='https://bu-cnio.r-universe.dev') \
     " \
     && apt-get purge -y --auto-remove r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache

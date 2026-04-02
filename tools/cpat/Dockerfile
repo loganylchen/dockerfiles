@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc \
     && pip3 install --no-cache-dir --break-system-packages \
         cpat==${VERSION} \
-    && apt-get purge -y --auto-remove python3-dev gcc \
+    && apt-get purge -y python3-dev gcc \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 
 RUN cpat --version
