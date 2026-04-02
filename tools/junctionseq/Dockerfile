@@ -15,6 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         libfontconfig1-dev \
         default-jdk \
+        libuv1-dev \
         wget \
         ca-certificates \
     && Rscript -e " \
