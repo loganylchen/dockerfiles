@@ -38,9 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cd /tmp/regtools-1.0.0 && mkdir build && cd build \
     && cmake .. && make -j$(nproc) \
     && cp /tmp/regtools-1.0.0/build/regtools /usr/local/bin/ \
-    && mkdir -p ~/.R \
-    && echo 'CXX14FLAGS += -O0' >> ~/.R/Makevars \
-    && echo 'CXX17FLAGS += -O0' >> ~/.R/Makevars \
+    && mkdir -p /root/.R \
+    && echo 'CXX14FLAGS += -O0' >> /root/.R/Makevars \
+    && echo 'CXX17FLAGS += -O0' >> /root/.R/Makevars \
     && Rscript -e " \
         install.packages(c('remotes', 'optparse', 'rstan', 'rstantools', 'foreach', \
             'ggplot2', 'R.utils', 'gridExtra', 'reshape2', 'Hmisc', 'dplyr', 'doMC'), \
@@ -55,6 +55,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://raw.githubusercontent.com/davidaknowles/leafcutter/v${VERSION}/clustering/leafcutter_cluster_regtools.py \
         -O /usr/local/bin/leafcutter_cluster_regtools.py \
     && chmod +x /usr/local/bin/leafcutter_cluster_regtools.py \
+    && apt-mark manual r-base-core \
     && apt-get purge -y --auto-remove r-base-dev wget ca-certificates git build-essential cmake \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 

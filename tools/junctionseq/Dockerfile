@@ -31,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
+    && apt-mark manual r-base-core \
     && apt-get purge -y --auto-remove r-base-dev wget ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
