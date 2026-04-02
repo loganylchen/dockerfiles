@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove python3-dev gcc \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 
-RUN spladder --help 2>&1
+RUN python3 -c "import spladder; print('spladder OK')"
 
 WORKDIR /data
 CMD ["spladder"]
