@@ -54,7 +54,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         -O /usr/local/bin/leafcutter_cluster_regtools.py \
     && chmod +x /usr/local/bin/leafcutter_cluster_regtools.py \
     && apt-mark manual r-base-core \
-    && apt-get purge -y --auto-remove r-base-dev wget ca-certificates git build-essential cmake \
+    && apt-get purge -y r-base-dev wget ca-certificates git build-essential cmake \
+    && apt-get autoremove -y --purge \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN regtools --help 2>&1 || true
