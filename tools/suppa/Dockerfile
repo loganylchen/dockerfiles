@@ -1,6 +1,6 @@
 ARG VERSION=2.3
 
-FROM python:3.4.10
+FROM python:3.8.10-slim-buster
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
