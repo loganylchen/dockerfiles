@@ -17,6 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         -O /tmp/gatk.zip \
     && unzip /tmp/gatk.zip -d /opt \
     && mv /opt/gatk-${VERSION} /opt/gatk \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
     && apt-get purge -y --auto-remove wget ca-certificates unzip \
     && rm -rf /var/lib/apt/lists/* /tmp/*
 
