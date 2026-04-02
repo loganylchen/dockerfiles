@@ -53,6 +53,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         https://github.com/davidaknowles/leafcutter.git /tmp/leafcutter \
     && sed -i '/mk_cppmodule/d' /tmp/leafcutter/leafcutter/R/stanmodels.R \
     && sed -i 's/Class = "stanmodel", $/Class = "stanmodel")))/' /tmp/leafcutter/leafcutter/R/stanmodels.R \
+    && sed -i 's/evalWithTimeout/withTimeout/g' /tmp/leafcutter/leafcutter/R/differential_splicing.R \
+    && sed -i 's/evalWithTimeout/withTimeout/g' /tmp/leafcutter/leafcutter/NAMESPACE \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600); \
         remotes::install_local('/tmp/leafcutter/leafcutter', upgrade='never') \
