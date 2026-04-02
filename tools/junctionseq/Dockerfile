@@ -21,9 +21,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('DEXSeq', 'BiocParallel', 'Rsamtools'), ask=FALSE) \
     " \
-    && wget -q https://bioconductor.org/packages/3.14/bioc/src/contrib/QoRTs_1.3.6.tar.gz \
+    && wget -q https://hartleys.github.io/QoRTs/QoRTs_LATEST.tar.gz \
         -O /tmp/QoRTs.tar.gz \
-    && wget -q https://bioconductor.org/packages/3.14/bioc/src/contrib/JunctionSeq_${VERSION}.tar.gz \
+    && wget -q https://hartleys.github.io/JunctionSeq/install/JunctionSeq_LATEST.tar.gz \
         -O /tmp/JunctionSeq.tar.gz \
     && Rscript -e " \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
