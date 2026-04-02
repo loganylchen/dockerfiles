@@ -51,10 +51,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     " \
     && git clone --depth 1 --branch v${VERSION} \
         https://github.com/davidaknowles/leafcutter.git /tmp/leafcutter \
-    && sed -i '/mk_cppmodule/d' /tmp/leafcutter/leafcutter/R/stanmodels.R \
-    && sed -i 's/Class = "stanmodel", $/Class = "stanmodel")))/' /tmp/leafcutter/leafcutter/R/stanmodels.R \
     && sed -i 's/evalWithTimeout/withTimeout/g' /tmp/leafcutter/leafcutter/R/differential_splicing.R \
     && sed -i 's/evalWithTimeout/withTimeout/g' /tmp/leafcutter/leafcutter/NAMESPACE \
+    && printf '%s\n' \
+        'stanmodels <- c("bb_glm_fix_conc", "bb_glm", "dm_glm_multi_conc", "dm_glm_robust", "dm_glm")' \
+        'Rcpp::loadModule("stan_fit4bb_glm_fix_conc_mod", what = TRUE)' \
+        'Rcpp::loadModule("stan_fit4bb_glm_mod", what = TRUE)' \
+        'Rcpp::loadModule("stan_fit4dm_glm_multi_conc_mod", what = TRUE)' \
+        'Rcpp::loadModule("stan_fit4dm_glm_robust_mod", what = TRUE)' \
+        'Rcpp::loadModule("stan_fit4dm_glm_mod", what = TRUE)' \
+        'stanmodels <- sapply(stanmodels, function(model_name) {' \
+        '  stan_file <- if(dir.exists("stan")) "stan" else file.path("inst", "stan")' \
+        '  stan_file <- file.path(stan_file, paste0(model_name, ".stan"))' \
+        '  stanfit <- rstan::stanc_builder(stan_file, allow_undefined = TRUE,' \
+        '    isystem = file.path("inst", "chunks"))' \
+        '  stanfit$model_cpp <- list(model_cppname = stanfit$model_name,' \
+        '    model_cppcode = stanfit$cppcode)' \
+        '  methods::new(Class = "stanmodel",' \
+        '    model_name = stanfit$model_name,' \
+        '    model_code = stanfit$model_code,' \
+        '    model_cpp = stanfit$model_cpp)' \
+        '})' \
+        > /tmp/leafcutter/leafcutter/R/stanmodels.R \
+    && rm -f /tmp/leafcutter/leafcutter/R/zzz.R \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600); \
         remotes::install_local('/tmp/leafcutter/leafcutter', upgrade='never') \
