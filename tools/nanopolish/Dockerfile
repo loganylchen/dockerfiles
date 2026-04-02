@@ -30,7 +30,7 @@ RUN git clone --recursive --depth=1 --branch v${VERSION} \
         https://github.com/jts/nanopolish.git && \
     cd nanopolish && \
     git submodule update --init --recursive && \
-    make HDF5=noinstall && \
+    make HDF5=noinstall "H5_INCLUDE=-I/usr/include/hdf5/serial" "LDFLAGS=-L/usr/lib/x86_64-linux-gnu/hdf5/serial" && \
     strip nanopolish
 
 # Runtime stage
@@ -40,7 +40,7 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 # Only runtime shared libs needed by the nanopolish binary
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
-        libhdf5-103-1 \
+        libhdf5-103-1t64 \
         zlib1g \
         libbz2-1.0 \
         liblzma5 \
