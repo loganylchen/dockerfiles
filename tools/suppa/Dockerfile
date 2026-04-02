@@ -15,7 +15,8 @@ RUN wget https://github.com/comprna/SUPPA/archive/refs/tags/v${VERSION}.zip \
     && unzip v${VERSION}.zip \
     && rm -rf v${VERSION}.zip \
     && mv SUPPA-${VERSION} SUPPA \
-    && chmod -R +x SUPPA/*
+    && chmod -R +x SUPPA/* \
+    && suppa.py --help
 
 # Set working directory
 WORKDIR /home
