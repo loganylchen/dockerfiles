@@ -19,9 +19,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         libbz2-dev \
         liblzma-dev \
+        libboost-iostreams-dev \
         python3 \
         bedtools \
         perl \
+        gawk \
         default-jre \
         pigz \
         gzip \
@@ -33,10 +35,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://github.com/RitchieLabIGH/IRFinder/archive/refs/tags/v${VERSION}.tar.gz \
         -O /tmp/irfinder.tar.gz \
     && tar -xzf /tmp/irfinder.tar.gz -C /opt \
-    && cd /opt/IRFinder-${VERSION} \
-    && PKG_CONFIG_PATH=/usr/local/lib/pkgconfig make -j$(nproc) \
-    && find /opt/IRFinder-${VERSION}/bin -type f -exec chmod +x {} \; \
-    && ln -s "$(find /opt/IRFinder-${VERSION}/bin -type f | head -1)" /usr/local/bin/irfinder \
+    && cd /opt/IRFinder-${VERSION}/src/trim && make -j$(nproc) trim \
+    && cp trim /opt/IRFinder-${VERSION}/bin/util/trim \
+    && cd /opt/IRFinder-${VERSION}/src/winflat && make winflat \
+    && cp winflat /opt/IRFinder-${VERSION}/bin/util/winflat \
+    && cd /opt/IRFinder-${VERSION}/src/irfinder/Release && make -j$(nproc) \
+    && cp irfinder /opt/IRFinder-${VERSION}/bin/util/irfinder \
+    && chmod -R a+x /opt/IRFinder-${VERSION}/bin \
+    && cp -r /opt/IRFinder-${VERSION} /usr/local/IRFinder \
+    && ln -s /usr/local/IRFinder/bin/IRFinder /usr/bin/IRFinder \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('DESeq2'), ask=FALSE) \
@@ -44,7 +51,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove wget ca-certificates r-base-dev build-essential \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN irfinder --version 2>&1 || irfinder 2>&1 || true
+RUN IRFinder 2>&1 || true
 
 WORKDIR /data
-CMD ["irfinder"]
+CMD ["IRFinder"]
