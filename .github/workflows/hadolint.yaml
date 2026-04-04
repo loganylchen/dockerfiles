@@ -1,0 +1,71 @@
+name: Hadolint
+
+on:
+  pull_request:
+    paths:
+      - 'tools/**/Dockerfile'
+      - 'misc/**/Dockerfile'
+  push:
+    paths:
+      - 'tools/**/Dockerfile'
+      - 'misc/**/Dockerfile'
+  workflow_dispatch:
+    inputs:
+      lint_all:
+        description: 'Lint all Dockerfiles (not just changed ones)'
+        required: false
+        default: false
+        type: boolean
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 2
+
+      - name: Collect Dockerfiles to lint
+        id: collect
+        run: |
+          if [ "${{ github.event.inputs.lint_all }}" = "true" ]; then
+            files=$(find tools misc -name Dockerfile 2>/dev/null | sort)
+          else
+            files=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep '/Dockerfile$' || true)
+          fi
+
+          if [ -z "$files" ]; then
+            echo "No Dockerfiles to lint"
+            echo "files=" >> $GITHUB_OUTPUT
+          else
+            echo "Linting:"
+            echo "$files"
+            # Store as newline-delimited
+            echo "files<<EOF" >> $GITHUB_OUTPUT
+            echo "$files" >> $GITHUB_OUTPUT
+            echo "EOF" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Run Hadolint
+        if: steps.collect.outputs.files != ''
+        run: |
+          # Install hadolint
+          wget -qO /usr/local/bin/hadolint \
+            https://github.com/hadolint/hadolint/releases/latest/download/hadolint-Linux-x86_64
+          chmod +x /usr/local/bin/hadolint
+
+          exit_code=0
+
+          while IFS= read -r file; do
+            [ -z "$file" ] && continue
+            echo "::group::$file"
+            hadolint \
+              --ignore DL3008 \
+              --ignore DL3013 \
+              --ignore DL3059 \
+              "$file" || exit_code=1
+            echo "::endgroup::"
+          done <<< "${{ steps.collect.outputs.files }}"
+
+          exit $exit_code
