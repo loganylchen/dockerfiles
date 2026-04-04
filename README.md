@@ -1,153 +1,207 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **105** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
-## ✅ Verified Tools
-
-These tools have been tested and verified to build successfully:
-
-| Tool | Version | Description | Status |
-|------|---------|-------------|--------|
-| **aeron** | c77c73a | Transcript quantification and gene-fusion detection using long reads | ✅ Fixed |
-| **bedops** | 2.4.42 | Genomic interval analysis toolkit | ✅ Fixed |
-| **differr** | 0.2 | Differential expression analysis | ✅ Fixed |
-| **epinano** | 1.2.5 | Detection of RNA modifications from Nanopore DRS | ✅ Fixed |
-| **fastp** | 0.24.0 | Ultrafast FASTQ preprocessing | ✅ Fixed |
-| **gffcompare** | 0.12.10 | GFF/GTF comparison and classification | ✅ Fixed |
-| **gffread** | 0.12.7 | GFF/GTF utility | ✅ Fixed |
-| **genion** | 1.1.1 | Gene fusion detection | ✅ Fixed |
-| **jaffal** | 2.2, 2.3 | Fusion gene detection from long reads | ✅ Fixed |
-| **kallisto** | 0.52.0 | Near-optimal RNA-Seq quantification | ✅ Fixed |
-| **lafite** | 1.0.2 | Full-length isoform clustering from Nanopore DRS | ✅ Verified |
-| **meeko** | 0.7.1 | Interface for AutoDock | ✅ Verified |
-
-## 📋 TODO - Tools Needing Fixes
-
-These tools have known build issues and need to be fixed:
-
-| Tool | Version | Issue | Priority |
-|------|---------|-------|----------|
-| **gloritools** | latest | wget download fails | 🔴 High |
-| **mgltools** | 1.5.7 | wget download fails (SourceForge) | 🔴 High |
-
-## 📦 All Available Tools
-
-| Tool Name | Reference | Version List |
-|-----------|-----------|--------------|
-| aeron | [AERON: Transcript quantification and gene-fusion detection using long reads](https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1.full) | ![aeron Version](https://img.shields.io/badge/aeron-c77c73a4bdeb6fb21fa7522239b2276e27ea10f8-blue) |
-| autodock vina | | |
-| bambu | [Context-aware transcript quantification from long-read RNA-seq data with Bambu](https://www.nature.com/articles/s41592-023-01908-w) | ![bambu Version](https://img.shields.io/badge/bambu-3.8.3-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.4.0-blue) ![bambu Version](https://img.shields.io/badge/bambu-3.2.4-blue) |
-| bedops | | ![bedops Version](https://img.shields.io/badge/bedops-2.4.42-blue) ![bedops Version](https://img.shields.io/badge/bedops-2.4.41-blue) ![bedops Version](https://img.shields.io/badge/bedops-2.4.40-blue) |
-| bedtools | | ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.1-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.31.0-blue) ![bedtools Version](https://img.shields.io/badge/bedtools-2.30.0-blue) |
-| biopython | [Biopython: freely available Python tools for computational molecular biology and bioinformatics](http://dx.doi.org/10.1093/bioinformatics/btp163) | ![biopython Version](https://img.shields.io/badge/biopython-1.85-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.84-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.83-blue) ![biopython Version](https://img.shields.io/badge/biopython-1.82-blue) |
-| bisque | | |
-| bonito | [https://github.com/nanoporetech/bonito](https://github.com/nanoporetech/bonito) | ![bonito Version](https://img.shields.io/badge/bonito-0.9.0-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.8.1-blue) ![bonito Version](https://img.shields.io/badge/bonito-0.7.3-blue) |
-| bayesprism | | |
-| clusterprofiler | | ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.14.0-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.10.0-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.8.1-blue) ![clusterprofiler Version](https://img.shields.io/badge/clusterprofiler-4.6.0-blue) |
-| CPC2 | | ![CPC2 Version](https://img.shields.io/badge/CPC2-1.0.1-blue) |
-| CPAT | | ![CPAT Version](https://img.shields.io/badge/CPAT-3.0.5-blue) ![CPAT Version](https://img.shields.io/badge/CPAT-3.0.4-blue) ![CPAT Version](https://img.shields.io/badge/CPAT-2.0.0-blue) ![CPAT Version](https://img.shields.io/badge/CPAT-1.2.4-blue) |
-| deconvseq | | |
-| deeptools | | |
-| DESeq2 | | ![DESeq2 Version](https://img.shields.io/badge/DESeq2-1.46.0-blue) ![DESeq2 Version](https://img.shields.io/badge/DESeq2-1.42.0-blue) ![DESeq2 Version](https://img.shields.io/badge/DESeq2-1.40.2-blue) ![DESeq2 Version](https://img.shields.io/badge/DESeq2-1.38.0-blue) |
-| differr | | ![differr Version](https://img.shields.io/badge/differr-0.2-blue) |
-| DRUMMER | | |
-| edger | | ![edger Version](https://img.shields.io/badge/edger-4.4.0-blue) |
-| eligos2 | | |
-| ensembldb | | |
-| epinano | | ![epinano Version](https://img.shields.io/badge/epinano-1.2.5-blue) |
-| estimate | | ![estimate Version](https://img.shields.io/badge/estimate-1.0.13-blue) |
-| f5c | | |
-| fastp | [Ultrafast one-pass FASTQ data preprocessing, quality control, and deduplication using fastp](https://doi.org/10.1002/imt2.107) | ![fastp Version](https://img.shields.io/badge/fastp-0.24.0-blue) ![fastp Version](https://img.shields.io/badge/fastp-0.23.2-blue) |
-| flair | [Detecting haplotype-specific transcript variation in long reads with FLAIR2](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-024-03301-y) | ![flair Version](https://img.shields.io/badge/flair-2.0.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.7.0-blue) ![flair Version](https://img.shields.io/badge/flair-1.6.4-blue) |
-| GATK | | ![GATK Version](https://img.shields.io/badge/GATK-3.8-blue) |
-| genekitr | | |
-| genion | | ![genion Version](https://img.shields.io/badge/genion-1.1.1-blue) |
-| genomicfeatures | | |
-| gffcompare | | ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.10-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.9-blue) ![gffcompare Version](https://img.shields.io/badge/gffcompare-0.12.6-blue) |
-| gffread | [https://github.com/gpertea/gffread](https://ccb.jhu.edu/software/stringtie/gff.shtml) | ![gffread Version](https://img.shields.io/badge/gffread-0.12.7-blue) ![gffread Version](https://img.shields.io/badge/gffread-0.12.1-blue) |
-| glmnet | | ![glmnet Version](https://img.shields.io/badge/glmnet-4.18-blue) ![glmnet Version](https://img.shields.io/badge/glmnet-4.11-blue) |
-| gloritools | | |
-| hamr | [HAMR: high-throughput annotation of modified ribonucleotides](https://rnajournal.cshlp.org/content/19/12/1684) | ![hamr Version](https://img.shields.io/badge/hamr-0a04208eae481137e0081dd90b9c1a40bc49c9f3-blue) |
-| hisat2 | [Graph-based genome alignment and genotyping with HISAT2 and HISAT-genotype](https://www.nature.com/articles/s41587-019-0201-4) | ![hisat2 Version](https://img.shields.io/badge/hisat2-2.2.1-blue) ![hisat2 Version](https://img.shields.io/badge/hisat2-2.2.0-blue) ![hisat2 Version](https://img.shields.io/badge/hisat2-2.1.0-blue) |
-| HMMER | | ![HMMER Version](https://img.shields.io/badge/HMMER-3.4-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.3.2-blue) ![HMMER Version](https://img.shields.io/badge/HMMER-3.3.1-blue) |
-| immunedeconv | | ![immunedeconv Version](https://img.shields.io/badge/immunedeconv-2.1.2-blue) |
-| IsoformSwitchAnalyzeR | | ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.6.0-blue) ![IsoformSwitchAnalyzeR Version](https://img.shields.io/badge/IsoformSwitchAnalyzeR-2.2.0-blue) |
-| iupred2a | | ![iupred2a Version](https://img.shields.io/badge/iupred2a-20251022-blue) |
-| jaffal | | ![jaffal Version](https://img.shields.io/badge/jaffal-2.3-blue) ![jaffal Version](https://img.shields.io/badge/jaffal-2.2-blue) |
-| kallisto | | ![kallisto Version](https://img.shields.io/badge/kallisto-0.52.0-blue) ![kallisto Version](https://img.shields.io/badge/kallisto-0.51.1-blue) ![kallisto Version](https://img.shields.io/badge/kallisto-0.50.1-blue) |
-| lafite | | ![lafite Version](https://img.shields.io/badge/lafite-1.0.2-blue) |
-| lftp | [https://lftp.yar.ru](https://lftp.yar.ru) | ![lftp Version](https://img.shields.io/badge/lftp-latest-blue) |
-| limma | | ![limma Version](https://img.shields.io/badge/limma-3.62.1-blue) ![limma Version](https://img.shields.io/badge/limma-3.62.0-blue) |
-| longgf | | |
-| meeko | | ![meeko Version](https://img.shields.io/badge/meeko-0.7.1-blue) |
-| mgltools | | |
-| mime | | ![mime Version](https://img.shields.io/badge/mime-9a9f6ac89851bf631f9df3868b2fa624bed49df2-blue) |
-| minimap2 | | |
-| modtect | | |
-| multiqc | | ![multiqc Version](https://img.shields.io/badge/multiqc-1.32-blue) ![multiqc Version](https://img.shields.io/badge/multiqc-1.31-blue) |
-| music | | |
-| nanocount | | |
-| nanopolish | [A complete bacterial genome assembled de novo using only nanopore sequencing data](https://www.nature.com/articles/nmeth.3444) | ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.14.0-blue) ![nanopolish Version](https://img.shields.io/badge/nanopolish-0.13.3-blue) |
-| picard | | ![picard Version](https://img.shields.io/badge/picard-3.4.0-blue) ![picard Version](https://img.shields.io/badge/picard-3.3.0-blue) |
-| psinanopore | | |
-| PUREE | | ![PUREE Version](https://img.shields.io/badge/PUREE-5a0a702535e79e37b071971063e72fa697540818-blue) |
-| qualimap | [Qualimap 2 advanced multi-sample quality control for high-throughput sequencing data](http://qualimap.bioinfo.cipf.es/) | ![qualimap Version](https://img.shields.io/badge/qualimap-2.3-blue) ![qualimap Version](https://img.shields.io/badge/qualimap-2.2.2d-blue) |
-| R deconvolution | | |
-| R deg | | |
-| R grn | | |
-| R ml | | |
-| R tumor purity | | |
-| R validation | | |
-| R wgcna | | |
-| rmats | [Multivariate Analysis of Transcript Splicing (MATS)](https://rnaseq-mats.sourceforge.io/) | ![rmats Version](https://img.shields.io/badge/rmats-4.3.0-blue) ![rmats Version](https://img.shields.io/badge/rmats-4.2.0-blue) |
-| rmats turbo | [rmats turbo](https://github.com/Xinglab/rmats-turbo/tree/master) | ![rmats turbo Version](https://img.shields.io/badge/rmats%20turbo-4.3.0-blue) |
-| rna-seqc | | ![rna-seqc Version](https://img.shields.io/badge/rna-seqc-2.4.2-blue) ![rna-seqc Version](https://img.shields.io/badge/rna-seqc-2.3.5-blue) |
-| rnam5c | [Genome-wide identification of mRNA 5-methylcytosine in mammals](https://www.nature.com/articles/s41594-019-0218-x) | ![rnam5c Version](https://img.shields.io/badge/rnam5c-4c6656b-blue) |
-| rnamodivt | [Systematic calibration of epitranscriptomic maps using a synthetic modification-free RNA library](https://www.nature.com/articles/s41592-021-01280-7) | ![rnamodivt Version](https://img.shields.io/badge/rnamodivt-48df2c0-blue) |
-| rnasieve | | |
-| salmon | | ![salmon Version](https://img.shields.io/badge/salmon-1.10.3-blue) ![salmon Version](https://img.shields.io/badge/salmon-1.10.2-blue) |
-| scaden | [Deep learning–based cell composition analysis from tissue expression profiles](https://www.science.org/doi/10.1126/sciadv.aba2619) | ![scaden Version](https://img.shields.io/badge/scaden-1.1.2-blue) |
-| sicelore | [High throughput error corrected Nanopore single cell transcriptome sequencing](https://doi.org/10.1038/s41467-020-17800-6) | ![sicelore Version](https://img.shields.io/badge/sicelore-2.0-blue) |
-| signalp | | ![signalp Version](https://img.shields.io/badge/signalp-5.0b-blue) |
-| slow5tools | | |
-| splicetools | | ![splicetools Version](https://img.shields.io/badge/splicetools-e7c81ca-blue) |
-| sratools | [https://github.com/ncbi/sra-tools](https://github.com/ncbi/sra-tools) | ![sratools Version](https://img.shields.io/badge/sratools-3.2.1-blue) |
-| star | [STAR ultrafast universal RNA-seq aligner](https://academic.oup.com/bioinformatics/article/29/1/15/272537) | ![star Version](https://img.shields.io/badge/star-2.7.11b-blue) |
-| stringtie | [Improved transcriptome assembly using a hybrid of long and short reads with StringTie](https://journals.plos.org/ploscompbiol/article?id=10.1371/journal.pcbi.1009730) | ![stringtie Version](https://img.shields.io/badge/stringtie-3.0.0-blue) |
-| subread | [Subread package high-performance read alignment, quantification and mutation discovery](https://subread.sourceforge.net/) | ![subread Version](https://img.shields.io/badge/subread-2.1.1-blue) |
-| suppa | [SUPPA2 fast, accurate, and uncertainty-aware differential splicing analysis across multiple conditions](https://genomebiology.biomedcentral.com/articles/10.1186/s13059-018-1417-1) | ![suppa Version](https://img.shields.io/badge/suppa-2.3-blue) |
-| sva | | ![sva Version](https://img.shields.io/badge/sva-3.54.0-blue) |
-| tape | [Deep autoencoder for interpretable tissue-adaptive deconvolution and cell-type-specific gene analysis](https://www.nature.com/articles/s41567-022-34550-9) | ![tape Version](https://img.shields.io/badge/tape-1.1.2-blue) |
-| tidyestimate | | ![tidyestimate Version](https://img.shields.io/badge/tidyestimate-1.1.1-blue) |
-| vg | [Variation graph toolkit improves read mapping by representing genetic variation in the reference](https://www.nature.com/articles/nbt.4227) | ![vg Version](https://img.shields.io/badge/vg-1.63.1-blue) |
-| wgcna | | ![wgcna Version](https://img.shields.io/badge/wgcna-1.73-blue) |
-| xcell | | ![xcell Version](https://img.shields.io/badge/xcell-1.3-blue) |
-
-## 🔧 Usage
-
-### Pull Images
+## Quick Start
 
 ```bash
-docker pull loganylchen/<tool>:<version>
-```
+# Pull an image
+docker pull btrspg/<tool>:<version>
 
-### Build Locally
-
-```bash
+# Build locally
 cd tools/<tool>
-docker build -t <tool>:<version> .
+docker build --build-arg VERSION=<version> -t <tool>:<version> .
 ```
 
-## 📝 Notes
+## Tools by Category
 
-- All Dockerfiles include maintainer label: `Yuelong CHEN <yuelong.chen.btr@gmail.com>`
+### Sequence Alignment (序列比对)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [hisat2](tools/hisat2/) | Python | `2.2.1` | [Link](https://daehwankimlab.github.io/hisat2/) |
+| [minimap2](tools/minimap2/) | Java | `2.30`, `2.29`, `2.28`, `2.27`, `2.26`, `2.25` | [Link](https://github.com/lh3/minimap2) |
+| [star](tools/star/) | Compiled | `2.7.11b`, `2.7.10b` | [Link](https://github.com/alexdobin/STAR) |
+| [subread](tools/subread/) | Compiled | `2.0.6`, `2.0.3` | [Link](http://subread.sourceforge.net/) |
+
+### Transcript Quantification (转录本定量)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [kallisto](tools/kallisto/) | Compiled | `0.52.0`, `0.51.1`, `0.50.1`, `0.48.0` | [Link](https://pachterlab.github.io/kallisto/) |
+| [salmon](tools/salmon/) | Compiled | `1.11.4`, `1.10.0`, `1.9.0` | [Link](https://github.com/COMBINE-lab/salmon) |
+
+### RNA-seq Analysis (RNA-seq分析)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [gffcompare](tools/gffcompare/) | Compiled | `0.12.10`, `0.12.9`, `0.12.6` | [Link](https://ccb.jhu.edu/software/stringtie/gffcompare.shtml) |
+| [stringtie](tools/stringtie/) | Compiled | `2.2.3`, `2.2.1`, `2.1.7` | [Link](https://ccb.jhu.edu/software/stringtie/) |
+
+### Alternative Splicing (可变剪接)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [aspli](tools/aspli/) | R/Bioc | `2.14.0` | [Link](https://bioconductor.org/packages/ASpli/) |
+| [dexseq](tools/dexseq/) | R/Bioc | `1.50.0` | [Link](https://bioconductor.org/packages/DEXSeq/) |
+| [irfinder](tools/irfinder/) | R/Bioc | `2.0.1` | [Link](https://github.com/RitchieLabIGH/IRFinder) |
+| [junctionseq](tools/junctionseq/) | R/Bioc | `1.26.0` | [Link](https://bioconductor.org/packages/JunctionSeq/) |
+| [leafcutter](tools/leafcutter/) | Compiled | `0.2.9` | [Link](https://github.com/davidaknowles/leafcutter) |
+| [majiq](tools/majiq/) | Python | `2.5` | [Link](https://majiq.biociphers.org/) |
+| [miso](tools/miso/) | Python | `0.5.4` | [Link](https://miso.readthedocs.io/) |
+| [psisigma](tools/psisigma/) | R/Bioc | `1.9` | [Link](https://github.com/wososa/PSI-Sigma) |
+| [rnaseqlib](tools/rnaseqlib/) | Python | `1.1.2` | [Link](https://github.com/yarden/rnaseqlib) |
+| [sgseq](tools/sgseq/) | R/Bioc | `1.38.0` | [Link](https://bioconductor.org/packages/SGSeq/) |
+| [spladder](tools/spladder/) | Python | `3.0.4` | [Link](https://github.com/ratschlab/spladder) |
+| [whippet](tools/whippet/) | Compiled | `1.6.1` | [Link](https://github.com/timbitz/Whippet.jl) |
+
+### Differential Expression (差异表达)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [deseq2](tools/deseq2/) | R/Bioc | `1.44.0`, `1.42.1`, `1.40.2` | [Link](https://bioconductor.org/packages/DESeq2/) |
+| [edger](tools/edger/) | R/Bioc | `4.2.1`, `4.0.16`, `3.42.4` | [Link](https://bioconductor.org/packages/edgeR/) |
+| [limma](tools/limma/) | R/Bioc | `3.60.4`, `3.58.1`, `3.56.2` | [Link](https://bioconductor.org/packages/limma/) |
+
+### Nanopore Analysis (Nanopore分析)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [bonito](tools/bonito/) | Python | `0.8.1`, `0.7.3`, `0.6.2` | [Link](https://github.com/nanoporetech/bonito) |
+| [f5c](tools/f5c/) | Compiled | `1.6`, `1.5`, `1.4`, `1.3`, `1.2`, `1.1` | [Link](https://github.com/hasindu2008/f5c) |
+| [nanopolish](tools/nanopolish/) | Python | `0.14.0` | [Link](https://github.com/jts/nanopolish) |
+
+### Variant Calling (变异检测)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [gatk](tools/gatk/) | R/Bioc | `4.6.1.0`, `4.5.0.0`, `4.4.0.0` | [Link](https://gatk.broadinstitute.org/) |
+| [picard](tools/picard/) | Java | `3.2.0`, `3.1.1`, `3.0.0` | [Link](https://broadinstitute.github.io/picard/) |
+
+### Genomic Utilities (基因组工具)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [bedops](tools/bedops/) | Compiled | `2.4.41`, `2.4.40` | [Link](https://bedops.readthedocs.io/) |
+| [bedtools](tools/bedtools/) | Python | `2.31.1`, `2.31.0`, `2.30.0` | [Link](https://bedtools.readthedocs.io/) |
+| [gffread](tools/gffread/) | Compiled | `0.12.7`, `0.12.6` | [Link](http://ccb.jhu.edu/software/stringtie/gffread.shtml) |
+| [samtools](tools/samtools/) | Compiled | `1.23.1`, `1.22.2`, `1.21.1`, `1.19.1` | [Link](http://www.htslib.org/) |
+
+### Quality Control (质量控制)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [fastp](tools/fastp/) | Compiled | `0.24.0`, `0.23.2` | [Link](https://github.com/OpenGene/fastp) |
+| [multiqc](tools/multiqc/) | Python | `1.24.1`, `1.21`, `1.19` | [Link](https://multiqc.info/) |
+| [qualimap](tools/qualimap/) | Python | `2.3`, `2.2.2d` | [Link](http://qualimap.conesalab.org/) |
+
+### Functional Annotation (功能注释)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [clusterprofiler](tools/clusterprofiler/) | R/Bioc | `4.12.6`, `4.10.1`, `4.8.3` | [Link](https://bioconductor.org/packages/clusterProfiler/) |
+
+### Python Bio Tools (Python生物工具)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [biopython](tools/biopython/) | Python | `1.84`, `1.83`, `1.82` | [Link](https://biopython.org/) |
+| [deeptools](tools/deeptools/) | Python | `3.5.6`, `3.5.5`, `3.5.3`, `3.5.2` | [Link](https://deeptools.readthedocs.io/) |
+
+### Pangenome (泛基因组)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [vg](tools/vg/) | Compiled | `1.59.0`, `1.56.0`, `1.53.0` | [Link](https://github.com/vgteam/vg) |
+
+### Data Download (数据下载)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [sratools](tools/sratools/) | Compiled | `3.1.1`, `3.0.10`, `3.0.7` | [Link](https://github.com/ncbi/sra-tools) |
+
+### Utility (实用工具)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [lftp](tools/lftp/) | Compiled | `4.9.2` | [Link](https://lftp.yar.ru/) |
+
+### Other (other)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [aeron](tools/aeron/) | Python | `c77c73a4bdeb6fb21fa7522239b2276e27ea10f8` |  |
+| [autodockvina](tools/autodockvina/) | Python | `1.2.5`, `1.2.3`, `1.2.0` |  |
+| [bambu](tools/bambu/) | R/Bioc | `3.4.0`, `3.2.6`, `3.0.8` |  |
+| [bayesprism](tools/bayesprism/) | R/Bioc | `latest` |  |
+| [bisque](tools/bisque/) | R/Bioc | `latest` |  |
+| [cpat](tools/cpat/) | Python | `3.0.4`, `3.0.3` |  |
+| [cpc2](tools/cpc2/) | Python | `1.0.1` |  |
+| [deconvseq](tools/deconvseq/) | R/Bioc | `latest` |  |
+| [differr](tools/differr/) | R/Bioc | `0.2` |  |
+| [directrm](tools/directrm/) | Python | `1.0` |  |
+| [drummer](tools/drummer/) | Python | `92bb35a4a2b22ff304f5e4bcbc9fa6985f18a12e` |  |
+| [eligos2](tools/eligos2/) | R/Bioc | `2.1.0` |  |
+| [ensembldb](tools/ensembldb/) | R/Bioc | `latest` |  |
+| [epinano](tools/epinano/) | R/Bioc | `1.2.0` |  |
+| [estimate](tools/estimate/) | R/Bioc | `1.0.13` |  |
+| [flair](tools/flair/) | Python | `2.0.0`, `1.7.0` |  |
+| [genekitr](tools/genekitr/) | R/Bioc | `latest` |  |
+| [genion](tools/genion/) | Compiled | `1.1.1` |  |
+| [genomicfeatures](tools/genomicfeatures/) | R/Bioc | `latest` |  |
+| [glmnet](tools/glmnet/) | R/Bioc | `4.1_8`, `4.1_7` |  |
+| [gloritools](tools/gloritools/) | Python | `latest` |  |
+| [hamr](tools/hamr/) | R/Bioc | `latest` |  |
+| [hmmer](tools/hmmer/) | Compiled | `3.4`, `3.3.2` |  |
+| [immunedeconv](tools/immunedeconv/) | R/Bioc | `2.1.0`, `2.0.3` |  |
+| [isoformswitchanalyzer](tools/isoformswitchanalyzer/) | R/Bioc | `2.4.0`, `2.2.0` |  |
+| [iupred2a](tools/iupred2a/) | Python | `2a` |  |
+| [jaffal](tools/jaffal/) | R/Bioc | `2.3`, `2.2` |  |
+| [lafite](tools/lafite/) | Python | `1.0.2`, `1.0.1`, `1.0.0` |  |
+| [longgf](tools/longgf/) | Compiled | `0.1.2` |  |
+| [meeko](tools/meeko/) | Python | `0.7.1`, `0.5.0`, `0.4.0` |  |
+| [mgltools](tools/mgltools/) | Python | `1.5.7` |  |
+| [mime](tools/mime/) | R/Bioc | `9a9f6ac89851bf631f9df3868b2fa624bed49df2` |  |
+| [modtect](tools/modtect/) | Python | `latest` |  |
+| [music](tools/music/) | R/Bioc | `latest` |  |
+| [nanocompore](tools/nanocompore/) | Python | `2.2.0`, `2.0.0` |  |
+| [nanocompore1](tools/nanocompore1/) | Python | `1.0.4` |  |
+| [nanocount](tools/nanocount/) | Python | `1.1.0.post2`, `1.1.0`, `1.0.0.post6`, `1.0.0` |  |
+| [psinanopore](tools/psinanopore/) | R/Bioc | `latest` |  |
+| [puree](tools/puree/) | Python | `5a0a702535e79e37b071971063e72fa697540818` |  |
+| [r-deconvolution](tools/r-deconvolution/) | R/Bioc | `latest` |  |
+| [r-deg](tools/r-deg/) | R/Bioc | `latest` |  |
+| [r-grn](tools/r-grn/) | R/Bioc | `latest` |  |
+| [r-ml](tools/r-ml/) | R/Bioc | `latest` |  |
+| [r-tumor-purity](tools/r-tumor-purity/) | R/Bioc | `1.0` |  |
+| [r-validation](tools/r-validation/) | R/Bioc | `latest` |  |
+| [r-wgcna](tools/r-wgcna/) | R/Bioc | `latest` |  |
+| [rmats](tools/rmats/) | Python | `4.3.0`, `4.2.0`, `4.1.2` |  |
+| [rmatsturbo](tools/rmatsturbo/) | R/Bioc | `4.3.0`, `4.2.0`, `4.1.2` |  |
+| [rnam5c](tools/rnam5c/) | Python | `409be6485bcdd160f6c57e386ef71ff3ecb8e2f6` |  |
+| [rnamodivt](tools/rnamodivt/) | R/Bioc | `48df2c04ee063c96aaefde64df915a867528f93e` |  |
+| [rnaseqc](tools/rnaseqc/) | Python | `2.4.2`, `2.4.1` |  |
+| [rnasieve](tools/rnasieve/) | Python | `latest` |  |
+| [scaden](tools/scaden/) | Python | `1.1.2` |  |
+| [sicelore](tools/sicelore/) | Python | `latest` |  |
+| [signalp](tools/signalp/) | Compiled | `5.0b` |  |
+| [slow5tools](tools/slow5tools/) | Compiled | `1.4.0`, `1.3.0`, `1.2.0`, `1.1.0`, `1.0.0`, `0.9.0` |  |
+| [splicetools](tools/splicetools/) | Python | `latest` |  |
+| [suppa](tools/suppa/) | Python | `2.3` |  |
+| [sva](tools/sva/) | R/Bioc | `3.52.0`, `3.50.0`, `3.48.0` |  |
+| [tape](tools/tape/) | Python | `1.1.2`, `1.1.0` |  |
+| [tidyestimate](tools/tidyestimate/) | R/Bioc | `1.1.1`, `1.0.4` |  |
+| [wgcna](tools/wgcna/) | R/Bioc | `1.73`, `1.72_5` |  |
+| [xcell](tools/xcell/) | R/Bioc | `1.1.0` |  |
+| [xpore](tools/xpore/) | Python | `2.1`, `2.0` |  |
+
+## Notes
+
+- Docker Hub: [`btrspg`](https://hub.docker.com/u/btrspg)
+- All images include label: `maintainer=Yuelong CHEN <yuelong.chen.btr@gmail.com>`
 - Images are built and pushed via GitHub Actions
-- For detailed usage of each tool, check the README.md in each tool's directory
+- For detailed usage, check `README.md` in each tool's directory
 
-## 🤝 Contributing
+## Contributing
 
 If you find any issues or want to add new tools, please open an issue or submit a pull request.
-
-## 📅 Last Updated
-
-- 2026-03-19: Fixed 12 tools, added maintainer labels to all 91 Dockerfiles

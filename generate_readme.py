@@ -247,6 +247,104 @@ TOOL_INFO = {
         "references": ["https://bioconductor.org/packages/clusterProfiler/", "Yu, G. et al. (2012). OMICS, 16(5), 284-287."]
     },
 
+    # Alternative splicing
+    "aspli": {
+        "cn_name": "ASpli 可变剪接分析",
+        "en_name": "ASpli Alternative Splicing Analysis",
+        "cn_desc": "用于RNA-seq数据中可变剪接事件检测和定量的R/Bioconductor包。",
+        "en_desc": "R/Bioconductor package for analysis, detection, and quantification of alternative splicing events from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://bioconductor.org/packages/ASpli/", "Mancini, E. et al. (2021). Bioinformatics, 37(18), 2884-2891."]
+    },
+    "dexseq": {
+        "cn_name": "DEXSeq 差异外显子使用分析",
+        "en_name": "DEXSeq Differential Exon Usage Analysis",
+        "cn_desc": "检测RNA-seq数据中差异外显子使用情况的R/Bioconductor包。",
+        "en_desc": "R/Bioconductor package for testing differential exon usage in RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://bioconductor.org/packages/DEXSeq/", "Anders, S. et al. (2012). Genome Res, 22(10), 2008-2017."]
+    },
+    "irfinder": {
+        "cn_name": "IRFinder 内含子保留检测",
+        "en_name": "IRFinder Intron Retention Detector",
+        "cn_desc": "从RNA-seq数据中检测和定量内含子保留事件的工具。",
+        "en_desc": "Tool for detecting and quantifying intron retention events from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://github.com/RitchieLabIGH/IRFinder", "Middleton, R. et al. (2017). Genome Res, 27(10), 1726-1737."]
+    },
+    "junctionseq": {
+        "cn_name": "JunctionSeq 差异剪接分析",
+        "en_name": "JunctionSeq Differential Junction Analysis",
+        "cn_desc": "分析RNA-seq外显子连接和差异剪接使用情况的R/Bioconductor包。",
+        "en_desc": "R/Bioconductor package for analyzing differential junction and exon usage from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://bioconductor.org/packages/JunctionSeq/", "Hartley, S.W. & Mullikin, J.C. (2016). Nucleic Acids Res, 44(16), e127."]
+    },
+    "leafcutter": {
+        "cn_name": "Leafcutter 内含子剪接分析",
+        "en_name": "Leafcutter Intron Splicing Analysis",
+        "cn_desc": "基于内含子使用的轻量级可变剪接定量和差异分析工具。",
+        "en_desc": "Lightweight tool for quantifying and testing differential intron usage as a proxy for splicing.",
+        "category": "splicing",
+        "references": ["https://github.com/davidaknowles/leafcutter", "Li, Y.I. et al. (2018). Nat Genet, 50, 151-158."]
+    },
+    "majiq": {
+        "cn_name": "MAJIQ 可变剪接定量",
+        "en_name": "MAJIQ Alternative Splicing Quantification",
+        "cn_desc": "从RNA-seq数据中检测、定量和可视化局部剪接变异的工具。",
+        "en_desc": "Tool for detecting, quantifying, and visualizing local splicing variations from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://majiq.biociphers.org/", "Vaquero-Garcia, J. et al. (2016). eLife, 5, e11752."]
+    },
+    "miso": {
+        "cn_name": "MISO 剪接异构体分析",
+        "en_name": "MISO Mixture of Isoforms Analysis",
+        "cn_desc": "用于估计RNA-seq数据中可变剪接事件PSI值的概率模型工具。",
+        "en_desc": "Probabilistic framework for estimating percent-spliced-in (PSI) values of alternatively spliced exons from RNA-seq.",
+        "category": "splicing",
+        "references": ["https://miso.readthedocs.io/", "Katz, Y. et al. (2010). Nat Methods, 7(12), 1009-1015."]
+    },
+    "psisigma": {
+        "cn_name": "PSI-Sigma 剪接定量",
+        "en_name": "PSI-Sigma Splicing Quantification",
+        "cn_desc": "基于百分比剪接纳入(PSI)值的可变剪接定量分析工具。",
+        "en_desc": "Tool for percent-spliced-in (PSI) based alternative splicing quantification and analysis.",
+        "category": "splicing",
+        "references": ["https://github.com/wososa/PSI-Sigma", "Lin, K.T. & Krainer, A.R. (2019). Proc Natl Acad Sci USA, 116(33), 16357-16366."]
+    },
+    "rnaseqlib": {
+        "cn_name": "RNAseqLib RNA-seq分析库",
+        "en_name": "RNAseqLib RNA-seq Analysis Library",
+        "cn_desc": "用于分析剪接模式和从GTF文件创建基因注释的RNA-seq工具库。",
+        "en_desc": "RNA-seq library for analyzing splicing patterns and creating gene annotations from GTF files.",
+        "category": "splicing",
+        "references": ["https://github.com/yarden/rnaseqlib"]
+    },
+    "sgseq": {
+        "cn_name": "SGSeq 剪接图分析",
+        "en_name": "SGSeq Splice Graph Analysis",
+        "cn_desc": "用于从RNA-seq数据分析外显子使用和剪接位点模式的R/Bioconductor包。",
+        "en_desc": "R/Bioconductor package for splice graph analysis of exon usage and splice site patterns from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://bioconductor.org/packages/SGSeq/", "Goldstein, L.D. et al. (2016). BMC Bioinformatics, 17, 464."]
+    },
+    "spladder": {
+        "cn_name": "SplAdder 可变剪接检测",
+        "en_name": "SplAdder Alternative Splicing Detection",
+        "cn_desc": "从RNA-seq比对中检测、定量和分析可变剪接事件的工具。",
+        "en_desc": "Tool for detecting, quantifying, and analyzing alternative splicing events from RNA-seq alignments.",
+        "category": "splicing",
+        "references": ["https://github.com/ratschlab/spladder", "Kahles, A. et al. (2016). Bioinformatics, 32(12), i39-i48."]
+    },
+    "whippet": {
+        "cn_name": "Whippet 快速剪接分析",
+        "en_name": "Whippet Fast Splicing Analysis",
+        "cn_desc": "基于Julia语言的快速RNA-seq剪接事件分析工具，计算PSI值。",
+        "en_desc": "Fast Julia-based RNA-seq splicing analysis tool for quantifying percent-spliced-in (PSI) values.",
+        "category": "splicing",
+        "references": ["https://github.com/timbitz/Whippet.jl", "Sterne-Weiler, T. et al. (2018). Mol Cell, 72(1), 187-200."]
+    },
+
     # Other tools
     "subread": {
         "cn_name": "Subread 序列比对工具",
@@ -287,6 +385,7 @@ CATEGORIES = {
     "variant": {"cn": "变异检测", "en": "Variant Calling"},
     "download": {"cn": "数据下载", "en": "Data Download"},
     "annotation": {"cn": "功能注释", "en": "Functional Annotation"},
+    "splicing": {"cn": "可变剪接", "en": "Alternative Splicing"},
     "pangenome": {"cn": "泛基因组", "en": "Pangenome"},
     "utility": {"cn": "实用工具", "en": "Utility"},
 }
@@ -320,9 +419,9 @@ def detect_tool_type(dockerfile_path):
 def get_install_command(tool_name, version, tool_type):
     """Generate installation command example."""
     if tool_type == "r":
-        return f"docker pull username/{tool_name}:{version}"
+        return f"docker pull btrspg/{tool_name}:{version}"
     else:
-        return f"docker pull username/{tool_name}:{version}"
+        return f"docker pull btrspg/{tool_name}:{version}"
 
 
 def get_usage_example(tool_name, tool_type, tool_info):
@@ -332,30 +431,34 @@ def get_usage_example(tool_name, tool_type, tool_info):
     examples = {
         "alignment": f"""```bash
 # Basic alignment
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} -t 4 reference.fa reads.fq > alignment.sam
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} -t 4 reference.fa reads.fq > alignment.sam
 ```""",
         "quantification": f"""```bash
 # Index reference and quantify
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} index -t transcripts.fa
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} quant -i transcripts.idx -o output reads_1.fq reads_2.fq
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} index -t transcripts.fa
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} quant -i transcripts.idx -o output reads_1.fq reads_2.fq
 ```""",
         "diff_expr": f"""```bash
 # Run differential expression analysis in R
-docker run --rm -v /path/to/data:/data username/{tool_name} Rscript analysis.R
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} Rscript analysis.R
 ```""",
         "qc": f"""```bash
 # Quality control
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} -i input.fq -o output.html
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} -i input.fq -o output.html
+```""",
+        "splicing": f"""```bash
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} Rscript analysis.R
 ```""",
         "nanopore": f"""```bash
 # Process Nanopore data
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} reads.fq
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} reads.fq
 ```""",
     }
 
     return examples.get(category, f"""```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} --help
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} --help
 ```""")
 
 
@@ -397,7 +500,7 @@ def generate_readme(tool_name, tool_dir, tool_info=None):
 
 ```bash
 # Pull the Docker image
-docker pull username/{tool_name}:{versions[0]}
+docker pull btrspg/{tool_name}:{versions[0]}
 ```
 
 #### 可用版本
@@ -410,16 +513,16 @@ docker pull username/{tool_name}:{versions[0]}
 
 #### 参数说明
 
-运行 `docker run --rm username/{tool_name} {tool_name} --help` 查看完整参数列表。
+运行 `docker run --rm btrspg/{tool_name} {tool_name} --help` 查看完整参数列表。
 
 #### 示例
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/{tool_name} bash
+docker run --rm -it -v $(pwd):/data btrspg/{tool_name} bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} [options]
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} [options]
 ```
 
 #### 参考资料
@@ -450,7 +553,7 @@ docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} [options
 
 ```bash
 # Pull the Docker image
-docker pull username/{tool_name}:{versions[0]}
+docker pull btrspg/{tool_name}:{versions[0]}
 ```
 
 #### Available Versions
@@ -463,16 +566,16 @@ docker pull username/{tool_name}:{versions[0]}
 
 #### Parameters
 
-Run `docker run --rm username/{tool_name} {tool_name} --help` to see the full parameter list.
+Run `docker run --rm btrspg/{tool_name} {tool_name} --help` to see the full parameter list.
 
 #### Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/{tool_name} bash
+docker run --rm -it -v $(pwd):/data btrspg/{tool_name} bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/{tool_name} {tool_name} [options]
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} [options]
 ```
 
 #### References

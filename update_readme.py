@@ -1,77 +1,159 @@
-import os
-import re
-import yaml
-import glob
+#!/usr/bin/env python3
+"""
+Auto-generate the top-level README.md by scanning tools/ directory.
 
-# 文件路径
-workflows_files = glob.glob('./.github/workflows/tools_*_build.yaml')
-readme_path = './README.md'
+Reads tool metadata from generate_readme.py (TOOL_INFO, CATEGORIES),
+versions from tools/<name>/versions.txt, and tool type from Dockerfiles.
+"""
 
-# 提取工具信息
-def extract_tools_info(workflows_dir):
-    tools_info = []
-    for wf in workflows_files:
-        print(wf)
-        with open(wf, 'r') as f:
-            try:
-                workflow = yaml.safe_load(f)
-                # 提取工具名称和版本信息
-                job = workflow.get('jobs', {}).get('docker', {})
-                matrix = job.get('strategy', {}).get('matrix', {})
-                versions = matrix.get('version', [])
-                name_and_ref = workflow.get('name', ('Unknown Workflow|unknown')),
-                print(name_and_ref[0])
-                print(name_and_ref[0].split(r'|'))
-                name,*ref = name_and_ref[0].split(r'|')
-                tools_info.append({
-                    'name': name,
-                    'ref':ref,
-                    'versions': versions  })
-            except yaml.YAMLError:
-                print(f"无法解析文件: {filepath}")
-    return tools_info
+from pathlib import Path
+from generate_readme import TOOL_INFO, CATEGORIES, detect_tool_type
 
-# 更新 README.md
-def update_readme(readme_path, tools_info):
-    with open(readme_path, 'r') as f:
-        lines = f.readlines()
+DOCKER_HUB_USER = "btrspg"
 
-    # 找到表格插入点
-    table_start = next((i for i, line in enumerate(lines) if line.startswith('| Tool Name')), None)
-    table_end = next((i for i, line in enumerate(lines[table_start + 1:], start=table_start + 1) if not line.strip() or not line.startswith('|')), None)
 
-    # 构建新表格内容
-    new_table = [
-        "| Tool Name   | Reference                                                                                     | Version List       | \n",
-        "|-------------|-----------------------------------------------------------------------------------------------|--------------------|\n"
+def get_versions(tool_dir):
+    """Read versions from versions.txt."""
+    vf = tool_dir / "versions.txt"
+    if vf.exists():
+        return [l.strip() for l in vf.read_text().splitlines()
+                if l.strip() and not l.startswith("#")]
+    return ["latest"]
+
+
+def get_tool_type_label(tool_dir):
+    """Return a human-readable type label."""
+    df = tool_dir / "Dockerfile"
+    if not df.exists():
+        return ""
+    t = detect_tool_type(df)
+    return {"r": "R/Bioc", "python": "Python", "java": "Java", "compiled": "Compiled"}.get(t, t)
+
+
+def build_tool_rows(tools_dir):
+    """Build table rows grouped by category."""
+    categorized = {}  # category -> list of (name, info, versions, type_label)
+
+    for tool_dir in sorted(tools_dir.iterdir()):
+        if not tool_dir.is_dir() or not (tool_dir / "Dockerfile").exists():
+            continue
+        name = tool_dir.name
+        info = TOOL_INFO.get(name, {})
+        cat = info.get("category", "other")
+        versions = get_versions(tool_dir)
+        type_label = get_tool_type_label(tool_dir)
+        categorized.setdefault(cat, []).append((name, info, versions, type_label))
+
+    return categorized
+
+
+def format_versions_badges(name, versions):
+    """Format version badges."""
+    return " ".join(
+        f"![{v}](https://img.shields.io/badge/{name}-{v}-blue)"
+        for v in versions
+    )
+
+
+def format_reference(info):
+    """Format first reference as a link if available."""
+    refs = info.get("references", [])
+    if not refs:
+        return ""
+    r = refs[0]
+    if r.startswith("http"):
+        return f"[Link]({r})"
+    return r
+
+
+def generate_readme(categorized):
+    """Generate the full README content."""
+    # Count totals
+    total = sum(len(tools) for tools in categorized.values())
+
+    lines = []
+    lines.append("# Dockerfiles for Bioinformatics Tools")
+    lines.append("")
+    lines.append(f"A collection of **{total}** Dockerfiles for bioinformatics tools, "
+                 f"maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).")
+    lines.append("")
+    lines.append("## Quick Start")
+    lines.append("")
+    lines.append("```bash")
+    lines.append(f"# Pull an image")
+    lines.append(f"docker pull {DOCKER_HUB_USER}/<tool>:<version>")
+    lines.append("")
+    lines.append(f"# Build locally")
+    lines.append(f"cd tools/<tool>")
+    lines.append(f"docker build --build-arg VERSION=<version> -t <tool>:<version> .")
+    lines.append("```")
+    lines.append("")
+
+    # Category order
+    cat_order = [
+        "alignment", "quantification", "rna_seq", "splicing", "diff_expr",
+        "nanopore", "variant", "genomic_utils", "qc", "annotation",
+        "python_bio", "pangenome", "download", "utility", "other",
     ]
-    for tool in tools_info:
-        name = tool['name']
-        versions = ' '.join([f"![{name} Version](https://img.shields.io/badge/{name}-{version}-blue)" for version in tool['versions']])
-        reference = tool['ref'] if len(tool['ref'] )==0 else tool['ref'][0] # 可以替换为实际的参考链接
-     
-        new_table.append(f"| {name}        | {reference} | {versions} |\n")
 
-    # 替换表格内容
-    if table_start is not None and table_end is not None:
-        lines = lines[:table_start] + new_table + lines[table_end:]
-    else:
-        lines.extend(new_table)
+    lines.append("## Tools by Category")
+    lines.append("")
 
-    # 写回 README.md
-    with open(readme_path, 'w') as f:
-        f.writelines(lines)
+    for cat in cat_order:
+        tools = categorized.get(cat)
+        if not tools:
+            continue
+        cat_info = CATEGORIES.get(cat, {"cn": cat, "en": cat.replace("_", " ").title()})
+        lines.append(f"### {cat_info['en']} ({cat_info['cn']})")
+        lines.append("")
+        lines.append("| Tool | Type | Versions | Reference |")
+        lines.append("|------|------|----------|-----------|")
+        for name, info, versions, type_label in tools:
+            desc = info.get("en_desc", "")
+            ref = format_reference(info)
+            ver_str = ", ".join(f"`{v}`" for v in versions)
+            lines.append(f"| [{name}](tools/{name}/) | {type_label} | {ver_str} | {ref} |")
+        lines.append("")
 
-# 主函数
+    # Uncategorized
+    shown_cats = set(cat_order)
+    for cat, tools in categorized.items():
+        if cat in shown_cats:
+            continue
+        cat_info = CATEGORIES.get(cat, {"cn": cat, "en": cat.replace("_", " ").title()})
+        lines.append(f"### {cat_info['en']}")
+        lines.append("")
+        lines.append("| Tool | Type | Versions | Reference |")
+        lines.append("|------|------|----------|-----------|")
+        for name, info, versions, type_label in tools:
+            ref = format_reference(info)
+            ver_str = ", ".join(f"`{v}`" for v in versions)
+            lines.append(f"| [{name}](tools/{name}/) | {type_label} | {ver_str} | {ref} |")
+        lines.append("")
+
+    lines.append("## Notes")
+    lines.append("")
+    lines.append(f"- Docker Hub: [`{DOCKER_HUB_USER}`](https://hub.docker.com/u/{DOCKER_HUB_USER})")
+    lines.append("- All images include label: `maintainer=Yuelong CHEN <yuelong.chen.btr@gmail.com>`")
+    lines.append("- Images are built and pushed via GitHub Actions")
+    lines.append("- For detailed usage, check `README.md` in each tool's directory")
+    lines.append("")
+    lines.append("## Contributing")
+    lines.append("")
+    lines.append("If you find any issues or want to add new tools, please open an issue or submit a pull request.")
+    lines.append("")
+
+    return "\n".join(lines)
+
+
 def main():
-    tools_info = extract_tools_info(workflows_files)
-    if tools_info:
-        update_readme(readme_path, tools_info)
-        print("README.md 已更新！")
-    else:
-        print("未找到任何工具信息，请检查 .github/workflows/ 目录。")
+    tools_dir = Path("tools")
+    categorized = build_tool_rows(tools_dir)
+    content = generate_readme(categorized)
+    Path("README.md").write_text(content)
+    total = sum(len(t) for t in categorized.values())
+    print(f"README.md updated with {total} tools across {len(categorized)} categories")
+
 
 if __name__ == "__main__":
     main()
-    
-
