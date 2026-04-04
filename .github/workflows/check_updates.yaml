@@ -1,0 +1,45 @@
+name: Check Version Updates
+
+on:
+  schedule:
+    - cron: '23 8 * * 1'  # Every Monday ~8:23 UTC
+  workflow_dispatch:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Check for updates
+        id: check
+        run: |
+          output=$(python3 check_updates.py --markdown)
+          echo "report<<EOF" >> $GITHUB_OUTPUT
+          echo "$output" >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+          if echo "$output" | grep -q "No version updates"; then
+            echo "has_updates=false" >> $GITHUB_OUTPUT
+          else
+            echo "has_updates=true" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Create or update issue
+        if: steps.check.outputs.has_updates == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # Close previous update issues
+          gh issue list --label "version-update" --state open --json number -q '.[].number' | while read num; do
+            gh issue close "$num" --comment "Superseded by new update check."
+          done
+
+          gh issue create \
+            --title "Version updates available ($(date -u '+%Y-%m-%d'))" \
+            --label "version-update" \
+            --body "${{ steps.check.outputs.report }}"

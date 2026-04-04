@@ -1,0 +1,171 @@
+# Mapping of tools to their upstream version sources.
+# Used by check_updates.py to detect new releases.
+#
+# Supported source types:
+#   github: owner/repo (checks GitHub Releases API)
+#   pypi: package-name (checks PyPI JSON API)
+#
+# tag_prefix: prefix to strip from release tags (default: "v")
+# tag_prefix: "" means tags have no prefix (e.g. "2.7.11b")
+
+# --- GitHub Releases ---
+minimap2:
+  source: github
+  repo: lh3/minimap2
+
+gffcompare:
+  source: github
+  repo: gpertea/gffcompare
+
+salmon:
+  source: github
+  repo: COMBINE-lab/salmon
+
+bedops:
+  source: github
+  repo: bedops/bedops
+
+bedtools:
+  source: github
+  repo: arq5x/bedtools2
+
+gffread:
+  source: github
+  repo: gpertea/gffread
+
+stringtie:
+  source: github
+  repo: gpertea/stringtie
+
+kallisto:
+  source: github
+  repo: pachterlab/kallisto
+
+star:
+  source: github
+  repo: alexdobin/STAR
+  tag_prefix: ""
+
+picard:
+  source: github
+  repo: broadinstitute/picard
+  tag_prefix: ""
+
+gatk:
+  source: github
+  repo: broadinstitute/gatk
+  tag_prefix: ""
+
+samtools:
+  source: github
+  repo: samtools/samtools
+
+slow5tools:
+  source: github
+  repo: hasindu2008/slow5tools
+
+rnaseqc:
+  source: github
+  repo: getzlab/rnaseqc
+
+vg:
+  source: github
+  repo: vgteam/vg
+
+f5c:
+  source: github
+  repo: hasindu2008/f5c
+
+nanopolish:
+  source: github
+  repo: jts/nanopolish
+
+hisat2:
+  source: github
+  repo: DaehwanKimLab/hisat2
+
+suppa:
+  source: github
+  repo: comprna/SUPPA
+
+genion:
+  source: github
+  repo: vpc-ccg/genion
+
+irfinder:
+  source: github
+  repo: RitchieLabIGH/IRFinder
+
+hmmer:
+  source: github
+  repo: EddyRivasLab/hmmer
+
+rmats:
+  source: github
+  repo: Xinglab/rmats-turbo
+
+rmatsturbo:
+  source: github
+  repo: Xinglab/rmats-turbo
+
+fastp:
+  source: github
+  repo: OpenGene/fastp
+
+subread:
+  source: github
+  repo: ShiLab-Bioinformatics/subread
+  tag_prefix: ""
+
+sratools:
+  source: github
+  repo: ncbi/sra-tools
+
+longgf:
+  source: github
+  repo: WGLab/LongGF
+
+# --- PyPI ---
+xpore:
+  source: pypi
+  package: xpore
+
+nanocompore:
+  source: pypi
+  package: nanocompore
+
+nanocount:
+  source: pypi
+  package: NanoCount
+
+lafite:
+  source: pypi
+  package: LAFITE
+
+meeko:
+  source: pypi
+  package: meeko
+
+spladder:
+  source: pypi
+  package: spladder
+
+deeptools:
+  source: pypi
+  package: deepTools
+
+biopython:
+  source: pypi
+  package: biopython
+
+multiqc:
+  source: pypi
+  package: multiqc
+
+scaden:
+  source: pypi
+  package: scaden
+
+flair:
+  source: pypi
+  package: flair-brookslab

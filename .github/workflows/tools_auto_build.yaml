@@ -130,3 +130,31 @@ jobs:
           build-args: VERSION=${{ matrix.version }}
           cache-from: type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache
           cache-to: type=registry,ref=${{ secrets.DH_USER }}/${{ matrix.tool }}:cache,mode=max
+
+  update-readme:
+    needs: [detect-changes, build]
+    if: always() && needs.build.result != 'cancelled'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install dependencies
+        run: pip install pyyaml
+
+      - name: Regenerate README
+        run: python3 update_readme.py
+
+      - name: Commit if changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add README.md
+          if git diff --cached --quiet; then
+            echo "README is up to date"
+          else
+            git commit -m "docs: auto-update README.md"
+            git push
+          fi
