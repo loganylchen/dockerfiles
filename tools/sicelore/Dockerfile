@@ -1,7 +1,5 @@
 ARG VERSION=1.0
 
-ARG VERSION=1.0
-
 # sicelore: requires python2, openjdk, C++ compilation — keep ubuntu base
 FROM ubuntu:20.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"

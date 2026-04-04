@@ -6,8 +6,6 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
-ENV DEBIAN_FRONTEND=noninteractive
-
 # Install build deps + runtime deps + NanoCount + purge build deps in one layer
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
