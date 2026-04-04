@@ -518,22 +518,6 @@ TOOL_INFO = {
         "category": "deconvolution",
         "references": ["https://github.com/xuranw/MuSiC"]
     },
-    "r-deconvolution": {
-        "cn_name": "R-Deconvolution 免疫解卷积",
-        "en_name": "R-Deconvolution Immune Deconvolution",
-        "cn_desc": "Bioconductor免疫细胞解卷积环境。",
-        "en_desc": "Bioconductor environment for immune cell deconvolution.",
-        "category": "deconvolution",
-        "references": []
-    },
-    "r-tumor-purity": {
-        "cn_name": "R-Tumor-Purity 肿瘤纯度分析",
-        "en_name": "R-Tumor-Purity Tumor Purity Analysis",
-        "cn_desc": "估计肿瘤纯度和免疫组成。",
-        "en_desc": "Estimates tumor purity and immune composition.",
-        "category": "deconvolution",
-        "references": []
-    },
     "scaden": {
         "cn_name": "SCADEN 深度学习解卷积",
         "en_name": "SCADEN Deep Learning Deconvolution",
@@ -790,14 +774,6 @@ TOOL_INFO = {
         "category": "diff_expr",
         "references": ["https://bioconductor.org/packages/sva/"]
     },
-    "r-deg": {
-        "cn_name": "R-DEG 差异表达分析环境",
-        "en_name": "R-DEG Differential Expression Environment",
-        "cn_desc": "Bioconductor差异表达分析环境。",
-        "en_desc": "Bioconductor environment for differential expression analysis.",
-        "category": "diff_expr",
-        "references": []
-    },
 
     # QC
     "rnaseqc": {
@@ -807,14 +783,6 @@ TOOL_INFO = {
         "en_desc": "Comprehensive quality control for RNA-seq experiments.",
         "category": "qc",
         "references": ["https://github.com/getzlab/rnaseqc"]
-    },
-    "r-validation": {
-        "cn_name": "R-Validation 结果验证",
-        "en_name": "R-Validation Result Validation",
-        "cn_desc": "生物分析的验证和报告工具。",
-        "en_desc": "Validation and reporting tools for bioanalysis.",
-        "category": "qc",
-        "references": []
     },
 
     # Genomic utils (additional)
@@ -852,32 +820,8 @@ TOOL_INFO = {
         "category": "coexpression",
         "references": ["https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/"]
     },
-    "r-wgcna": {
-        "cn_name": "R-WGCNA 加权共表达分析环境",
-        "en_name": "R-WGCNA Weighted Coexpression Environment",
-        "cn_desc": "加权基因共表达网络分析和富集环境。",
-        "en_desc": "Weighted gene coexpression network analysis and enrichment environment.",
-        "category": "coexpression",
-        "references": []
-    },
-    "r-grn": {
-        "cn_name": "R-GRN 基因调控网络",
-        "en_name": "R-GRN Gene Regulatory Network",
-        "cn_desc": "基因调控网络推断和分析。",
-        "en_desc": "Gene regulatory network inference and analysis.",
-        "category": "coexpression",
-        "references": []
-    },
 
     # Machine learning
-    "r-ml": {
-        "cn_name": "R-ML 机器学习分析",
-        "en_name": "R-ML Machine Learning Analysis",
-        "cn_desc": "用于基因组数据分析的机器学习工具。",
-        "en_desc": "Machine learning tools for genomic data analysis.",
-        "category": "statistics",
-        "references": []
-    },
     "mime": {
         "cn_name": "MIME 多指标机器学习",
         "en_name": "MIME Multi-Index Machine Learning",

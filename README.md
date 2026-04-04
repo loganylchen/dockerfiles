@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **105** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **98** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -75,7 +75,6 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [deseq2](tools/deseq2/) | R/Bioc | `1.44.0`, `1.42.1`, `1.40.2` | [Link](https://bioconductor.org/packages/DESeq2/) |
 | [edger](tools/edger/) | R/Bioc | `4.2.1`, `4.0.16`, `3.42.4` | [Link](https://bioconductor.org/packages/edgeR/) |
 | [limma](tools/limma/) | R/Bioc | `3.60.4`, `3.58.1`, `3.56.2` | [Link](https://bioconductor.org/packages/limma/) |
-| [r-deg](tools/r-deg/) | R/Bioc | `3.19` |  |
 | [sva](tools/sva/) | R/Bioc | `3.52.0`, `3.50.0`, `3.48.0` | [Link](https://bioconductor.org/packages/sva/) |
 
 ### RNA Modification (RNA修饰)
@@ -106,8 +105,6 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [estimate](tools/estimate/) | R/Bioc | `1.0.13` | [Link](https://r-forge.r-project.org) |
 | [immunedeconv](tools/immunedeconv/) | R/Bioc | `2.1.0`, `2.0.3` | [Link](https://github.com/omnideconv/immunedeconv) |
 | [music](tools/music/) | R/Bioc | `1.0.0` | [Link](https://github.com/xuranw/MuSiC) |
-| [r-deconvolution](tools/r-deconvolution/) | R/Bioc | `3.19` |  |
-| [r-tumor-purity](tools/r-tumor-purity/) | R/Bioc | `1.0` |  |
 | [scaden](tools/scaden/) | Python | `1.1.2` | [Link](https://github.com/KevinMenden/scaden) |
 | [tape](tools/tape/) | Python | `1.1.2`, `1.1.0` | [Link](https://github.com/poseidonchan/TAPE) |
 | [tidyestimate](tools/tidyestimate/) | R/Bioc | `1.1.1`, `1.0.4` | [Link](https://github.com/KaiAragaki/tidyestimate) |
@@ -162,7 +159,6 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [fastp](tools/fastp/) | Compiled | `0.24.0`, `0.23.2` | [Link](https://github.com/OpenGene/fastp) |
 | [multiqc](tools/multiqc/) | Python | `1.24.1`, `1.21`, `1.19` | [Link](https://multiqc.info/) |
 | [qualimap](tools/qualimap/) | Python | `2.3`, `2.2.2d` | [Link](http://qualimap.conesalab.org/) |
-| [r-validation](tools/r-validation/) | R/Bioc | `3.19` |  |
 | [rnaseqc](tools/rnaseqc/) | Python | `2.4.2`, `2.4.1` | [Link](https://github.com/getzlab/rnaseqc) |
 
 ### Functional Annotation (功能注释)
@@ -178,8 +174,6 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
-| [r-grn](tools/r-grn/) | R/Bioc | `3.19` |  |
-| [r-wgcna](tools/r-wgcna/) | R/Bioc | `3.19` |  |
 | [wgcna](tools/wgcna/) | R/Bioc | `1.73`, `1.72_5` | [Link](https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/) |
 
 ### Statistics / Machine Learning (统计/机器学习)
@@ -188,7 +182,6 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 |------|------|----------|-----------|
 | [glmnet](tools/glmnet/) | R/Bioc | `4.1_8`, `4.1_7` | [Link](https://glmnet.stanford.edu/) |
 | [mime](tools/mime/) | R/Bioc | `9a9f6ac89851bf631f9df3868b2fa624bed49df2` |  |
-| [r-ml](tools/r-ml/) | R/Bioc | `3.19` |  |
 
 ### Protein Structure (蛋白质结构)
 
