@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
         libxml2-dev \
         libgit2-dev \
+        libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
         libfreetype-dev \

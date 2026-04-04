@@ -1,14 +1,13 @@
 ARG VERSION=2.5
 
-FROM debian:bookworm-slim
+# python:3.9-slim — majiq v2.5 is incompatible with Python 3.11 on bookworm
+FROM python:3.9-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3 \
-        python3-pip \
         python3-dev \
         gcc \
         g++ \
@@ -20,13 +19,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
     && git clone --depth 1 --branch v${VERSION} \
         https://bitbucket.org/biociphers/majiq_academic.git /tmp/majiq \
-    && pip3 install --no-cache-dir --break-system-packages /tmp/majiq/voila \
-    && pip3 install --no-cache-dir --break-system-packages /tmp/majiq/majiq \
-    && pip3 install --no-cache-dir --break-system-packages 'click<8.0' \
+    && pip install --no-cache-dir /tmp/majiq/voila \
+    && pip install --no-cache-dir /tmp/majiq/majiq \
+    && pip install --no-cache-dir 'click<8.0' \
     && apt-get purge -y --auto-remove python3-dev gcc g++ git ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/majiq /root/.cache
 
-RUN python3 -c "import rna_majiq; print('majiq OK')"
+RUN python -c "import rna_majiq; print('majiq OK')"
 
 WORKDIR /data
 CMD ["majiq"]
