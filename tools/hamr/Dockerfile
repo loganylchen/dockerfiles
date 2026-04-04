@@ -5,7 +5,7 @@ FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget ca-certificates g++ make libncurses-dev zlib1g-dev libbz2-dev liblzma-dev \
+        wget ca-certificates bzip2 g++ make autoconf libncurses-dev zlib1g-dev libbz2-dev liblzma-dev libcurl4-openssl-dev libssl-dev \
     && rm -rf /var/lib/apt/lists/*
 
 RUN cd /tmp \

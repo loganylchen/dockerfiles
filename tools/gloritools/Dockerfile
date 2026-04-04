@@ -16,11 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget ca-certificates unzip zip xxd g++ make libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# STAR: use prebuilt static binary from release tarball
+# STAR: download prebuilt static binary from GitHub Releases
 RUN cd /tmp \
-    && wget -q https://github.com/alexdobin/STAR/archive/${STAR_VERSION}.tar.gz \
-    && tar -xzf ${STAR_VERSION}.tar.gz \
-    && cp STAR-${STAR_VERSION}/bin/Linux_x86_64/STAR /usr/local/bin/ \
+    && wget -q https://github.com/alexdobin/STAR/releases/download/${STAR_VERSION}/STAR_${STAR_VERSION}_x86_64.tar.gz \
+    && tar -xzf STAR_${STAR_VERSION}_x86_64.tar.gz \
+    && cp STAR_${STAR_VERSION}/Linux_x86_64/STAR /usr/local/bin/ \
     && strip /usr/local/bin/STAR
 
 # Bowtie1
