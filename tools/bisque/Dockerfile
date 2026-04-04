@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libxml2-dev \
         libgit2-dev \
         git \
+        ca-certificates \
     && Rscript -e " \
         install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
         devtools::install_github('cozygene/bisque') \
