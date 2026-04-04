@@ -1,4 +1,4 @@
-ARG VERSION=latest
+ARG VERSION=2.32.0
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
