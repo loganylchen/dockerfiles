@@ -9,12 +9,12 @@ Bioconductor environment for immune cell deconvolution.
 ## Installation
 
 ```bash
-docker pull btrspg/r-deconvolution:latest
+docker pull btrspg/r-deconvolution:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

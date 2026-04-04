@@ -9,12 +9,12 @@ Functional enrichment and visualization for genomic analysis.
 ## Installation
 
 ```bash
-docker pull btrspg/genekitr:latest
+docker pull btrspg/genekitr:1.2.8
 ```
 
 ## Available Versions
 
-`latest`
+`1.2.8`
 
 ## Usage
 

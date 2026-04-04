@@ -9,12 +9,12 @@ Analyzes percent-spliced-in from Nanopore sequencing.
 ## Installation
 
 ```bash
-docker pull btrspg/psinanopore:latest
+docker pull btrspg/psinanopore:1.0
 ```
 
 ## Available Versions
 
-`latest`
+`1.0`
 
 ## Usage
 

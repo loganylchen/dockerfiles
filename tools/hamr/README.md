@@ -9,12 +9,12 @@ Detects and quantifies RNA modifications using high-throughput sequencing.
 ## Installation
 
 ```bash
-docker pull btrspg/hamr:latest
+docker pull btrspg/hamr:3.3
 ```
 
 ## Available Versions
 
-`latest`
+`3.3`
 
 ## Usage
 

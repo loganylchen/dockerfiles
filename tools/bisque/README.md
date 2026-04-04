@@ -9,12 +9,12 @@ Reference-based cell type deconvolution from bulk RNA-seq.
 ## Installation
 
 ```bash
-docker pull btrspg/bisque:latest
+docker pull btrspg/bisque:1.0.5
 ```
 
 ## Available Versions
 
-`latest`
+`1.0.5`
 
 ## Usage
 

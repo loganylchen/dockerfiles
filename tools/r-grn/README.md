@@ -9,12 +9,12 @@ Gene regulatory network inference and analysis.
 ## Installation
 
 ```bash
-docker pull btrspg/r-grn:latest
+docker pull btrspg/r-grn:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

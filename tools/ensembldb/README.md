@@ -9,12 +9,12 @@ R/Bioconductor package for Ensembl genomic feature databases.
 ## Installation
 
 ```bash
-docker pull btrspg/ensembldb:latest
+docker pull btrspg/ensembldb:2.32.0
 ```
 
 ## Available Versions
 
-`latest`
+`2.32.0`
 
 ## Usage
 

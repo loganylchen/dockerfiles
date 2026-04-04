@@ -9,12 +9,12 @@ Tools for genomic and transcriptomic analysis pipelines.
 ## Installation
 
 ```bash
-docker pull btrspg/gloritools:latest
+docker pull btrspg/gloritools:1.0.0
 ```
 
 ## Available Versions
 
-`latest`
+`1.0.0`
 
 ## Usage
 

@@ -9,12 +9,12 @@ Machine learning tools for genomic data analysis.
 ## Installation
 
 ```bash
-docker pull btrspg/r-ml:latest
+docker pull btrspg/r-ml:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

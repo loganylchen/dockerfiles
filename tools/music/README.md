@@ -9,12 +9,12 @@ Bulk tissue deconvolution via single-cell transcriptomics.
 ## Installation
 
 ```bash
-docker pull btrspg/music:latest
+docker pull btrspg/music:1.0.0
 ```
 
 ## Available Versions
 
-`latest`
+`1.0.0`
 
 ## Usage
 

@@ -9,12 +9,12 @@ Detects RNA modifications from Nanopore sequencing data.
 ## Installation
 
 ```bash
-docker pull btrspg/modtect:latest
+docker pull btrspg/modtect:1.7.5.1
 ```
 
 ## Available Versions
 
-`latest`
+`1.7.5.1`
 
 ## Usage
 

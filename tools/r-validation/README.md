@@ -9,12 +9,12 @@ Validation and reporting tools for bioanalysis.
 ## Installation
 
 ```bash
-docker pull btrspg/r-validation:latest
+docker pull btrspg/r-validation:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

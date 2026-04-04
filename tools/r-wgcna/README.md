@@ -9,12 +9,12 @@ Weighted gene coexpression network analysis and enrichment environment.
 ## Installation
 
 ```bash
-docker pull btrspg/r-wgcna:latest
+docker pull btrspg/r-wgcna:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

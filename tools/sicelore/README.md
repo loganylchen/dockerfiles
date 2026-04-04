@@ -9,12 +9,12 @@ Single-cell transcriptome reconstruction from long reads.
 ## Installation
 
 ```bash
-docker pull btrspg/sicelore:latest
+docker pull btrspg/sicelore:1.0
 ```
 
 ## Available Versions
 
-`latest`
+`1.0`
 
 ## Usage
 

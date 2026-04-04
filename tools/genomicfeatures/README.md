@@ -9,12 +9,12 @@ R/Bioconductor tools for genomic features and annotations.
 ## Installation
 
 ```bash
-docker pull btrspg/genomicfeatures:latest
+docker pull btrspg/genomicfeatures:1.62.0
 ```
 
 ## Available Versions
 
-`latest`
+`1.62.0`
 
 ## Usage
 

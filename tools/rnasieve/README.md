@@ -9,12 +9,12 @@ Fast filtering and quantification of RNA sequences.
 ## Installation
 
 ```bash
-docker pull btrspg/rnasieve:latest
+docker pull btrspg/rnasieve:0.1.4
 ```
 
 ## Available Versions
 
-`latest`
+`0.1.4`
 
 ## Usage
 

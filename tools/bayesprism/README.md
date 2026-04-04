@@ -9,12 +9,12 @@ Bayesian cell type deconvolution from bulk RNA-seq data.
 ## Installation
 
 ```bash
-docker pull btrspg/bayesprism:latest
+docker pull btrspg/bayesprism:2.2.3
 ```
 
 ## Available Versions
 
-`latest`
+`2.2.3`
 
 ## Usage
 

@@ -9,12 +9,12 @@ Bioconductor environment for differential expression analysis.
 ## Installation
 
 ```bash
-docker pull btrspg/r-deg:latest
+docker pull btrspg/r-deg:3.19
 ```
 
 ## Available Versions
 
-`latest`
+`3.19`
 
 ## Usage
 

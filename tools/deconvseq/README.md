@@ -9,12 +9,12 @@ Immune cell deconvolution from RNA-seq data.
 ## Installation
 
 ```bash
-docker pull btrspg/deconvseq:latest
+docker pull btrspg/deconvseq:0.2.3
 ```
 
 ## Available Versions
 
-`latest`
+`0.2.3`
 
 ## Usage
 

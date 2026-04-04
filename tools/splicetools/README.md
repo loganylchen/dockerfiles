@@ -9,12 +9,12 @@ Tools for analyzing RNA splice sites and junctions.
 ## Installation
 
 ```bash
-docker pull btrspg/splicetools:latest
+docker pull btrspg/splicetools:1.1
 ```
 
 ## Available Versions
 
-`latest`
+`1.1`
 
 ## Usage
 
