@@ -1,19 +1,36 @@
-ARG VERSION=1.0
+ARG VERSION=latest
 
-FROM btrspg/vscode-base:0.0.3
+FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
-ENV PATH=/opt/bin/:$PATH
-ENV DEBIAN_FRONTEND=noninteractive
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        r-base \
+        r-base-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libxml2-dev \
+        libgit2-dev \
+        libharfbuzz-dev \
+        libfribidi-dev \
+        libfreetype-dev \
+        libpng-dev \
+        libtiff-dev \
+        libjpeg-dev \
+        git \
+    && Rscript -e " \
+        install.packages(c('BiocManager', 'devtools', 'dplyr', 'geneset', \
+            'ggplot2', 'ggfun', 'cowplot'), repos='https://cloud.r-project.org/'); \
+        devtools::install_github('YuLab-SMU/ggtree'); \
+        BiocManager::install('clusterProfiler', ask=FALSE); \
+        devtools::install_github('GangLiLab/genekitr') \
+    " \
+    && apt-get purge -y --auto-remove r-base-dev git \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-ADD install_packages_R.R /tmp/
-
-RUN Rscript /tmp/install_packages_R.R \
-    && apt-get autoremove -y \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/*
+RUN Rscript -e "library(genekitr); sessionInfo()" 2>&1 | head -5
 
 WORKDIR /data
-CMD ["R"]
+CMD ["Rscript"]
