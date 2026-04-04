@@ -1,98 +1,38 @@
-# longgf
+# LongGF Long Read Fusion Detection
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Gene Fusion
 
----
+## Introduction
 
-## 中文文档
+Generates gene fusion GTF files from long read BAM alignments.
 
-### longgf
-
-**类别**: 通用
-
-#### 简介
-
-longgf 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/longgf:0.1.2
+docker pull btrspg/longgf:0.1.2
 ```
 
-#### 可用版本
+## Available Versions
 
 `0.1.2`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/longgf longgf --help
+docker run --rm -v /path/to/data:/data btrspg/longgf longgf --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/longgf longgf --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/longgf bash
+docker run --rm -it -v $(pwd):/data btrspg/longgf bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/longgf longgf [options]
+docker run --rm -v /path/to/data:/data btrspg/longgf longgf [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### longgf
-
-**Category**: General
-
-#### Introduction
-
-longgf bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/longgf:0.1.2
-```
-
-#### Available Versions
-
-`0.1.2`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/longgf longgf --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/longgf longgf --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/longgf bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/longgf longgf [options]
-```
-
-#### References
-
+- [https://github.com/WGLab/LongGF](https://github.com/WGLab/LongGF)

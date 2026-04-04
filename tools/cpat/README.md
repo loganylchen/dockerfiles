@@ -1,98 +1,38 @@
-# cpat
+# CPAT Coding Potential Assessment
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Coding Potential
 
----
+## Introduction
 
-## 中文文档
+Predicts whether transcripts have protein-coding potential.
 
-### cpat
-
-**类别**: 通用
-
-#### 简介
-
-cpat 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/cpat:3.0.4
+docker pull btrspg/cpat:3.0.4
 ```
 
-#### 可用版本
+## Available Versions
 
 `3.0.4`, `3.0.3`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/cpat cpat --help
+docker run --rm -v /path/to/data:/data btrspg/cpat cpat --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/cpat cpat --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/cpat bash
+docker run --rm -it -v $(pwd):/data btrspg/cpat bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/cpat cpat [options]
+docker run --rm -v /path/to/data:/data btrspg/cpat cpat [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### cpat
-
-**Category**: General
-
-#### Introduction
-
-cpat bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/cpat:3.0.4
-```
-
-#### Available Versions
-
-`3.0.4`, `3.0.3`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/cpat cpat --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/cpat cpat --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/cpat bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/cpat cpat [options]
-```
-
-#### References
-
+- [https://github.com/liguowang/cpat](https://github.com/liguowang/cpat)

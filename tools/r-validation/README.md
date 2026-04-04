@@ -1,98 +1,37 @@
-# r-validation
+# R-Validation Result Validation
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Quality Control
 
----
+## Introduction
 
-## 中文文档
+Validation and reporting tools for bioanalysis.
 
-### r-validation
-
-**类别**: 通用
-
-#### 简介
-
-r-validation 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/r-validation:latest
+docker pull btrspg/r-validation:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-validation r-validation --help
+# Quality control
+docker run --rm -v /path/to/data:/data btrspg/r-validation r-validation -i input.fq -o output.html
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/r-validation r-validation --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-validation bash
+docker run --rm -it -v $(pwd):/data btrspg/r-validation bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/r-validation r-validation [options]
+docker run --rm -v /path/to/data:/data btrspg/r-validation r-validation [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### r-validation
-
-**Category**: General
-
-#### Introduction
-
-r-validation bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/r-validation:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-validation r-validation --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/r-validation r-validation --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-validation bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/r-validation r-validation [options]
-```
-
-#### References
+## References
 

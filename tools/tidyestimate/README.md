@@ -1,98 +1,38 @@
-# tidyestimate
+# TidyEstimate Tumor Estimation Tool
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Tidy interface to ESTIMATE for tumor purity analysis.
 
-### tidyestimate
-
-**类别**: 通用
-
-#### 简介
-
-tidyestimate 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/tidyestimate:0.0.0.9000
+docker pull btrspg/tidyestimate:1.1.1
 ```
 
-#### 可用版本
+## Available Versions
 
-`0.0.0.9000`
+`1.1.1`, `1.0.4`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/tidyestimate tidyestimate --help
+docker run --rm -v /path/to/data:/data btrspg/tidyestimate tidyestimate --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/tidyestimate tidyestimate --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/tidyestimate bash
+docker run --rm -it -v $(pwd):/data btrspg/tidyestimate bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/tidyestimate tidyestimate [options]
+docker run --rm -v /path/to/data:/data btrspg/tidyestimate tidyestimate [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### tidyestimate
-
-**Category**: General
-
-#### Introduction
-
-tidyestimate bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/tidyestimate:0.0.0.9000
-```
-
-#### Available Versions
-
-`0.0.0.9000`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/tidyestimate tidyestimate --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/tidyestimate tidyestimate --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/tidyestimate bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/tidyestimate tidyestimate [options]
-```
-
-#### References
-
+- [https://github.com/KaiAragaki/tidyestimate](https://github.com/KaiAragaki/tidyestimate)

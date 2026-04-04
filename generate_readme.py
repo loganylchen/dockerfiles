@@ -370,6 +370,556 @@ TOOL_INFO = {
         "category": "utility",
         "references": ["https://lftp.yar.ru/"]
     },
+
+    # RNA modification
+    "differr": {
+        "cn_name": "Differr RNA修饰检测",
+        "en_name": "Differr RNA Modification Detection",
+        "cn_desc": "从直接RNA测序数据中检测差异修饰的RNA位点。",
+        "en_desc": "Detects differentially modified RNA sites from direct RNA-seq data.",
+        "category": "rna_mod",
+        "references": ["https://github.com/bartongroup/differr_nanopore_DRS"]
+    },
+    "directrm": {
+        "cn_name": "DirectRM RNA修饰检测",
+        "en_name": "DirectRM RNA Modification Detection",
+        "cn_desc": "使用深度学习从Nanopore直接RNA测序中检测RNA修饰。",
+        "en_desc": "Detects RNA modifications from Nanopore dRNA-seq using deep learning.",
+        "category": "rna_mod",
+        "references": ["https://github.com/yuxinPenny/DirectRM"]
+    },
+    "drummer": {
+        "cn_name": "DRUMMER RNA修饰分析",
+        "en_name": "DRUMMER RNA Modification Analysis",
+        "cn_desc": "从RNA-seq比对数据中分析RNA修饰模式。",
+        "en_desc": "Analyzes RNA modification patterns from RNA-seq alignments.",
+        "category": "rna_mod",
+        "references": ["https://github.com/DepledgeLab/DRUMMER"]
+    },
+    "eligos2": {
+        "cn_name": "ELIGOS2 RNA修饰鉴定",
+        "en_name": "ELIGOS2 RNA Modification Identification",
+        "cn_desc": "从直接RNA测序数据中鉴定RNA修饰。",
+        "en_desc": "Identifies RNA modifications from direct RNA-seq data.",
+        "category": "rna_mod",
+        "references": ["https://gitlab.com/piroonj/eligos2"]
+    },
+    "epinano": {
+        "cn_name": "EpiNano RNA修饰分析",
+        "en_name": "EpiNano RNA Modification Analysis",
+        "cn_desc": "利用Nanopore测序分析RNA修饰和序列变异。",
+        "en_desc": "Analyzes RNA modifications and sequence variants from Nanopore sequencing.",
+        "category": "rna_mod",
+        "references": ["https://github.com/novoalab/EpiNano"]
+    },
+    "hamr": {
+        "cn_name": "HAMR RNA修饰高通量鉴定",
+        "en_name": "HAMR High-throughput RNA Modification Detection",
+        "cn_desc": "利用高通量测序检测和定量RNA修饰。",
+        "en_desc": "Detects and quantifies RNA modifications using high-throughput sequencing.",
+        "category": "rna_mod",
+        "references": ["https://github.com/GregoryLab/HAMR"]
+    },
+    "modtect": {
+        "cn_name": "ModTect RNA修饰检测",
+        "en_name": "ModTect RNA Modification Detection",
+        "cn_desc": "从Nanopore测序数据中检测RNA修饰。",
+        "en_desc": "Detects RNA modifications from Nanopore sequencing data.",
+        "category": "rna_mod",
+        "references": ["https://github.com/ktan8/ModTect"]
+    },
+    "nanocompore": {
+        "cn_name": "Nanocompore RNA修饰比较分析",
+        "en_name": "Nanocompore RNA Modification Comparison",
+        "cn_desc": "从直接RNA测序中检测差异RNA修饰。",
+        "en_desc": "Detects differential RNA modifications from direct RNA-seq.",
+        "category": "rna_mod",
+        "references": ["https://github.com/tlacombe/nanocompore"]
+    },
+    "nanocompore1": {
+        "cn_name": "Nanocompore 1.x RNA修饰检测",
+        "en_name": "Nanocompore 1.x RNA Modification Detection",
+        "cn_desc": "Nanopore直接RNA测序的RNA修饰检测工具（1.x版本）。",
+        "en_desc": "RNA modification detection from Nanopore dRNA-seq (v1.x branch).",
+        "category": "rna_mod",
+        "references": ["https://github.com/tlacombe/nanocompore"]
+    },
+    "rnam5c": {
+        "cn_name": "RNA-m5C 甲基化分析",
+        "en_name": "RNA-m5C Methylation Analysis",
+        "cn_desc": "分析RNA中m5C甲基化修饰。",
+        "en_desc": "Analyzes m5C methylation modifications in RNA from sequencing data.",
+        "category": "rna_mod",
+        "references": ["https://www.nature.com/articles/s41594-019-0218-x"]
+    },
+    "rnamodivt": {
+        "cn_name": "RNAModivt RNA修饰综合分析",
+        "en_name": "RNAModivt RNA Modification Integrated Analysis",
+        "cn_desc": "系统校准表观转录组图谱的RNA修饰综合分析流程。",
+        "en_desc": "Comprehensive pipeline for RNA modification analysis with systematic calibration.",
+        "category": "rna_mod",
+        "references": ["https://www.nature.com/articles/s41592-021-01280-7"]
+    },
+    "xpore": {
+        "cn_name": "xPore 直接RNA修饰检测",
+        "en_name": "xPore Direct RNA Modification Detection",
+        "cn_desc": "从直接RNA测序中鉴定差异RNA修饰。",
+        "en_desc": "Identifies differential RNA modifications from direct RNA sequencing.",
+        "category": "rna_mod",
+        "references": ["https://github.com/GoekeLab/xpore"]
+    },
+
+    # Deconvolution
+    "bayesprism": {
+        "cn_name": "BayesPrism 细胞类型解卷积",
+        "en_name": "BayesPrism Cell Type Deconvolution",
+        "cn_desc": "基于贝叶斯模型的bulk RNA-seq细胞类型解卷积工具。",
+        "en_desc": "Bayesian cell type deconvolution from bulk RNA-seq data.",
+        "category": "deconvolution",
+        "references": ["https://github.com/Danko-Lab/BayesPrism"]
+    },
+    "bisque": {
+        "cn_name": "Bisque 转录组解卷积",
+        "en_name": "Bisque Transcriptomic Deconvolution",
+        "cn_desc": "基于参考的bulk RNA-seq细胞类型解卷积工具。",
+        "en_desc": "Reference-based cell type deconvolution from bulk RNA-seq.",
+        "category": "deconvolution",
+        "references": ["https://github.com/cozygene/bisque"]
+    },
+    "deconvseq": {
+        "cn_name": "DeconvSeq 解卷积分析",
+        "en_name": "DeconvSeq Deconvolution Analysis",
+        "cn_desc": "RNA-seq数据的免疫细胞解卷积工具。",
+        "en_desc": "Immune cell deconvolution from RNA-seq data.",
+        "category": "deconvolution",
+        "references": ["https://github.com/rosedu1/deconvSeq"]
+    },
+    "estimate": {
+        "cn_name": "ESTIMATE 肿瘤纯度评估",
+        "en_name": "ESTIMATE Tumor Purity Estimation",
+        "cn_desc": "估计肿瘤样本中基质细胞和免疫细胞含量。",
+        "en_desc": "Estimates stromal and immune content in tumor samples.",
+        "category": "deconvolution",
+        "references": ["https://r-forge.r-project.org"]
+    },
+    "immunedeconv": {
+        "cn_name": "ImmuneDeconv 免疫细胞解卷积",
+        "en_name": "ImmuneDeconv Immune Cell Deconvolution",
+        "cn_desc": "从转录组数据中解卷积免疫细胞群。",
+        "en_desc": "Deconvolution of immune cell populations from transcriptomic data.",
+        "category": "deconvolution",
+        "references": ["https://github.com/omnideconv/immunedeconv"]
+    },
+    "music": {
+        "cn_name": "MuSiC 细胞类型解卷积",
+        "en_name": "MuSiC Cell Type Deconvolution",
+        "cn_desc": "基于单细胞转录组的bulk组织解卷积。",
+        "en_desc": "Bulk tissue deconvolution via single-cell transcriptomics.",
+        "category": "deconvolution",
+        "references": ["https://github.com/xuranw/MuSiC"]
+    },
+    "r-deconvolution": {
+        "cn_name": "R-Deconvolution 免疫解卷积",
+        "en_name": "R-Deconvolution Immune Deconvolution",
+        "cn_desc": "Bioconductor免疫细胞解卷积环境。",
+        "en_desc": "Bioconductor environment for immune cell deconvolution.",
+        "category": "deconvolution",
+        "references": []
+    },
+    "r-tumor-purity": {
+        "cn_name": "R-Tumor-Purity 肿瘤纯度分析",
+        "en_name": "R-Tumor-Purity Tumor Purity Analysis",
+        "cn_desc": "估计肿瘤纯度和免疫组成。",
+        "en_desc": "Estimates tumor purity and immune composition.",
+        "category": "deconvolution",
+        "references": []
+    },
+    "scaden": {
+        "cn_name": "SCADEN 深度学习解卷积",
+        "en_name": "SCADEN Deep Learning Deconvolution",
+        "cn_desc": "使用深度学习的单细胞参考细胞类型解卷积。",
+        "en_desc": "Cell type deconvolution using deep learning with single-cell reference.",
+        "category": "deconvolution",
+        "references": ["https://github.com/KevinMenden/scaden"]
+    },
+    "tidyestimate": {
+        "cn_name": "TidyEstimate 肿瘤估值工具",
+        "en_name": "TidyEstimate Tumor Estimation Tool",
+        "cn_desc": "ESTIMATE的Tidy接口，用于肿瘤纯度分析。",
+        "en_desc": "Tidy interface to ESTIMATE for tumor purity analysis.",
+        "category": "deconvolution",
+        "references": ["https://github.com/KaiAragaki/tidyestimate"]
+    },
+    "xcell": {
+        "cn_name": "xCell 细胞类型评分",
+        "en_name": "xCell Cell Type Scoring",
+        "cn_desc": "从基因表达数据推断免疫和基质细胞类型。",
+        "en_desc": "Infers immune and stromal cell types from gene expression data.",
+        "category": "deconvolution",
+        "references": ["https://xcell.ucsf.edu/"]
+    },
+
+    # Coding potential
+    "cpat": {
+        "cn_name": "CPAT 编码潜力预测",
+        "en_name": "CPAT Coding Potential Assessment",
+        "cn_desc": "预测转录本是否具有蛋白质编码潜力。",
+        "en_desc": "Predicts whether transcripts have protein-coding potential.",
+        "category": "coding_potential",
+        "references": ["https://github.com/liguowang/cpat"]
+    },
+    "cpc2": {
+        "cn_name": "CPC2 编码潜力分类器",
+        "en_name": "CPC2 Coding Potential Classifier",
+        "cn_desc": "将序列分类为蛋白编码或非编码。",
+        "en_desc": "Classifies sequences as protein-coding or non-coding.",
+        "category": "coding_potential",
+        "references": ["https://github.com/gao-lab/CPC2_standalone"]
+    },
+
+    # Protein structure / molecular docking
+    "autodockvina": {
+        "cn_name": "AutoDock Vina 分子对接",
+        "en_name": "AutoDock Vina Molecular Docking",
+        "cn_desc": "用于计算药物发现的分子对接软件。",
+        "en_desc": "Molecular docking software for computational drug discovery.",
+        "category": "protein_struct",
+        "references": ["https://github.com/ccsb-scripps/AutoDock-Vina"]
+    },
+    "iupred2a": {
+        "cn_name": "IUPred2a 蛋白无序性预测",
+        "en_name": "IUPred2a Protein Disorder Prediction",
+        "cn_desc": "预测蛋白质中的内在无序区域。",
+        "en_desc": "Predicts intrinsically disordered regions in proteins.",
+        "category": "protein_struct",
+        "references": ["https://iupred.elte.hu/"]
+    },
+    "meeko": {
+        "cn_name": "Meeko 分子准备工具",
+        "en_name": "Meeko Molecular Preparation Tool",
+        "cn_desc": "为自动化对接工作流准备分子结构。",
+        "en_desc": "Prepares molecular structures for automated docking workflows.",
+        "category": "protein_struct",
+        "references": ["https://github.com/forlilab/meeko"]
+    },
+    "mgltools": {
+        "cn_name": "MGLTools 分子可视化套件",
+        "en_name": "MGLTools Molecular Visualization Suite",
+        "cn_desc": "用于蛋白质结构分析的分子图形和计算工具。",
+        "en_desc": "Molecular graphics and computational tools for protein structure analysis.",
+        "category": "protein_struct",
+        "references": ["https://ccsb.scripps.edu/mgltools/"]
+    },
+    "signalp": {
+        "cn_name": "SignalP 信号肽预测",
+        "en_name": "SignalP Signal Peptide Prediction",
+        "cn_desc": "预测蛋白质序列中的信号肽。",
+        "en_desc": "Predicts signal peptides in protein sequences.",
+        "category": "protein_struct",
+        "references": ["https://services.healthtech.dtu.dk/services/SignalP-5.0/"]
+    },
+
+    # Gene fusion
+    "aeron": {
+        "cn_name": "AERON 基因融合检测",
+        "en_name": "AERON Gene Fusion Detection",
+        "cn_desc": "利用长读段进行转录本定量和基因融合检测。",
+        "en_desc": "Transcript quantification and gene-fusion detection using long reads.",
+        "category": "fusion",
+        "references": ["https://www.biorxiv.org/content/10.1101/2020.01.27.921338v1"]
+    },
+    "jaffal": {
+        "cn_name": "JAFFA 基因融合检测",
+        "en_name": "JAFFA Gene Fusion Detection",
+        "cn_desc": "从RNA-seq数据中检测基因融合事件。",
+        "en_desc": "Detects gene fusion events from RNA-seq data.",
+        "category": "fusion",
+        "references": ["https://github.com/Oshlack/JAFFA"]
+    },
+    "longgf": {
+        "cn_name": "LongGF 长读段融合检测",
+        "en_name": "LongGF Long Read Fusion Detection",
+        "cn_desc": "从长读段比对中生成基因融合GTF文件。",
+        "en_desc": "Generates gene fusion GTF files from long read BAM alignments.",
+        "category": "fusion",
+        "references": ["https://github.com/WGLab/LongGF"]
+    },
+    "genion": {
+        "cn_name": "GeniON 基因融合检测",
+        "en_name": "GeniON Gene Fusion Detection",
+        "cn_desc": "快速序列变异和基因融合检测工具。",
+        "en_desc": "Fast sequence variant and gene fusion detection tool.",
+        "category": "fusion",
+        "references": ["https://github.com/vpc-ccg/genion"]
+    },
+
+    # RNA-seq tools (additional)
+    "bambu": {
+        "cn_name": "Bambu 转录本组装工具",
+        "en_name": "Bambu Transcript Assembly Tool",
+        "cn_desc": "利用长读段RNA-seq数据进行异构体发现和定量。",
+        "en_desc": "Isoform discovery and quantification from long-read RNA-seq data.",
+        "category": "rna_seq",
+        "references": ["https://bioconductor.org/packages/bambu/"]
+    },
+    "flair": {
+        "cn_name": "FLAIR 转录本注释工具",
+        "en_name": "FLAIR Transcript Annotation Tool",
+        "cn_desc": "利用长读段进行全长RNA异构体测序和注释。",
+        "en_desc": "Full-length RNA isoform sequencing and annotation from long reads.",
+        "category": "rna_seq",
+        "references": ["https://github.com/BrooksLabUCSC/flair"]
+    },
+    "sicelore": {
+        "cn_name": "SiCeLoRe 单细胞长读段",
+        "en_name": "SiCeLoRe Single Cell Long Reads",
+        "cn_desc": "利用长读段进行单细胞转录组重建。",
+        "en_desc": "Single-cell transcriptome reconstruction from long reads.",
+        "category": "rna_seq",
+        "references": ["https://github.com/ucagenomix/sicelore"]
+    },
+
+    # More splicing tools
+    "isoformswitchanalyzer": {
+        "cn_name": "IsoformSwitchAnalyzeR 异构体切换分析",
+        "en_name": "IsoformSwitchAnalyzeR Isoform Switch Analysis",
+        "cn_desc": "分析异构体切换的功能后果。",
+        "en_desc": "Analyzes functional consequences of isoform switches.",
+        "category": "splicing",
+        "references": ["https://bioconductor.org/packages/IsoformSwitchAnalyzeR/"]
+    },
+    "lafite": {
+        "cn_name": "LAFITE 全长异构体聚类",
+        "en_name": "LAFITE Full-length Isoform Clustering",
+        "cn_desc": "从Nanopore直接RNA测序中聚类全长异构体。",
+        "en_desc": "Full-length isoform clustering from Nanopore direct RNA-seq.",
+        "category": "splicing",
+        "references": ["https://github.com/pythseq/LAFITE"]
+    },
+    "psinanopore": {
+        "cn_name": "PsiNanopore Nanopore剪接分析",
+        "en_name": "PsiNanopore Nanopore Splicing Analysis",
+        "cn_desc": "从Nanopore测序分析剪接纳入百分比。",
+        "en_desc": "Analyzes percent-spliced-in from Nanopore sequencing.",
+        "category": "splicing",
+        "references": ["https://github.com/RouhanifardLab/PsiNanopore"]
+    },
+    "rmats": {
+        "cn_name": "rMATS 可变剪接定量",
+        "en_name": "rMATS Alternative Splicing Quantification",
+        "cn_desc": "从RNA-seq数据中检测和定量可变剪接事件。",
+        "en_desc": "Detects and quantifies alternative splicing events from RNA-seq data.",
+        "category": "splicing",
+        "references": ["https://rnaseq-mats.sourceforge.io/"]
+    },
+    "rmatsturbo": {
+        "cn_name": "rMATS-turbo 快速剪接分析",
+        "en_name": "rMATS-turbo Fast Splicing Analysis",
+        "cn_desc": "高性能的可变剪接事件检测工具。",
+        "en_desc": "High-performance alternative splicing event detection.",
+        "category": "splicing",
+        "references": ["https://github.com/Xinglab/rmats-turbo"]
+    },
+    "splicetools": {
+        "cn_name": "SpliceTools 剪接工具集",
+        "en_name": "SpliceTools Splicing Tools Suite",
+        "cn_desc": "用于分析RNA剪接位点和连接的工具。",
+        "en_desc": "Tools for analyzing RNA splice sites and junctions.",
+        "category": "splicing",
+        "references": []
+    },
+    "suppa": {
+        "cn_name": "SUPPA 剪接变异定量",
+        "en_name": "SUPPA Splicing Variation Quantification",
+        "cn_desc": "分析和比较可变剪接事件。",
+        "en_desc": "Analyzes and compares alternative splicing events.",
+        "category": "splicing",
+        "references": ["https://github.com/comprna/SUPPA"]
+    },
+
+    # Quantification
+    "nanocount": {
+        "cn_name": "NanoCount 长读段定量",
+        "en_name": "NanoCount Long Read Quantification",
+        "cn_desc": "长读段测序的转录本丰度估计。",
+        "en_desc": "Transcript abundance estimation for long-read sequencing.",
+        "category": "quantification",
+        "references": ["https://github.com/a-slide/NanoCount"]
+    },
+    "slow5tools": {
+        "cn_name": "slow5tools SLOW5格式工具",
+        "en_name": "slow5tools SLOW5 Format Tools",
+        "cn_desc": "处理Nanopore测序SLOW5格式文件的工具。",
+        "en_desc": "Tools for manipulating SLOW5 files from nanopore sequencing.",
+        "category": "nanopore",
+        "references": ["https://github.com/hasindu2008/slow5tools"]
+    },
+
+    # Annotation
+    "ensembldb": {
+        "cn_name": "EnsemblDB 基因注释库",
+        "en_name": "EnsemblDB Gene Annotation Database",
+        "cn_desc": "Ensembl基因组特征数据库的R/Bioconductor包。",
+        "en_desc": "R/Bioconductor package for Ensembl genomic feature databases.",
+        "category": "annotation",
+        "references": ["https://bioconductor.org/packages/ensembldb/"]
+    },
+    "genekitr": {
+        "cn_name": "GeneKitr 基因功能分析",
+        "en_name": "GeneKitr Gene Functional Analysis",
+        "cn_desc": "用于基因组分析的功能富集和可视化工具。",
+        "en_desc": "Functional enrichment and visualization for genomic analysis.",
+        "category": "annotation",
+        "references": ["https://github.com/GangLiLab/genekitr"]
+    },
+    "genomicfeatures": {
+        "cn_name": "GenomicFeatures 基因组特征工具",
+        "en_name": "GenomicFeatures Genomic Feature Tools",
+        "cn_desc": "用于基因组特征和注释的R/Bioconductor工具。",
+        "en_desc": "R/Bioconductor tools for genomic features and annotations.",
+        "category": "annotation",
+        "references": ["https://bioconductor.org/packages/GenomicFeatures/"]
+    },
+
+    # Differential expression (additional)
+    "sva": {
+        "cn_name": "SVA 批效应移除",
+        "en_name": "SVA Batch Effect Removal",
+        "cn_desc": "用于移除批效应的替代变量分析工具。",
+        "en_desc": "Surrogate variable analysis for removing batch effects.",
+        "category": "diff_expr",
+        "references": ["https://bioconductor.org/packages/sva/"]
+    },
+    "r-deg": {
+        "cn_name": "R-DEG 差异表达分析环境",
+        "en_name": "R-DEG Differential Expression Environment",
+        "cn_desc": "Bioconductor差异表达分析环境。",
+        "en_desc": "Bioconductor environment for differential expression analysis.",
+        "category": "diff_expr",
+        "references": []
+    },
+
+    # QC
+    "rnaseqc": {
+        "cn_name": "RNA-SeQC RNA-seq质控",
+        "en_name": "RNA-SeQC RNA-seq Quality Control",
+        "cn_desc": "RNA-seq实验的综合质量控制工具。",
+        "en_desc": "Comprehensive quality control for RNA-seq experiments.",
+        "category": "qc",
+        "references": ["https://github.com/getzlab/rnaseqc"]
+    },
+    "r-validation": {
+        "cn_name": "R-Validation 结果验证",
+        "en_name": "R-Validation Result Validation",
+        "cn_desc": "生物分析的验证和报告工具。",
+        "en_desc": "Validation and reporting tools for bioanalysis.",
+        "category": "qc",
+        "references": []
+    },
+
+    # Genomic utils (additional)
+    "hmmer": {
+        "cn_name": "HMMER 序列搜索工具",
+        "en_name": "HMMER Sequence Search Tools",
+        "cn_desc": "基于隐马尔可夫模型的蛋白质和核酸序列分析工具。",
+        "en_desc": "Hidden Markov Model tools for protein and nucleotide sequence analysis.",
+        "category": "genomic_utils",
+        "references": ["https://eddylab.org/software/hmmer/"]
+    },
+    "gloritools": {
+        "cn_name": "GLORI-tools 基因组分析工具",
+        "en_name": "GLORI-tools Genomic Analysis Tools",
+        "cn_desc": "基因组和转录组分析流程工具。",
+        "en_desc": "Tools for genomic and transcriptomic analysis pipelines.",
+        "category": "rna_mod",
+        "references": ["https://github.com/liucongcas/GLORI-tools"]
+    },
+
+    # Coexpression / network
+    "glmnet": {
+        "cn_name": "GLMnet 正则化回归",
+        "en_name": "GLMnet Regularized Regression",
+        "cn_desc": "弹性网络正则化回归的R包。",
+        "en_desc": "R package for elastic net regularized regression.",
+        "category": "statistics",
+        "references": ["https://glmnet.stanford.edu/"]
+    },
+    "wgcna": {
+        "cn_name": "WGCNA 加权基因共表达",
+        "en_name": "WGCNA Weighted Gene Coexpression",
+        "cn_desc": "加权基因共表达网络分析。",
+        "en_desc": "Weighted gene coexpression network analysis.",
+        "category": "coexpression",
+        "references": ["https://horvath.genetics.ucla.edu/html/CoexpressionNetwork/Rpackages/WGCNA/"]
+    },
+    "r-wgcna": {
+        "cn_name": "R-WGCNA 加权共表达分析环境",
+        "en_name": "R-WGCNA Weighted Coexpression Environment",
+        "cn_desc": "加权基因共表达网络分析和富集环境。",
+        "en_desc": "Weighted gene coexpression network analysis and enrichment environment.",
+        "category": "coexpression",
+        "references": []
+    },
+    "r-grn": {
+        "cn_name": "R-GRN 基因调控网络",
+        "en_name": "R-GRN Gene Regulatory Network",
+        "cn_desc": "基因调控网络推断和分析。",
+        "en_desc": "Gene regulatory network inference and analysis.",
+        "category": "coexpression",
+        "references": []
+    },
+
+    # Machine learning
+    "r-ml": {
+        "cn_name": "R-ML 机器学习分析",
+        "en_name": "R-ML Machine Learning Analysis",
+        "cn_desc": "用于基因组数据分析的机器学习工具。",
+        "en_desc": "Machine learning tools for genomic data analysis.",
+        "category": "statistics",
+        "references": []
+    },
+    "mime": {
+        "cn_name": "MIME 多指标机器学习",
+        "en_name": "MIME Multi-Index Machine Learning",
+        "cn_desc": "用于生物标志物发现的机器学习工具。",
+        "en_desc": "Machine learning tools for biomarker discovery.",
+        "category": "statistics",
+        "references": []
+    },
+    "tape": {
+        "cn_name": "TAPE 转录组自编码器",
+        "en_name": "TAPE Transcriptome Autoencoder",
+        "cn_desc": "用于单细胞转录组学的深度学习工具。",
+        "en_desc": "Deep learning for single-cell transcriptomics.",
+        "category": "deconvolution",
+        "references": ["https://github.com/poseidonchan/TAPE"]
+    },
+
+    # Other
+    "puree": {
+        "cn_name": "PUREE 比对过滤工具",
+        "en_name": "PUREE Alignment Filtering Tool",
+        "cn_desc": "RNA-seq比对数据的纯化和过滤。",
+        "en_desc": "Purifies and filters RNA-seq alignments.",
+        "category": "rna_seq",
+        "references": ["https://github.com/skandlab/PUREE"]
+    },
+    "rnasieve": {
+        "cn_name": "RNAsieve 转录本定量",
+        "en_name": "RNAsieve Transcript Quantification",
+        "cn_desc": "RNA序列的快速过滤和定量。",
+        "en_desc": "Fast filtering and quantification of RNA sequences.",
+        "category": "quantification",
+        "references": []
+    },
+    "nanopolish": {
+        "cn_name": "Nanopolish Nanopore数据分析",
+        "en_name": "Nanopolish Nanopore Data Analysis",
+        "cn_desc": "Oxford Nanopore测序数据的信号级分析和变异检测工具。",
+        "en_desc": "Signal-level analysis and variant calling for Oxford Nanopore sequencing data.",
+        "category": "nanopore",
+        "references": ["https://github.com/jts/nanopolish"]
+    },
 }
 
 # Category descriptions
@@ -386,6 +936,13 @@ CATEGORIES = {
     "download": {"cn": "数据下载", "en": "Data Download"},
     "annotation": {"cn": "功能注释", "en": "Functional Annotation"},
     "splicing": {"cn": "可变剪接", "en": "Alternative Splicing"},
+    "rna_mod": {"cn": "RNA修饰", "en": "RNA Modification"},
+    "deconvolution": {"cn": "细胞解卷积", "en": "Cell Deconvolution"},
+    "coding_potential": {"cn": "编码潜力预测", "en": "Coding Potential"},
+    "protein_struct": {"cn": "蛋白质结构", "en": "Protein Structure"},
+    "fusion": {"cn": "基因融合", "en": "Gene Fusion"},
+    "coexpression": {"cn": "共表达网络", "en": "Coexpression Network"},
+    "statistics": {"cn": "统计/机器学习", "en": "Statistics / Machine Learning"},
     "pangenome": {"cn": "泛基因组", "en": "Pangenome"},
     "utility": {"cn": "实用工具", "en": "Utility"},
 }
@@ -463,12 +1020,10 @@ docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} --help
 
 
 def generate_readme(tool_name, tool_dir, tool_info=None):
-    """Generate README.md for a tool."""
+    """Generate English-only README.md for a tool."""
     if tool_info is None:
         tool_info = {
-            "cn_name": tool_name,
             "en_name": tool_name,
-            "cn_desc": f"{tool_name} 生物信息学工具",
             "en_desc": f"{tool_name} bioinformatics tool",
             "category": "general",
             "references": []
@@ -478,97 +1033,31 @@ def generate_readme(tool_name, tool_dir, tool_info=None):
     tool_type = detect_tool_type(dockerfile_path)
     versions = get_versions(tool_dir)
     category = tool_info.get("category", "general")
-    category_info = CATEGORIES.get(category, {"cn": "通用", "en": "General"})
+    category_info = CATEGORIES.get(category, {"cn": "General", "en": "General"})
 
-    readme_content = f"""# {tool_name}
-
-[中文](#中文文档) | [English](#english-documentation)
-
----
-
-## 中文文档
-
-### {tool_info['cn_name']}
-
-**类别**: {category_info['cn']}
-
-#### 简介
-
-{tool_info['cn_desc']}
-
-#### 安装
-
-```bash
-# Pull the Docker image
-docker pull btrspg/{tool_name}:{versions[0]}
-```
-
-#### 可用版本
-
-{', '.join(f'`{v}`' for v in versions)}
-
-#### 使用方法
-
-{get_usage_example(tool_name, tool_type, tool_info)}
-
-#### 参数说明
-
-运行 `docker run --rm btrspg/{tool_name} {tool_name} --help` 查看完整参数列表。
-
-#### 示例
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data btrspg/{tool_name} bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} [options]
-```
-
-#### 参考资料
-
-"""
-
-    for ref in tool_info.get("references", []):
-        if ref.startswith("http"):
-            readme_content += f"- [{ref}]({ref})\n"
-        else:
-            readme_content += f"- {ref}\n"
-
-    readme_content += f"""
-
----
-
-## English Documentation
-
-### {tool_info['en_name']}
+    readme_content = f"""# {tool_info['en_name']}
 
 **Category**: {category_info['en']}
 
-#### Introduction
+## Introduction
 
 {tool_info['en_desc']}
 
-#### Installation
+## Installation
 
 ```bash
-# Pull the Docker image
 docker pull btrspg/{tool_name}:{versions[0]}
 ```
 
-#### Available Versions
+## Available Versions
 
 {', '.join(f'`{v}`' for v in versions)}
 
-#### Usage
+## Usage
 
 {get_usage_example(tool_name, tool_type, tool_info)}
 
-#### Parameters
-
-Run `docker run --rm btrspg/{tool_name} {tool_name} --help` to see the full parameter list.
-
-#### Examples
+## Examples
 
 ```bash
 # Interactive shell
@@ -578,7 +1067,7 @@ docker run --rm -it -v $(pwd):/data btrspg/{tool_name} bash
 docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} [options]
 ```
 
-#### References
+## References
 
 """
 

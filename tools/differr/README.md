@@ -1,98 +1,38 @@
-# differr
+# Differr RNA Modification Detection
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Detects differentially modified RNA sites from direct RNA-seq data.
 
-### differr
-
-**类别**: 通用
-
-#### 简介
-
-differr 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/differr:0.2
+docker pull btrspg/differr:0.2
 ```
 
-#### 可用版本
+## Available Versions
 
 `0.2`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/differr differr --help
+docker run --rm -v /path/to/data:/data btrspg/differr differr --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/differr differr --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/differr bash
+docker run --rm -it -v $(pwd):/data btrspg/differr bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/differr differr [options]
+docker run --rm -v /path/to/data:/data btrspg/differr differr [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### differr
-
-**Category**: General
-
-#### Introduction
-
-differr bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/differr:0.2
-```
-
-#### Available Versions
-
-`0.2`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/differr differr --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/differr differr --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/differr bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/differr differr [options]
-```
-
-#### References
-
+- [https://github.com/bartongroup/differr_nanopore_DRS](https://github.com/bartongroup/differr_nanopore_DRS)

@@ -1,98 +1,38 @@
-# slow5tools
+# slow5tools SLOW5 Format Tools
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Nanopore Analysis
 
----
+## Introduction
 
-## 中文文档
+Tools for manipulating SLOW5 files from nanopore sequencing.
 
-### slow5tools
-
-**类别**: 通用
-
-#### 简介
-
-slow5tools 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/slow5tools:1.4.0
+docker pull btrspg/slow5tools:1.4.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `1.4.0`, `1.3.0`, `1.2.0`, `1.1.0`, `1.0.0`, `0.9.0`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/slow5tools slow5tools --help
+# Process Nanopore data
+docker run --rm -v /path/to/data:/data btrspg/slow5tools slow5tools reads.fq
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/slow5tools slow5tools --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/slow5tools bash
+docker run --rm -it -v $(pwd):/data btrspg/slow5tools bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/slow5tools slow5tools [options]
+docker run --rm -v /path/to/data:/data btrspg/slow5tools slow5tools [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### slow5tools
-
-**Category**: General
-
-#### Introduction
-
-slow5tools bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/slow5tools:1.4.0
-```
-
-#### Available Versions
-
-`1.4.0`, `1.3.0`, `1.2.0`, `1.1.0`, `1.0.0`, `0.9.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/slow5tools slow5tools --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/slow5tools slow5tools --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/slow5tools bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/slow5tools slow5tools [options]
-```
-
-#### References
-
+- [https://github.com/hasindu2008/slow5tools](https://github.com/hasindu2008/slow5tools)

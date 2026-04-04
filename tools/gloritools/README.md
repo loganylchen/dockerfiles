@@ -1,98 +1,38 @@
-# gloritools
+# GLORI-tools Genomic Analysis Tools
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Tools for genomic and transcriptomic analysis pipelines.
 
-### gloritools
-
-**类别**: 通用
-
-#### 简介
-
-gloritools 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/gloritools:latest
+docker pull btrspg/gloritools:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/gloritools gloritools --help
+docker run --rm -v /path/to/data:/data btrspg/gloritools gloritools --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/gloritools gloritools --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/gloritools bash
+docker run --rm -it -v $(pwd):/data btrspg/gloritools bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/gloritools gloritools [options]
+docker run --rm -v /path/to/data:/data btrspg/gloritools gloritools [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### gloritools
-
-**Category**: General
-
-#### Introduction
-
-gloritools bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/gloritools:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/gloritools gloritools --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/gloritools gloritools --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/gloritools bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/gloritools gloritools [options]
-```
-
-#### References
-
+- [https://github.com/liucongcas/GLORI-tools](https://github.com/liucongcas/GLORI-tools)

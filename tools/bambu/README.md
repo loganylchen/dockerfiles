@@ -1,98 +1,38 @@
-# bambu
+# Bambu Transcript Assembly Tool
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA-seq Analysis
 
----
+## Introduction
 
-## 中文文档
+Isoform discovery and quantification from long-read RNA-seq data.
 
-### bambu
-
-**类别**: 通用
-
-#### 简介
-
-bambu 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/bambu:3.4.0
+docker pull btrspg/bambu:3.4.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `3.4.0`, `3.2.6`, `3.0.8`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/bambu bambu --help
+docker run --rm -v /path/to/data:/data btrspg/bambu bambu --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/bambu bambu --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/bambu bash
+docker run --rm -it -v $(pwd):/data btrspg/bambu bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/bambu bambu [options]
+docker run --rm -v /path/to/data:/data btrspg/bambu bambu [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### bambu
-
-**Category**: General
-
-#### Introduction
-
-bambu bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/bambu:3.4.0
-```
-
-#### Available Versions
-
-`3.4.0`, `3.2.6`, `3.0.8`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/bambu bambu --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/bambu bambu --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/bambu bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/bambu bambu [options]
-```
-
-#### References
-
+- [https://bioconductor.org/packages/bambu/](https://bioconductor.org/packages/bambu/)

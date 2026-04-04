@@ -1,98 +1,38 @@
-# signalp
+# SignalP Signal Peptide Prediction
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Protein Structure
 
----
+## Introduction
 
-## 中文文档
+Predicts signal peptides in protein sequences.
 
-### signalp
-
-**类别**: 通用
-
-#### 简介
-
-signalp 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/signalp:5.0b
+docker pull btrspg/signalp:5.0b
 ```
 
-#### 可用版本
+## Available Versions
 
 `5.0b`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/signalp signalp --help
+docker run --rm -v /path/to/data:/data btrspg/signalp signalp --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/signalp signalp --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/signalp bash
+docker run --rm -it -v $(pwd):/data btrspg/signalp bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/signalp signalp [options]
+docker run --rm -v /path/to/data:/data btrspg/signalp signalp [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### signalp
-
-**Category**: General
-
-#### Introduction
-
-signalp bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/signalp:5.0b
-```
-
-#### Available Versions
-
-`5.0b`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/signalp signalp --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/signalp signalp --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/signalp bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/signalp signalp [options]
-```
-
-#### References
-
+- [https://services.healthtech.dtu.dk/services/SignalP-5.0/](https://services.healthtech.dtu.dk/services/SignalP-5.0/)

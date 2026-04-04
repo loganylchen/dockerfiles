@@ -1,98 +1,37 @@
-# splicetools
+# SpliceTools Splicing Tools Suite
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Alternative Splicing
 
----
+## Introduction
 
-## 中文文档
+Tools for analyzing RNA splice sites and junctions.
 
-### splicetools
-
-**类别**: 通用
-
-#### 简介
-
-splicetools 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/splicetools:latest
+docker pull btrspg/splicetools:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/splicetools splicetools --help
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/splicetools Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/splicetools splicetools --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/splicetools bash
+docker run --rm -it -v $(pwd):/data btrspg/splicetools bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/splicetools splicetools [options]
+docker run --rm -v /path/to/data:/data btrspg/splicetools splicetools [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### splicetools
-
-**Category**: General
-
-#### Introduction
-
-splicetools bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/splicetools:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/splicetools splicetools --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/splicetools splicetools --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/splicetools bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/splicetools splicetools [options]
-```
-
-#### References
+## References
 

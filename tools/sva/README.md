@@ -1,98 +1,38 @@
-# sva
+# SVA Batch Effect Removal
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Differential Expression
 
----
+## Introduction
 
-## 中文文档
+Surrogate variable analysis for removing batch effects.
 
-### sva
-
-**类别**: 通用
-
-#### 简介
-
-sva 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/sva:3.52.0
+docker pull btrspg/sva:3.52.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `3.52.0`, `3.50.0`, `3.48.0`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/sva sva --help
+# Run differential expression analysis in R
+docker run --rm -v /path/to/data:/data btrspg/sva Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/sva sva --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/sva bash
+docker run --rm -it -v $(pwd):/data btrspg/sva bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/sva sva [options]
+docker run --rm -v /path/to/data:/data btrspg/sva sva [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### sva
-
-**Category**: General
-
-#### Introduction
-
-sva bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/sva:3.52.0
-```
-
-#### Available Versions
-
-`3.52.0`, `3.50.0`, `3.48.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/sva sva --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/sva sva --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/sva bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/sva sva [options]
-```
-
-#### References
-
+- [https://bioconductor.org/packages/sva/](https://bioconductor.org/packages/sva/)

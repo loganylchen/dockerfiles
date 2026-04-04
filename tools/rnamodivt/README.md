@@ -1,98 +1,38 @@
-# rnamodivt
+# RNAModivt RNA Modification Integrated Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Comprehensive pipeline for RNA modification analysis with systematic calibration.
 
-### rnamodivt
-
-**类别**: 通用
-
-#### 简介
-
-rnamodivt 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/rnamodivt:48df2c04ee063c96aaefde64df915a867528f93e
+docker pull btrspg/rnamodivt:48df2c04ee063c96aaefde64df915a867528f93e
 ```
 
-#### 可用版本
+## Available Versions
 
 `48df2c04ee063c96aaefde64df915a867528f93e`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/rnamodivt rnamodivt --help
+docker run --rm -v /path/to/data:/data btrspg/rnamodivt rnamodivt --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/rnamodivt rnamodivt --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnamodivt bash
+docker run --rm -it -v $(pwd):/data btrspg/rnamodivt bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/rnamodivt rnamodivt [options]
+docker run --rm -v /path/to/data:/data btrspg/rnamodivt rnamodivt [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### rnamodivt
-
-**Category**: General
-
-#### Introduction
-
-rnamodivt bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/rnamodivt:48df2c04ee063c96aaefde64df915a867528f93e
-```
-
-#### Available Versions
-
-`48df2c04ee063c96aaefde64df915a867528f93e`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rnamodivt rnamodivt --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/rnamodivt rnamodivt --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnamodivt bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/rnamodivt rnamodivt [options]
-```
-
-#### References
-
+- [https://www.nature.com/articles/s41592-021-01280-7](https://www.nature.com/articles/s41592-021-01280-7)

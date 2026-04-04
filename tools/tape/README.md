@@ -1,98 +1,38 @@
-# tape
+# TAPE Transcriptome Autoencoder
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Deep learning for single-cell transcriptomics.
 
-### tape
-
-**类别**: 通用
-
-#### 简介
-
-tape 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/tape:0.4.0
+docker pull btrspg/tape:1.1.2
 ```
 
-#### 可用版本
+## Available Versions
 
-`0.4.0`, `0.3.0`
+`1.1.2`, `1.1.0`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/tape tape --help
+docker run --rm -v /path/to/data:/data btrspg/tape tape --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/tape tape --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/tape bash
+docker run --rm -it -v $(pwd):/data btrspg/tape bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/tape tape [options]
+docker run --rm -v /path/to/data:/data btrspg/tape tape [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### tape
-
-**Category**: General
-
-#### Introduction
-
-tape bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/tape:0.4.0
-```
-
-#### Available Versions
-
-`0.4.0`, `0.3.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/tape tape --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/tape tape --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/tape bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/tape tape [options]
-```
-
-#### References
-
+- [https://github.com/poseidonchan/TAPE](https://github.com/poseidonchan/TAPE)

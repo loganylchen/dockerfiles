@@ -1,98 +1,37 @@
-# r-deconvolution
+# R-Deconvolution Immune Deconvolution
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Bioconductor environment for immune cell deconvolution.
 
-### r-deconvolution
-
-**类别**: 通用
-
-#### 简介
-
-r-deconvolution 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/r-deconvolution:latest
+docker pull btrspg/r-deconvolution:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/r-deconvolution r-deconvolution --help
+docker run --rm -v /path/to/data:/data btrspg/r-deconvolution r-deconvolution --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/r-deconvolution r-deconvolution --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-deconvolution bash
+docker run --rm -it -v $(pwd):/data btrspg/r-deconvolution bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/r-deconvolution r-deconvolution [options]
+docker run --rm -v /path/to/data:/data btrspg/r-deconvolution r-deconvolution [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### r-deconvolution
-
-**Category**: General
-
-#### Introduction
-
-r-deconvolution bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/r-deconvolution:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-deconvolution r-deconvolution --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/r-deconvolution r-deconvolution --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-deconvolution bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/r-deconvolution r-deconvolution [options]
-```
-
-#### References
+## References
 

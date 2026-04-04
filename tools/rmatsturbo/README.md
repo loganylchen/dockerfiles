@@ -1,98 +1,38 @@
-# rmatsturbo
+# rMATS-turbo Fast Splicing Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Alternative Splicing
 
----
+## Introduction
 
-## 中文文档
+High-performance alternative splicing event detection.
 
-### rmatsturbo
-
-**类别**: 通用
-
-#### 简介
-
-rmatsturbo 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/rmatsturbo:4.3.0
+docker pull btrspg/rmatsturbo:4.3.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `4.3.0`, `4.2.0`, `4.1.2`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rmatsturbo rmatsturbo --help
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/rmatsturbo Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/rmatsturbo rmatsturbo --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/rmatsturbo bash
+docker run --rm -it -v $(pwd):/data btrspg/rmatsturbo bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/rmatsturbo rmatsturbo [options]
+docker run --rm -v /path/to/data:/data btrspg/rmatsturbo rmatsturbo [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### rmatsturbo
-
-**Category**: General
-
-#### Introduction
-
-rmatsturbo bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/rmatsturbo:4.3.0
-```
-
-#### Available Versions
-
-`4.3.0`, `4.2.0`, `4.1.2`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rmatsturbo rmatsturbo --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/rmatsturbo rmatsturbo --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/rmatsturbo bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/rmatsturbo rmatsturbo [options]
-```
-
-#### References
-
+- [https://github.com/Xinglab/rmats-turbo](https://github.com/Xinglab/rmats-turbo)

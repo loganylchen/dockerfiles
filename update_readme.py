@@ -92,7 +92,9 @@ def generate_readme(categorized):
     # Category order
     cat_order = [
         "alignment", "quantification", "rna_seq", "splicing", "diff_expr",
+        "rna_mod", "deconvolution", "fusion", "coding_potential",
         "nanopore", "variant", "genomic_utils", "qc", "annotation",
+        "coexpression", "statistics", "protein_struct",
         "python_bio", "pangenome", "download", "utility", "other",
     ]
 

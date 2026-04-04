@@ -1,98 +1,38 @@
-# scaden
+# SCADEN Deep Learning Deconvolution
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Cell type deconvolution using deep learning with single-cell reference.
 
-### scaden
-
-**类别**: 通用
-
-#### 简介
-
-scaden 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/scaden:1.1.2
+docker pull btrspg/scaden:1.1.2
 ```
 
-#### 可用版本
+## Available Versions
 
-`1.1.2`, `1.1.0`, `1.0.0`
+`1.1.2`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/scaden scaden --help
+docker run --rm -v /path/to/data:/data btrspg/scaden scaden --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/scaden scaden --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/scaden bash
+docker run --rm -it -v $(pwd):/data btrspg/scaden bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/scaden scaden [options]
+docker run --rm -v /path/to/data:/data btrspg/scaden scaden [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### scaden
-
-**Category**: General
-
-#### Introduction
-
-scaden bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/scaden:1.1.2
-```
-
-#### Available Versions
-
-`1.1.2`, `1.1.0`, `1.0.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/scaden scaden --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/scaden scaden --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/scaden bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/scaden scaden [options]
-```
-
-#### References
-
+- [https://github.com/KevinMenden/scaden](https://github.com/KevinMenden/scaden)

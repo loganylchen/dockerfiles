@@ -1,98 +1,38 @@
-# ensembldb
+# EnsemblDB Gene Annotation Database
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Functional Annotation
 
----
+## Introduction
 
-## 中文文档
+R/Bioconductor package for Ensembl genomic feature databases.
 
-### ensembldb
-
-**类别**: 通用
-
-#### 简介
-
-ensembldb 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/ensembldb:latest
+docker pull btrspg/ensembldb:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/ensembldb ensembldb --help
+docker run --rm -v /path/to/data:/data btrspg/ensembldb ensembldb --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/ensembldb ensembldb --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/ensembldb bash
+docker run --rm -it -v $(pwd):/data btrspg/ensembldb bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/ensembldb ensembldb [options]
+docker run --rm -v /path/to/data:/data btrspg/ensembldb ensembldb [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### ensembldb
-
-**Category**: General
-
-#### Introduction
-
-ensembldb bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/ensembldb:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/ensembldb ensembldb --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/ensembldb ensembldb --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/ensembldb bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/ensembldb ensembldb [options]
-```
-
-#### References
-
+- [https://bioconductor.org/packages/ensembldb/](https://bioconductor.org/packages/ensembldb/)

@@ -1,98 +1,39 @@
-# nanocount
+# NanoCount Long Read Quantification
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Transcript Quantification
 
----
+## Introduction
 
-## 中文文档
+Transcript abundance estimation for long-read sequencing.
 
-### nanocount
-
-**类别**: 通用
-
-#### 简介
-
-nanocount 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/nanocount:1.1.0.post2
+docker pull btrspg/nanocount:1.1.0.post2
 ```
 
-#### 可用版本
+## Available Versions
 
 `1.1.0.post2`, `1.1.0`, `1.0.0.post6`, `1.0.0`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/nanocount nanocount --help
+# Index reference and quantify
+docker run --rm -v /path/to/data:/data btrspg/nanocount nanocount index -t transcripts.fa
+docker run --rm -v /path/to/data:/data btrspg/nanocount nanocount quant -i transcripts.idx -o output reads_1.fq reads_2.fq
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/nanocount nanocount --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/nanocount bash
+docker run --rm -it -v $(pwd):/data btrspg/nanocount bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/nanocount nanocount [options]
+docker run --rm -v /path/to/data:/data btrspg/nanocount nanocount [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### nanocount
-
-**Category**: General
-
-#### Introduction
-
-nanocount bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/nanocount:1.1.0.post2
-```
-
-#### Available Versions
-
-`1.1.0.post2`, `1.1.0`, `1.0.0.post6`, `1.0.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/nanocount nanocount --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/nanocount nanocount --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/nanocount bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/nanocount nanocount [options]
-```
-
-#### References
-
+- [https://github.com/a-slide/NanoCount](https://github.com/a-slide/NanoCount)

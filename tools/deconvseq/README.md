@@ -1,98 +1,38 @@
-# deconvseq
+# DeconvSeq Deconvolution Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Immune cell deconvolution from RNA-seq data.
 
-### deconvseq
-
-**类别**: 通用
-
-#### 简介
-
-deconvseq 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/deconvseq:latest
+docker pull btrspg/deconvseq:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/deconvseq deconvseq --help
+docker run --rm -v /path/to/data:/data btrspg/deconvseq deconvseq --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/deconvseq deconvseq --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/deconvseq bash
+docker run --rm -it -v $(pwd):/data btrspg/deconvseq bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/deconvseq deconvseq [options]
+docker run --rm -v /path/to/data:/data btrspg/deconvseq deconvseq [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### deconvseq
-
-**Category**: General
-
-#### Introduction
-
-deconvseq bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/deconvseq:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/deconvseq deconvseq --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/deconvseq deconvseq --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/deconvseq bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/deconvseq deconvseq [options]
-```
-
-#### References
-
+- [https://github.com/rosedu1/deconvSeq](https://github.com/rosedu1/deconvSeq)

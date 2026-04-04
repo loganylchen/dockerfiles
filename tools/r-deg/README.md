@@ -1,98 +1,37 @@
-# r-deg
+# R-DEG Differential Expression Environment
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Differential Expression
 
----
+## Introduction
 
-## 中文文档
+Bioconductor environment for differential expression analysis.
 
-### r-deg
-
-**类别**: 通用
-
-#### 简介
-
-r-deg 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/r-deg:latest
+docker pull btrspg/r-deg:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-deg r-deg --help
+# Run differential expression analysis in R
+docker run --rm -v /path/to/data:/data btrspg/r-deg Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/r-deg r-deg --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-deg bash
+docker run --rm -it -v $(pwd):/data btrspg/r-deg bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/r-deg r-deg [options]
+docker run --rm -v /path/to/data:/data btrspg/r-deg r-deg [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### r-deg
-
-**Category**: General
-
-#### Introduction
-
-r-deg bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/r-deg:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-deg r-deg --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/r-deg r-deg --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-deg bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/r-deg r-deg [options]
-```
-
-#### References
+## References
 

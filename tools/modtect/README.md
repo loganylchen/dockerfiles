@@ -1,98 +1,38 @@
-# modtect
+# ModTect RNA Modification Detection
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Detects RNA modifications from Nanopore sequencing data.
 
-### modtect
-
-**类别**: 通用
-
-#### 简介
-
-modtect 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/modtect:latest
+docker pull btrspg/modtect:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/modtect modtect --help
+docker run --rm -v /path/to/data:/data btrspg/modtect modtect --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/modtect modtect --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/modtect bash
+docker run --rm -it -v $(pwd):/data btrspg/modtect bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/modtect modtect [options]
+docker run --rm -v /path/to/data:/data btrspg/modtect modtect [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### modtect
-
-**Category**: General
-
-#### Introduction
-
-modtect bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/modtect:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/modtect modtect --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/modtect modtect --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/modtect bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/modtect modtect [options]
-```
-
-#### References
-
+- [https://github.com/ktan8/ModTect](https://github.com/ktan8/ModTect)

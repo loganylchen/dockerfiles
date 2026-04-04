@@ -1,98 +1,38 @@
-# puree
+# PUREE Alignment Filtering Tool
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA-seq Analysis
 
----
+## Introduction
 
-## 中文文档
+Purifies and filters RNA-seq alignments.
 
-### puree
-
-**类别**: 通用
-
-#### 简介
-
-puree 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/puree:5a0a702535e79e37b071971063e72fa697540818
+docker pull btrspg/puree:5a0a702535e79e37b071971063e72fa697540818
 ```
 
-#### 可用版本
+## Available Versions
 
 `5a0a702535e79e37b071971063e72fa697540818`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/puree puree --help
+docker run --rm -v /path/to/data:/data btrspg/puree puree --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/puree puree --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/puree bash
+docker run --rm -it -v $(pwd):/data btrspg/puree bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/puree puree [options]
+docker run --rm -v /path/to/data:/data btrspg/puree puree [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### puree
-
-**Category**: General
-
-#### Introduction
-
-puree bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/puree:5a0a702535e79e37b071971063e72fa697540818
-```
-
-#### Available Versions
-
-`5a0a702535e79e37b071971063e72fa697540818`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/puree puree --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/puree puree --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/puree bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/puree puree [options]
-```
-
-#### References
-
+- [https://github.com/skandlab/PUREE](https://github.com/skandlab/PUREE)

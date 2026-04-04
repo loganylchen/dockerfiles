@@ -1,98 +1,38 @@
-# lafite
+# LAFITE Full-length Isoform Clustering
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Alternative Splicing
 
----
+## Introduction
 
-## 中文文档
+Full-length isoform clustering from Nanopore direct RNA-seq.
 
-### lafite
-
-**类别**: 通用
-
-#### 简介
-
-lafite 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/lafite:1.0.2
+docker pull btrspg/lafite:1.0.2
 ```
 
-#### 可用版本
+## Available Versions
 
 `1.0.2`, `1.0.1`, `1.0.0`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/lafite lafite --help
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/lafite Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/lafite lafite --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/lafite bash
+docker run --rm -it -v $(pwd):/data btrspg/lafite bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/lafite lafite [options]
+docker run --rm -v /path/to/data:/data btrspg/lafite lafite [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### lafite
-
-**Category**: General
-
-#### Introduction
-
-lafite bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/lafite:1.0.2
-```
-
-#### Available Versions
-
-`1.0.2`, `1.0.1`, `1.0.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/lafite lafite --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/lafite lafite --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/lafite bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/lafite lafite [options]
-```
-
-#### References
-
+- [https://github.com/pythseq/LAFITE](https://github.com/pythseq/LAFITE)

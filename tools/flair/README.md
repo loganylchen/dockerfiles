@@ -1,98 +1,38 @@
-# flair
+# FLAIR Transcript Annotation Tool
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA-seq Analysis
 
----
+## Introduction
 
-## 中文文档
+Full-length RNA isoform sequencing and annotation from long reads.
 
-### flair
-
-**类别**: 通用
-
-#### 简介
-
-flair 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/flair:2.0.0
+docker pull btrspg/flair:2.0.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `2.0.0`, `1.7.0`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/flair flair --help
+docker run --rm -v /path/to/data:/data btrspg/flair flair --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/flair flair --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/flair bash
+docker run --rm -it -v $(pwd):/data btrspg/flair bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/flair flair [options]
+docker run --rm -v /path/to/data:/data btrspg/flair flair [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### flair
-
-**Category**: General
-
-#### Introduction
-
-flair bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/flair:2.0.0
-```
-
-#### Available Versions
-
-`2.0.0`, `1.7.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/flair flair --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/flair flair --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/flair bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/flair flair [options]
-```
-
-#### References
-
+- [https://github.com/BrooksLabUCSC/flair](https://github.com/BrooksLabUCSC/flair)

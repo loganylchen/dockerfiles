@@ -1,98 +1,38 @@
-# rmats
+# rMATS Alternative Splicing Quantification
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Alternative Splicing
 
----
+## Introduction
 
-## 中文文档
+Detects and quantifies alternative splicing events from RNA-seq data.
 
-### rmats
-
-**类别**: 通用
-
-#### 简介
-
-rmats 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/rmats:4.3.0
+docker pull btrspg/rmats:4.3.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `4.3.0`, `4.2.0`, `4.1.2`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rmats rmats --help
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/rmats Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/rmats rmats --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/rmats bash
+docker run --rm -it -v $(pwd):/data btrspg/rmats bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/rmats rmats [options]
+docker run --rm -v /path/to/data:/data btrspg/rmats rmats [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### rmats
-
-**Category**: General
-
-#### Introduction
-
-rmats bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/rmats:4.3.0
-```
-
-#### Available Versions
-
-`4.3.0`, `4.2.0`, `4.1.2`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rmats rmats --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/rmats rmats --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/rmats bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/rmats rmats [options]
-```
-
-#### References
-
+- [https://rnaseq-mats.sourceforge.io/](https://rnaseq-mats.sourceforge.io/)

@@ -1,98 +1,38 @@
-# rnasieve
+# RNAsieve Transcript Quantification
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Transcript Quantification
 
----
+## Introduction
 
-## 中文文档
+Fast filtering and quantification of RNA sequences.
 
-### rnasieve
-
-**类别**: 通用
-
-#### 简介
-
-rnasieve 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/rnasieve:latest
+docker pull btrspg/rnasieve:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rnasieve rnasieve --help
+# Index reference and quantify
+docker run --rm -v /path/to/data:/data btrspg/rnasieve rnasieve index -t transcripts.fa
+docker run --rm -v /path/to/data:/data btrspg/rnasieve rnasieve quant -i transcripts.idx -o output reads_1.fq reads_2.fq
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/rnasieve rnasieve --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnasieve bash
+docker run --rm -it -v $(pwd):/data btrspg/rnasieve bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/rnasieve rnasieve [options]
+docker run --rm -v /path/to/data:/data btrspg/rnasieve rnasieve [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### rnasieve
-
-**Category**: General
-
-#### Introduction
-
-rnasieve bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/rnasieve:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rnasieve rnasieve --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/rnasieve rnasieve --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnasieve bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/rnasieve rnasieve [options]
-```
-
-#### References
+## References
 

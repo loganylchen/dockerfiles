@@ -1,98 +1,38 @@
-# genomicfeatures
+# GenomicFeatures Genomic Feature Tools
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Functional Annotation
 
----
+## Introduction
 
-## 中文文档
+R/Bioconductor tools for genomic features and annotations.
 
-### genomicfeatures
-
-**类别**: 通用
-
-#### 简介
-
-genomicfeatures 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/genomicfeatures:latest
+docker pull btrspg/genomicfeatures:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/genomicfeatures genomicfeatures --help
+docker run --rm -v /path/to/data:/data btrspg/genomicfeatures genomicfeatures --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/genomicfeatures genomicfeatures --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/genomicfeatures bash
+docker run --rm -it -v $(pwd):/data btrspg/genomicfeatures bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/genomicfeatures genomicfeatures [options]
+docker run --rm -v /path/to/data:/data btrspg/genomicfeatures genomicfeatures [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### genomicfeatures
-
-**Category**: General
-
-#### Introduction
-
-genomicfeatures bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/genomicfeatures:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/genomicfeatures genomicfeatures --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/genomicfeatures genomicfeatures --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/genomicfeatures bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/genomicfeatures genomicfeatures [options]
-```
-
-#### References
-
+- [https://bioconductor.org/packages/GenomicFeatures/](https://bioconductor.org/packages/GenomicFeatures/)

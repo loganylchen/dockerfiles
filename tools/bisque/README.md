@@ -1,98 +1,38 @@
-# bisque
+# Bisque Transcriptomic Deconvolution
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Reference-based cell type deconvolution from bulk RNA-seq.
 
-### bisque
-
-**类别**: 通用
-
-#### 简介
-
-bisque 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/bisque:latest
+docker pull btrspg/bisque:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/bisque bisque --help
+docker run --rm -v /path/to/data:/data btrspg/bisque bisque --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/bisque bisque --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/bisque bash
+docker run --rm -it -v $(pwd):/data btrspg/bisque bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/bisque bisque [options]
+docker run --rm -v /path/to/data:/data btrspg/bisque bisque [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### bisque
-
-**Category**: General
-
-#### Introduction
-
-bisque bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/bisque:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/bisque bisque --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/bisque bisque --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/bisque bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/bisque bisque [options]
-```
-
-#### References
-
+- [https://github.com/cozygene/bisque](https://github.com/cozygene/bisque)

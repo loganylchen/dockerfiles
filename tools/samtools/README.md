@@ -1,96 +1,38 @@
-# Samtools & BCFtools Docker Image
+# Samtools Sequence Alignment Tools
 
-[![Build Status](https://github.com/loganylchen/dockerfiles/actions/workflows/docker-build.yml/badge.svg)](https://github.com/loganylchen/dockerfiles/actions/workflows/docker-build.yml)
+**Category**: Genomic Utilities
 
-Docker image for **samtools** and **bcftools**, the standard tools for manipulating BAM/CRAM/SAM and VCF/BCF files.
+## Introduction
 
-## Included Tools
+Tools for manipulating next-generation sequencing data in SAM/BAM/CRAM formats.
 
-| Tool | Version | Description |
-|------|---------|-------------|
-| samtools | 1.21 | Utilities for the Sequence Alignment/Map (SAM) format |
-| bcftools | 1.21 | Utilities for variant calling and manipulating VCF/BCF files |
-| htslib | 1.21 | Underlying library for reading/writing SAM/BAM/CRAM/VCF/BCF |
-
-## Quick Start
+## Installation
 
 ```bash
-# Pull the image
-docker pull btrspg/samtools:1.21
-
-# View a BAM file header
-docker run --rm -v /path/to/data:/data btrspg/samtools:1.21 samtools view -H /data/alignment.bam
-
-# Sort a BAM file
-docker run --rm -v /path/to/data:/data btrspg/samtools:1.21 \
-    samtools sort -o /data/sorted.bam /data/alignment.bam
-
-# Index a BAM file
-docker run --rm -v /path/to/data:/data btrspg/samtools:1.21 \
-    samtools index /data/alignment.bam
-
-# Call variants with bcftools
-docker run --rm -v /path/to/data:/data btrspg/samtools:1.21 \
-    bcftools mpileup -f /data/reference.fa /data/alignment.bam | \
-    bcftools call -mv -o /data/variants.vcf
+docker pull btrspg/samtools:1.23.1
 ```
 
-## Common Use Cases in RNA Modification Detection
+## Available Versions
 
-### 1. Convert SAM to BAM and sort
-```bash
-samtools view -bS input.sam | samtools sort -o sorted.bam
-samtools index sorted.bam
-```
+`1.23.1`, `1.22.2`, `1.21.1`, `1.19.1`
 
-### 2. Filter reads by mapping quality
-```bash
-samtools view -b -q 20 input.bam -o filtered.bam
-```
-
-### 3. Extract reads from specific region
-```bash
-samtools view -b input.bam chr1:1000-2000 -o region.bam
-```
-
-### 4. Get alignment statistics
-```bash
-samtools flagstat input.bam
-samtools stats input.bam | samtools plot-bamstats -p /output/prefix
-```
-
-### 5. Merge multiple BAM files
-```bash
-samtools merge merged.bam sample1.bam sample2.bam sample3.bam
-samtools index merged.bam
-```
-
-## Build
+## Usage
 
 ```bash
-docker build -t btrspg/samtools:1.21 .
+# Basic usage
+docker run --rm -v /path/to/data:/data btrspg/samtools samtools --help
 ```
 
-## Build Arguments
+## Examples
 
-| Argument | Default | Description |
-|----------|---------|-------------|
-| `SAMTOOLS_VERSION` | 1.21 | Samtools version |
-| `BCFTOOLS_VERSION` | 1.21 | Bcftools version |
-| `HTSLIB_VERSION` | 1.21 | HTSlib version |
+```bash
+# Interactive shell
+docker run --rm -it -v $(pwd):/data btrspg/samtools bash
 
-## Related Images
-
-- `btrspg/minimap2` - Includes samtools alongside minimap2
-- `btrspg/nanopolish` - For signal-level analysis
+# Run with data volume
+docker run --rm -v /path/to/data:/data btrspg/samtools samtools [options]
+```
 
 ## References
 
-- [Samtools Documentation](http://www.htslib.org/doc/samtools.html)
-- [BCFtools Documentation](http://www.htslib.org/doc/bcftools.html)
-- [HTSlib Documentation](http://www.htslib.org/)
-
-## License
-
-- Samtools/BCFtools/HTSlib: MIT/BSD-like license
-- This Dockerfile: MIT License
+- [http://www.htslib.org/](http://www.htslib.org/)

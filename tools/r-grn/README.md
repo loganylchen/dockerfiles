@@ -1,98 +1,37 @@
-# r-grn
+# R-GRN Gene Regulatory Network
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Coexpression Network
 
----
+## Introduction
 
-## 中文文档
+Gene regulatory network inference and analysis.
 
-### r-grn
-
-**类别**: 通用
-
-#### 简介
-
-r-grn 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/r-grn:latest
+docker pull btrspg/r-grn:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/r-grn r-grn --help
+docker run --rm -v /path/to/data:/data btrspg/r-grn r-grn --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/r-grn r-grn --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-grn bash
+docker run --rm -it -v $(pwd):/data btrspg/r-grn bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/r-grn r-grn [options]
+docker run --rm -v /path/to/data:/data btrspg/r-grn r-grn [options]
 ```
 
-#### 参考资料
-
-
-
----
-
-## English Documentation
-
-### r-grn
-
-**Category**: General
-
-#### Introduction
-
-r-grn bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/r-grn:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/r-grn r-grn --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/r-grn r-grn --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/r-grn bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/r-grn r-grn [options]
-```
-
-#### References
+## References
 

@@ -1,98 +1,38 @@
-# rnaseqc
+# RNA-SeQC RNA-seq Quality Control
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Quality Control
 
----
+## Introduction
 
-## 中文文档
+Comprehensive quality control for RNA-seq experiments.
 
-### rnaseqc
-
-**类别**: 通用
-
-#### 简介
-
-rnaseqc 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/rnaseqc:2.4.2
+docker pull btrspg/rnaseqc:2.4.2
 ```
 
-#### 可用版本
+## Available Versions
 
 `2.4.2`, `2.4.1`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rnaseqc rnaseqc --help
+# Quality control
+docker run --rm -v /path/to/data:/data btrspg/rnaseqc rnaseqc -i input.fq -o output.html
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/rnaseqc rnaseqc --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnaseqc bash
+docker run --rm -it -v $(pwd):/data btrspg/rnaseqc bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/rnaseqc rnaseqc [options]
+docker run --rm -v /path/to/data:/data btrspg/rnaseqc rnaseqc [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### rnaseqc
-
-**Category**: General
-
-#### Introduction
-
-rnaseqc bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/rnaseqc:2.4.2
-```
-
-#### Available Versions
-
-`2.4.2`, `2.4.1`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/rnaseqc rnaseqc --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/rnaseqc rnaseqc --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/rnaseqc bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/rnaseqc rnaseqc [options]
-```
-
-#### References
-
+- [https://github.com/getzlab/rnaseqc](https://github.com/getzlab/rnaseqc)

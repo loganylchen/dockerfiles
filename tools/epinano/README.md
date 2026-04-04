@@ -1,98 +1,38 @@
-# epinano
+# EpiNano RNA Modification Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Analyzes RNA modifications and sequence variants from Nanopore sequencing.
 
-### epinano
-
-**类别**: 通用
-
-#### 简介
-
-epinano 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/epinano:1.2.5
+docker pull btrspg/epinano:1.2.0
 ```
 
-#### 可用版本
+## Available Versions
 
-`1.2.5`, `1.2.3`, `1.2.2`
+`1.2.0`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/epinano epinano --help
+docker run --rm -v /path/to/data:/data btrspg/epinano epinano --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/epinano epinano --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/epinano bash
+docker run --rm -it -v $(pwd):/data btrspg/epinano bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/epinano epinano [options]
+docker run --rm -v /path/to/data:/data btrspg/epinano epinano [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### epinano
-
-**Category**: General
-
-#### Introduction
-
-epinano bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/epinano:1.2.5
-```
-
-#### Available Versions
-
-`1.2.5`, `1.2.3`, `1.2.2`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/epinano epinano --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/epinano epinano --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/epinano bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/epinano epinano [options]
-```
-
-#### References
-
+- [https://github.com/novoalab/EpiNano](https://github.com/novoalab/EpiNano)

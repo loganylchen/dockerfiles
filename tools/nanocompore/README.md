@@ -1,98 +1,38 @@
-# nanocompore
+# Nanocompore RNA Modification Comparison
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Detects differential RNA modifications from direct RNA-seq.
 
-### nanocompore
-
-**类别**: 通用
-
-#### 简介
-
-nanocompore 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/nanocompore:2.2.0
+docker pull btrspg/nanocompore:2.2.0
 ```
 
-#### 可用版本
+## Available Versions
 
 `2.2.0`, `2.0.0`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/nanocompore nanocompore --help
+docker run --rm -v /path/to/data:/data btrspg/nanocompore nanocompore --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/nanocompore nanocompore --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/nanocompore bash
+docker run --rm -it -v $(pwd):/data btrspg/nanocompore bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/nanocompore nanocompore [options]
+docker run --rm -v /path/to/data:/data btrspg/nanocompore nanocompore [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### nanocompore
-
-**Category**: General
-
-#### Introduction
-
-nanocompore bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/nanocompore:2.2.0
-```
-
-#### Available Versions
-
-`2.2.0`, `2.0.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/nanocompore nanocompore --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/nanocompore nanocompore --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/nanocompore bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/nanocompore nanocompore [options]
-```
-
-#### References
-
+- [https://github.com/tlacombe/nanocompore](https://github.com/tlacombe/nanocompore)

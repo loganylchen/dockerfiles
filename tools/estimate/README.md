@@ -1,98 +1,38 @@
-# estimate
+# ESTIMATE Tumor Purity Estimation
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Estimates stromal and immune content in tumor samples.
 
-### estimate
-
-**类别**: 通用
-
-#### 简介
-
-estimate 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/estimate:1.0.13
+docker pull btrspg/estimate:1.0.13
 ```
 
-#### 可用版本
+## Available Versions
 
 `1.0.13`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/estimate estimate --help
+docker run --rm -v /path/to/data:/data btrspg/estimate estimate --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/estimate estimate --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/estimate bash
+docker run --rm -it -v $(pwd):/data btrspg/estimate bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/estimate estimate [options]
+docker run --rm -v /path/to/data:/data btrspg/estimate estimate [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### estimate
-
-**Category**: General
-
-#### Introduction
-
-estimate bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/estimate:1.0.13
-```
-
-#### Available Versions
-
-`1.0.13`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/estimate estimate --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/estimate estimate --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/estimate bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/estimate estimate [options]
-```
-
-#### References
-
+- [https://r-forge.r-project.org](https://r-forge.r-project.org)

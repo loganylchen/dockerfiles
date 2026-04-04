@@ -1,98 +1,38 @@
-# drummer
+# DRUMMER RNA Modification Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Analyzes RNA modification patterns from RNA-seq alignments.
 
-### drummer
-
-**类别**: 通用
-
-#### 简介
-
-drummer 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/drummer:dd0ccc81
+docker pull btrspg/drummer:92bb35a4a2b22ff304f5e4bcbc9fa6985f18a12e
 ```
 
-#### 可用版本
+## Available Versions
 
-`dd0ccc81`
+`92bb35a4a2b22ff304f5e4bcbc9fa6985f18a12e`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/drummer drummer --help
+docker run --rm -v /path/to/data:/data btrspg/drummer drummer --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/drummer drummer --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/drummer bash
+docker run --rm -it -v $(pwd):/data btrspg/drummer bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/drummer drummer [options]
+docker run --rm -v /path/to/data:/data btrspg/drummer drummer [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### drummer
-
-**Category**: General
-
-#### Introduction
-
-drummer bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/drummer:dd0ccc81
-```
-
-#### Available Versions
-
-`dd0ccc81`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/drummer drummer --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/drummer drummer --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/drummer bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/drummer drummer [options]
-```
-
-#### References
-
+- [https://github.com/DepledgeLab/DRUMMER](https://github.com/DepledgeLab/DRUMMER)

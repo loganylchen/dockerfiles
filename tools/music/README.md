@@ -1,98 +1,38 @@
-# music
+# MuSiC Cell Type Deconvolution
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Cell Deconvolution
 
----
+## Introduction
 
-## 中文文档
+Bulk tissue deconvolution via single-cell transcriptomics.
 
-### music
-
-**类别**: 通用
-
-#### 简介
-
-music 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/music:latest
+docker pull btrspg/music:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/music music --help
+docker run --rm -v /path/to/data:/data btrspg/music music --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/music music --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/music bash
+docker run --rm -it -v $(pwd):/data btrspg/music bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/music music [options]
+docker run --rm -v /path/to/data:/data btrspg/music music [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### music
-
-**Category**: General
-
-#### Introduction
-
-music bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/music:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/music music --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/music music --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/music bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/music music [options]
-```
-
-#### References
-
+- [https://github.com/xuranw/MuSiC](https://github.com/xuranw/MuSiC)

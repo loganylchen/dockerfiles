@@ -1,98 +1,38 @@
-# psinanopore
+# PsiNanopore Nanopore Splicing Analysis
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: Alternative Splicing
 
----
+## Introduction
 
-## 中文文档
+Analyzes percent-spliced-in from Nanopore sequencing.
 
-### psinanopore
-
-**类别**: 通用
-
-#### 简介
-
-psinanopore 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/psinanopore:latest
+docker pull btrspg/psinanopore:latest
 ```
 
-#### 可用版本
+## Available Versions
 
 `latest`
 
-#### 使用方法
+## Usage
 
 ```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/psinanopore psinanopore --help
+# Run alternative splicing analysis
+docker run --rm -v /path/to/data:/data btrspg/psinanopore Rscript analysis.R
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/psinanopore psinanopore --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/psinanopore bash
+docker run --rm -it -v $(pwd):/data btrspg/psinanopore bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/psinanopore psinanopore [options]
+docker run --rm -v /path/to/data:/data btrspg/psinanopore psinanopore [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### psinanopore
-
-**Category**: General
-
-#### Introduction
-
-psinanopore bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/psinanopore:latest
-```
-
-#### Available Versions
-
-`latest`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/psinanopore psinanopore --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/psinanopore psinanopore --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/psinanopore bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/psinanopore psinanopore [options]
-```
-
-#### References
-
+- [https://github.com/RouhanifardLab/PsiNanopore](https://github.com/RouhanifardLab/PsiNanopore)

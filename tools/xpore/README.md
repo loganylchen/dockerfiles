@@ -1,98 +1,38 @@
-# xpore
+# xPore Direct RNA Modification Detection
 
-[中文](#中文文档) | [English](#english-documentation)
+**Category**: RNA Modification
 
----
+## Introduction
 
-## 中文文档
+Identifies differential RNA modifications from direct RNA sequencing.
 
-### xpore
-
-**类别**: 通用
-
-#### 简介
-
-xpore 生物信息学工具
-
-#### 安装
+## Installation
 
 ```bash
-# Pull the Docker image
-docker pull username/xpore:2.1
+docker pull btrspg/xpore:2.1
 ```
 
-#### 可用版本
+## Available Versions
 
 `2.1`, `2.0`
 
-#### 使用方法
+## Usage
 
 ```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data username/xpore xpore --help
+docker run --rm -v /path/to/data:/data btrspg/xpore xpore --help
 ```
 
-#### 参数说明
-
-运行 `docker run --rm username/xpore xpore --help` 查看完整参数列表。
-
-#### 示例
+## Examples
 
 ```bash
 # Interactive shell
-docker run --rm -it -v $(pwd):/data username/xpore bash
+docker run --rm -it -v $(pwd):/data btrspg/xpore bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data username/xpore xpore [options]
+docker run --rm -v /path/to/data:/data btrspg/xpore xpore [options]
 ```
 
-#### 参考资料
+## References
 
-
-
----
-
-## English Documentation
-
-### xpore
-
-**Category**: General
-
-#### Introduction
-
-xpore bioinformatics tool
-
-#### Installation
-
-```bash
-# Pull the Docker image
-docker pull username/xpore:2.1
-```
-
-#### Available Versions
-
-`2.1`, `2.0`
-
-#### Usage
-
-```bash
-# Basic usage
-docker run --rm -v /path/to/data:/data username/xpore xpore --help
-```
-
-#### Parameters
-
-Run `docker run --rm username/xpore xpore --help` to see the full parameter list.
-
-#### Examples
-
-```bash
-# Interactive shell
-docker run --rm -it -v $(pwd):/data username/xpore bash
-
-# Run with data volume
-docker run --rm -v /path/to/data:/data username/xpore xpore [options]
-```
-
-#### References
-
+- [https://github.com/GoekeLab/xpore](https://github.com/GoekeLab/xpore)
