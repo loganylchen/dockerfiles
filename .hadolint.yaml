@@ -3,4 +3,5 @@ ignored:
   - DL3008  # Pin versions in apt-get install (tool versions managed via ARG VERSION)
   - DL3013  # Pin versions in pip install
   - DL3059  # Multiple consecutive RUN instructions (acceptable for clarity)
+  - DL4006  # Set SHELL pipefail (R verification pipes like `Rscript | head` are safe)
   - SC2046  # Quote $(nproc) to prevent word splitting (safe in this context)
