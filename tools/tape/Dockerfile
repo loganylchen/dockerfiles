@@ -16,7 +16,7 @@ RUN pip3 install --no-cache-dir --break-system-packages \
     pip3 install --no-cache-dir --break-system-packages \
         scTAPE==${VERSION}
 
-RUN python3 -c "import scTAPE; print('scTAPE OK')" 2>/dev/null || python3 -c "import tape; print('scTAPE OK')"
+RUN python3 -c "import TAPE; print('scTAPE OK')"
 
 WORKDIR /data
 CMD ["python3"]
