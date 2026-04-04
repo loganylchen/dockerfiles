@@ -60,11 +60,7 @@ jobs:
           while IFS= read -r file; do
             [ -z "$file" ] && continue
             echo "::group::$file"
-            hadolint \
-              --ignore DL3008 \
-              --ignore DL3013 \
-              --ignore DL3059 \
-              "$file" || exit_code=1
+            hadolint "$file" || exit_code=1
             echo "::endgroup::"
           done <<< "${{ steps.collect.outputs.files }}"
 
