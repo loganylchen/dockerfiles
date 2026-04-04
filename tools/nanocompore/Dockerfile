@@ -7,6 +7,7 @@ ARG VERSION=2.2.0
 
 FROM python:3.10-slim AS builder
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 # Install build dependencies
@@ -39,6 +40,7 @@ RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/wh
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.10-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"

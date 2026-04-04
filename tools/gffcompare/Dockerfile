@@ -3,6 +3,7 @@ ARG VERSION=0.12.10
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \

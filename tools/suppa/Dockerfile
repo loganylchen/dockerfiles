@@ -1,6 +1,6 @@
 ARG VERSION=2.3
 
-FROM ubuntu:20.04
+FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive

@@ -1,5 +1,6 @@
 ARG VERSION=c77c73a4bdeb6fb21fa7522239b2276e27ea10f8
 
+# python2 is not available on debian:bookworm-slim; keep ubuntu:20.04
 FROM ubuntu:20.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 

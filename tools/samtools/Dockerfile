@@ -1,15 +1,15 @@
-ARG SAMTOOLS_VERSION=1.21
-ARG BCFTOOLS_VERSION=1.21
-ARG HTSLIB_VERSION=1.21
+ARG VERSION=1.21
 
 # Build stage
 FROM debian:bookworm-slim AS builder
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
-ARG SAMTOOLS_VERSION
-ARG BCFTOOLS_VERSION
-ARG HTSLIB_VERSION
+ARG VERSION
+# samtools, bcftools, and htslib share version numbers
+ARG SAMTOOLS_VERSION=${VERSION}
+ARG BCFTOOLS_VERSION=${VERSION}
+ARG HTSLIB_VERSION=${VERSION}
 
 # Install build dependencies
 RUN apt-get update && \
@@ -62,9 +62,10 @@ LABEL org.opencontainers.image.source="https://github.com/loganylchen/dockerfile
 LABEL org.opencontainers.image.description="Samtools and BCFtools for BAM/VCF manipulation"
 LABEL org.opencontainers.image.licenses="MIT"
 
-ARG SAMTOOLS_VERSION
-ARG BCFTOOLS_VERSION
-ARG HTSLIB_VERSION
+ARG VERSION
+ARG SAMTOOLS_VERSION=${VERSION}
+ARG BCFTOOLS_VERSION=${VERSION}
+ARG HTSLIB_VERSION=${VERSION}
 
 # Install runtime dependencies
 RUN apt-get update && \

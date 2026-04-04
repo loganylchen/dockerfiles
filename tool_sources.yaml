@@ -125,6 +125,35 @@ longgf:
   source: github
   repo: WGLab/LongGF
 
+autodockvina:
+  source: github
+  repo: ccsb-scripps/AutoDock-Vina
+
+cpc2:
+  source: github
+  repo: gao-lab/CPC2_standalone
+
+differr:
+  source: github
+  repo: bartongroup/differr_nanopore_DRS
+
+jaffal:
+  source: github
+  repo: Oshlack/JAFFA
+
+psisigma:
+  source: github
+  repo: wososa/PSI-Sigma
+
+whippet:
+  source: github
+  repo: timbitz/Whippet.jl
+
+qualimap:
+  source: github
+  repo: scbiber/qualimap
+  tag_prefix: ""
+
 # --- PyPI ---
 xpore:
   source: pypi
@@ -169,3 +198,23 @@ scaden:
 flair:
   source: pypi
   package: flair-brookslab
+
+bonito:
+  source: pypi
+  package: ont-bonito
+
+cpat:
+  source: pypi
+  package: cpat
+
+miso:
+  source: pypi
+  package: misopy
+
+rnasieve:
+  source: pypi
+  package: rnasieve
+
+tape:
+  source: pypi
+  package: scTAPE

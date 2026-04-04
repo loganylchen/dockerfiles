@@ -5,6 +5,7 @@ ARG VERSION=2.1
 
 FROM python:3.12-slim AS builder
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 # Install build dependencies
@@ -32,6 +33,7 @@ RUN pip install --no-cache-dir "numpy<2" && \
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.12-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"

@@ -6,6 +6,7 @@ ARG VERSION=1.0.4
 
 FROM python:3.8-slim AS builder
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 # Install build dependencies
@@ -34,6 +35,7 @@ RUN pip install --no-cache-dir nanocompore==${VERSION}
 # Stage 2: Runtime - Minimal image with only runtime dependencies
 FROM python:3.8-slim
 
+ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
