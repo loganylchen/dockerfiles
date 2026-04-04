@@ -39,7 +39,7 @@ RUN wget -q https://github.com/nanoporetech/vbz_compression/releases/download/$O
     rm -rf /tmp/*
 
 # Download and build f5c
-RUN wget https://github.com/hasindu2008/f5c/releases/download/v${VERSION}/f5c-v${VERSION}-release.tar.gz && \
+RUN wget -q https://github.com/hasindu2008/f5c/releases/download/v${VERSION}/f5c-v${VERSION}-release.tar.gz && \
     tar -xzf f5c-v${VERSION}-release.tar.gz && \
     cd f5c-v${VERSION} && \
     # Run the install script which downloads and builds htslib locally
