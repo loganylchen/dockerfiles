@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         ca-certificates \
         libhts-dev \
+        libhdf5-dev \
+        pkg-config \
         zlib1g-dev \
     && git clone --depth 1 --branch v${VERSION} \
         https://bitbucket.org/biociphers/majiq_academic.git /tmp/majiq \
