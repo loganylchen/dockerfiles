@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             'pheatmap','ggplot2','reshape2', \
             'RColorBrewer','dplyr'), repos='https://cloud.r-project.org/'); \
         install.packages('estimate', \
-            repos=c('http://r-forge.r-project.org', 'https://cloud.r-project.org/'), \
+            repos=c('https://r-forge.r-project.org', 'https://cloud.r-project.org/'), \
             dependencies=TRUE) \
     " \
     && apt-get purge -y --auto-remove r-base-dev \

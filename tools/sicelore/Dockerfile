@@ -40,7 +40,7 @@ RUN git clone --depth=1 https://github.com/lbcb-sci/racon /tmp/racon \
     && cd /tmp/spoa && mkdir build && cd build \
     && cmake -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc) && make install
 
-RUN wget -q http://opengene.org/fastp/fastp -O /opt/bin/fastp \
+RUN wget -q https://opengene.org/fastp/fastp -O /opt/bin/fastp \
     && chmod +x /opt/bin/fastp \
     && wget -q https://github.com/samtools/samtools/releases/download/1.15.1/samtools-1.15.1.tar.bz2 -O /tmp/samtools.tar.bz2 \
     && tar -jxf /tmp/samtools.tar.bz2 -C /tmp \
