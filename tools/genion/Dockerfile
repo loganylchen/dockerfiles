@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc \
         zlib1g-dev \
     && cd /tmp \
-    && wget -q https://github.com/vpc-ccg/genion/archive/refs/tags/v${VERSION}.tar.gz \
+    && wget -q https://github.com/vpc-ccg/genion/archive/refs/tags/${VERSION}.tar.gz \
     && tar -xzf v${VERSION}.tar.gz \
     && cd genion-${VERSION} \
     && make \

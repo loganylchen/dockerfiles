@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        python3 python3-pip git \
+        python3 python3-pip python3-dev gcc g++ git \
     && rm -rf /var/lib/apt/lists/*
 
 RUN git clone https://github.com/skandlab/PUREE.git /opt/PUREE_repo \

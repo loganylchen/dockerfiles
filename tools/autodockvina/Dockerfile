@@ -30,8 +30,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v${VERSION}/vina_split_${VERSION}_linux_x86_64 \
         -O /opt/bin/vina_split \
     && chmod +x /opt/bin/vina /opt/bin/vina_split \
-    # Clone source for Python bindings and scripts
-    && git clone --depth=1 --branch v${VERSION} https://github.com/ccsb-scripps/AutoDock-Vina /tmp/AutoDock-Vina \
+    # ── Vina Python bindings (from PyPI) ────────────────────────────────────
+    && pip install --no-cache-dir vina==${VERSION} \
     # ── ADFRsuite ─────────────────────────────────────────────────────────────
     && cd /tmp \
     && wget -q https://ccsb.scripps.edu/adfr/download/1028/ -O ADFT_install \
@@ -41,9 +41,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && tar -xzf ADFRsuite_x86_64Linux_1.0.tar.gz \
     && cd ADFRsuite_x86_64Linux_1.0 \
     && ./install.sh -d /opt/adfr -c 0 -l \
-    # ── Vina Python bindings + scripts ────────────────────────────────────────
-    && cd /tmp/AutoDock-Vina/build/python \
-    && python3 setup.py build install \
+    # ── AutoDock scripts from source ─────────────────────────────────────────
+    && git clone --depth=1 --branch v${VERSION} https://github.com/ccsb-scripps/AutoDock-Vina /tmp/AutoDock-Vina \
     && cd /tmp/AutoDock-Vina/example/autodock_scripts \
     && 2to3 -w . \
     && cp *.py /opt/bin/ \

@@ -32,7 +32,7 @@ RUN wget -q https://github.com/conda-forge/miniforge/releases/latest/download/Mi
 ENV PATH="/opt/conda/bin:$PATH"
 
 # Create DirectRM conda environment (Python 3.11, PyTorch 2.1.2+cu118, CUDA 11.8)
-RUN conda create -n directrm python=3.11 -y \
+RUN conda create -n directrm python=3.10 -y \
     && /opt/conda/envs/directrm/bin/pip install --no-cache-dir torch==2.1.2+cu118 --index-url https://download.pytorch.org/whl/cu118 \
     && /opt/conda/envs/directrm/bin/pip install --no-cache-dir \
     faiss-cpu \
@@ -50,7 +50,7 @@ RUN conda create -n directrm python=3.11 -y \
     matplotlib \
     pyyaml \
     upsetplot \
-    ont-pod5 \
+    'ont-pod5<0.4' \
     && conda clean -afy \
     && rm -rf /tmp/*
 

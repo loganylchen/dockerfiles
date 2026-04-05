@@ -29,8 +29,7 @@ RUN cd /tmp \
     && unzip -q bowtie-${BOWTIE_VERSION}-src.zip \
     && cd bowtie-${BOWTIE_VERSION}-src \
     && make -j$(nproc) \
-    && cp bowtie bowtie-build bowtie-inspect /usr/local/bin/ \
-    && strip /usr/local/bin/bowtie*
+    && cp bowtie bowtie-build bowtie-inspect bowtie-align-s bowtie-align-l /usr/local/bin/
 
 # samtools
 RUN cd /tmp \

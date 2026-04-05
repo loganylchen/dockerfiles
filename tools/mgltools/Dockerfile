@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         ca-certificates \
         build-essential \
         gzip \
+        libpython2.7 \
     && cd /tmp \
     && wget -q https://ccsb.scripps.edu/download/532/ -O mgltools.tar.gz \
     && tar -xzf mgltools.tar.gz \

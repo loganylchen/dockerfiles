@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget ca-certificates g++ make zlib1g-dev libbz2-dev liblzma-dev \
+        wget ca-certificates bzip2 g++ make zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Build htslib
