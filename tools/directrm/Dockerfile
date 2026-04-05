@@ -15,6 +15,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     ca-certificates \
     git \
     bzip2 \
+    gcc \
+    python3-dev \
     libhdf5-103 \
     libbz2-1.0 \
     liblzma5 \
