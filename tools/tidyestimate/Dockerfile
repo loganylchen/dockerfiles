@@ -16,6 +16,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
+        libfreetype-dev \
+        libpng-dev \
+        libtiff-dev \
+        libjpeg-dev \
         libgit2-dev \
     && Rscript -e " \
         install.packages(c( \
