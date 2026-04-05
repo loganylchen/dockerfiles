@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **98** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **99** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -59,6 +59,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [miso](tools/miso/) | Python | `0.5.4` | [Link](https://miso.readthedocs.io/) |
 | [psinanopore](tools/psinanopore/) | R/Bioc | `1.0` | [Link](https://github.com/RouhanifardLab/PsiNanopore) |
 | [psisigma](tools/psisigma/) | R/Bioc | `1.9` | [Link](https://github.com/wososa/PSI-Sigma) |
+| [regtools](tools/regtools/) | Compiled | `1.0.0`, `0.5.2` | [Link](https://github.com/griffithlab/regtools) |
 | [rmats](tools/rmats/) | Python | `4.3.0`, `4.2.0`, `4.1.2` | [Link](https://rnaseq-mats.sourceforge.io/) |
 | [rmatsturbo](tools/rmatsturbo/) | R/Bioc | `4.3.0`, `4.2.0`, `4.1.2` | [Link](https://github.com/Xinglab/rmats-turbo) |
 | [rnaseqlib](tools/rnaseqlib/) | Python | `1.1.2` | [Link](https://github.com/yarden/rnaseqlib) |
