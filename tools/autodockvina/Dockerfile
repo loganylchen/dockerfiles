@@ -30,8 +30,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v${VERSION}/vina_split_${VERSION}_linux_x86_64 \
         -O /opt/bin/vina_split \
     && chmod +x /opt/bin/vina /opt/bin/vina_split \
-    # ── Vina Python bindings (from PyPI) ────────────────────────────────────
-    && pip install --no-cache-dir vina==${VERSION} \
     # ── ADFRsuite ─────────────────────────────────────────────────────────────
     && cd /tmp \
     && wget -q https://ccsb.scripps.edu/adfr/download/1028/ -O ADFT_install \
