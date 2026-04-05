@@ -22,8 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libjpeg-dev \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
-        BiocManager::install('bambu', ask=FALSE); \
-        install.packages(c('BiocManager','xgboost'), repos='https://cloud.r-project.org/') \
+        install.packages('remotes', repos='https://cloud.r-project.org/'); \
+        remotes::install_version('xgboost', version='1.7.8.1', repos='https://cloud.r-project.org/'); \
+        BiocManager::install('bambu', ask=FALSE) \
     " \
     && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
