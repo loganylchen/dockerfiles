@@ -21,6 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python-is-python3 \
         python3-dev \
         python3-pip \
+        r-base \
         samtools \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
