@@ -158,8 +158,8 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 |------|------|----------|-----------|
 | [fastp](tools/fastp/) | Compiled | `0.24.0`, `0.23.2` | [Link](https://github.com/OpenGene/fastp) |
 | [multiqc](tools/multiqc/) | Python | `1.24.1`, `1.21`, `1.19` | [Link](https://multiqc.info/) |
-| [qualimap](tools/qualimap/) | Python | `2.3`, `2.2.2d` | [Link](http://qualimap.conesalab.org/) |
-| [rnaseqc](tools/rnaseqc/) | Python | `2.4.2`, `2.4.1` | [Link](https://github.com/getzlab/rnaseqc) |
+| [qualimap](tools/qualimap/) | Python | `2.3` | [Link](http://qualimap.conesalab.org/) |
+| [rnaseqc](tools/rnaseqc/) | Python | `2.4.2` | [Link](https://github.com/getzlab/rnaseqc) |
 
 ### Functional Annotation (功能注释)
 
@@ -187,9 +187,9 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
-| [autodockvina](tools/autodockvina/) | Python | `1.2.5`, `1.2.3`, `1.2.0` | [Link](https://github.com/ccsb-scripps/AutoDock-Vina) |
+| [autodockvina](tools/autodockvina/) | Python | `1.2.5` | [Link](https://github.com/ccsb-scripps/AutoDock-Vina) |
 | [iupred2a](tools/iupred2a/) | Python | `2a` | [Link](https://iupred.elte.hu/) |
-| [meeko](tools/meeko/) | Python | `0.7.1`, `0.5.0`, `0.4.0` | [Link](https://github.com/forlilab/meeko) |
+| [meeko](tools/meeko/) | Python | `0.7.1` | [Link](https://github.com/forlilab/meeko) |
 | [mgltools](tools/mgltools/) | Python | `1.5.7` | [Link](https://ccsb.scripps.edu/mgltools/) |
 | [signalp](tools/signalp/) | Compiled | `5.0b` | [Link](https://services.healthtech.dtu.dk/services/SignalP-5.0/) |
 
