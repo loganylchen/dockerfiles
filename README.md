@@ -29,7 +29,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
 | [kallisto](tools/kallisto/) | Compiled | `0.52.0`, `0.51.1`, `0.50.1`, `0.48.0` | [Link](https://pachterlab.github.io/kallisto/) |
-| [nanocount](tools/nanocount/) | Python | `1.1.0.post2`, `1.1.0`, `1.0.0.post6`, `1.0.0` | [Link](https://github.com/a-slide/NanoCount) |
+| [nanocount](tools/nanocount/) | Python | `1.1.0.post2`, `1.0.0.post6` | [Link](https://github.com/a-slide/NanoCount) |
 | [rnasieve](tools/rnasieve/) | Python | `0.1.4` |  |
 | [salmon](tools/salmon/) | Compiled | `1.11.4`, `1.10.0`, `1.9.0` | [Link](https://github.com/COMBINE-lab/salmon) |
 
@@ -53,7 +53,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [irfinder](tools/irfinder/) | R/Bioc | `2.0.1` | [Link](https://github.com/RitchieLabIGH/IRFinder) |
 | [isoformswitchanalyzer](tools/isoformswitchanalyzer/) | R/Bioc | `2.4.0`, `2.2.0` | [Link](https://bioconductor.org/packages/IsoformSwitchAnalyzeR/) |
 | [junctionseq](tools/junctionseq/) | R/Bioc | `1.26.0` | [Link](https://bioconductor.org/packages/JunctionSeq/) |
-| [lafite](tools/lafite/) | Python | `1.0.2`, `1.0.1`, `1.0.0` | [Link](https://github.com/pythseq/LAFITE) |
+| [lafite](tools/lafite/) | Python | `1.0.2`, `1.0.1` | [Link](https://github.com/pythseq/LAFITE) |
 | [leafcutter](tools/leafcutter/) | Compiled | `0.2.9` | [Link](https://github.com/davidaknowles/leafcutter) |
 | [majiq](tools/majiq/) | Python | `2.5` | [Link](https://majiq.biociphers.org/) |
 | [miso](tools/miso/) | Python | `0.5.4` | [Link](https://miso.readthedocs.io/) |
@@ -64,7 +64,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [rnaseqlib](tools/rnaseqlib/) | Python | `1.1.2` | [Link](https://github.com/yarden/rnaseqlib) |
 | [sgseq](tools/sgseq/) | R/Bioc | `1.38.0` | [Link](https://bioconductor.org/packages/SGSeq/) |
 | [spladder](tools/spladder/) | Python | `3.0.4` | [Link](https://github.com/ratschlab/spladder) |
-| [splicetools](tools/splicetools/) | Python | `1.1` |  |
+| [splicetools](tools/splicetools/) | Python | `main` |  |
 | [suppa](tools/suppa/) | Python | `2.3` | [Link](https://github.com/comprna/SUPPA) |
 | [whippet](tools/whippet/) | Compiled | `1.6.1` | [Link](https://github.com/timbitz/Whippet.jl) |
 
