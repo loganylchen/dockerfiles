@@ -11,11 +11,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-pip \
         python3-dev \
         gcc \
+        g++ \
         minimap2 \
         samtools \
     && pip3 install --no-cache-dir --break-system-packages \
         flair-brookslab==${VERSION} \
-    && apt-get purge -y --auto-remove python3-dev gcc \
+    && apt-get purge -y --auto-remove python3-dev gcc g++ \
     && rm -rf /var/lib/apt/lists/* /root/.cache
 
 RUN flair --version

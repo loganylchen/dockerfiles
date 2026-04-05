@@ -23,14 +23,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && tar -xzf mgltools.tar.gz \
     && cd mgltools_x86_64Linux2_1.5.7 \
     && ./install.sh -d /opt/mgltools \
-    # ── AutoDock-Vina ─────────────────────────────────────────────────────────
-    && cd /tmp \
+    # ── AutoDock-Vina (pre-built binaries) ────────────────────────────────────
     && mkdir -p /opt/bin \
+    && wget -q https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v${VERSION}/vina_${VERSION}_linux_x86_64 \
+        -O /opt/bin/vina \
+    && wget -q https://github.com/ccsb-scripps/AutoDock-Vina/releases/download/v${VERSION}/vina_split_${VERSION}_linux_x86_64 \
+        -O /opt/bin/vina_split \
+    && chmod +x /opt/bin/vina /opt/bin/vina_split \
+    # Clone source for Python bindings and scripts
     && git clone --depth=1 --branch v${VERSION} https://github.com/ccsb-scripps/AutoDock-Vina /tmp/AutoDock-Vina \
-    && cd /tmp/AutoDock-Vina/build/linux/release \
-    && make \
-    && strip vina vina_split \
-    && cp vina vina_split /opt/bin/ \
     # ── ADFRsuite ─────────────────────────────────────────────────────────────
     && cd /tmp \
     && wget -q https://ccsb.scripps.edu/adfr/download/1028/ -O ADFT_install \

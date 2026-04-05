@@ -8,7 +8,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget g++ make git zlib1g-dev libbz2-dev liblzma-dev \
+        wget ca-certificates g++ make git zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Build seqtk (use wget instead of git clone to avoid network issues)

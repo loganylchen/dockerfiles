@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         python3-pip \
         gcc \
+        g++ \
         git \
         zlib1g-dev \
     && pip3 install --no-cache-dir --upgrade pip \

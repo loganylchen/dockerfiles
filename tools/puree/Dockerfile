@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN git clone https://github.com/skandlab/PUREE.git /opt/PUREE_repo \
     && cd /opt/PUREE_repo \
     && git checkout ${VERSION} \
+    && pip3 install --no-cache-dir --break-system-packages 'numpy<1.24' \
     && pip3 install --no-cache-dir --break-system-packages -r requirements.txt \
     && rm -rf /opt/PUREE_repo/.git
 

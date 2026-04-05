@@ -29,6 +29,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         liblzma-dev \
         libncurses5-dev \
         libgomp1 \
+        unzip \
+        bzip2 \
         curl \
     # ── pip2 via get-pip ──────────────────────────────────────────────────────
     && curl -sS https://bootstrap.pypa.io/pip/2.7/get-pip.py | python2 \
@@ -44,7 +46,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && cd /tmp/samtools-${SAMTOOLS_VERSION} \
     && ./configure --prefix=/usr/local && make -j$(nproc) && make install \
     # ── hisat2 ────────────────────────────────────────────────────────────────
-    && wget -q https://github.com/DaehwanKimLab/hisat2/releases/download/v${HISAT2_VERSION}/hisat2-${HISAT2_VERSION}-Linux_x86_64.zip \
+    && wget -q https://cloud.biohpc.swmed.edu/index.php/s/hisat2-210-Linux_x86_64/download \
         -O /tmp/hisat2.zip \
     && unzip -q /tmp/hisat2.zip -d /opt \
     && mv /opt/hisat2-${HISAT2_VERSION} /opt/hisat2 \
