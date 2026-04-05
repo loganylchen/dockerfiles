@@ -9,6 +9,7 @@ ARG VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
+        ca-certificates \
         make \
         g++ \
         gcc \

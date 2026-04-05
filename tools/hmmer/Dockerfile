@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
         build-essential \
-    && wget -q https://eddylab.org/software/hmmer/hmmer-${VERSION}.tar.gz \
+    && wget -q http://eddylab.org/software/hmmer/hmmer-${VERSION}.tar.gz \
         -O /tmp/hmmer.tar.gz \
     && tar -xzf /tmp/hmmer.tar.gz -C /tmp \
     && cd /tmp/hmmer-${VERSION} \
