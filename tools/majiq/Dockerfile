@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && pip install --no-cache-dir /tmp/majiq/voila \
     && pip install --no-cache-dir /tmp/majiq/majiq \
     && pip install --no-cache-dir 'click<8.0' \
-    && apt-get purge -y --auto-remove python3-dev gcc g++ git ca-certificates \
+    && apt-get install -y --no-install-recommends libgomp1 \
+    && apt-get purge -y python3-dev gcc g++ git ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/majiq /root/.cache
 
 RUN python -c "import rna_majiq; print('majiq OK')"
