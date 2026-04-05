@@ -1,6 +1,6 @@
 ARG VERSION=1.5.7
 
-FROM debian:bookworm-slim
+FROM debian:bullseye-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
