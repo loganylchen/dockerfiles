@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         ca-certificates \
     && Rscript -e " \
-        install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
-        devtools::install_github('cozygene/bisque') \
+        install.packages('remotes', repos='https://cloud.r-project.org/'); \
+        remotes::install_github('cozygene/bisque') \
     " \
     && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
