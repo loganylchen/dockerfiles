@@ -65,7 +65,7 @@ RUN git clone --depth 1 --branch v${VERSION} https://github.com/yuxinPenny/Direc
 RUN conda create -n remora python=3.10 -y \
     && /opt/conda/envs/remora/bin/pip install --no-cache-dir torch==2.3.0 --index-url https://download.pytorch.org/whl/cu118 \
     && /opt/conda/envs/remora/bin/pip install --no-cache-dir \
-    remora \
+    ont-remora \
     pod5 \
     tqdm \
     numpy \
