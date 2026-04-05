@@ -106,7 +106,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [immunedeconv](tools/immunedeconv/) | R/Bioc | `2.1.0`, `2.0.3` | [Link](https://github.com/omnideconv/immunedeconv) |
 | [music](tools/music/) | R/Bioc | `1.0.0` | [Link](https://github.com/xuranw/MuSiC) |
 | [scaden](tools/scaden/) | Python | `1.1.2` | [Link](https://github.com/KevinMenden/scaden) |
-| [tape](tools/tape/) | Python | `1.1.2`, `1.1.0` | [Link](https://github.com/poseidonchan/TAPE) |
+| [tape](tools/tape/) | Python | `1.1.2` | [Link](https://github.com/poseidonchan/TAPE) |
 | [tidyestimate](tools/tidyestimate/) | R/Bioc | `1.1.1`, `1.0.4` | [Link](https://github.com/KaiAragaki/tidyestimate) |
 | [xcell](tools/xcell/) | R/Bioc | `1.1.0` | [Link](https://xcell.ucsf.edu/) |
 
@@ -150,7 +150,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [bedtools](tools/bedtools/) | Python | `2.31.1`, `2.31.0`, `2.30.0` | [Link](https://bedtools.readthedocs.io/) |
 | [gffread](tools/gffread/) | Compiled | `0.12.7`, `0.12.6` | [Link](http://ccb.jhu.edu/software/stringtie/gffread.shtml) |
 | [hmmer](tools/hmmer/) | Compiled | `3.4`, `3.3.2` | [Link](https://eddylab.org/software/hmmer/) |
-| [samtools](tools/samtools/) | Compiled | `1.23.1`, `1.22.2`, `1.21.1`, `1.19.1` | [Link](http://www.htslib.org/) |
+| [samtools](tools/samtools/) | Compiled | `1.23.1`, `1.22`, `1.21.1`, `1.19` | [Link](http://www.htslib.org/) |
 
 ### Quality Control (质量控制)
 
