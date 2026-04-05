@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libhts-dev \
         zlib1g-dev \
     && pip3 install --no-cache-dir --break-system-packages \
+        'numpy<2' \
         spladder==${VERSION} \
         'matplotlib<3.7' \
     && apt-get purge -y --auto-remove python3-dev gcc \
