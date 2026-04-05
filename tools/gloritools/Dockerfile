@@ -13,7 +13,7 @@ ARG BOWTIE_VERSION
 ARG SAMTOOLS_VERSION
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        wget ca-certificates unzip zip xxd g++ make libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev \
+        wget ca-certificates unzip zip xxd bzip2 g++ make libncurses5-dev zlib1g-dev libbz2-dev liblzma-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # STAR: download prebuilt static binary from GitHub Releases (zip archive)
