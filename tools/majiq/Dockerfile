@@ -19,9 +19,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
     && git clone --depth 1 --branch v${VERSION} \
         https://bitbucket.org/biociphers/majiq_academic.git /tmp/majiq \
+    && pip install --no-cache-dir 'numpy<1.24' \
     && pip install --no-cache-dir /tmp/majiq/voila \
     && pip install --no-cache-dir /tmp/majiq/majiq \
     && pip install --no-cache-dir 'click<8.0' \
+    && pip install --no-cache-dir --force-reinstall --no-deps 'h5py<3.8' \
     && apt-get install -y --no-install-recommends libgomp1 \
     && apt-get purge -y python3-dev gcc g++ git ca-certificates \
     && rm -rf /var/lib/apt/lists/* /tmp/majiq /root/.cache
