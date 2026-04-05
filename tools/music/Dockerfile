@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libcurl4-openssl-dev \
         libssl-dev \
         libxml2-dev \
-        libgit2-dev \
         libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
@@ -22,9 +21,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libjpeg-dev \
         git \
     && Rscript -e " \
-        install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
+        install.packages(c('BiocManager', 'remotes'), repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('SingleCellExperiment', 'Biobase', 'TOAST'), ask=FALSE); \
-        devtools::install_github('xuranw/MuSiC') \
+        remotes::install_github('xuranw/MuSiC') \
     " \
     && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache

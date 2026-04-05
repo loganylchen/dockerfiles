@@ -20,13 +20,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpng-dev \
         libtiff-dev \
         libjpeg-dev \
-        libgit2-dev \
         git \
         ca-certificates \
     && Rscript -e " \
-        install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
+        install.packages(c('BiocManager', 'remotes'), repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('GSEABase', 'GSVA'), ask=FALSE); \
-        devtools::install_github('dviraran/xCell') \
+        remotes::install_github('dviraran/xCell') \
     " \
     && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache

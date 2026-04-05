@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libcurl4-openssl-dev \
         libssl-dev \
         libxml2-dev \
-        libgit2-dev \
         libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
@@ -22,11 +21,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libjpeg-dev \
         git \
     && Rscript -e " \
-        install.packages(c('BiocManager', 'devtools', 'dplyr', 'geneset', \
+        install.packages(c('BiocManager', 'remotes', 'dplyr', 'geneset', \
             'ggplot2', 'ggfun', 'cowplot'), repos='https://cloud.r-project.org/'); \
-        devtools::install_github('YuLab-SMU/ggtree'); \
+        remotes::install_github('YuLab-SMU/ggtree'); \
         BiocManager::install('clusterProfiler', ask=FALSE); \
-        devtools::install_github('GangLiLab/genekitr') \
+        remotes::install_github('GangLiLab/genekitr') \
     " \
     && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache

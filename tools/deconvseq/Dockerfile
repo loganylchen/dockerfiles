@@ -12,7 +12,6 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libcurl4-openssl-dev \
         libssl-dev \
         libxml2-dev \
-        libgit2-dev \
         libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
@@ -23,8 +22,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         git \
         ca-certificates \
     && Rscript -e " \
-        install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
-        devtools::install_github('rosedu1/deconvSeq', dependencies=TRUE) \
+        install.packages(c('BiocManager', 'remotes'), repos='https://cloud.r-project.org/'); \
+        remotes::install_github('rosedu1/deconvSeq', dependencies=TRUE) \
     " \
     && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache

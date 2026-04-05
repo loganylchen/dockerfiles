@@ -20,13 +20,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpng-dev \
         libtiff-dev \
         libjpeg-dev \
-        libgit2-dev \
+        git \
+        ca-certificates \
     && Rscript -e " \
         install.packages(c( \
             'pheatmap','ggplot2','reshape2','RColorBrewer', \
-            'dplyr','devtools','tidyverse'), \
+            'dplyr','remotes','tidyverse'), \
             repos='https://cloud.r-project.org/'); \
-        devtools::install_github('KaiAragaki/tidy_estimate@v${VERSION}') \
+        remotes::install_github('KaiAragaki/tidy_estimate@v${VERSION}') \
     " \
     && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
