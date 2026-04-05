@@ -60,7 +60,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [psinanopore](tools/psinanopore/) | R/Bioc | `1.0` | [Link](https://github.com/RouhanifardLab/PsiNanopore) |
 | [psisigma](tools/psisigma/) | R/Bioc | `1.9` | [Link](https://github.com/wososa/PSI-Sigma) |
 | [regtools](tools/regtools/) | Compiled | `1.0.0`, `0.5.2` | [Link](https://github.com/griffithlab/regtools) |
-| [rmats](tools/rmats/) | Python | `4.3.0`, `4.2.0`, `4.1.2` | [Link](https://rnaseq-mats.sourceforge.io/) |
+| [rmats](tools/rmats/) | R/Bioc | `4.3.0`, `4.2.0`, `4.1.2` | [Link](https://rnaseq-mats.sourceforge.io/) |
 | [rmatsturbo](tools/rmatsturbo/) | R/Bioc | `4.3.0`, `4.2.0`, `4.1.2` | [Link](https://github.com/Xinglab/rmats-turbo) |
 | [rnaseqlib](tools/rnaseqlib/) | Python | `1.1.2` | [Link](https://github.com/yarden/rnaseqlib) |
 | [sgseq](tools/sgseq/) | R/Bioc | `1.38.0` | [Link](https://bioconductor.org/packages/SGSeq/) |
