@@ -16,6 +16,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libfontconfig1-dev \
         libharfbuzz-dev \
         libfribidi-dev \
+        libuv1-dev \
+        libfreetype6-dev \
+        libpng-dev \
+        libtiff5-dev \
+        libjpeg-dev \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install('WGCNA', ask=FALSE); \
