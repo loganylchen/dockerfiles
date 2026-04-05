@@ -688,6 +688,14 @@ TOOL_INFO = {
         "category": "splicing",
         "references": ["https://github.com/RouhanifardLab/PsiNanopore"]
     },
+    "regtools": {
+        "cn_name": "RegTools 调控突变分析",
+        "en_name": "RegTools Regulatory Mutation Analysis",
+        "cn_desc": "整合DNA-seq和RNA-seq数据分析突变对基因表达调控和剪接的影响。",
+        "en_desc": "Integrates DNA-seq and RNA-seq data to identify mutations associated with regulatory effects on gene expression.",
+        "category": "splicing",
+        "references": ["https://github.com/griffithlab/regtools"]
+    },
     "rmats": {
         "cn_name": "rMATS 可变剪接定量",
         "en_name": "rMATS Alternative Splicing Quantification",

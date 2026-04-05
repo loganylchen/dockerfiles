@@ -154,6 +154,10 @@ qualimap:
   repo: scbiber/qualimap
   tag_prefix: ""
 
+regtools:
+  source: github
+  repo: griffithlab/regtools
+
 # --- PyPI ---
 xpore:
   source: pypi
