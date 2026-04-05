@@ -42,7 +42,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # ── AutoDock scripts from source ─────────────────────────────────────────
     && git clone --depth=1 --branch v${VERSION} https://github.com/ccsb-scripps/AutoDock-Vina /tmp/AutoDock-Vina \
     && cd /tmp/AutoDock-Vina/example/autodock_scripts \
-    && 2to3 -w . \
+    && (2to3 -w . || true) \
     && cp *.py /opt/bin/ \
     && chmod +x /opt/bin/* \
     # ── AutoDock4 binary ──────────────────────────────────────────────────────
