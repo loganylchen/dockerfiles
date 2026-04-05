@@ -6,7 +6,8 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 LABEL description="DirectRM - RNA modification detection from Nanopore dRNA-Seq data"
 
 ENV DEBIAN_FRONTEND=noninteractive
-
+ARG VERSION
+ARG DORADO_VERSION
 
 # Install base dependencies
 RUN apt-get update && apt-get install -y --no-install-recommends \
