@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             repos='https://cloud.r-project.org/'); \
         devtools::install_github('KaiAragaki/tidy_estimate@v${VERSION}') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(tidyestimate); sessionInfo()" 2>&1

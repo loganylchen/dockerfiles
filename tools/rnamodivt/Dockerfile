@@ -68,7 +68,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && git clone --depth=50 https://github.com/Epigenomics-Lab/RNAMod.git /opt/RNAMod \
     && cd /opt/RNAMod && git checkout ${VERSION} \
     # ── cleanup ───────────────────────────────────────────────────────────────
-    && apt-get purge -y --auto-remove wget ca-certificates git python3-dev gcc g++ make r-base-dev \
+    && apt-get purge -y wget ca-certificates git python3-dev gcc g++ make r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN hisat2 --version

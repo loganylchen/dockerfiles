@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('ASpli', 'GenomicFeatures'), ask=FALSE) \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(ASpli); sessionInfo()" 2>&1

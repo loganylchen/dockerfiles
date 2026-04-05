@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages(c('BiocManager', 'devtools'), repos='https://cloud.r-project.org/'); \
         devtools::install_github('rosedu1/deconvSeq', dependencies=TRUE) \
     " \
-    && apt-get purge -y --auto-remove r-base-dev git \
+    && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(deconvSeq); sessionInfo()" 2>&1 | head -5

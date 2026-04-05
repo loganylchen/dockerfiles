@@ -28,7 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install(c('GSEABase', 'GSVA'), ask=FALSE); \
         devtools::install_github('dviraran/xCell') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev git \
+    && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(xCell); sessionInfo()" 2>&1

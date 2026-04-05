@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install('IsoformSwitchAnalyzeR', ask=FALSE) \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(IsoformSwitchAnalyzeR); sessionInfo()" 2>&1

@@ -22,7 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             repos=c('https://r-forge.r-project.org', 'https://cloud.r-project.org/'), \
             dependencies=TRUE) \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(estimate); sessionInfo()" 2>&1

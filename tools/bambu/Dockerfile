@@ -25,7 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install('bambu', ask=FALSE); \
         install.packages(c('BiocManager','xgboost'), repos='https://cloud.r-project.org/') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(bambu); sessionInfo()" 2>&1

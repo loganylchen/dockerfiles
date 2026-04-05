@@ -19,7 +19,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install(c('DESeq2'), version=BiocManager::version(), ask=FALSE); \
         install.packages('dplyr', repos='https://cloud.r-project.org/') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(DESeq2); sessionInfo()" 2>&1

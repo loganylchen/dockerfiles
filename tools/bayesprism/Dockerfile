@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install(c('BiocParallel', 'scran'), ask=FALSE); \
         devtools::install_github('Danko-Lab/BayesPrism/BayesPrism') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev git \
+    && apt-get purge -y r-base-dev git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(BayesPrism); sessionInfo()" 2>&1 | head -5

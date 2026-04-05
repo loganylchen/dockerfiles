@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install('edgeR', ask=FALSE); \
         install.packages('dplyr', repos='https://cloud.r-project.org/') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(edgeR); sessionInfo()" 2>&1

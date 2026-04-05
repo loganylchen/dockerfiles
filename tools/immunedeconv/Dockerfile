@@ -21,7 +21,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install(c('immunedeconv','GSVA','singscore'), ask=FALSE); \
         install.packages(c('pheatmap','ggplot2','reshape2'), repos='https://cloud.r-project.org/') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev \
+    && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN Rscript -e "library(immunedeconv); sessionInfo()" 2>&1

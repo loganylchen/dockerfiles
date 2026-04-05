@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             'klaR','devtools','survminer','xgboost','remotes'), \
             repos='https://cloud.r-project.org/') \
     " \
-    && apt-get purge -y --auto-remove r-base-dev cmake \
+    && apt-get purge -y r-base-dev cmake \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 ADD ./install_R_packages.R /tmp/
