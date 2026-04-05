@@ -22,6 +22,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         python3-pip \
         r-base \
+        r-base-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
         samtools \
         zlib1g-dev \
     && rm -rf /var/lib/apt/lists/*
