@@ -157,7 +157,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
-| [fastp](tools/fastp/) | Compiled | `0.24.0`, `0.23.2` | [Link](https://github.com/OpenGene/fastp) |
+| [fastp](tools/fastp/) | Compiled | `1.3.1`, `1.3.0`, `1.2.0`, `1.1.0`, `1.0.1`, `1.0.0`, `0.26.0`, `0.24.0`, `0.23.2` | [Link](https://github.com/OpenGene/fastp) |
 | [multiqc](tools/multiqc/) | Python | `1.24.1`, `1.21`, `1.19` | [Link](https://multiqc.info/) |
 | [qualimap](tools/qualimap/) | Python | `2.3` | [Link](http://qualimap.conesalab.org/) |
 | [rnaseqc](tools/rnaseqc/) | Python | `2.4.2` | [Link](https://github.com/getzlab/rnaseqc) |
