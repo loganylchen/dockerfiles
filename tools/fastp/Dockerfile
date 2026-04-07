@@ -10,7 +10,7 @@ ENV PATH="/opt/bin:$PATH"
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
     && mkdir -p /opt/bin/ \
-    && wget --no-check-certificate http://opengene.org/fastp/fastp.${VERSION} -O /opt/bin/fastp \
+    && wget --progress=dot:giga --no-check-certificate http://opengene.org/fastp/fastp.${VERSION} -O /opt/bin/fastp \
     && chmod a+x /opt/bin/fastp \
     && rm -rf /var/lib/apt/lists/*
 
