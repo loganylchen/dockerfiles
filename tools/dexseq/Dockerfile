@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install(c('DEXSeq', 'BiocParallel'), ask=FALSE) \
     " \
     && apt-get purge -y r-base-dev \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(DEXSeq); sessionInfo()" 2>&1
