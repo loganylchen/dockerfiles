@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libfontconfig1-dev \
         default-jdk \
         libuv1-dev \
+        python3 \
         wget \
         ca-certificates \
     && Rscript -e " \
