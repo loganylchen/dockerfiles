@@ -36,6 +36,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
     && apt-get purge -y r-base-dev \
+    && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
 RUN Rscript -e "library(JunctionSeq); sessionInfo()" 2>&1
