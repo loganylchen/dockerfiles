@@ -23,7 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'scipy==1.2.3' \
         'matplotlib==2.2.5' \
         'pysam==0.15.4' \
-    && apt-get purge -y --auto-remove python2-dev wget ca-certificates gcc \
+    && apt-get purge -y --auto-remove python2-dev gcc \
+    && apt-get install -y --no-install-recommends libcurl4 \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN python2 -c "import misopy; print(misopy.__version__)"
