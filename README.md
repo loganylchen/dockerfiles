@@ -82,7 +82,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
-| [differr](tools/differr/) | R/Bioc | `0.2` | [Link](https://github.com/bartongroup/differr_nanopore_DRS) |
+| [differr](tools/differr/) | Python | `0.2` | [Link](https://github.com/bartongroup/differr_nanopore_DRS) |
 | [directrm](tools/directrm/) | Python | `1.0` | [Link](https://github.com/yuxinPenny/DirectRM) |
 | [drummer](tools/drummer/) | Python | `92bb35a4a2b22ff304f5e4bcbc9fa6985f18a12e` | [Link](https://github.com/DepledgeLab/DRUMMER) |
 | [eligos2](tools/eligos2/) | R/Bioc | `2.1.0` | [Link](https://gitlab.com/piroonj/eligos2) |
