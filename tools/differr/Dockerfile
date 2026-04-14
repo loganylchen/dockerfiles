@@ -27,6 +27,7 @@ RUN apt-get update && \
     ca-certificates && \
     # Update Matrix package to >= 1.5.0
     Rscript -e "install.packages('Matrix', repos='https://cloud.r-project.org/')" && \
+    pip install pandas==1.5.3 && \
     pip install --no-cache-dir \
     git+https://github.com/bartongroup/differr_nanopore_DRS.git@${VERSION} && \
     apt-get purge -y --auto-remove \
