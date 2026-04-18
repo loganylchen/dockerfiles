@@ -22,10 +22,12 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && mv SUPPA-${VERSION} /opt/suppa \
     && chmod -R +x /opt/suppa \
     && ln -s /opt/suppa/suppa.py /usr/local/bin/suppa.py \
+    && ln -sf /usr/bin/python3 /usr/local/bin/python \
     && apt-get purge -y --auto-remove wget unzip python3-dev ca-certificates \
     && rm -rf /var/lib/apt/lists/* /root/.cache /tmp/* v${VERSION}.zip
 
-RUN python3 /opt/suppa/suppa.py --help 2>&1
+RUN python3 /opt/suppa/suppa.py --help 2>&1 \
+    && python /opt/suppa/suppa.py --help 2>&1 > /dev/null
 
 WORKDIR /data
 CMD ["python3", "/opt/suppa/suppa.py"]
