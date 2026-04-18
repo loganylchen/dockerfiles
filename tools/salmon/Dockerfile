@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="Salmon" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="Salmon - fast and bias-aware quantification of transcript expression" \
+      org.opencontainers.image.source="https://github.com/COMBINE-lab/salmon" \
+      org.opencontainers.image.licenses="GPL-3.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
