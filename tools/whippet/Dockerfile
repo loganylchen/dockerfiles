@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="Whippet" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="Whippet.jl - lightweight and fast quantitative alternative splicing analysis (Julia)" \
+      org.opencontainers.image.source="https://github.com/timbitz/Whippet.jl" \
+      org.opencontainers.image.licenses="MIT"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
