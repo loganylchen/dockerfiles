@@ -1,16 +1,22 @@
 ARG VERSION=2.0.1
+ARG STAR_VERSION=2.7.11b
+
+FROM btrspg/star:${STAR_VERSION} AS star
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
+ARG STAR_VERSION
 
 LABEL org.opencontainers.image.title="IRFinder" \
       org.opencontainers.image.version="${VERSION}" \
-      org.opencontainers.image.description="IRFinder - detection and analysis of intron retention from RNA-seq" \
+      org.opencontainers.image.description="IRFinder - detection and analysis of intron retention from RNA-seq (bundled STAR ${STAR_VERSION})" \
       org.opencontainers.image.source="https://github.com/RitchieLabIGH/IRFinder" \
       org.opencontainers.image.licenses="MIT"
+
+COPY --from=star /usr/local/bin/STAR /usr/local/bin/STAR
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
@@ -58,6 +64,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN IRFinder 2>&1 || true
+RUN STAR --version
 
 WORKDIR /data
 CMD ["IRFinder"]
