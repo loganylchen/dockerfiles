@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **99** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **100** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -54,7 +54,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [isoformswitchanalyzer](tools/isoformswitchanalyzer/) | R/Bioc | `2.4.0`, `2.2.0` | [Link](https://bioconductor.org/packages/IsoformSwitchAnalyzeR/) |
 | [junctionseq](tools/junctionseq/) | R/Bioc | `1.26.0` | [Link](https://bioconductor.org/packages/JunctionSeq/) |
 | [lafite](tools/lafite/) | Python | `1.0.2`, `1.0.1` | [Link](https://github.com/pythseq/LAFITE) |
-| [leafcutter](tools/leafcutter/) | Compiled | `0.2.9` | [Link](https://github.com/davidaknowles/leafcutter) |
+| [leafcutter](tools/leafcutter/) | R/Bioc | `0.2.9` | [Link](https://github.com/davidaknowles/leafcutter) |
 | [majiq](tools/majiq/) | Python | `2.5` | [Link](https://majiq.biociphers.org/) |
 | [miso](tools/miso/) | Python | `0.5.4` | [Link](https://miso.readthedocs.io/) |
 | [psinanopore](tools/psinanopore/) | R/Bioc | `1.0` | [Link](https://github.com/RouhanifardLab/PsiNanopore) |
@@ -218,6 +218,12 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
 | [lftp](tools/lftp/) | Compiled | `4.9.2` | [Link](https://lftp.yar.ru/) |
+
+### Other (other)
+
+| Tool | Type | Versions | Reference |
+|------|------|----------|-----------|
+| [fastqc](tools/fastqc/) | Java | `0.12.1`, `0.11.9` |  |
 
 ## Notes
 
