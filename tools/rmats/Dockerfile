@@ -7,6 +7,12 @@ ENV PATH=/opt/rmats:$PATH
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="rMATS-turbo" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="rMATS - replicate Multivariate Analysis of Transcript Splicing" \
+      org.opencontainers.image.source="https://github.com/Xinglab/rmats-turbo" \
+      org.opencontainers.image.licenses="GPL-2.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         gcc g++ gfortran \
         build-essential \
