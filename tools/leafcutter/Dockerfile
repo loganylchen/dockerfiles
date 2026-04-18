@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="LeafCutter" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="LeafCutter - intron-centric splicing analysis and differential splicing" \
+      org.opencontainers.image.source="https://github.com/davidaknowles/leafcutter" \
+      org.opencontainers.image.licenses="Apache-2.0"
+
 # Leafcutter R package is not on CRAN/Bioconductor; install from GitHub master.
 # The 0.2.9 label matches the bioconda package (which versions the Python
 # clustering scripts). Upstream GitHub max tag is v0.2.7, so use master HEAD.
