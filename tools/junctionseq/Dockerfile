@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="JunctionSeq" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="JunctionSeq - differential junction/exon usage analysis via QoRTs" \
+      org.opencontainers.image.source="https://hartleys.github.io/JunctionSeq/" \
+      org.opencontainers.image.licenses="GPL-3.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         r-base \
         r-base-dev \
