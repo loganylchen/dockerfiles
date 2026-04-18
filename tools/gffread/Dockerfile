@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="gffread" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="gffread - GFF/GTF utility for filtering, sorting, format conversion" \
+      org.opencontainers.image.source="https://github.com/gpertea/gffread" \
+      org.opencontainers.image.licenses="MIT"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
