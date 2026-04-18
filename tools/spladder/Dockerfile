@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="SplAdder" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="SplAdder - alternative splicing detection and quantification from RNA-seq data" \
+      org.opencontainers.image.source="https://github.com/ratschlab/spladder" \
+      org.opencontainers.image.licenses="GPL-3.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
