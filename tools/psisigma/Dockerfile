@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="PSI-Sigma" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="PSI-Sigma - alternative splicing analysis with statistical testing" \
+      org.opencontainers.image.source="https://github.com/wososa/PSI-Sigma" \
+      org.opencontainers.image.licenses="MIT"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         perl \
         r-base \
