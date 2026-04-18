@@ -42,11 +42,29 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source') \
     " \
+    # Expose QoRTs.jar at stable paths so downstream scripts can locate it
+    # via system.file("java", ...) or system.file("extdata", ...) or $QORTS_JAR.
+    && QORTS_PKG_DIR="$(Rscript -e 'cat(find.package(\"QoRTs\"))')" \
+    && QORTS_JAR_SRC="$(find \"$QORTS_PKG_DIR\" -name 'QoRTs.jar' | head -n1)" \
+    && if [ -z "$QORTS_JAR_SRC" ]; then \
+           mkdir -p /tmp/qortsrc \
+           && tar -xzf /tmp/QoRTs.tar.gz -C /tmp/qortsrc \
+           && QORTS_JAR_SRC="$(find /tmp/qortsrc -name 'QoRTs.jar' | head -n1)"; \
+       fi \
+    && mkdir -p "$QORTS_PKG_DIR/java" /opt/QoRTs \
+    && cp "$QORTS_JAR_SRC" "$QORTS_PKG_DIR/java/QoRTs.jar" \
+    && cp "$QORTS_JAR_SRC" /opt/QoRTs/QoRTs.jar \
     && apt-get purge -y r-base-dev \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
-RUN Rscript -e "library(JunctionSeq); sessionInfo()" 2>&1
+ENV QORTS_JAR=/opt/QoRTs/QoRTs.jar
+
+RUN Rscript -e "library(JunctionSeq); sessionInfo()" 2>&1 \
+    && Rscript -e "jar <- system.file('java', 'QoRTs.jar', package='QoRTs'); \
+        cat('QoRTs.jar (java):', jar, '\n'); \
+        stopifnot(nzchar(jar), file.exists(jar))" \
+    && test -f "$QORTS_JAR"
 
 WORKDIR /data
 CMD ["Rscript"]
