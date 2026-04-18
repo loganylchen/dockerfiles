@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="FastQC" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="FastQC - quality control tool for high-throughput sequencing data" \
+      org.opencontainers.image.source="https://www.bioinformatics.babraham.ac.uk/projects/fastqc/" \
+      org.opencontainers.image.licenses="GPL-3.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         unzip \
