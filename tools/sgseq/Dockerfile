@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="SGSeq" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="SGSeq - analysis of splice events from RNA-seq data (Bioconductor)" \
+      org.opencontainers.image.source="https://bioconductor.org/packages/SGSeq/" \
+      org.opencontainers.image.licenses="Artistic-2.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         r-base \
         r-base-dev \
