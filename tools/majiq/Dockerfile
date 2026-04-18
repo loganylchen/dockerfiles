@@ -7,6 +7,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="MAJIQ" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="MAJIQ - Modeling Alternative Junction Inclusion Quantification (academic use only)" \
+      org.opencontainers.image.source="https://majiq.biociphers.org" \
+      org.opencontainers.image.licenses="Academic-use-only"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3-dev \
         gcc \
