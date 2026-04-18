@@ -7,6 +7,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="rnaseqlib" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="rnaseqlib - miscellaneous library for RNA-Seq analysis (Python 2.7)" \
+      org.opencontainers.image.source="https://github.com/yarden/rnaseqlib" \
+      org.opencontainers.image.licenses="BSD-3-Clause"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python2 \
         python2-dev \
