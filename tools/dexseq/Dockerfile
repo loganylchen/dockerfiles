@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="DEXSeq" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="Bioconductor DEXSeq - differential exon usage from RNA-seq" \
+      org.opencontainers.image.source="https://bioconductor.org/packages/DEXSeq" \
+      org.opencontainers.image.licenses="GPL-3.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         r-base \
         r-base-dev \
