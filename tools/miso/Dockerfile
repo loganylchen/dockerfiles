@@ -7,6 +7,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="MISO" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="MISO - Mixture of Isoforms probabilistic isoform quantification (Python 2.7)" \
+      org.opencontainers.image.source="https://miso.readthedocs.io" \
+      org.opencontainers.image.licenses="GPL-2.0"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python2 \
         python2-dev \
