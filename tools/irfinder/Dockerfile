@@ -6,6 +6,12 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
+LABEL org.opencontainers.image.title="IRFinder" \
+      org.opencontainers.image.version="${VERSION}" \
+      org.opencontainers.image.description="IRFinder - detection and analysis of intron retention from RNA-seq" \
+      org.opencontainers.image.source="https://github.com/RitchieLabIGH/IRFinder" \
+      org.opencontainers.image.licenses="MIT"
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
