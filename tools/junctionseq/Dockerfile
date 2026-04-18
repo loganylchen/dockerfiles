@@ -37,18 +37,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://hartleys.github.io/JunctionSeq/install/JunctionSeq_LATEST.tar.gz \
         -O /tmp/JunctionSeq.tar.gz \
     && mkdir -p /opt/QoRTs \
+    && wget -q https://hartleys.github.io/QoRTs/QoRTs.jar \
+        -O /opt/QoRTs/QoRTs.jar \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600); \
         install.packages(c('Hmisc', 'plotrix'), repos='https://cloud.r-project.org/'); \
         install.packages('/tmp/QoRTs.tar.gz', repos=NULL, type='source'); \
         install.packages('/tmp/JunctionSeq.tar.gz', repos=NULL, type='source'); \
-        jar <- system.file('extdata', 'QoRTs.jar', package='QoRTs'); \
-        if (!nzchar(jar)) jar <- system.file('java', 'QoRTs.jar', package='QoRTs'); \
-        if (!nzchar(jar) || !file.exists(jar)) stop('QoRTs.jar not found in installed package'); \
         java_dir <- file.path(find.package('QoRTs'), 'java'); \
         dir.create(java_dir, recursive=TRUE, showWarnings=FALSE); \
-        stopifnot(file.copy(jar, file.path(java_dir, 'QoRTs.jar'), overwrite=TRUE)); \
-        stopifnot(file.copy(jar, '/opt/QoRTs/QoRTs.jar', overwrite=TRUE)) \
+        stopifnot(file.copy('/opt/QoRTs/QoRTs.jar', file.path(java_dir, 'QoRTs.jar'), overwrite=TRUE)) \
     " \
     && apt-get purge -y r-base-dev \
     && ln -sf /usr/bin/python3 /usr/bin/python \
