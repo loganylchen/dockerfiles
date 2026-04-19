@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libc6-dev \
         git \
         bedtools \
+        libcurl4 \
     && wget -q https://bootstrap.pypa.io/pip/2.7/get-pip.py -O /tmp/get-pip.py \
     && python2 /tmp/get-pip.py \
     && pip2 install --no-cache-dir \
