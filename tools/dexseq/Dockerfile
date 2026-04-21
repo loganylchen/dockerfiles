@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         zlib1g-dev \
         libfontconfig1-dev \
         python3 \
+        python3-htseq \
+        python3-pysam \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         BiocManager::install(c('DEXSeq', 'BiocParallel'), ask=FALSE) \
@@ -29,7 +31,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && ln -sf /usr/bin/python3 /usr/bin/python \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
-RUN Rscript -e "library(DEXSeq); sessionInfo()" 2>&1
+RUN Rscript -e "library(DEXSeq); sessionInfo()" 2>&1 \
+    && python3 -c "import HTSeq; print('HTSeq', HTSeq.__version__)" \
+    && python3 "$(Rscript -e 'cat(system.file(\"python_scripts\", \"dexseq_count.py\", package=\"DEXSeq\"))')" --help 2>&1 | head -5
 
 WORKDIR /data
 CMD ["Rscript"]
