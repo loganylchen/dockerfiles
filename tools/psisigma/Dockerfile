@@ -17,8 +17,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         cpanminus \
         build-essential \
         pkg-config \
+        gfortran \
         libgsl-dev \
-        pdl \
+        libncurses-dev \
+        libreadline-dev \
         r-base \
         python3 \
         samtools \
@@ -28,7 +30,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         || git clone --depth 1 https://github.com/wososa/PSI-Sigma.git /opt/PSI-Sigma \
     && chmod +x /opt/PSI-Sigma/*.pl \
     && cpanm --notest \
-        PDL::LiteF \
+        PDL \
         PDL::GSL::CDF \
         PDL::Stats \
         Statistics::Multtest \
