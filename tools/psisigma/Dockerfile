@@ -1,4 +1,4 @@
-ARG VERSION=1.9
+ARG VERSION=2.3
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
@@ -14,21 +14,31 @@ LABEL org.opencontainers.image.title="PSI-Sigma" \
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
         perl \
+        cpanminus \
+        build-essential \
+        pkg-config \
+        libgsl-dev \
+        pdl \
         r-base \
         python3 \
         samtools \
-        wget \
-        ca-certificates \
         git \
-    && git clone https://github.com/wososa/PSI-Sigma.git /opt/PSI-Sigma \
-    && cd /opt/PSI-Sigma && git checkout v${VERSION} || true \
+        ca-certificates \
+    && git clone --depth 1 --branch v${VERSION} https://github.com/wososa/PSI-Sigma.git /opt/PSI-Sigma \
+        || git clone --depth 1 https://github.com/wososa/PSI-Sigma.git /opt/PSI-Sigma \
     && chmod +x /opt/PSI-Sigma/*.pl \
-    && ln -s /opt/PSI-Sigma/dummyai.pl /usr/local/bin/dummyai.pl \
-    && ln -s /opt/PSI-Sigma/PSIsigma.pl /usr/local/bin/PSIsigma.pl \
-    && apt-get purge -y --auto-remove wget ca-certificates git \
+    && cpanm --notest \
+        PDL::LiteF \
+        PDL::GSL::CDF \
+        PDL::Stats \
+        Statistics::Multtest \
+        Statistics::R \
+    && for pl in /opt/PSI-Sigma/*.pl; do ln -sf "$pl" /usr/local/bin/$(basename "$pl"); done \
+    && apt-get purge -y git \
+    && apt-get autoremove -y \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN perl /opt/PSI-Sigma/dummyai.pl --help 2>&1 || true
+RUN perl -e "use PDL::LiteF; use PDL::GSL::CDF; use PDL::Stats; use Statistics::Multtest; use Statistics::R; print qq(OK\n)"
 
 WORKDIR /data
-CMD ["perl", "/opt/PSI-Sigma/dummyai.pl"]
+CMD ["perl", "/opt/PSI-Sigma/dPSI.pl"]
