@@ -38,7 +38,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'gffutils==0.10.1' \
     && git clone https://github.com/yarden/rnaseqlib.git /tmp/rnaseqlib \
     && cd /tmp/rnaseqlib && python2 setup.py install \
-    && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
+    # Use archived v369 binary: current UCSC binary requires glibc 2.32+,
+    # but ubuntu:20.04 (needed for python2) ships glibc 2.31.
+    && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64.v369/gtfToGenePred \
         -O /usr/local/bin/gtfToGenePred \
     && chmod +x /usr/local/bin/gtfToGenePred \
     && apt-get purge -y --auto-remove python2-dev gcc g++ git zlib1g-dev \
