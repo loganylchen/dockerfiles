@@ -19,7 +19,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         ca-certificates \
         gcc \
+        g++ \
         libc6-dev \
+        zlib1g-dev \
         git \
         samtools \
         bedtools \
@@ -39,7 +41,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
         -O /usr/local/bin/gtfToGenePred \
     && chmod +x /usr/local/bin/gtfToGenePred \
-    && apt-get purge -y --auto-remove python2-dev gcc git \
+    && apt-get purge -y --auto-remove python2-dev gcc g++ git zlib1g-dev \
     && apt-get install -y --no-install-recommends libcurl4 \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
