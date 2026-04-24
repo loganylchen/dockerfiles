@@ -32,6 +32,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'matplotlib==2.2.5' \
         'pysam==0.15.4' \
         'pandas==0.24.2' \
+        'pybedtools==0.8.2' \
+        'gffutils==0.10.1' \
     && git clone https://github.com/yarden/rnaseqlib.git /tmp/rnaseqlib \
     && cd /tmp/rnaseqlib && python2 setup.py install \
     && wget -q https://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred \
@@ -43,8 +45,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN python2 -c "import misopy; print(misopy.__version__)" \
     && python2 -c "import rnaseqlib; print('rnaseqlib OK')" \
+    && python2 -c "import pybedtools, gffutils; print('pybedtools', pybedtools.__version__, 'gffutils', gffutils.__version__)" \
     && python2 -c "from rnaseqlib.gff import gff_make_annotation; print('gff_make_annotation module OK')" \
-    && gtfToGenePred 2>&1 | head -1 || true
+    && python2 -m rnaseqlib.gff.gff_make_annotation --help 2>&1 | head -5
 
 WORKDIR /data
 CMD ["miso"]
