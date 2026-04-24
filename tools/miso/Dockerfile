@@ -43,7 +43,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN python2 -c "import misopy; print(misopy.__version__)" \
     && python2 -c "import rnaseqlib; print('rnaseqlib OK')" \
-    && which gff_make_annotation
+    && python2 -c "from rnaseqlib.gff import gff_make_annotation; print('gff_make_annotation module OK')" \
+    && gtfToGenePred 2>&1 | head -1 || true
 
 WORKDIR /data
 CMD ["miso"]
