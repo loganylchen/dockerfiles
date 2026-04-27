@@ -31,12 +31,15 @@ RUN printf '%s\n' \
         ca-certificates \
     && Rscript -e " \
         options(download.file.method='wget', timeout=600, \
-                repos=c(CRAN='https://packagemanager.posit.co/cran/2017-10-31')); \
-        source('https://bioconductor.org/biocLite.R'); \
-        biocLite(c('DESeq2', 'DEXSeq', 'BiocParallel', 'Rsamtools', \
-                   'SummarizedExperiment', 'genefilter', 'geneplotter', \
-                   'IRanges', 'GenomicRanges'), \
-                 suppressUpdates=TRUE, ask=FALSE); \
+                repos=c( \
+                    BioCsoft='https://bioconductor.org/packages/3.5/bioc', \
+                    BioCann='https://bioconductor.org/packages/3.5/data/annotation', \
+                    BioCexp='https://bioconductor.org/packages/3.5/data/experiment', \
+                    CRAN='https://packagemanager.posit.co/cran/2017-10-31')); \
+        install.packages(c('DESeq2', 'DEXSeq', 'BiocParallel', 'Rsamtools', \
+                           'SummarizedExperiment', 'genefilter', 'geneplotter', \
+                           'IRanges', 'GenomicRanges'), \
+                         dependencies=TRUE); \
         stopifnot(packageVersion('DESeq2') == '1.16.1') \
     " \
     && wget -q https://hartleys.github.io/QoRTs/QoRTs_LATEST.tar.gz \
