@@ -78,7 +78,7 @@ jobs:
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and push misc-python3
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./misc/python3/
           platforms: linux/amd64
@@ -106,7 +106,7 @@ jobs:
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and push misc-r-base
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./misc/r-base/
           platforms: linux/amd64

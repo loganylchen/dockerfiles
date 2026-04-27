@@ -103,7 +103,7 @@ jobs:
           password: ${{ secrets.DH_TOKEN }}
 
       - name: Build and push ${{ matrix.tool }}:${{ matrix.version }}
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./tools/${{ matrix.tool }}/
           platforms: linux/amd64
@@ -121,7 +121,7 @@ jobs:
 
       - name: Retry build and push
         if: failure()
-        uses: docker/build-push-action@v6
+        uses: docker/build-push-action@v7
         with:
           context: ./tools/${{ matrix.tool }}/
           platforms: linux/amd64
