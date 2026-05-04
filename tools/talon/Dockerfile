@@ -27,8 +27,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         'pysam>=0.15.4' \
         pyfaidx \
         'bamread>=0.0.11' \
-        pyranges \
-        scanpy \
+        'pyranges<0.0.130' \
+        'pybedtools<0.10' \
+        'anndata<0.9' \
+        'scanpy<1.9.4' \
     && wget -q https://github.com/mortazavilab/TALON/archive/refs/tags/v${VERSION}.tar.gz -O /tmp/talon.tar.gz \
     && tar -xzf /tmp/talon.tar.gz -C /tmp \
     && cd /tmp/TALON-${VERSION} \
