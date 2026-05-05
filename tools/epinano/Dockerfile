@@ -1,4 +1,4 @@
-ARG VERSION=1.2.0
+ARG VERSION=1.2.5
 
 FROM debian:bookworm-slim
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
@@ -6,12 +6,11 @@ LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
 
-# EpiNano v1.2.0 requires Java (sam2tsv.jar bundled in misc/)
+# EpiNano >= 1.2.4 removed the sam2tsv (Java) dependency
 RUN apt-get update && apt-get install -y --no-install-recommends \
         wget \
         unzip \
         ca-certificates \
-        default-jre-headless \
         python3 \
         python3-pip \
         r-base \
@@ -38,14 +37,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 # Symlink python -> python3 for EpiNano shebangs
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
-# Download EpiNano v1.2.0 (sam2tsv.jar bundled in misc/)
-RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/Epinano${VERSION}.zip -O /tmp/epinano.zip \
+# Download EpiNano (codeload zip extracts to EpiNano-EpiNano${VERSION}/)
+RUN wget -q https://github.com/novoalab/EpiNano/archive/refs/tags/EpiNano${VERSION}.zip -O /tmp/epinano.zip \
     && unzip /tmp/epinano.zip -d /tmp \
-    && mv /tmp/EpiNano-Epinano${VERSION} /opt/epinano \
+    && mv /tmp/EpiNano-EpiNano${VERSION} /opt/epinano \
     && rm -rf /tmp/*
 
 ENV PATH="/opt/epinano:$PATH"
-ENV SAM2TSV="/opt/epinano/misc/sam2tsv.jar"
 RUN chmod +x /opt/epinano/*.py /opt/epinano/*.sh 2>/dev/null || true
 
 # Verify installation
@@ -53,8 +51,7 @@ RUN python3 -c "import numpy, pandas, sklearn, Bio, pysam, h5py, dask; print('Py
     && Rscript -e "library(tidyverse); library(outliers); cat('R packages OK\n')" \
     && minimap2 --version \
     && samtools --version \
-    && java -version 2>&1 \
-    && test -f /opt/epinano/misc/sam2tsv.jar && echo "sam2tsv.jar OK"
+    && python3 /opt/epinano/Epinano_Variants.py -h > /dev/null && echo "Epinano_Variants OK"
 
 WORKDIR /data
 CMD ["python3", "/opt/epinano/Epinano_Variants.py", "-h"]
