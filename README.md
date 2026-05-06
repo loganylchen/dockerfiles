@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **105** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **106** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -224,6 +224,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
 | [fastqc](tools/fastqc/) | Java | `0.12.1`, `0.11.9` |  |
+| [isoquant](tools/isoquant/) | Python | `3.13.0` |  |
 | [isotools](tools/isotools/) | Python | `0.3.4` |  |
 | [nanoplot](tools/nanoplot/) | Python | `1.42.0` |  |
 | [rattle](tools/rattle/) | Compiled | `1.0` |  |
