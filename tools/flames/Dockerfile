@@ -1,6 +1,8 @@
 ARG VERSION=2.4.2
 
-FROM debian:bookworm-slim
+# Bioconductor 3.22 (FLAMES 2.4.2) requires R >= 4.5. Debian bookworm only
+# ships R 4.2, so use the rocker R 4.5 image (still debian-based).
+FROM rocker/r-ver:4.5.0
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -20,8 +22,6 @@ LABEL org.opencontainers.image.title="FLAMES" \
 #     conda env at first runtime call — not pre-warmed here).
 # SystemRequirements: GNU make, C++17.
 RUN apt-get update && apt-get install -y --no-install-recommends \
-        r-base \
-        r-base-dev \
         build-essential \
         cmake \
         pkg-config \
@@ -55,7 +55,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         BiocManager::install('FLAMES', ask=FALSE, update=FALSE) \
     " \
     && apt-get purge -y --auto-remove \
-        r-base-dev build-essential cmake pkg-config wget \
+        build-essential cmake pkg-config wget \
         libcurl4-openssl-dev libssl-dev libxml2-dev libgit2-dev \
         zlib1g-dev libbz2-dev liblzma-dev libdeflate-dev libpcre2-dev \
         libfontconfig1-dev libharfbuzz-dev libfribidi-dev libfreetype6-dev \
