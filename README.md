@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **107** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **111** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -225,9 +225,13 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 |------|------|----------|-----------|
 | [espresso](tools/espresso/) | Python | `1.6.0` |  |
 | [fastqc](tools/fastqc/) | Java | `0.12.1`, `0.11.9` |  |
+| [flames](tools/flames/) | R/Bioc | `2.4.2` |  |
+| [fusionseeker](tools/fusionseeker/) | Python | `1.0.1` |  |
 | [isoquant](tools/isoquant/) | Python | `3.13.0` |  |
 | [isotools](tools/isotools/) | Python | `0.3.4` |  |
+| [liqa](tools/liqa/) | R/Bioc | `1.3.4` |  |
 | [nanoplot](tools/nanoplot/) | Python | `1.42.0` |  |
+| [oarfish](tools/oarfish/) | Compiled | `0.9.4` |  |
 | [rattle](tools/rattle/) | Compiled | `1.0` |  |
 | [tailfindr](tools/tailfindr/) | R/Bioc | `1.4` |  |
 | [talon](tools/talon/) | Python | `5.0` |  |
