@@ -57,12 +57,18 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 COPY --from=builder /opt/espresso /opt/espresso
 
-ENV PATH="/opt/espresso/src:$PATH"
+# The Parasail/build script installs Parasail.pm, Parasail.so and libparasail.so
+# directly into /opt/espresso/src/ (one level up from Parasail/).
+# ESPRESSO_*.pl uses `use lib dirname(__FILE__)` so they pick up Parasail.pm
+# automatically; libparasail.so is loaded by DynaLoader at runtime, so it must
+# be on LD_LIBRARY_PATH.
+ENV PATH="/opt/espresso/src:$PATH" \
+    LD_LIBRARY_PATH="/opt/espresso/src"
 
 # Verify perl threading + Storable + ESPRESSO scripts + Parasail module load
 RUN perl -e 'use threads; print("perl threads ok\n")' \
     && perl -e 'use Storable; die "old storable" if $Storable::VERSION < 3.0; print("Storable $Storable::VERSION ok\n")' \
-    && perl -I/opt/espresso/src/Parasail -e 'use Parasail; print("Parasail module ok\n")' \
+    && perl -I/opt/espresso/src -e 'use Parasail; print("Parasail module ok\n")' \
     && perl /opt/espresso/src/ESPRESSO_S.pl --help 2>&1 | head -3 \
     && perl /opt/espresso/src/ESPRESSO_C.pl --help 2>&1 | head -3 \
     && perl /opt/espresso/src/ESPRESSO_Q.pl --help 2>&1 | head -3 \
