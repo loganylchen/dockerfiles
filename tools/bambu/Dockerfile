@@ -16,6 +16,8 @@ LABEL org.opencontainers.image.title="bambu" \
       org.opencontainers.image.source="https://github.com/GoekeLab/bambu" \
       org.opencontainers.image.licenses="GPL-3.0"
 
+# Map bambu version -> matching Bioconductor release that hosts that tarball.
+# Only v3.12.1 has a GitHub tag; older bambu versions live only on Bioconductor.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         libcurl4-openssl-dev \
         libssl-dev \
@@ -28,7 +30,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libpng-dev \
         libtiff5-dev \
         libjpeg-dev \
-        git \
+    && case "${VERSION}" in \
+         3.12.*) BIOC=3.22 ;; \
+         3.10.*) BIOC=3.21 ;; \
+         3.8.*)  BIOC=3.20 ;; \
+         3.6.*)  BIOC=3.19 ;; \
+         3.4.*)  BIOC=3.18 ;; \
+         *)      BIOC=3.22 ;; \
+       esac \
+    && BAMBU_URL="https://bioconductor.org/packages/${BIOC}/bioc/src/contrib/bambu_${VERSION}.tar.gz" \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         install.packages('remotes', repos='https://cloud.r-project.org/'); \
@@ -40,7 +50,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
             'Rsamtools','S4Vectors','SummarizedExperiment','tidyr','methods', \
             'rtracklayer','txdbmaker' \
         ), ask=FALSE, update=FALSE); \
-        remotes::install_github('GoekeLab/bambu', ref='v${VERSION}', upgrade='never') \
+        install.packages('${BAMBU_URL}', repos=NULL, type='source') \
     " \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
