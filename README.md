@@ -37,7 +37,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 
 | Tool | Type | Versions | Reference |
 |------|------|----------|-----------|
-| [bambu](tools/bambu/) | R/Bioc | `3.12.1`, `3.10.1`, `3.8.3` | [Link](https://bioconductor.org/packages/bambu/) |
+| [bambu](tools/bambu/) | R/Bioc | `3.14.0`, `3.12.1`, `3.10.1`, `3.8.3` | [Link](https://bioconductor.org/packages/bambu/) |
 | [flair](tools/flair/) | Python | `2.0.0`, `1.7.0` | [Link](https://github.com/BrooksLabUCSC/flair) |
 | [gffcompare](tools/gffcompare/) | Compiled | `0.12.10`, `0.12.9`, `0.12.6` | [Link](https://ccb.jhu.edu/software/stringtie/gffcompare.shtml) |
 | [puree](tools/puree/) | Python | `5a0a702535e79e37b071971063e72fa697540818` | [Link](https://github.com/skandlab/PUREE) |
