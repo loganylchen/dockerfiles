@@ -12,8 +12,10 @@ LABEL org.opencontainers.image.title="LIQA" \
       org.opencontainers.image.source="https://github.com/WGLab/LIQA" \
       org.opencontainers.image.licenses="MIT"
 
-# LIQA = Python (pysam, numpy, scipy, lifelines) + R (gcmr, betareg).
-# gcmr depends on betareg + sandwich + Formula; all are CRAN.
+# LIQA = Python (pysam, numpy, scipy, lifelines) + R (gcmr, betareg) +
+# bundled Perl scripts (PreProcess.pl, PreProcess_gtf.pl, group_process.pl)
+# that need Getopt::Long + Pod::Usage. The base image only ships perl-base
+# (no Pod::Usage); install the full `perl` package.
 RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
@@ -29,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libssl-dev \
         r-base \
         r-base-dev \
+        perl \
     && pip3 install --no-cache-dir --break-system-packages \
         "liqa==${VERSION}" \
     && Rscript -e " \
@@ -45,6 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 RUN python3 -c "import pysam, numpy, scipy, lifelines" \
     && Rscript -e "library(gcmr); library(betareg)" 2>&1 | tail -5 \
+    && perl -MPod::Usage -MGetopt::Long -e 'print "perl modules ok\n"' \
     && liqa 2>&1 | head -5 || true
 
 WORKDIR /data
