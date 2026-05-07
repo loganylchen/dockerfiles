@@ -21,6 +21,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         liblzma-dev \
         libcurl4-openssl-dev \
         libssl-dev \
+        bedtools \
+        samtools \
     && pip install --no-cache-dir \
         'numpy<1.22' \
         'pandas<1.4' \
@@ -39,7 +41,10 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
 RUN talon --help > /dev/null && talon_label_reads --help > /dev/null \
-    && python -c "import talon; print('talon OK')"
+    && python -c "import talon; print('talon OK')" \
+    && bedtools --version \
+    && samtools --version | head -1 \
+    && python -c "import pybedtools; pybedtools.helpers.check_for_bedtools(); print('pybedtools->bedtools OK')"
 
 WORKDIR /data
 CMD ["talon"]
