@@ -24,12 +24,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         install.packages('remotes', repos='https://cloud.r-project.org/'); \
         remotes::install_version('xgboost', version='1.7.8.1', repos='https://cloud.r-project.org/'); \
+        install.packages('optparse', repos='https://cloud.r-project.org/'); \
         BiocManager::install('bambu', ask=FALSE) \
     " \
     && apt-get purge -y r-base-dev \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN Rscript -e "library(bambu); sessionInfo()" 2>&1
+RUN Rscript -e "library(bambu); library(optparse); sessionInfo()" 2>&1
 
 WORKDIR /data
 CMD ["Rscript"]
