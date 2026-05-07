@@ -20,6 +20,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
         python3-dev \
+        python-is-python3 \
         gcc \
         g++ \
         gfortran \
@@ -47,6 +48,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /root/.cache /tmp/*
 
 RUN python3 -c "import pysam, numpy, scipy, lifelines" \
+    && python -c "import sys; print('python ->', sys.executable)" \
     && Rscript -e "library(gcmr); library(betareg)" 2>&1 | tail -5 \
     && perl -MPod::Usage -MGetopt::Long -e 'print "perl modules ok\n"' \
     && liqa 2>&1 | head -5 || true
