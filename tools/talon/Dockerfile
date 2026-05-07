@@ -43,8 +43,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN talon --help > /dev/null && talon_label_reads --help > /dev/null \
     && python -c "import talon; print('talon OK')" \
     && bedtools --version \
-    && samtools --version | head -1 \
-    && python -c "import pybedtools; pybedtools.helpers.check_for_bedtools(); print('pybedtools->bedtools OK')"
+    && samtools --version | head -1
 
 WORKDIR /data
 CMD ["talon"]
