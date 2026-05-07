@@ -42,8 +42,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && Rscript -e " \
         install.packages('BiocManager', repos='https://cloud.r-project.org/'); \
         install.packages('remotes', repos='https://cloud.r-project.org/'); \
-        remotes::install_version('xgboost', version='1.7.8.1', repos='https://cloud.r-project.org/'); \
-        install.packages('optparse', repos='https://cloud.r-project.org/'); \
+        install.packages(c('xgboost','optparse'), repos='https://cloud.r-project.org/'); \
         BiocManager::install(c( \
             'BiocGenerics','BiocParallel','BSgenome','data.table','dplyr','DESeq2', \
             'GenomicAlignments','GenomicFeatures','GenomicRanges','IRanges', \
@@ -54,7 +53,11 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     " \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache /tmp/Rtmp*
 
-RUN Rscript -e "library(bambu); library(optparse); cat('bambu', as.character(packageVersion('bambu')), '\n'); sessionInfo()" 2>&1 | head -20
+RUN Rscript -e "library(bambu); library(optparse); library(xgboost); \
+        cat('bambu', as.character(packageVersion('bambu')), '\n'); \
+        cat('xgboost', as.character(packageVersion('xgboost')), '\n'); \
+        xgb.set.config(nthread = 1); cat('xgb.set.config OK\n'); \
+        sessionInfo()" 2>&1 | head -25
 
 WORKDIR /data
 CMD ["Rscript"]
