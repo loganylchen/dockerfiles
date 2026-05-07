@@ -1,10 +1,9 @@
-ARG VERSION=3.12.1
+ARG VERSION=3.14.0
 
-# bambu 3.8+ targets recent Bioconductor releases that require R >= 4.4.
-# debian:bookworm-slim only ships R 4.2, so use rocker/r-ver:4.5.0 (still
-# Debian-based) to get a modern R + Bioc 3.22 dep set that works for the
-# 3.8.x / 3.10.x / 3.12.x lines we build.
-FROM rocker/r-ver:4.5.0
+# bambu 3.14.0 (Bioc 3.23) requires R 4.6. Older 3.8.x/3.10.x/3.12.x
+# install fine on the same R 4.6 base since their Bioc deps maintain
+# backward-compat APIs and we resolve deps from current Bioc 3.23.
+FROM rocker/r-ver:4.6.0
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
@@ -31,12 +30,13 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libtiff5-dev \
         libjpeg-dev \
     && case "${VERSION}" in \
+         3.14.*) BIOC=3.23 ;; \
          3.12.*) BIOC=3.22 ;; \
          3.10.*) BIOC=3.21 ;; \
          3.8.*)  BIOC=3.20 ;; \
          3.6.*)  BIOC=3.19 ;; \
          3.4.*)  BIOC=3.18 ;; \
-         *)      BIOC=3.22 ;; \
+         *)      BIOC=3.23 ;; \
        esac \
     && BAMBU_URL="https://bioconductor.org/packages/${BIOC}/bioc/src/contrib/bambu_${VERSION}.tar.gz" \
     && Rscript -e " \
