@@ -53,7 +53,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [irfinder](tools/irfinder/) | R/Bioc | `2.0.1` | [Link](https://github.com/RitchieLabIGH/IRFinder) |
 | [isoformswitchanalyzer](tools/isoformswitchanalyzer/) | R/Bioc | `2.4.0`, `2.2.0` | [Link](https://bioconductor.org/packages/IsoformSwitchAnalyzeR/) |
 | [junctionseq](tools/junctionseq/) | R/Bioc | `1.26.0` | [Link](https://bioconductor.org/packages/JunctionSeq/) |
-| [lafite](tools/lafite/) | Python | `1.0.2`, `1.0.1` | [Link](https://github.com/pythseq/LAFITE) |
+| [lafite](tools/lafite/) | Python | `1.0.3`, `1.0.2`, `1.0.1` | [Link](https://github.com/pythseq/LAFITE) |
 | [leafcutter](tools/leafcutter/) | R/Bioc | `0.2.9` | [Link](https://github.com/davidaknowles/leafcutter) |
 | [majiq](tools/majiq/) | Python | `2.5` | [Link](https://majiq.biociphers.org/) |
 | [miso](tools/miso/) | Python | `0.5.4` | [Link](https://miso.readthedocs.io/) |
