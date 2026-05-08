@@ -85,7 +85,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [differr](tools/differr/) | Python | `0.2` | [Link](https://github.com/bartongroup/differr_nanopore_DRS) |
 | [directrm](tools/directrm/) | Python | `1.0` | [Link](https://github.com/yuxinPenny/DirectRM) |
 | [drummer](tools/drummer/) | Python | `92bb35a4a2b22ff304f5e4bcbc9fa6985f18a12e` | [Link](https://github.com/DepledgeLab/DRUMMER) |
-| [eligos2](tools/eligos2/) | R/Bioc | `2.1.0` | [Link](https://gitlab.com/piroonj/eligos2) |
+| [eligos2](tools/eligos2/) | Compiled | `2.1.0`, `2.2.0`, `2.0.1` | [Link](https://gitlab.com/piroonj/eligos2) |
 | [epinano](tools/epinano/) | R/Bioc | `1.2.5` | [Link](https://github.com/novoalab/EpiNano) |
 | [gloritools](tools/gloritools/) | Python | `1.0.0` | [Link](https://github.com/liucongcas/GLORI-tools) |
 | [hamr](tools/hamr/) | R/Bioc | `3.3` | [Link](https://github.com/GregoryLab/HAMR) |
