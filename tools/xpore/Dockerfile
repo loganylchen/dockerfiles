@@ -44,6 +44,7 @@ LABEL version="${VERSION}"
 RUN apt-get update && \
     apt-get install -y --no-install-recommends \
     zlib1g \
+    bzip2 \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
 

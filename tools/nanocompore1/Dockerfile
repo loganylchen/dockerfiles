@@ -49,6 +49,7 @@ RUN apt-get update && \
     libhdf5-103-1 \
     zlib1g \
     libbz2-1.0 \
+    bzip2 \
     liblzma5 \
     libgomp1 \
     && rm -rf /var/lib/apt/lists/*
