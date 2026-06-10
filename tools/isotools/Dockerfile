@@ -16,6 +16,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         python3 \
         python3-pip \
         python3-dev \
+        python-is-python3 \
         gcc \
         g++ \
         zlib1g-dev \
@@ -30,6 +31,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/* /root/.cache /tmp/*
 
 RUN python3 -c "import isotools; print('isotools', isotools.__version__)" \
+    && python -c "import sys; print('python ->', sys.executable)" \
     && run_isotools --help > /dev/null
 
 WORKDIR /data
