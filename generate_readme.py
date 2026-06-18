@@ -182,6 +182,14 @@ TOOL_INFO = {
         "category": "nanopore",
         "references": ["https://github.com/nanoporetech/bonito"]
     },
+    "dorado": {
+        "cn_name": "Dorado Nanopore碱基调用",
+        "en_name": "Dorado Nanopore Basecaller",
+        "cn_desc": "Oxford Nanopore官方的GPU加速碱基调用工具，支持simplex/duplex调用、修饰碱基检测（m6A、m5C、inosine、pseU、2'O-me等）以及poly(A)尾长估计。",
+        "en_desc": "Oxford Nanopore's official GPU-accelerated basecaller supporting simplex/duplex calling, modified base detection (m6A, m5C, inosine, pseU, 2'O-me, etc.), and poly(A) tail length estimation.",
+        "category": "nanopore",
+        "references": ["https://github.com/nanoporetech/dorado"]
+    },
 
     # Variant calling
     "gatk": {
