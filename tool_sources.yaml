@@ -137,6 +137,10 @@ differr:
   source: github
   repo: bartongroup/differr_nanopore_DRS
 
+dorado:
+  source: github
+  repo: nanoporetech/dorado
+
 jaffal:
   source: github
   repo: Oshlack/JAFFA
