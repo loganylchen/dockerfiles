@@ -190,6 +190,15 @@ TOOL_INFO = {
         "category": "nanopore",
         "references": ["https://github.com/nanoporetech/dorado"]
     },
+    "dorado-rna004": {
+        "cn_name": "Dorado RNA004 直接RNA测序碱基调用",
+        "en_name": "Dorado RNA004 Direct-RNA Basecaller",
+        "cn_desc": "在dorado镜像基础上预置RNA004 sup@v5.3.0模型集（simplex + inosine/m6A/2'O-meA、pseU/2'O-meU、m5C/2'O-meC、2'O-meG、m6A_DRACH修饰模型），用于Nanopore直接RNA测序数据的离线修饰碱基调用，运行时无需联网下载模型。",
+        "en_desc": "Builds on the dorado image with the RNA004 sup@v5.3.0 model set pre-baked (simplex plus inosine/m6A/2'O-meA, pseU/2'O-meU, m5C/2'O-meC, 2'O-meG, and m6A_DRACH modification models) for offline modified-basecalling of Nanopore Direct RNA Sequencing data.",
+        "category": "nanopore",
+        "command": "dorado",
+        "references": ["https://github.com/nanoporetech/dorado"]
+    },
 
     # Variant calling
     "gatk": {
@@ -944,16 +953,19 @@ def get_install_command(tool_name, version, tool_type):
 def get_usage_example(tool_name, tool_type, tool_info):
     """Generate usage example based on tool type."""
     category = tool_info.get("category", "general")
+    # Executable to invoke; defaults to the image name but can be overridden
+    # when the in-image binary differs from the tool/image name.
+    cmd = tool_info.get("command", tool_name)
 
     examples = {
         "alignment": f"""```bash
 # Basic alignment
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} -t 4 reference.fa reads.fq > alignment.sam
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} -t 4 reference.fa reads.fq > alignment.sam
 ```""",
         "quantification": f"""```bash
 # Index reference and quantify
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} index -t transcripts.fa
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} quant -i transcripts.idx -o output reads_1.fq reads_2.fq
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} index -t transcripts.fa
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} quant -i transcripts.idx -o output reads_1.fq reads_2.fq
 ```""",
         "diff_expr": f"""```bash
 # Run differential expression analysis in R
@@ -961,7 +973,7 @@ docker run --rm -v /path/to/data:/data btrspg/{tool_name} Rscript analysis.R
 ```""",
         "qc": f"""```bash
 # Quality control
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} -i input.fq -o output.html
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} -i input.fq -o output.html
 ```""",
         "splicing": f"""```bash
 # Run alternative splicing analysis
@@ -969,13 +981,13 @@ docker run --rm -v /path/to/data:/data btrspg/{tool_name} Rscript analysis.R
 ```""",
         "nanopore": f"""```bash
 # Process Nanopore data
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} reads.fq
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} reads.fq
 ```""",
     }
 
     return examples.get(category, f"""```bash
 # Basic usage
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} --help
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {cmd} --help
 ```""")
 
 
@@ -1024,7 +1036,7 @@ docker pull btrspg/{tool_name}:{versions[0]}
 docker run --rm -it -v $(pwd):/data btrspg/{tool_name} bash
 
 # Run with data volume
-docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_name} [options]
+docker run --rm -v /path/to/data:/data btrspg/{tool_name} {tool_info.get('command', tool_name)} [options]
 ```
 
 ## References
