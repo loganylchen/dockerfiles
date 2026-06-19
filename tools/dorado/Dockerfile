@@ -1,10 +1,17 @@
 ARG VERSION=2.0.1
+ARG CUDA_VERSION=12.3.1
 
-FROM ubuntu:22.04
+# nvidia/cuda base for GPU basecalling: it explicitly sets the NVIDIA env vars
+# (NVIDIA_VISIBLE_DEVICES, NVIDIA_DRIVER_CAPABILITIES=compute,utility) and ships
+# the CUDA runtime, so `--gpus all` reliably yields GPU compute regardless of the
+# host container-toolkit defaults. Matches the repo's other GPU tools (bonito,
+# directrm). dorado bundles its own CUDA libs, so the -runtime variant suffices.
+FROM nvidia/cuda:${CUDA_VERSION}-runtime-ubuntu22.04
 LABEL maintainer="Yuelong CHEN <yuelong.chen.btr@gmail.com>"
 
 ENV DEBIAN_FRONTEND=noninteractive
 ARG VERSION
+ARG CUDA_VERSION
 
 # Dorado ships as a precompiled linux-x64 tarball that bundles its own CUDA
 # runtime libraries (rpath $ORIGIN/../lib); only the host NVIDIA driver is
