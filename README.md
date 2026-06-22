@@ -133,6 +133,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 |------|------|----------|-----------|
 | [bonito](tools/bonito/) | Python | `0.8.1`, `0.7.3`, `0.6.2` | [Link](https://github.com/nanoporetech/bonito) |
 | [dorado](tools/dorado/) | Compiled | `2.0.1`, `1.4.0` | [Link](https://github.com/nanoporetech/dorado) |
+| [dorado-rna004](tools/dorado-rna004/) | Compiled | `5.3.0` | [Link](https://github.com/nanoporetech/dorado) |
 | [f5c](tools/f5c/) | Compiled | `1.6`, `1.5`, `1.4`, `1.3`, `1.2`, `1.1` | [Link](https://github.com/hasindu2008/f5c) |
 | [nanopolish](tools/nanopolish/) | Python | `0.14.0` | [Link](https://github.com/jts/nanopolish) |
 | [slow5tools](tools/slow5tools/) | Compiled | `1.4.0`, `1.3.0`, `1.2.0`, `1.1.0`, `1.0.0`, `0.9.0` | [Link](https://github.com/hasindu2008/slow5tools) |
