@@ -42,5 +42,27 @@ ENV PATH=/opt/dorado/bin:${PATH}
 
 RUN dorado --version
 
+# Pre-bake the RNA004 (direct-RNA) sup@v5.3.0 simplex model plus the full set of
+# modification models (inosine/m6A/2'O-meA, pseU/2'O-meU, m5C/2'O-meC, 2'O-meG,
+# m6A_DRACH) into a fixed directory so RNA004 modified-basecalling needs no
+# network at runtime. v5.3.0 is the newest RNA004 sup series available on every
+# dorado version in versions.txt (1.4.0, 2.0.1). dorado has no models-directory
+# env var; DORADO_MODELS_DIR is an image-level convention only. At runtime reuse
+# the baked models via `--models-directory "$DORADO_MODELS_DIR"` (or pass a model
+# path directly, e.g. "$DORADO_MODELS_DIR/rna004_130bps_sup@v5.3.0").
+ENV DORADO_MODELS_DIR=/opt/dorado-models
+RUN set -eux; \
+    mkdir -p "${DORADO_MODELS_DIR}"; \
+    SIMPLEX="rna004_130bps_sup@v5.3.0"; \
+    for M in \
+        "${SIMPLEX}" \
+        "${SIMPLEX}_inosine_m6A_2OmeA@v1" \
+        "${SIMPLEX}_pseU_2OmeU@v1" \
+        "${SIMPLEX}_m5C_2OmeC@v1" \
+        "${SIMPLEX}_2OmeG@v1" \
+        "${SIMPLEX}_m6A_DRACH@v1" ; \
+    do dorado download --model "$M" --models-directory "${DORADO_MODELS_DIR}"; done; \
+    ls -1 "${DORADO_MODELS_DIR}"
+
 WORKDIR /data
 CMD ["dorado"]

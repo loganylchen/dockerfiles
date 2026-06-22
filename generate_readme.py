@@ -185,8 +185,8 @@ TOOL_INFO = {
     "dorado": {
         "cn_name": "Dorado Nanopore碱基调用",
         "en_name": "Dorado Nanopore Basecaller",
-        "cn_desc": "Oxford Nanopore官方的GPU加速碱基调用工具，支持simplex/duplex调用、修饰碱基检测（m6A、m5C、inosine、pseU、2'O-me等）以及poly(A)尾长估计。",
-        "en_desc": "Oxford Nanopore's official GPU-accelerated basecaller supporting simplex/duplex calling, modified base detection (m6A, m5C, inosine, pseU, 2'O-me, etc.), and poly(A) tail length estimation.",
+        "cn_desc": "Oxford Nanopore官方的GPU加速碱基调用工具，支持simplex/duplex调用、修饰碱基检测（m6A、m5C、inosine、pseU、2'O-me等）以及poly(A)尾长估计。镜像预置RNA004 sup@v5.3.0直接RNA模型（含全套修饰模型）于/opt/dorado-models，可离线进行RNA004修饰碱基调用。",
+        "en_desc": "Oxford Nanopore's official GPU-accelerated basecaller supporting simplex/duplex calling, modified base detection (m6A, m5C, inosine, pseU, 2'O-me, etc.), and poly(A) tail length estimation. The image pre-bakes the RNA004 sup@v5.3.0 direct-RNA models (simplex plus the full modification set) under /opt/dorado-models for offline RNA004 modified-basecalling.",
         "category": "nanopore",
         "references": ["https://github.com/nanoporetech/dorado"]
     },

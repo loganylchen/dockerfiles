@@ -4,7 +4,7 @@
 
 ## Introduction
 
-Oxford Nanopore's official GPU-accelerated basecaller supporting simplex/duplex calling, modified base detection (m6A, m5C, inosine, pseU, 2'O-me, etc.), and poly(A) tail length estimation.
+Oxford Nanopore's official GPU-accelerated basecaller supporting simplex/duplex calling, modified base detection (m6A, m5C, inosine, pseU, 2'O-me, etc.), and poly(A) tail length estimation. The image pre-bakes the RNA004 sup@v5.3.0 direct-RNA models (simplex plus the full modification set) under /opt/dorado-models for offline RNA004 modified-basecalling.
 
 ## Installation
 
