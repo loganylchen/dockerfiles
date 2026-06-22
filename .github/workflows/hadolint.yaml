@@ -32,7 +32,9 @@ jobs:
           if [ "${{ github.event.inputs.lint_all }}" = "true" ]; then
             files=$(find tools misc -name Dockerfile 2>/dev/null | sort)
           else
-            files=$(git diff --name-only HEAD^ HEAD 2>/dev/null | grep '/Dockerfile$' || true)
+            # --diff-filter=ACMRT excludes deletions (D) so a removed
+            # Dockerfile is not handed to hadolint (the file no longer exists).
+            files=$(git diff --name-only --diff-filter=ACMRT HEAD^ HEAD 2>/dev/null | grep '/Dockerfile$' || true)
           fi
 
           if [ -z "$files" ]; then

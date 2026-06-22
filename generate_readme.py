@@ -190,15 +190,6 @@ TOOL_INFO = {
         "category": "nanopore",
         "references": ["https://github.com/nanoporetech/dorado"]
     },
-    "dorado-rna004": {
-        "cn_name": "Dorado RNA004 直接RNA测序碱基调用",
-        "en_name": "Dorado RNA004 Direct-RNA Basecaller",
-        "cn_desc": "在dorado镜像基础上预置RNA004 sup@v5.3.0模型集（simplex + inosine/m6A/2'O-meA、pseU/2'O-meU、m5C/2'O-meC、2'O-meG、m6A_DRACH修饰模型），用于Nanopore直接RNA测序数据的离线修饰碱基调用，运行时无需联网下载模型。",
-        "en_desc": "Builds on the dorado image with the RNA004 sup@v5.3.0 model set pre-baked (simplex plus inosine/m6A/2'O-meA, pseU/2'O-meU, m5C/2'O-meC, 2'O-meG, and m6A_DRACH modification models) for offline modified-basecalling of Nanopore Direct RNA Sequencing data.",
-        "category": "nanopore",
-        "command": "dorado",
-        "references": ["https://github.com/nanoporetech/dorado"]
-    },
 
     # Variant calling
     "gatk": {

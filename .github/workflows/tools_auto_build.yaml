@@ -29,8 +29,10 @@ jobs:
             # Manual workflow dispatch with specific tool
             echo "tools=[\"${{ github.event.inputs.specific_tool }}\"]" >> $GITHUB_OUTPUT
           else
-            # Auto-detect changed tools from git diff
-            changed_files=$(git diff --name-only HEAD^ HEAD | grep '^tools/' || true)
+            # Auto-detect changed tools from git diff. --diff-filter=ACMRT
+            # excludes deletions (D) so a removed tool directory is not picked
+            # up as a build target (its context/ would no longer exist).
+            changed_files=$(git diff --name-only --diff-filter=ACMRT HEAD^ HEAD | grep '^tools/' || true)
             if [ -z "$changed_files" ]; then
               echo "tools=[]" >> $GITHUB_OUTPUT
               exit 0
