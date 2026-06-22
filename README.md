@@ -1,6 +1,6 @@
 # Dockerfiles for Bioinformatics Tools
 
-A collection of **113** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
+A collection of **114** Dockerfiles for bioinformatics tools, maintained by [Yuelong CHEN](mailto:yuelong.chen.btr@gmail.com).
 
 ## Quick Start
 
@@ -233,6 +233,7 @@ docker build --build-arg VERSION=<version> -t <tool>:<version> .
 | [liqa](tools/liqa/) | R/Bioc | `1.3.4` |  |
 | [nanoplot](tools/nanoplot/) | Python | `1.42.0` |  |
 | [oarfish](tools/oarfish/) | Compiled | `0.9.4` |  |
+| [pod5](tools/pod5/) | Python | `0.3.39` |  |
 | [rattle](tools/rattle/) | Compiled | `1.0` |  |
 | [seqtk](tools/seqtk/) | Compiled | `1.5`, `1.4` |  |
 | [tailfindr](tools/tailfindr/) | R/Bioc | `1.4` |  |
