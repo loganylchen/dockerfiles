@@ -2,26 +2,31 @@
 # Install required R packages for plotting and data manipulation
 # Packages: ggplot2, dplyr, ggpubr, ggsci, tidyr, tibble
 
-install.packages(c( 
-            'BiocManager', 
-            'tidyverse', 
-            'ggplot2', 
-            'ggpubr', 
-            'ggsci', 
-            'ggrepel', 
-            'ggalt', 
-            'ggplotify', 
-            'patchwork', 
-            'pheatmap', 
-            'UpSetR', 
-            'dplyr', 
-            'tidyr', 
-            'tibble', 
-            'readr', 
-            'devtools', 
-            'magick', 
-            'readr' 
-        ), repos='https://cloud.r-project.org/')
+# The rocker/r-ver base preconfigures Posit PPM (with the correct HTTPUserAgent)
+# to serve precompiled binaries for this R version, so we install against the
+# inherited repos rather than overriding them. This avoids the fragile source
+# build of the devtools -> miniUI -> shiny -> bslib chain on this distro.
+
+install.packages(c(
+            'BiocManager',
+            'tidyverse',
+            'ggplot2',
+            'ggpubr',
+            'ggsci',
+            'ggrepel',
+            'ggalt',
+            'ggplotify',
+            'patchwork',
+            'pheatmap',
+            'UpSetR',
+            'dplyr',
+            'tidyr',
+            'tibble',
+            'readr',
+            'devtools',
+            'magick',
+            'readr'
+        ))
   
 BiocManager::install(c(
             'ComplexHeatmap',
