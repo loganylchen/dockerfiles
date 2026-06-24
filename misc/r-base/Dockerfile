@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && apt-get purge -y --auto-remove r-base-dev make git \
     && rm -rf /var/lib/apt/lists/* /tmp/* /root/.cache
 
-RUN Rscript -e "library(tidyverse); library(ComplexHeatmap); library(DESeq2)" 2>&1 | head -3
+RUN Rscript -e "library(tidyverse); library(ComplexHeatmap); library(DESeq2); library(GenomicFeatures)" 2>&1 | head -3
 
 WORKDIR /data
 CMD ["R"]

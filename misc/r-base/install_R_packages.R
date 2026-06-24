@@ -23,12 +23,15 @@ install.packages(c(
             'readr' 
         ), repos='https://cloud.r-project.org/')
   
-BiocManager::install(c( 
-            'ComplexHeatmap', 
-            'EnhancedVolcano', 
-            'PCAtools', 
-            'DESeq2' 
-        ), ask=FALSE) 
+BiocManager::install(c(
+            'ComplexHeatmap',
+            'EnhancedVolcano',
+            'PCAtools',
+            'DESeq2',
+            'GenomicRanges',
+            'rtracklayer',
+            'GenomicFeatures'
+        ), ask=FALSE)
 
 
 github_repos <- c("Hy4m/linkET")    # e.g. c("username/repo", "org/pkg@v1.2.3")
