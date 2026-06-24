@@ -65,6 +65,7 @@ the corresponding `Dockerfile` or package list changes. The tag format is `YYYY-
 ### Build history
 
 <!-- RBASE_HISTORY -->
+| 2026-06-24 | updated install_R_packages.R; base packages unchanged |
 | Date | Notes |
 |------|-------|
 <!-- /RBASE_HISTORY -->
